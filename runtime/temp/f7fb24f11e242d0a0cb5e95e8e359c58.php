@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:99:"/Library/WebServer/documents/www/lua/tokenman/public/../application/admin/view/user/user/index.html";i:1521019244;s:88:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/layout/default.html";i:1521019244;s:85:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/common/meta.html";i:1521019244;s:87:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/common/script.html";i:1521019244;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:100:"/Library/WebServer/Documents/www/tokenman/public/../application/admin/view/keyword/manage/index.html";i:1524067023;s:84:"/Library/WebServer/Documents/www/tokenman/application/admin/view/layout/default.html";i:1521019244;s:81:"/Library/WebServer/Documents/www/tokenman/application/admin/view/common/meta.html";i:1521019244;s:83:"/Library/WebServer/Documents/www/tokenman/application/admin/view/common/script.html";i:1521019244;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -58,18 +58,14 @@
             <div class="tab-pane fade active in" id="one">
                 <div class="widget-body no-padding">
                     <div id="toolbar" class="toolbar">
-                        <?php echo build_toolbar('refresh,edit,del'); ?>
-                        <div class="dropdown btn-group <?php echo $auth->check('user/user/multi')?'':'hide'; ?>">
-                            <a class="btn btn-primary btn-more dropdown-toggle btn-disabled disabled" data-toggle="dropdown"><i class="fa fa-cog"></i> <?php echo __('More'); ?></a>
-                            <ul class="dropdown-menu text-left" role="menu">
-                                <li><a class="btn btn-link btn-multi btn-disabled disabled" href="javascript:;" data-params="status=normal"><i class="fa fa-eye"></i> <?php echo __('Set to normal'); ?></a></li>
-                                <li><a class="btn btn-link btn-multi btn-disabled disabled" href="javascript:;" data-params="status=hidden"><i class="fa fa-eye-slash"></i> <?php echo __('Set to hidden'); ?></a></li>
-                            </ul>
-                        </div>
+                        <!-- <?php echo build_toolbar('refresh,add,delete'); ?> -->
+                        <?php echo build_toolbar('refresh'); ?>
+                        <a href="#" class="btn btn-success btn-add"><?php echo __('Add'); ?></a>
+                        <a href="#" class="btn btn-primary"><?php echo __('Demo'); ?></a>
                     </div>
-                    <table id="table" class="table table-striped table-bordered table-hover" 
-                           data-operate-edit="<?php echo $auth->check('user/user/edit'); ?>" 
-                           data-operate-del="<?php echo $auth->check('user/user/del'); ?>" 
+                    <table id="table" class="table table-striped table-bordered table-hover"
+                           data-operate-edit="<?php echo $auth->check('keyword/manage/edit'); ?>"
+                           data-operate-del="<?php echo $auth->check('keyword/manage/del'); ?>"
                            width="100%">
                     </table>
                 </div>

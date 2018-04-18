@@ -20,6 +20,10 @@ class Manage extends Backend
     {
         parent::_initialize();
         $this->model = model('ChatCommand');
+        $this->type = [1 => '普通消息类型', 2 => 'code邀请类型', 3 => '图文回复类型', 4 => '文件类型',5 =>'图文连续类型'];
+        if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
+            $this->type = [1 => 'Common message type', 2 => 'Code invitations type', 3 => 'Graph and text reply type', 4 => 'File reply type',5 =>'Graph and text continuous reply type'];
+        }
     }
 
     /**
@@ -76,7 +80,22 @@ class Manage extends Backend
      */
     public function add()
     {
-        $this->error();
+        $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
+
+        if ($this->request->isPost())
+        {
+            $params = $this->request->post("row/a");
+            if ($params)
+            {
+                $params['chat_bot_id'] = $_SESSION['think']['admin']['chat_bot_id'];
+                $params['is_del'] = 0;
+                $params['url'] = (isset($params['url']) && !empty($params['url'])) ? $params['url'] : "";
+                $this->model->create($params);
+                $this->success();
+            }
+            $this->error();
+        }
+        return $this->view->fetch();
     }
 
     /**
@@ -85,8 +104,7 @@ class Manage extends Backend
     public function edit($ids = NULL)
     {
         $row = $this->model->get(['id' => $ids]);
-        $type = [1 => '普通消息类型', 2 => 'code邀请类型', 3 => '图文回复类型', 4 => '文件类型',5 =>'图文连续类型'];
-        $this->view->assign('groupList', build_select('row[type]', $type, $row['type'], ['class' => 'form-control selectpicker']));
+        $this->view->assign('groupList', build_select('row[type]', $this->type, $row['type'], ['class' => 'form-control selectpicker']));
         if (!$row)
             $this->error(__('No Results were found'));
         if ($this->request->isPost())
@@ -94,41 +112,7 @@ class Manage extends Backend
             $params = $this->request->post("row/a");
             if ($params)
             {
-                if ($params['password'])
-                {
-                    $params['salt'] = Random::alnum();
-                    $params['password'] = md5(md5($params['password']) . $params['salt']);
-                }
-                else
-                {
-                    unset($params['password'], $params['salt']);
-                }
-                //这里需要针对username和email做唯一验证
-                $adminValidate = \think\Loader::validate('Admin');
-                $adminValidate->rule([
-                    'username' => 'require|max:50|unique:admin,username,' . $row->id,
-                    'email'    => 'require|email|unique:admin,email,' . $row->id
-                ]);
-                $result = $row->validate('Admin.edit')->save($params);
-                if ($result === false)
-                {
-                    $this->error($row->getError());
-                }
-
-                // 先移除所有权限
-                model('AuthGroupAccess')->where('uid', $row->id)->delete();
-
-                $group = $this->request->post("group/a");
-
-                // 过滤不允许的组别,避免越权
-                $group = array_intersect($this->childrenGroupIds, $group);
-
-                $dataset = [];
-                foreach ($group as $value)
-                {
-                    $dataset[] = ['uid' => $row->id, 'group_id' => $value];
-                }
-                model('AuthGroupAccess')->saveAll($dataset);
+                $row->save($params);
                 $this->success();
             }
             $this->error();
@@ -143,22 +127,14 @@ class Manage extends Backend
     {
         if ($ids)
         {
-            $childrenGroupIds = $this->childrenGroupIds;
-            $adminList = $this->model->where('id', 'in', $ids)->where('admin_id', 'in', function($query) use($childrenGroupIds) {
-                        $query->name('auth_group_access')->field('uid');
-                    })->select();
-            if ($adminList)
+            $row = $this->model->get(['id' => $ids]);
+            if (!$row)
+                $this->error(__('No Results were found'));
+            if ($this->request->isPost())
             {
-                $deleteIds = [];
-                foreach ($adminList as $k => $v)
-                {
-                    $deleteIds[] = $v->id;
-                }
-                if ($deleteIds)
-                {
-                    $this->model->destroy($deleteIds);
-                    $this->success();
-                }
+                $params['is_del'] = 1;
+                $row->save($params);
+                $this->success();
             }
         }
         $this->error();

@@ -189,4 +189,5 @@ return [
     'Password recovery' => '密码找回',
     'Guide manage' => '新手指导',
     'Chat bot' => '机器人设置',
+    'Guide index' => '新手指导'
 ];

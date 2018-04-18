@@ -493,7 +493,7 @@
 
 /**
  * Bootstrap Table Spanish (México) translation (Obtenido de traducción de Argentina)
- * Author: Felix Vera (felix.vera@gmail.com) 
+ * Author: Felix Vera (felix.vera@gmail.com)
  * Copiado: Mauricio Vera (mauricioa.vera@gmail.com)
  */
 (function ($) {
@@ -571,7 +571,7 @@
  */
  (function ($) {
     'use strict';
-    
+
     $.fn.bootstrapTable.locales['es-SP'] = {
         formatLoadingMessage: function () {
             return 'Cargando, por favor espera...';
@@ -897,7 +897,7 @@
 
 /**
  * Bootstrap Table Indonesian translation
- * Author: Andre Gardiner<andre@sirdre.com> 
+ * Author: Andre Gardiner<andre@sirdre.com>
  */
 (function ($) {
     'use strict';
@@ -911,7 +911,7 @@
         },
         formatShowingRows: function (pageFrom, pageTo, totalRows) {
             return 'Menampilkan ' + pageFrom + ' sampai ' + pageTo + ' dari ' + totalRows + ' baris';
-        }, 
+        },
         formatSearch: function () {
             return 'Pencarian';
         },
@@ -991,7 +991,7 @@
         formatClearFilters: function () {
             return 'Pulisci filtri';
         }
-        
+
     };
 
     $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['it-IT']);
@@ -1077,7 +1077,7 @@
             return 'სვეტები';
         }
     };
-    
+
     $.extend($.fn.bootstrapTable.defaults, $.fn.bootstrapTable.locales['ka-GE']);
 
 })(jQuery);
@@ -1309,19 +1309,19 @@
         formatShowingRows: function (pageFrom, pageTo, totalRows) {
             return 'Exibindo ' + pageFrom + ' até ' + pageTo + ' de ' + totalRows + ' linhas';
         },
-        formatSearch: function () { 
+        formatSearch: function () {
             return 'Pesquisar';
         },
-        formatRefresh: function () { 
+        formatRefresh: function () {
             return 'Recarregar';
         },
-        formatToggle: function () { 
+        formatToggle: function () {
             return 'Alternar';
         },
-        formatColumns: function () { 
+        formatColumns: function () {
             return 'Colunas';
         },
-        formatPaginationSwitch: function () { 
+        formatPaginationSwitch: function () {
             return 'Ocultar/Exibir paginação';
         },
         formatNoMatches: function () {
@@ -1655,7 +1655,7 @@
  */
  (function ($) {
     'use strict';
-    
+
     $.fn.bootstrapTable.locales['uk-UA'] = {
         formatLoadingMessage: function () {
             return 'Завантаження, будь ласка, зачекайте...';

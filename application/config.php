@@ -255,6 +255,6 @@ return [
         //版本号
         'version'          => '1.0.0.20180314_beta',
         'api_url'          => 'http://api.fastadmin.net',
-        'data_url'          => 'http://localhost:8891/admin'
+        'data_url'          => 'http://localhost/admin.php'
     ],
 ];

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:99:"/Library/WebServer/documents/www/lua/tokenman/public/../application/admin/view/dashboard/index.html";i:1523939717;s:88:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/layout/default.html";i:1521019244;s:85:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/common/meta.html";i:1521019244;s:87:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/common/script.html";i:1521019244;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:95:"/Library/WebServer/Documents/www/tokenman/public/../application/admin/view/dashboard/index.html";i:1523939717;s:84:"/Library/WebServer/Documents/www/tokenman/application/admin/view/layout/default.html";i:1521019244;s:81:"/Library/WebServer/Documents/www/tokenman/application/admin/view/common/meta.html";i:1521019244;s:83:"/Library/WebServer/Documents/www/tokenman/application/admin/view/common/script.html";i:1521019244;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>

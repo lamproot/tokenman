@@ -6,10 +6,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             Table.api.init({
                 extend: {
                     index_url: 'keyword/manage/index',
-                    add_url: 'auth/admin/add',
+                    add_url: 'keyword/manage/add',
                     edit_url: 'keyword/manage/edit',
-                    del_url: 'auth/admin/del',
-                    multi_url: 'auth/admin/multi',
+                    del_url: 'keyword/manage/del',
+                    multi_url: 'keyword/manage/multi',
                 }
             });
 
@@ -22,8 +22,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                     [
                         //{field: 'state', checkbox: true, },
                         {field: 'id', title: 'ID'},
-                        {field: 'cmd', title: '回复命令'},
-                        {field: 'type', title: '类型', searchList: {1: '普通消息类型', 2:'code邀请类型', 3:'图文回复类型', 4:'文件类型',5:'图文连续类型'}},
+                        {field: 'cmd', title: __('Cmd')},
+                        {field: 'type', title: __('Type'), searchList: {1: '普通消息类型', 2:'code邀请类型', 3:'图文回复类型', 4:'文件类型',5:'图文连续类型'}},
                         {field: 'content', title: '回复内容', visible: false},
                         {field: 'created_at', title: __('Createtime'), formatter: Table.api.formatter.datetime},
                         // {field: 'username', title: __('Username')},
