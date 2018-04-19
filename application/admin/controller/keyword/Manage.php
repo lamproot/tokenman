@@ -80,6 +80,7 @@ class Manage extends Backend
      */
     public function add()
     {
+        unset($this->type[2]);
         $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
 
         if ($this->request->isPost())

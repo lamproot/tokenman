@@ -118,8 +118,12 @@ class Ajax extends Backend
             $attachment->data(array_filter($params));
             $attachment->save();
             \think\Hook::listen("upload_after", $attachment);
+            //HTTP_HOST SERVER_NAME
+            $localhost ='http://'.$_SERVER['HTTP_HOST'].'/';
+            $uploadDir = str_replace("/../../", "", $uploadDir);
             $this->success(__('Upload successful'), null, [
-                'url' => $uploadDir . $splInfo->getSaveName()
+                //'url' => $uploadDir . $splInfo->getSaveName()
+                'url' => $localhost . $uploadDir . $splInfo->getSaveName()
             ]);
         }
         else
