@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:103:"/Library/WebServer/documents/www/lua/tokenman/public/../application/admin/view/keyword/manage/edit.html";i:1524221548;s:88:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/layout/default.html";i:1524119755;s:85:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/common/meta.html";i:1524119755;s:87:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/common/script.html";i:1524119755;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:103:"/Library/WebServer/documents/www/lua/tokenman/public/../application/admin/view/keyword/message/add.html";i:1524210698;s:88:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/layout/default.html";i:1524119755;s:85:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/common/meta.html";i:1524119755;s:87:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/common/script.html";i:1524119755;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -50,94 +50,69 @@
                             <!-- END RIBBON -->
                             <?php endif; ?>
                             <div class="content">
-                                <form id="edit-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
+                                <form id="add-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
     <div class="form-group">
         <label for="cmd" class="control-label col-xs-12 col-sm-2"><?php echo __('Cmd'); ?>:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="cmd" name="row[cmd]" value="<?php echo $row['cmd']; ?>" data-rule="required;cmd" />
-            <input type="hidden" class="form-control" id="type" name="row[type]" value="<?php echo $row['type']; ?>"/>
+            <input type="text" class="form-control" id="cmd" name="row[cmd]" value="" data-rule="required;cmd" placeholder="DEMO: /demo "/>
+
         </div>
     </div>
 
-    <!-- <div class="form-group">
+    <div class="form-group">
         <label for="type" class="control-label col-xs-12 col-sm-2"><?php echo __('Type'); ?>:</label>
         <div class="col-xs-12 col-sm-8">
             <?php echo $groupList; ?>
         </div>
-    </div> -->
-    <?php if($row['type'] != 5): ?>
-      <div class="form-group">
-          <label for="content" class="control-label col-xs-12 col-sm-2"><?php echo __('Content'); ?>:</label>
-          <div class="col-xs-12 col-sm-8">
-              <textarea class="form-control" id="content" name="row[content]" rows="8" cols="80"><?php echo $row['content']; ?></textarea>
-          </div>
-      </div>
+    </div>
 
-      <?php if($row['type'] != 1 && $row['type'] != 2): ?>
-        <div class="form-group row_url" id="row_url">
-            <label for="c-local" class="control-label col-xs-12 col-sm-2"><?php echo __('Upload'); ?>:</label>
-            <div class="col-xs-12 col-sm-8">
-                <div class="input-group input-groupp-md ">
-                    <a href="javascript:;"  id="plupload-local" class="btn btn-primary plupload btn-search-icon input-group-addon"  data-input-id="c-local" data-url="<?php echo url('ajax/upload'); ?>" style="background-color:#2c3e50;color:#fff"><?php echo __("Upload to local"); ?></a>
+    <div class="form-group" id="row_content">
+        <label for="content" class="control-label col-xs-12 col-sm-2"><?php echo __('Content'); ?>:</label>
+        <div class="col-xs-12 col-sm-8">
 
-                    <input type="text" name="row[url][]" value="<?php echo $row['url']; ?>" id="c-local" class="form-control"/>
-
-                </div>
-                <span class="n-msg">File Type :pdf,gif,zip,jpg,jpeg,png</span>
-            </div>
+            <textarea class="form-control" id="content" name="row[content][]" rows="4" cols="80" data-rule="required;content[]"></textarea>
+            <span class="n-msg">Optional. For text messages, the actual UTF-8 text of the message, 0-4096 characters.</span>
+            <span class="n-msg">Optional. Caption for the audio, document, photo, video or voice, 0-200 characters</span>
         </div>
-      <?php endif; else: ?>
-      <div class="content_list">
-          <?php $row['content'] = json_decode($row['content'], true); if(is_array($row['content']) || $row['content'] instanceof \think\Collection || $row['content'] instanceof \think\Paginator): if( count($row['content'])==0 ) : echo "" ;else: foreach($row['content'] as $key=>$item): ?>
-            <div class="content-item">
+    </div>
 
-                <div class="pull-right box-tools">
-                    <?php if($key != 0): ?>
-                      <button type="button" class="btn btn-info btn-sm content-item-remove" data-widget="remove" data-toggle="tooltip" title="Remove" data-original-title="Remove">
-                      <i class="fa fa-times"></i></button>
-                    <?php endif; ?>
+    <div class="form-group hide row_url" id="row_url">
+        <label for="c-local" class="control-label col-xs-12 col-sm-2"><?php echo __('Upload'); ?>:</label>
+        <div class="col-xs-12 col-sm-8">
+            <div class="input-group input-groupp-md ">
+                <a href="javascript:;"  id="plupload-local" class="btn btn-primary plupload btn-search-icon input-group-addon"  data-input-id="c-local" data-url="<?php echo url('ajax/upload'); ?>" style="background-color:#2c3e50;color:#fff"><?php echo __("Upload to local"); ?></a>
 
-                </div>
+                <input type="text" name="row[url][]" id="c-local" class="form-control"/>
 
-                <div class="form-group">
-                    <label for="content" class="control-label col-xs-12 col-sm-2"><?php echo __('Content'); ?>:</label>
-                    <div class="col-xs-12 col-sm-8">
-                        <textarea class="form-control" id="content-<?php echo $key; ?>" name="row[content][]" rows="4" cols="80" data-rule="required;content[]" ><?php echo $item['note']; ?></textarea>
-                    </div>
-                </div>
-
-                <div class="form-group row_url" id="row_url">
-                    <label for="c-local" class="control-label col-xs-12 col-sm-2"><?php echo __('Upload'); ?>:</label>
-                    <div class="col-xs-12 col-sm-8">
-                        <div class="input-group input-groupp-md ">
-                            <a href="javascript:;" id="plupload-local-<?php echo $key; ?>" class="btn btn-primary plupload btn-search-icon input-group-addon"  data-input-id="c-local-<?php echo $key; ?>" data-url="<?php echo url('ajax/upload'); ?>" style="background-color:#2c3e50;color:#fff"><?php echo __("Upload to local"); ?></a>
-                            <input type="text" name="row[url][]" id="c-local-<?php echo $key; ?>" class="form-control" data-rule="required;url[]" value="<?php echo $item['url']; ?>"/>
-                        </div>
-                    </div>
-                </div>
             </div>
-          <?php endforeach; endif; else: echo "" ;endif; ?>
+            <span class="n-msg">File Type :pdf,gif,zip,jpg,jpeg,png</span>
+        </div>
+    </div>
+
+    <div class="content_list">
+
+    </div>
 
 
 
-      </div>
-
-      <div class="form-group row_add_content">
-          <label for="row_add_content" class="control-label col-xs-12 col-sm-2"></label>
-          <div class="col-xs-12 col-sm-2">
-              <button type="button" id="row_add_content" class="btn btn-primary"<i class="fa fa-add"></i> <?php echo __("继续添加"); ?></button>
-          </div>
-      </div>
-
-    <?php endif; ?>
-
-
-    <!-- <div class="form-group">
+<!--
+    <div class="form-group hide" id="row_file">
         <label for="c-local" class="control-label col-xs-12 col-sm-2"></label>
         <div class="col-xs-12 col-sm-8">
             <button id="plupload-local" class="btn btn-primary plupload" data-input-id="c-local" data-url="<?php echo url('ajax/upload'); ?>"><i class="fa fa-upload"></i> <?php echo __("Upload to local"); ?></button>
         </div>
     </div> -->
+
+
+    <div class="form-group hide row_add_content">
+        <label for="row_add_content" class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-2">
+            <button type="button" id="row_add_content" class="btn btn-primary"<i class="fa fa-add"></i> <?php echo __("继续添加"); ?></button>
+        </div>
+    </div>
+
+
+
 
     <div class="form-group hidden layer-footer">
         <label class="control-label col-xs-12 col-sm-2"></label>

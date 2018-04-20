@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:100:"/Library/WebServer/documents/www/lua/tokenman/public/../application/admin/view/auth/admin/index.html";i:1524119755;s:88:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/layout/default.html";i:1524119755;s:85:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/common/meta.html";i:1524119755;s:87:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/common/script.html";i:1524119755;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:105:"/Library/WebServer/documents/www/lua/tokenman/public/../application/admin/view/keyword/message/index.html";i:1524198555;s:88:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/layout/default.html";i:1524119755;s:85:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/common/meta.html";i:1524119755;s:87:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/common/script.html";i:1524119755;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -58,11 +58,14 @@
             <div class="tab-pane fade active in" id="one">
                 <div class="widget-body no-padding">
                     <div id="toolbar" class="toolbar">
-                        <?php echo build_toolbar('refresh,add,delete'); ?>
+                        <!-- <?php echo build_toolbar('refresh,add,delete'); ?> -->
+                        <?php echo build_toolbar('refresh'); ?>
+                        <a href="#" class="btn btn-success btn-add"><?php echo __('Add'); ?></a>
+                        <a href="javascript:;" class="btn btn-primary sidebar-toggle btn-demo" data-toggle="keyword_demo"><?php echo __('Demo'); ?></a>
                     </div>
-                    <table id="table" class="table table-striped table-bordered table-hover" 
-                           data-operate-edit="<?php echo $auth->check('auth/admin/edit'); ?>" 
-                           data-operate-del="<?php echo $auth->check('auth/admin/del'); ?>" 
+                    <table id="table" class="table table-striped table-bordered table-hover"
+                           data-operate-edit="<?php echo $auth->check('keyword/manage/edit'); ?>"
+                           data-operate-del="<?php echo $auth->check('keyword/manage/del'); ?>"
                            width="100%">
                     </table>
                 </div>
@@ -71,6 +74,10 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+
+</script>
+
                             </div>
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:104:"/Library/WebServer/documents/www/lua/tokenman/public/../application/admin/view/keyword/manage/index.html";i:1524127512;s:88:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/layout/default.html";i:1524119755;s:85:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/common/meta.html";i:1524119755;s:87:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/common/script.html";i:1524119755;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:4:{s:104:"/Library/WebServer/documents/www/lua/tokenman/public/../application/admin/view/keyword/manage/index.html";i:1524198555;s:88:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/layout/default.html";i:1524119755;s:85:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/common/meta.html";i:1524119755;s:87:"/Library/WebServer/documents/www/lua/tokenman/application/admin/view/common/script.html";i:1524119755;}*/ ?>
 <!DOCTYPE html>
 <html lang="<?php echo $config['language']; ?>">
     <head>
@@ -68,9 +68,6 @@
                            data-operate-del="<?php echo $auth->check('keyword/manage/del'); ?>"
                            width="100%">
                     </table>
-
-
-
                 </div>
             </div>
 
@@ -78,7 +75,7 @@
     </div>
 </div>
 <script type="text/javascript">
-    
+
 </script>
 
                             </div>

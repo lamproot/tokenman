@@ -11,7 +11,7 @@ use app\common\controller\Backend;
  * @icon fa fa-users
  * @remark 管理员可以查看自己所拥有的权限的管理员日志
  */
-class Manage extends Backend
+class Message extends Backend
 {
 
     protected $model = null;

@@ -1,4 +1,4 @@
-define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefined, Backend, Table, Form) {
+define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload'], function ($, undefined, Backend, Table, Form, Template, Upload) {
 
     var Controller = {
         index: function () {
@@ -7,6 +7,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
                 extend: {
                     index_url: 'keyword/manage/index',
                     add_url: 'keyword/manage/add',
+                    add_tuwen_url: 'keyword/manage/add_tuwen_url',
                     edit_url: 'keyword/manage/edit',
                     del_url: 'keyword/manage/del',
                     multi_url: 'keyword/manage/multi',
@@ -93,18 +94,66 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             //       alert("asdasd")
             // });
 
-            $(".selectpicke").change(function () {
-                alert("sasa")
+            // $(".selectpicke").change(function () {
+            //     alert("sasa")
+            // });
+
+        },
+        add: function (form) {
+            Form.api.bindevent($("form[role=form]"));
+            $("#row_add_content").on('click', function () {
+                var count = $(".content_list").children().length;
+                $(".content_list").append(Template("content_list_tpl", {count: count}));
+                if ($(".plupload", form).size() > 0) {
+                    Upload.api.plupload($(".plupload", form));
+                }
+
+                $(".content-item-remove").on('click', function () {
+                    $(this).parent().parent().remove();
+                });
             });
 
 
         },
-        add: function () {
+        edit: function (form) {
             Form.api.bindevent($("form[role=form]"));
-        },
-        edit: function () {
-            Form.api.bindevent($("form[role=form]"));
+            $("#row_add_content").on('click', function () {
+                var count = $(".content_list").children().length;
+                $(".content_list").append(Template("content_list_tpl", {count: count}));
+                if ($(".plupload", form).size() > 0) {
+                    Upload.api.plupload($(".plupload", form));
+                }
+
+                $(".content-item-remove").on('click', function () {
+                    $(this).parent().parent().remove();
+                });
+            });
         }
     };
+
+    $('.selectpicker').change(function(){
+        var value = $(this).val();
+        if (parseInt(value) == 1) {
+            $('#row_url').addClass('hide');
+            $('#row_file').addClass('hide');
+            $('.row_add_content').addClass('hide');
+            $("#c-local").attr("data-rule","")
+            $(".content_list").empty();
+        }
+        else if (parseInt(value) == 5) {
+            $("#c-local").attr("data-rule","required;url")
+            $('.row_add_content').removeClass('hide');
+            $('#row_url').removeClass('hide');
+            $('#row_file').removeClass('hide');
+        }
+        else{
+          $(".content_list").empty();
+            $("#c-local").attr("data-rule","required;url")
+            $('.row_add_content').addClass('hide');
+            $('#row_url').removeClass('hide');
+            $('#row_file').removeClass('hide');
+        }
+    })
+
     return Controller;
 });
