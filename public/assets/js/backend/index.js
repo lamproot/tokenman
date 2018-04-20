@@ -121,10 +121,6 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'adminlte', 'form'], functi
             if (Config.fastadmin.checkupdate && ignoreversion !== "*") {
                 checkupdate(ignoreversion, false);
             }
-            //手动检测版本信息
-            $("a[data-toggle='checkupdate']").on('click', function () {
-                checkupdate('', true);
-            });
 
             //切换左侧sidebar显示隐藏
             $(document).on("click fa.event.toggleitem", ".sidebar-menu li > a", function (e) {
