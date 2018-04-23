@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\keyword;
+namespace app\admin\controller\antispam;
 
 use app\admin\model\ChatCommand;
 use app\common\controller\Backend;
@@ -11,7 +11,7 @@ use app\common\controller\Backend;
  * @icon fa fa-users
  * @remark 管理员可以查看自己所拥有的权限的管理员日志
  */
-class Manage extends Backend
+class IllegaLog extends Backend
 {
 
     protected $model = null;
@@ -19,11 +19,7 @@ class Manage extends Backend
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = model('ChatCommand');
-        $this->type = [1 => '普通消息类型', 2 => 'code邀请类型', 3 => '图文回复类型', 4 => '文件类型',5 =>'图文连续类型'];
-        if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
-            $this->type = [1 => 'Common message type', 2 => 'Code invitations type', 3 => 'Graph and text reply type', 4 => 'File reply type',5 =>'Graph and text continuous reply type'];
-        }
+        $this->model = model('IllegaLog');
     }
 
     /**
@@ -36,25 +32,18 @@ class Manage extends Backend
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             $total = $this->model
                     ->where($where)
-                    ->where('is_del', '=', 0)
+
                     ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
                     ->order($sort, $order)
                     ->count();
 
             $list = $this->model
                     ->where($where)
-                    ->where('is_del', '=', 0)
+
                       ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
                     ->order($sort, $order)
                     ->limit($offset, $limit)
                     ->select();
-            $type = [1 => '普通消息类型', 2 => 'code邀请类型', 3 => '图文回复类型', 4 => '文件类型',5 =>'图文连续类型'];
-
-            if ($list) {
-                foreach ($list as $key => $value) {
-                      $list[$key]['typename'] = isset($type[$value['type']]) ? $type[$value['type']] : "";
-                }
-            }
             $result = array("total" => $total, "rows" => $list);
 
             return json($result);
@@ -84,17 +73,16 @@ class Manage extends Backend
         $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
 
         $total = $this->model
-                ->where('is_del', '=', 0)
                 ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
                 ->count();
         // vip 15 条 svip 20条
-        if (intval($_SESSION['think']['admin']['type'] == 1) && intval($total) >= 15) {
+        if (intval($_SESSION['think']['admin']['type'] == 1) && intval($total) >= 10) {
             $this->error("关键词条数已用完 请联系管理员购买");
         }
-
-        if ($_SESSION['think']['admin']['type'] == 2 && $total >= 20) {
-            $this->error("关键词条数已用完 请联系管理员购买");
-        }
+        //
+        // if ($_SESSION['think']['admin']['type'] == 2 && $total >= 20) {
+        //     $this->error("关键词条数已用完 请联系管理员购买");
+        // }
 
 
         //判断条数是否够用
@@ -107,20 +95,9 @@ class Manage extends Backend
             {
                 $params['chat_bot_id'] = $_SESSION['think']['admin']['chat_bot_id'];
                 $params['is_del'] = 0;
-                $params['url'] = (isset($params['url']) && !empty($params['url'])) ? $params['url'] : "";
+                $params['opreate_uid'] = $_SESSION['think']['admin']['id'];
+                $params['opreate_username'] = $_SESSION['think']['admin']['username'];
 
-
-                if ($params['type'] != 5) {
-                    $params['content'] = $params['content'][0] ? $params['content'][0] : "";
-                    $params['url'] = $params['url'][0] ? $params['url'][0] : "";
-                }else{
-                    $result = [];
-                    foreach ($params['content'] as $key => $value) {
-                        $result[$key]['note'] = $value;
-                        $result[$key]['url'] = $params['url'][$key];
-                    }
-                    $params['content'] = json_encode($result);
-                }
                 $this->model->create($params);
                 $this->success();
             }
@@ -135,7 +112,6 @@ class Manage extends Backend
     public function edit($ids = NULL)
     {
         $row = $this->model->get(['id' => $ids]);
-        $this->view->assign('groupList', build_select('row[type]', $this->type, $row['type'], ['class' => 'form-control selectpicker']));
         if (!$row)
             $this->error(__('No Results were found'));
         if ($this->request->isPost())
@@ -143,17 +119,6 @@ class Manage extends Backend
             $params = $this->request->post("row/a");
             if ($params)
             {
-                if ($params['type'] != 5) {
-                    $params['content'] = $params['content'][0] ? $params['content'][0] : "";
-                    $params['url'] = (isset($params['url'] ) && $params['url'][0]) ? $params['url'][0] : "";
-                }else{
-                    $result = [];
-                    foreach ($params['content'] as $key => $value) {
-                        $result[$key]['note'] = $value;
-                        $result[$key]['url'] = $params['url'][$key];
-                    }
-                    $params['content'] = json_encode($result);
-                }
                 $row->save($params);
                 $this->success();
             }

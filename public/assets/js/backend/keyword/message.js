@@ -5,17 +5,14 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'keyword/manage/index',
-                    add_url: 'keyword/manage/add',
-                    add_tuwen_url: 'keyword/manage/add_tuwen_url',
-                    edit_url: 'keyword/manage/edit',
-                    del_url: 'keyword/manage/del',
-                    multi_url: 'keyword/manage/multi',
+                    index_url: 'keyword/message/index',
+                    add_url: 'keyword/message/add'
+
                 }
             });
 
             var table = $("#table");
-            var searchList = {1: __('Common message type'), 2:__('Code invitations type'), 3:__('Graph and text reply type'), 4:__('File reply type'),5:__('Code invitations type')};
+            var searchList = {1: __('Common message type'), 3:__('Graph and text reply type'), 4:__('File reply type')};
             // 初始化表格
             table.bootstrapTable({
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
@@ -23,7 +20,6 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                     [
                         //{field: 'state', checkbox: true, },
                         {field: 'id', title: 'ID'},
-                        {field: 'cmd', title: __('Cmd')},
                         {field: 'type', title: __('Type'), searchList: searchList, formatter: function (value, row, index) {
                             if (row.type && searchList[row.type]) {
                                 return searchList[row.type];
@@ -32,24 +28,30 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                             }
                         }},
                         {field: 'content', title: '回复内容', visible: false, operate: false},
-                        // {field: 'created_at', title: __('Createtime'), formatter: Table.api.formatter.datetime},
-                        {field: 'created_at', title: __('Createtime'), formatter: Table.api.formatter.datetime, operate: 'RANGE', addclass: 'datetimerange'},
-
+                        {field: 'url', title: '附件地址', visible: false, operate: false},
+                        {field: 'push_username', title: '发送人'},
+                        {field: 'created_at', title: __('Createtime'), formatter: Table.api.formatter.datetime},
                         // {field: 'username', title: __('Username')},
                         // {field: 'nickname', title: __('Nickname')},
                         // {field: 'groups_text', title: __('Group'), operate:false, formatter: Table.api.formatter.label},
                         // {field: 'email', title: __('Email')},
                         // {field: 'status', title: __("Status"), formatter: Table.api.formatter.status},
                         // {field: 'logintime', title: __('Login time'), formatter: Table.api.formatter.datetime},
-                        {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: function (value, row, index) {
-                            // if(row.id == Config.admin.id){
-                            //     return '';
-                            // }
-                            return Table.api.formatter.operate.call(this, value, row, index);
-                        }}
+                        {field: 'operate', title: __('Operate'), table: table,
+                            events: Table.api.events.operate,
+                            buttons: [{
+                                    name: 'detail',
+                                    text: __('Detail'),
+                                    icon: 'fa fa-list',
+                                    classname: 'btn btn-info btn-xs btn-detail btn-dialog',
+                                    url: 'keyword/message/detail'
+                                }],
+                            formatter: Table.api.formatter.operate
+                        }
                     ]
                 ],
-                search: false
+                search: false,
+                commonSearch: false,
             });
 
             // 为表格绑定事件

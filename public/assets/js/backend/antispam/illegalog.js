@@ -5,17 +5,15 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'keyword/manage/index',
-                    add_url: 'keyword/manage/add',
-                    add_tuwen_url: 'keyword/manage/add_tuwen_url',
-                    edit_url: 'keyword/manage/edit',
-                    del_url: 'keyword/manage/del',
-                    multi_url: 'keyword/manage/multi',
+                    index_url: 'antispam/illegalog/index',
+                    add_url: 'antispam/illegalog/add',
+                    edit_url: '',
+                    del_url: '',
+                    multi_url: 'antispam/illegalog/multi',
                 }
             });
 
             var table = $("#table");
-            var searchList = {1: __('Common message type'), 2:__('Code invitations type'), 3:__('Graph and text reply type'), 4:__('File reply type'),5:__('Code invitations type')};
             // 初始化表格
             table.bootstrapTable({
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
@@ -23,15 +21,11 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                     [
                         //{field: 'state', checkbox: true, },
                         {field: 'id', title: 'ID'},
-                        {field: 'cmd', title: __('Cmd')},
-                        {field: 'type', title: __('Type'), searchList: searchList, formatter: function (value, row, index) {
-                            if (row.type && searchList[row.type]) {
-                                return searchList[row.type];
-                            }else{
-                                return "";
-                            }
-                        }},
-                        {field: 'content', title: '回复内容', visible: false, operate: false},
+                        {field: 'message_id', title: __('消息ID')},
+                        {field: 'content', title: __('屏蔽内容')},
+                        {field: 'message_id', title: __('消息ID')},
+                        {field: 'from_id', title: __('用户ID')},
+                        {field: 'from_username', title: __('用户名称')},
                         // {field: 'created_at', title: __('Createtime'), formatter: Table.api.formatter.datetime},
                         {field: 'created_at', title: __('Createtime'), formatter: Table.api.formatter.datetime, operate: 'RANGE', addclass: 'datetimerange'},
 
@@ -41,12 +35,17 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                         // {field: 'email', title: __('Email')},
                         // {field: 'status', title: __("Status"), formatter: Table.api.formatter.status},
                         // {field: 'logintime', title: __('Login time'), formatter: Table.api.formatter.datetime},
-                        {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: function (value, row, index) {
-                            // if(row.id == Config.admin.id){
-                            //     return '';
-                            // }
-                            return Table.api.formatter.operate.call(this, value, row, index);
-                        }}
+                        {field: 'operate', title: __('Operate'), table: table,
+                            events: Table.api.events.operate,
+                            buttons: [{
+                                    name: 'detail',
+                                    text: __('Detail'),
+                                    icon: 'fa fa-list',
+                                    classname: 'btn btn-info btn-xs btn-detail btn-dialog',
+                                    url: 'antispam/illegalog/detail'
+                                }],
+                            formatter: Table.api.formatter.operate
+                        }
                     ]
                 ],
                 search: false
@@ -83,7 +82,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                     }
                 });
             };
-            //手动检测版本信息
+            //
             $("a[data-toggle='keyword_demo']").on('click', function () {
                 keyword_demo('', true);
             });
@@ -103,59 +102,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
         },
         add: function (form) {
             Form.api.bindevent($("form[role=form]"));
-            $("#row_add_content").on('click', function () {
-                var count = $(".content_list").children().length;
-                $(".content_list").append(Template("content_list_tpl", {count: count}));
-                if ($(".plupload", form).size() > 0) {
-                    Upload.api.plupload($(".plupload", form));
-                }
-
-                $(".content-item-remove").on('click', function () {
-                    $(this).parent().parent().remove();
-                });
-            });
-
-
         },
         edit: function (form) {
             Form.api.bindevent($("form[role=form]"));
-            $("#row_add_content").on('click', function () {
-                var count = $(".content_list").children().length;
-                $(".content_list").append(Template("content_list_tpl", {count: count}));
-                if ($(".plupload", form).size() > 0) {
-                    Upload.api.plupload($(".plupload", form));
-                }
-
-                $(".content-item-remove").on('click', function () {
-                    $(this).parent().parent().remove();
-                });
-            });
         }
     };
-
-    $('.selectpicker').change(function(){
-        var value = $(this).val();
-        if (parseInt(value) == 1) {
-            $('#row_url').addClass('hide');
-            $('#row_file').addClass('hide');
-            $('.row_add_content').addClass('hide');
-            $("#c-local").attr("data-rule","")
-            $(".content_list").empty();
-        }
-        else if (parseInt(value) == 5) {
-            $("#c-local").attr("data-rule","required;url")
-            $('.row_add_content').removeClass('hide');
-            $('#row_url').removeClass('hide');
-            $('#row_file').removeClass('hide');
-        }
-        else{
-          $(".content_list").empty();
-            $("#c-local").attr("data-rule","required;url")
-            $('.row_add_content').addClass('hide');
-            $('#row_url').removeClass('hide');
-            $('#row_file').removeClass('hide');
-        }
-    })
-
     return Controller;
 });

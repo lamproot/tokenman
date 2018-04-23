@@ -1,0 +1,276 @@
+
+<form id="add-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="panel-heading">
+        <ul class="nav nav-tabs">
+            <li class="active"><a href="#a1" data-toggle="tab">{:__('活动基本信息')}</a></li>
+
+            <li ><a href="#a2" data-toggle="tab">{:__('中文文案配置')}</a></li>
+            <li ><a href="#a3" data-toggle="tab">{:__('英文文案配置')}</a></li>
+        </ul>
+    </div>
+
+    <div class="panel-body">
+        <div id="myTabContent" class="tab-content">
+
+            <div class="tab-pane active" id="a1">
+
+                <!-- <div class="form-group">
+                    <label for="type" class="control-label col-xs-12 col-sm-2">{:__('活动类型')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="type" name="row[type]" value="" data-rule="required;type"/>
+                    </div>
+                </div> -->
+
+                <!-- <div class="form-group">
+                    <label for="model_id" class="control-label col-xs-12 col-sm-2">{:__('活动模板')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="type" name="row[model_id]" value="" data-rule="required;model_id"/>
+                    </div>
+                </div> -->
+
+                <div class="form-group">
+                    <label for="c-logo" class="control-label col-xs-12 col-sm-2">{:__('活动模板')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="input-group">
+                            <input id="c-model-logo" data-rule="" class="form-control" size="50" name="row[logo]" type="text" value="">
+                            <div class="input-group-addon no-border no-padding">
+                                <span><button type="button" id="plupload-model-logo" class="btn btn-danger plupload" data-input-id="c-model-logo" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-model-logo"><i class="fa fa-upload"></i> {:__('上传活动模板')}</button></span>
+                                <span><button type="button" id="fachoose-model-logo" class="btn btn-primary fachoose" data-input-id="c-model-logo" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('选择活动模板')}</button></span>
+                            </div>
+                            <span class="msg-box n-right" for="c-model-logo"></span>
+                        </div>
+                        <ul class="row list-inline plupload-preview" id="p-model-logo"></ul>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group">
+                    <label for="logo" class="control-label col-xs-12 col-sm-2">{:__('活动LOGO')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="logo" name="row[logo]" value="" data-rule="required;logo"/>
+
+                    </div>
+                </div> -->
+
+                <div class="form-group">
+                    <label for="c-logo" class="control-label col-xs-12 col-sm-2">{:__('活动LOGO')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <div class="input-group">
+                            <input id="c-logo" data-rule="" class="form-control" size="50" name="row[logo]" type="text" value="">
+                            <div class="input-group-addon no-border no-padding">
+                                <span><button type="button" id="plupload-logo" class="btn btn-danger plupload" data-input-id="c-logo" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-logo"><i class="fa fa-upload"></i> {:__('上传LOGO')}</button></span>
+                                <!-- <span><button type="button" id="fachoose-logo" class="btn btn-primary fachoose" data-input-id="c-logo" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('Choose')}</button></span> -->
+                            </div>
+                            <span class="msg-box n-right" for="c-logo"></span>
+                        </div>
+                        <ul class="row list-inline plupload-preview" id="p-logo"></ul>
+                    </div>
+                </div>
+
+                <!-- <div class="form-group">
+                    <label for="chat_bot_id" class="control-label col-xs-12 col-sm-2">{:__('活动所在群')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="chat_bot_id" name="row[chat_bot_id]" value="" data-rule="required;chat_bot_id"/>
+
+                    </div>
+                </div> -->
+
+                <div class="form-group">
+                    <label for="join_button_text" class="control-label col-xs-12 col-sm-2">{:__('群名称')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="join_button_text" name="row[join_button_text]" value=""/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="join_button_url" class="control-label col-xs-12 col-sm-2">{:__('群TELEGRAM链接地址')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="join_button_url" name="row[join_button_url]" value=""/>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="started_at" class="control-label col-xs-12 col-sm-2">{:__('活动开始时间')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <!-- <input type="text" class="form-control" id="started_at" name="row[started_at]" value="" data-rule="required;started_at"/> -->
+                        <input id="started_at" data-rule="required" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[started_at]" type="text" value="">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="stoped_at" class="control-label col-xs-12 col-sm-2">{:__('活动结束时间')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <!-- <input type="text" class="form-control" id="stoped_at" name="row[stoped_at]" value="" data-rule="required;stoped_at"/> -->
+                        <input id="stoped_at" data-rule="required" class="form-control datetimepicker" data-date-format="YYYY-MM-DD HH:mm:ss" data-use-current="true" name="row[stoped_at]" type="text" value="">
+                    </div>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="rate" class="control-label col-xs-12 col-sm-2">{:__('邀请奖励')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="rate" name="row[rate]" value="" data-rule="required;rate"/>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="rate_unit" class="control-label col-xs-12 col-sm-2">{:__('邀请奖励单位')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="rate_unit" name="row[rate_unit]" value="" data-rule="required;rate_unit"/>
+
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="activity_end_text" class="control-label col-xs-12 col-sm-2">{:__('活动结束文案')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <textarea class="form-control" id="activity_end_text" name="row[activity_end_text]" rows="4" cols="80"></textarea>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="remarks" class="control-label col-xs-12 col-sm-2">{:__('活动备注')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <textarea class="form-control" id="remarks" name="row[remarks]" rows="4" cols="80"></textarea>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="tab-pane fade" id="a2">
+
+
+                <!-- <div class="form-group">
+                    <label for="title" class="control-label col-xs-12 col-sm-2">{:__('标题')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="title" name="row[title]" value=""/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="join_button_text" class="control-label col-xs-12 col-sm-2">{:__('加入群文案')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="join_button_text" name="row[join_button_text]" value=""/>
+                    </div>
+                </div> -->
+
+                <div class="form-group">
+                    <label for="placeholder_text" class="control-label col-xs-12 col-sm-2">{:__('输入钱包地址文案')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="placeholder_text" name="row[placeholder_text]" value=""/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="message" class="control-label col-xs-12 col-sm-2">{:__('描述')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="message" name="row[message]" value=""/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="rule" class="control-label col-xs-12 col-sm-2">{:__('活动细则')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="rule" name="row[rule]" value=""/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="bottom_text" class="control-label col-xs-12 col-sm-2">{:__('底部文案')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="bottom_text" name="row[bottom_text]" value=""/>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="tab-pane fade" id="a3">
+
+                <!-- <div class="form-group">
+                    <label for="title" class="control-label col-xs-12 col-sm-2">{:__('En标题')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="title" name="row[title]" value=""/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="en_join_button_text" class="control-label col-xs-12 col-sm-2">{:__('En加入群文案')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="en_join_button_text" name="row[en_join_button_text]" value=""/>
+                    </div>
+                </div> -->
+
+                <div class="form-group">
+                    <label for="en_placeholder_text" class="control-label col-xs-12 col-sm-2">{:__('En输入钱包地址文案')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="en_placeholder_text" name="row[en_placeholder_text]" value=""/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="en_message" class="control-label col-xs-12 col-sm-2">{:__('En描述')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="en_message" name="row[en_message]" value=""/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="en_rule" class="control-label col-xs-12 col-sm-2">{:__('En活动细则')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="en_rule" name="row[en_rule]" value=""/>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="en_bottom_text" class="control-label col-xs-12 col-sm-2">{:__('En底部文案')}:</label>
+                    <div class="col-xs-12 col-sm-8">
+                        <input type="text" class="form-control" id="en_bottom_text" name="row[en_bottom_text]" value=""/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <!-- 活动所在群
+    活动地址
+
+    LOGO
+    活动开始时间
+    活动结束时间
+    群TELEGRAM链接地址
+    邀请奖励
+    邀请奖励单位
+    活动结束文案
+    活动备注
+
+
+    标题 *
+    加入群文案 *
+    输入钱包地址文案 *
+    描述 *
+    活动细则 *
+    底部文案 * -->
+
+
+<!--
+    <div class="form-group hide" id="row_file">
+        <label for="c-local" class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button id="plupload-local" class="btn btn-primary plupload" data-input-id="c-local" data-url="{:url('ajax/upload')}"><i class="fa fa-upload"></i> {:__("Upload to local")}</button>
+        </div>
+    </div> -->
+
+
+    <div class="form-group hidden layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

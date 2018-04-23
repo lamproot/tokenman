@@ -19,10 +19,10 @@ class Message extends Backend
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = model('ChatCommand');
-        $this->type = [1 => '普通消息类型', 2 => 'code邀请类型', 3 => '图文回复类型', 4 => '文件类型',5 =>'图文连续类型'];
+        $this->model = model('ChatPush');
+        $this->type = [1 => '普通消息类型', 3 => '图文回复类型', 4 => '文件类型'];
         if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
-            $this->type = [1 => 'Common message type', 2 => 'Code invitations type', 3 => 'Graph and text reply type', 4 => 'File reply type',5 =>'Graph and text continuous reply type'];
+            $this->type = [1 => 'Common message type', 3 => 'Graph and text reply type', 4 => 'File reply type'];
         }
     }
 
@@ -42,13 +42,14 @@ class Message extends Backend
                     ->count();
 
             $list = $this->model
+                    ->field('id,type,content,created_at,url,push_username,push_uid')
                     ->where($where)
                     ->where('is_del', '=', 0)
                       ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
                     ->order($sort, $order)
                     ->limit($offset, $limit)
                     ->select();
-            $type = [1 => '普通消息类型', 2 => 'code邀请类型', 3 => '图文回复类型', 4 => '文件类型',5 =>'图文连续类型'];
+            $type = $this->type;
 
             if ($list) {
                 foreach ($list as $key => $value) {
@@ -70,7 +71,15 @@ class Message extends Backend
         $row = $this->model->get(['id' => $ids]);
         if (!$row)
             $this->error(__('No Results were found'));
-        $this->view->assign("row", $row->toArray());
+        $result['id'] = $row['id'];
+        $result['created_at'] = date("Y-m-d H:i:s", $row['created_at']);
+        $result['content'] = $row['content'];
+        $result['type'] = $this->type[$row['type']];
+        $result['url'] = $row['url'];
+        $result['push_username'] = $row['push_username'];
+        $result['push_uid'] = $row['push_uid'];
+
+        $this->view->assign("row", $result);
         return $this->view->fetch();
     }
 
@@ -90,89 +99,14 @@ class Message extends Backend
             {
                 $params['chat_bot_id'] = $_SESSION['think']['admin']['chat_bot_id'];
                 $params['is_del'] = 0;
-                $params['url'] = (isset($params['url']) && !empty($params['url'])) ? $params['url'] : "";
-
-
-                if ($params['type'] != 5) {
-                    $params['content'] = $params['content'][0] ? $params['content'][0] : "";
-                    $params['url'] = $params['url'][0] ? $params['url'][0] : "";
-                }else{
-                    $result = [];
-                    foreach ($params['content'] as $key => $value) {
-                        $result[$key]['note'] = $value;
-                        $result[$key]['url'] = $params['url'][$key];
-                    }
-                    $params['content'] = json_encode($result);
-                }
+                $params['url'] = (isset($params['url']) && !empty($params['url'])) ? $params['url'][0] : "";
+                $params['content'] = (isset($params['content']) && !empty($params['content'])) ? $params['content'][0] : "";
                 $this->model->create($params);
                 $this->success();
             }
             $this->error();
         }
         return $this->view->fetch();
-    }
-
-    /**
-     * 编辑
-     */
-    public function edit($ids = NULL)
-    {
-        $row = $this->model->get(['id' => $ids]);
-        $this->view->assign('groupList', build_select('row[type]', $this->type, $row['type'], ['class' => 'form-control selectpicker']));
-        if (!$row)
-            $this->error(__('No Results were found'));
-        if ($this->request->isPost())
-        {
-            $params = $this->request->post("row/a");
-            if ($params)
-            {
-                if ($params['type'] != 5) {
-                    $params['content'] = $params['content'][0] ? $params['content'][0] : "";
-                    $params['url'] = (isset($params['url'] ) && $params['url'][0]) ? $params['url'][0] : "";
-                }else{
-                    $result = [];
-                    foreach ($params['content'] as $key => $value) {
-                        $result[$key]['note'] = $value;
-                        $result[$key]['url'] = $params['url'][$key];
-                    }
-                    $params['content'] = json_encode($result);
-                }
-                $row->save($params);
-                $this->success();
-            }
-            $this->error();
-        }
-        $this->view->assign("row", $row);
-        return $this->view->fetch();
-    }
-    /**
-     * 删除
-     */
-    public function del($ids = "")
-    {
-        if ($ids)
-        {
-            $row = $this->model->get(['id' => $ids]);
-            if (!$row)
-                $this->error(__('No Results were found'));
-            if ($this->request->isPost())
-            {
-                $params['is_del'] = 1;
-                $row->save($params);
-                $this->success();
-            }
-        }
-        $this->error();
-    }
-
-    /**
-     * 批量更新
-     * @internal
-     */
-    public function multi($ids = "")
-    {
-        // 管理员禁止批量操作
-        $this->error();
     }
 
     public function selectpage()

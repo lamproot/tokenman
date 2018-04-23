@@ -1,60 +1,25 @@
-<form id="add-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
-    
-
+<form id="edit-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
     <div class="form-group">
-        <label for="type" class="control-label col-xs-12 col-sm-2">{:__('Type')}:</label>
+        <label for="title" class="control-label col-xs-12 col-sm-2">{:__('Cmd')}:</label>
         <div class="col-xs-12 col-sm-8">
-            {$groupList}
+            <input type="text" class="form-control" id="title" name="row[title]" value="{$row.title}" data-rule="required;title" />
+            
         </div>
     </div>
-
-    <div class="form-group" id="row_content">
+    <div class="form-group">
         <label for="content" class="control-label col-xs-12 col-sm-2">{:__('Content')}:</label>
         <div class="col-xs-12 col-sm-8">
-
-            <textarea class="form-control" id="content" name="row[content][]" rows="4" cols="80" data-rule="required;content[]"></textarea>
-            <span class="n-msg">Optional. For text messages, the actual UTF-8 text of the message, 0-4096 characters.</span>
-            <span class="n-msg">Optional. Caption for the audio, document, photo, video or voice, 0-200 characters</span>
+            <textarea class="form-control" id="message" name="row[message]" rows="8" cols="80">{$row.message}</textarea>
         </div>
     </div>
 
-    <div class="form-group hide row_url" id="row_url">
-        <label for="c-local" class="control-label col-xs-12 col-sm-2">{:__('Upload')}:</label>
-        <div class="col-xs-12 col-sm-8">
-            <div class="input-group input-groupp-md ">
-                <a href="javascript:;"  id="plupload-local" class="btn btn-primary plupload btn-search-icon input-group-addon"  data-input-id="c-local" data-url="{:url('ajax/upload')}" style="background-color:#2c3e50;color:#fff">{:__("Upload to local")}</a>
 
-                <input type="text" name="row[url][]" id="c-local" class="form-control"/>
-
-            </div>
-            <span class="n-msg">File Type :pdf,gif,zip,jpg,jpeg,png</span>
-        </div>
-    </div>
-
-    <div class="content_list">
-
-    </div>
-
-
-
-<!--
-    <div class="form-group hide" id="row_file">
+    <!-- <div class="form-group">
         <label for="c-local" class="control-label col-xs-12 col-sm-2"></label>
         <div class="col-xs-12 col-sm-8">
             <button id="plupload-local" class="btn btn-primary plupload" data-input-id="c-local" data-url="{:url('ajax/upload')}"><i class="fa fa-upload"></i> {:__("Upload to local")}</button>
         </div>
     </div> -->
-
-
-    <div class="form-group hide row_add_content">
-        <label for="row_add_content" class="control-label col-xs-12 col-sm-2"></label>
-        <div class="col-xs-12 col-sm-2">
-            <button type="button" id="row_add_content" class="btn btn-primary"<i class="fa fa-add"></i> {:__("继续添加")}</button>
-        </div>
-    </div>
-
-
-
 
     <div class="form-group hidden layer-footer">
         <label class="control-label col-xs-12 col-sm-2"></label>

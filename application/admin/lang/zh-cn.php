@@ -178,7 +178,7 @@ return [
     'Activity manage' => '活动管理',
     'Publish activity' => '发布活动',
     'Antispam index' => '反垃圾管理',
-    'Antispam manage' => '反垃圾管理',
+    'Antispam manage' => '屏蔽词管理',
     'Whitelist index' => '白名单权限',
     'Advert manage' => '广告管理',
     'Advert set' => '广告设置',
@@ -189,5 +189,6 @@ return [
     'Password recovery' => '密码找回',
     'Guide manage' => '新手指导',
     'Chat bot' => '机器人设置',
-    'Guide index' => '新手指导'
+    'Guide index' => '新手指导',
+    'Illega Log' => '屏蔽数据管理'
 ];

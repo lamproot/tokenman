@@ -1,0 +1,25 @@
+
+<form id="add-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label for="from_id" class="control-label col-xs-12 col-sm-2">{:__('用户ID')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="from_id" name="row[from_id]" value="" data-rule="required;from_id"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="from_username" class="control-label col-xs-12 col-sm-2">{:__('用户名称')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="from_username" name="row[from_username]" value=""/>
+        </div>
+    </div>
+
+    <div class="form-group hidden layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>

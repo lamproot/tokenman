@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\keyword;
+namespace app\admin\controller\activity;
 
 use app\admin\model\ChatCommand;
 use app\common\controller\Backend;
@@ -19,10 +19,10 @@ class Manage extends Backend
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = model('ChatCommand');
-        $this->type = [1 => '普通消息类型', 2 => 'code邀请类型', 3 => '图文回复类型', 4 => '文件类型',5 =>'图文连续类型'];
+        $this->model = model('GroupActivity');
+        $this->type = [0 => 'Code 邀请活动', 1 => '拟稿人活动'];
         if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
-            $this->type = [1 => 'Common message type', 2 => 'Code invitations type', 3 => 'Graph and text reply type', 4 => 'File reply type',5 =>'Graph and text continuous reply type'];
+            $this->type = [0 => 'Code Activity', 1 => 'Article Activity'];
         }
     }
 
@@ -48,7 +48,7 @@ class Manage extends Backend
                     ->order($sort, $order)
                     ->limit($offset, $limit)
                     ->select();
-            $type = [1 => '普通消息类型', 2 => 'code邀请类型', 3 => '图文回复类型', 4 => '文件类型',5 =>'图文连续类型'];
+            $type = $this->type;
 
             if ($list) {
                 foreach ($list as $key => $value) {
@@ -135,7 +135,7 @@ class Manage extends Backend
     public function edit($ids = NULL)
     {
         $row = $this->model->get(['id' => $ids]);
-        $this->view->assign('groupList', build_select('row[type]', $this->type, $row['type'], ['class' => 'form-control selectpicker']));
+        //$this->view->assign('groupList', build_select('row[type]', $this->type, $row['type'], ['class' => 'form-control selectpicker']));
         if (!$row)
             $this->error(__('No Results were found'));
         if ($this->request->isPost())
