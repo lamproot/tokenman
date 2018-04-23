@@ -94,24 +94,16 @@ class Codemanage extends Backend
     /**
      * 邀请用户列表
      */
-    public function user($ids)
+    public function user()
     {
-        $row = $this->model->get(['id' => $ids]);
-        if (!$row)
-            $this->error(__('No Results were found'));
-
-        $parent_code = "";
-        if ($row && $row['code']) {
-            $parent_code = $row['code'];
-        }
-
         if ($this->request->isAjax())
         {
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
+            //echo json_encode($where);exit;
             $total = $this->model
                     ->where($where)
                     ->where('status', '=', 3)
-                    ->where('parent_code', '=', $parent_code)
+                    //->where('parent_code', '=', $parent_code)
                     //->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
                     ->order($sort, $order)
                     ->count();
@@ -119,12 +111,11 @@ class Codemanage extends Backend
             $list = $this->model
                     ->where($where)
                     ->where('status', '=', 3)
-                    ->where('parent_code', '=', $parent_code)
+                    //->where('parent_code', '=', $parent_code)
                     //->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
                     ->order($sort, $order)
                     ->limit($offset, $limit)
                     ->select();
-
             $result = array("total" => $total, "rows" => $list);
 
             return json($result);

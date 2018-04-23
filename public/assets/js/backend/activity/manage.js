@@ -146,9 +146,9 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                 },
                 activity_user: function (value, row, index) {
                     if (row.type && row.type == 0) {
-                        return '<a href="./activity/codemanage/index?activity_id=' +row.id+ '" target="_blank">查看活动用户</a>';
+                        return '<a href="/admin/activity/codemanage/index?activity_id=' +row.id+ '&ref=addtabs" target="_blank">查看活动用户</a>';
                     } else {
-                        return '<a href="./activity/codemanage/index?activity_id=' +row.id+ '" target="_blank">查看活动用户</a>';
+                        return '<a href="/admin/activity/codemanage/index?activity_id=' +row.id+ '&ref=addtabs" target="_blank">查看活动用户</a>';
                     }
                 }
             }

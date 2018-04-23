@@ -44,25 +44,38 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                         {field: 'invited', title: __('invited')},
                         {field: 'first_name', title: __('first_name')},
                         {field: 'last_name', title: __('last_name')},
-                        // {field: 'created_at', title: __('Createtime'), formatter: Table.api.formatter.datetime},
                         {field: 'created_at', title: __('Createtime'), formatter: Table.api.formatter.datetime, operate: 'RANGE', addclass: 'datetimerange'},
-
                         {field: 'operate', title: __('Operate'), table: table,
+                            events: Table.api.events.operate,
 
+                            //formatter: Table.api.formatter.operate
                             formatter: function (value, row, index) {
-                                buttons: [{
-                                        name: 'detail',
-                                        text: __('Code User List'),
-                                        icon: 'fa fa-list',
-                                        classname: 'btn btn-info btn-xs btn-detail btn-dialog',
-                                        url: 'activity/codemanage/user',
-                                        // url:formatter:function(value, row, index){
-                                        //     return "user?parent_code="+index
-                                        // },
-                                        // method:'get'
-                                    }]
+                              buttons: [{
+                                    name: 'detail',
+                                    text: __('Detail'),
+                                    icon: 'fa fa-list',
+                                    classname: 'btn btn-info btn-xs btn-detail btn-dialog',
+                                    url: 'activity/codemanage/user?parent_code'
+                                }]
+                                //return '<a href="/admin/activity/codemanage/user?parent_code=' +row.code+ '">查看邀请用户</a>'
                             }
                         }
+                        //{field: 'operate', title: __('Operate'), table: table,
+
+                            // formatter: function (value, row, index) {
+                            //     buttons: [{
+                            //             name: 'detail',
+                            //             text: __('Code User List'),
+                            //             icon: 'fa fa-list',
+                            //             classname: 'btn btn-info btn-xs btn-detail btn-dialog',
+                            //             url: 'activity/codemanage/user',
+                            //             // url:formatter:function(value, row, index){
+                            //             //     return "user?parent_code="+index
+                            //             // },
+                            //             // method:'get'
+                            //         }]
+                            // }
+                      //  }
                     ]
                 ],
                 search: false
