@@ -14,7 +14,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             });
 
             var table = $("#table");
-            var searchList = {0: __('Code Activity'), 1:__('Article Activity')};
+            var searchList = {1: __('Code Activity'), 2:__('Article Activity')};
             // 初始化表格
             table.bootstrapTable({
                 url: $.fn.bootstrapTable.defaults.extend.index_url,

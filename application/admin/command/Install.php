@@ -28,7 +28,7 @@ class Install extends Command
                 ->addOption('username', 'u', Option::VALUE_OPTIONAL, 'mysql username', $config['username'])
                 ->addOption('password', 'p', Option::VALUE_OPTIONAL, 'mysql password', $config['password'])
                 ->addOption('force', 'f', Option::VALUE_OPTIONAL, 'force override', FALSE)
-                ->setDescription('New installation of FastAdmin');
+                ->setDescription('New installation of TokenMan');
     }
 
     protected function execute(Input $input, Output $output)
@@ -45,7 +45,7 @@ class Install extends Command
         $installLockFile = __DIR__ . "/Install/install.lock";
         if (is_file($installLockFile) && !$force)
         {
-            throw new Exception("\nFastAdmin already installed!\nIf you need to reinstall again, use the parameter --force=true ");
+            throw new Exception("\nTokenMan already installed!\nIf you need to reinstall again, use the parameter --force=true ");
         }
 
         $sql = file_get_contents(__DIR__ . '/Install/fastadmin.sql');

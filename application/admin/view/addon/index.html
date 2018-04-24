@@ -33,7 +33,7 @@
                         <button type="button" id="plupload-addon" class="btn btn-danger plupload" data-url="addon/local" data-mimetype="application/zip" data-multiple="false"><i class="fa fa-upload"></i> {:__('Offline install')}</button>
                         <a class="btn btn-success btn-ajax" href="addon/refresh"><i class="fa fa-refresh"></i> {:__('Refresh addon cache')}</a>
                         <div class="btn-group">
-                            <a href="#" class="btn btn-info btn-switch active" data-url="{$config.fastadmin.api_url}/addon/index"><i class="fa fa-cloud"></i> {:__('Online store')}</a>
+                            <!-- <a href="#" class="btn btn-info btn-switch active" data-url="{$config.fastadmin.api_url}/addon/index"><i class="fa fa-cloud"></i> {:__('Online store')}</a> -->
                             <a href="#" class="btn btn-info btn-switch" data-url="addon/downloaded"><i class="fa fa-laptop"></i> {:__('Local addon')}</a>
                         </div>
                         <a class="btn btn-primary btn-userinfo" href="javascript:;"><i class="fa fa-user"></i> {:__('Userinfo')}</a>
@@ -107,7 +107,7 @@
                 </tr>
                 <tr>
                     <th scope="row">{:__('Homepage')}</th>
-                    <td><a href="http://www.fastadmin.net/store/<%=item.name%>.html" target="_blank">http://www.fastadmin.net/store/<%=item.name%>.html</a></td>
+                    <td><a href="store/<%=item.name%>.html" target="_blank">store/<%=item.name%>.html</a></td>
                 </tr>
                 <tr>
                     <th scope="row">{:__('Intro')}</th>
@@ -184,7 +184,7 @@
                 <%}%>
             </a>
             <div class="caption">
-                <h4><%=item.title?item.title:'{:__('None')}'%> 
+                <h4><%=item.title?item.title:'{:__('None')}'%>
                     <% if(item.flag.indexOf("recommend")>-1){%>
                     <span class="label label-success">{:__('Recommend')}</span>
                     <% } %>
@@ -207,7 +207,7 @@
                     <% if(!addon){ %>
                     <% if(typeof item.releaselist !="undefined" && item.releaselist.length>1){%>
                     <span class="btn-group">
-                        <a href="javascript:;" class="btn btn-primary btn-success btn-install" data-type="<%=item.price<=0?'free':'price';%>" data-donateimage="<%=item.donateimage%>" data-version="<%=item.version%>"><i class="fa fa-cloud-download"></i> {:__('Install')}</a> 
+                        <a href="javascript:;" class="btn btn-primary btn-success btn-install" data-type="<%=item.price<=0?'free':'price';%>" data-donateimage="<%=item.donateimage%>" data-version="<%=item.version%>"><i class="fa fa-cloud-download"></i> {:__('Install')}</a>
                         <a class="btn btn-success dropdown-toggle" data-toggle="dropdown" href="javascript:;">
                             <span class="fa fa-caret-down"></span>
                         </a>
@@ -218,10 +218,10 @@
                         </ul>
                     </span>
                     <% }else{%>
-                    <a href="javascript:;" class="btn btn-primary btn-success btn-install" data-type="<%=item.price<=0?'free':'price';%>" data-donateimage="<%=item.donateimage%>" data-version="<%=item.version%>"><i class="fa fa-cloud-download"></i> {:__('Install')}</a> 
+                    <a href="javascript:;" class="btn btn-primary btn-success btn-install" data-type="<%=item.price<=0?'free':'price';%>" data-donateimage="<%=item.donateimage%>" data-version="<%=item.version%>"><i class="fa fa-cloud-download"></i> {:__('Install')}</a>
                     <% } %>
                     <% if(item.demourl){ %>
-                    <a href="<%=item.demourl%>" class="btn btn-primary btn-info btn-demo" target="_blank"><i class="fa fa-flash"></i> {:__('Demo')}</a> 
+                    <a href="<%=item.demourl%>" class="btn btn-primary btn-info btn-demo" target="_blank"><i class="fa fa-flash"></i> {:__('Demo')}</a>
                     <% } %>
                     <% } %>
 
@@ -239,7 +239,7 @@
                     <% if(addon && item && addon.version!=item.version){%>
                     <% if(typeof item.releaselist !="undefined" && item.releaselist.length>1){%>
                     <span class="btn-group">
-                        <a href="javascript:;" class="btn btn-info btn-success btn-upgrade" data-version="<%=item.version%>"><i class="fa fa-cloud"></i> {:__('Upgrade')}</a> 
+                        <a href="javascript:;" class="btn btn-info btn-success btn-upgrade" data-version="<%=item.version%>"><i class="fa fa-cloud"></i> {:__('Upgrade')}</a>
                         <a class="btn btn-info dropdown-toggle" data-toggle="dropdown" href="javascript:;">
                             <span class="fa fa-caret-down"></span>
                         </a>

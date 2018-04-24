@@ -20,6 +20,7 @@ class Manage extends Backend
     {
         parent::_initialize();
         $this->model = model('ChatBot');
+        $this->model = model('AntispamWord');
     }
 
     /**

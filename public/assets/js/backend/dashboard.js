@@ -105,7 +105,7 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
             //     myChart.resize();
             // });
 
-            //读取FastAdmin的更新信息
+            //读取TokenMan的更新信息
             // $.ajax({
             //     url: Config.fastadmin.api_url + '/news/index',
             //     type: 'post',
@@ -116,7 +116,7 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
             // });
 
             $.ajax({
-                url: Config.fastadmin.data_url + '/guide/guide/index',
+                url: 'guide/guide/index',
                 type: 'post',
                 dataType: 'json',
                 success: function (ret) {

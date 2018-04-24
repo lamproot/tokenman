@@ -6,12 +6,12 @@ use app\admin\model\GuideModel;
 use app\common\controller\Backend;
 
 /**
- * 新手指导
+ * 新手指导管理
  *
  * @icon fa fa-guide
  * @remark
  */
-class Guide extends Backend
+class Manage extends Backend
 {
 
 
@@ -74,18 +74,41 @@ class Guide extends Backend
      */
     public function add()
     {
-        $this->error();
+
+        if ($this->request->isPost())
+        {
+            $params = $this->request->post("row/a");
+            if ($params)
+            {
+                $this->model->create($params);
+                $this->success();
+            }
+            $this->error();
+        }
+        return $this->view->fetch();
     }
 
     /**
      * 编辑
-     * @internal
      */
     public function edit($ids = NULL)
     {
-        $this->error();
+        $row = $this->model->get(['id' => $ids]);
+        if (!$row)
+            $this->error(__('No Results were found'));
+        if ($this->request->isPost())
+        {
+            $params = $this->request->post("row/a");
+            if ($params)
+            {
+                $row->save($params);
+                $this->success();
+            }
+            $this->error();
+        }
+        $this->view->assign("row", $row);
+        return $this->view->fetch();
     }
-
     /**
      * 删除
      */
@@ -93,26 +116,19 @@ class Guide extends Backend
     {
         if ($ids)
         {
-            $childrenGroupIds = $this->childrenGroupIds;
-            $adminList = $this->model->where('id', 'in', $ids)->where('admin_id', 'in', function($query) use($childrenGroupIds) {
-                        $query->name('auth_group_access')->field('uid');
-                    })->select();
-            if ($adminList)
+            $row = $this->model->get(['id' => $ids]);
+            if (!$row)
+                $this->error(__('No Results were found'));
+            if ($this->request->isPost())
             {
-                $deleteIds = [];
-                foreach ($adminList as $k => $v)
-                {
-                    $deleteIds[] = $v->id;
-                }
-                if ($deleteIds)
-                {
-                    $this->model->destroy($deleteIds);
-                    $this->success();
-                }
+                $params['is_delete'] = 1;
+                $row->save($params);
+                $this->success();
             }
         }
         $this->error();
     }
+
 
     /**
      * 批量更新

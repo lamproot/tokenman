@@ -81,7 +81,7 @@ return [
     'Github'                                                 => 'Github',
     'QQ group'                                               => 'QQ群',
     'Go to Dashboard'                                        => '登录后台',
-    'Contribution'                                           => '为FastAdmin贡献代码!',
+    'Contribution'                                           => '为TokenMan贡献代码!',
     'Copyrights'                                             => '版权所有',
     'Responsive'                                             => '响应式开发',
     'Languages'                                              => '多语言',

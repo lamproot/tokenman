@@ -29,7 +29,7 @@
     }
 </style>
 <div class="row animated fadeInRight">
-    <div class="col-md-4">
+    <div class="col-md-12">
         <div class="box box-success">
             <div class="panel-heading">
                 {:__('Profile')}
@@ -39,13 +39,13 @@
                 <form id="update-form" role="form" data-toggle="validator" method="POST" action="{:url('general.profile/update')}">
                     <input type="hidden" id="c-avatar" name="row[avatar]" value="{$admin.avatar}" />
                     <div class="box-body box-profile">
-                        
+
                         <div class="profile-avatar-container">
                             <img class="profile-user-img img-responsive img-circle plupload" src="__CDN__{$admin.avatar}" alt="">
                             <div class="profile-avatar-text img-circle">{:__('Click to edit')}</div>
                             <button id="plupload-avatar" class="plupload" data-input-id="c-avatar"><i class="fa fa-upload"></i> {:__('Upload')}</button>
                         </div>
-                        
+
                         <h3 class="profile-username text-center">{$admin.username}</h3>
 
                         <p class="text-muted text-center">{$admin.email}</p>
@@ -61,10 +61,32 @@
                             <label for="nickname" class="control-label">{:__('Nickname')}:</label>
                             <input type="text" class="form-control" name="row[nickname]" value="{$admin.nickname}" data-rule="required" />
                         </div>
-                        <div class="form-group">
+
+
+                        {if condition="$auth_group_access[0]['group_id'] != 1 and $auth_group_access[0]['group_id'] != 2 && $auth_group_access[0]['group_id'] != 3 "}
+
+                          <div class="form-group">
+                              <label for="projectname" class="control-label">{:__('项目名称')}:</label>
+                              <input type="text" class="form-control" name="row[projectname]" value="{$admin.projectname}" data-rule="required;projectname" />
+                          </div>
+
+                          <div class="form-group">
+                              <label for="tokenname" class="control-label">{:__('代币名称')}:</label>
+                              <input type="text" class="form-control" name="row[tokenname]" value="{$admin.tokenname}" data-rule="required;tokenname" />
+                          </div>
+
+
+                          <div class="form-group">
+                              <label for="content" class="control-label">{:__('官方介绍')}:</label>
+                              <!-- <input type="text" class="form-control" name="row[content]" value="{$admin.content}" data-rule="required" /> -->
+                              <textarea class="form-control" id="content" name="row[content]" cols="8" rows="4" placeholder="30字以内" maxlength="30">{$admin.content}</textarea>
+                          </div>
+                        {/if}
+
+                        <!-- <div class="form-group">
                             <label for="password" class="control-label">{:__('Password')}:</label>
                             <input type="text" class="form-control" placeholder="{:__('Leave password blank if dont want to change')}" autocomplete="new-password" name="row[password]" value=""/>
-                        </div>
+                        </div> -->
                         <div class="form-group">
                             <button type="submit" class="btn btn-success">{:__('Submit')}</button>
                             <button type="reset" class="btn btn-default">{:__('Reset')}</button>
@@ -76,7 +98,7 @@
         </div>
 
     </div>
-    <div class="col-md-8">
+    <!-- <div class="col-md-8">
         <div class="panel panel-default panel-intro panel-nav">
             <div class="panel-heading">
                 <ul class="nav nav-tabs">
@@ -101,5 +123,5 @@
             </div>
         </div>
 
-    </div>
+    </div> -->
 </div>

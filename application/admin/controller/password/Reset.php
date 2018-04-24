@@ -1,9 +1,8 @@
 <?php
 
-namespace app\admin\controller\general;
+namespace app\admin\controller\password;
 
 use app\admin\model\Admin;
-use app\admin\model\AuthGroupAccess;
 use app\common\controller\Backend;
 use fast\Random;
 use think\Session;
@@ -13,7 +12,7 @@ use think\Session;
  *
  * @icon fa fa-user
  */
-class Profile extends Backend
+class Reset extends Backend
 {
 
     /**
@@ -23,11 +22,6 @@ class Profile extends Backend
     {
         //设置过滤方法
         $this->request->filter(['strip_tags']);
-        //获取用户 auth_group_access
-        $auth_model = model('AuthGroupAccess');
-        $auth_group_access = $auth_model->where('uid', $_SESSION['think']['admin']['id'])->select();
-        $this->view->assign("auth_group_access", $auth_group_access);
-
         if ($this->request->isAjax())
         {
             $model = model('AdminLog');

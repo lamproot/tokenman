@@ -64,7 +64,7 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'adminlte', 'form'], functi
                 Backend.api.addtabs($(this).data("url"));
             });
 
-            //读取FastAdmin的更新信息
+            //读取TokenMan的更新信息
             $.ajax({
                 url: Config.fastadmin.api_url + '/news/index',
                 type: 'post',
