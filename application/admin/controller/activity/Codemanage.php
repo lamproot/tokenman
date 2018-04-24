@@ -55,7 +55,7 @@ class Codemanage extends Backend
                     ->order($sort, $order)
                     ->limit($offset, $limit)
                     ->select();
-
+                //echo $this->model->getLastSql();exit;
             //获取邀请人数
             $codes = [];
             foreach ($list as $key => $value) {
@@ -77,7 +77,7 @@ class Codemanage extends Backend
                 foreach ($parent_total as $key => $value) {
                     foreach ($list as $lkey => $lvalue) {
                         if ($value['parent_code'] == $lvalue['code']) {
-                            $list[$key]['invited'] = $value['count'];
+                            $list[$lkey]['invited'] = $value['count'];
                         }
                     }
                 }
@@ -94,16 +94,23 @@ class Codemanage extends Backend
     /**
      * 邀请用户列表
      */
-    public function user()
+    public function user($ids)
     {
         if ($this->request->isAjax())
         {
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             //echo json_encode($where);exit;
+            //获取用户code 数据
+            $row = $this->model->get(['id' => $ids]);
+            if (!$row)
+                $this->error(__('No Results were found'));
+
+            $parent_code = $row['code'];
+
             $total = $this->model
                     ->where($where)
                     ->where('status', '=', 3)
-                    //->where('parent_code', '=', $parent_code)
+                    ->where('parent_code', '=', $parent_code)
                     //->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
                     ->order($sort, $order)
                     ->count();
@@ -111,11 +118,12 @@ class Codemanage extends Backend
             $list = $this->model
                     ->where($where)
                     ->where('status', '=', 3)
-                    //->where('parent_code', '=', $parent_code)
+                    ->where('parent_code', '=', $parent_code)
                     //->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
                     ->order($sort, $order)
                     ->limit($offset, $limit)
                     ->select();
+            //echo $this->model->getLastSql();exit;
             $result = array("total" => $total, "rows" => $list);
 
             return json($result);

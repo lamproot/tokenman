@@ -41,25 +41,26 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                             }
                         }},
                         {field: 'from_username', title: __('from_username')},
-                        {field: 'invited', title: __('invited')},
+                        {field: 'invited', title: __('invited'), operate:false},
                         {field: 'first_name', title: __('first_name')},
                         {field: 'last_name', title: __('last_name')},
                         {field: 'created_at', title: __('Createtime'), formatter: Table.api.formatter.datetime, operate: 'RANGE', addclass: 'datetimerange'},
                         {field: 'operate', title: __('Operate'), table: table,
                             events: Table.api.events.operate,
-
-                            //formatter: Table.api.formatter.operate
-                            formatter: function (value, row, index) {
-                              buttons: [{
-                                    name: 'detail',
-                                    text: __('Detail'),
-                                    icon: 'fa fa-list',
-                                    classname: 'btn btn-info btn-xs btn-detail btn-dialog',
-                                    url: 'activity/codemanage/user?parent_code'
-                                }]
+                            buttons: [{
+                                  name: 'detail',
+                                  text: __('Detail'),
+                                  icon: 'fa fa-list',
+                                  classname: 'btn btn-info btn-xs btn-detail btn-dialog',
+                                  url: 'activity/codemanage/user'
+                              }],
+                            formatter: Table.api.formatter.operate
+                            //formatter: function (value, row, index) {
+                                //return '<a href="/admin/activity/codemanage/user/ids/164299" class="btn btn-info btn-xs btn-detail btn-dialog" title="详情" data-table-id="table" data-field-index="11" data-row-index="0" data-button-index="0"><i class="fa fa-list"></i> 详情</a>';
                                 //return '<a href="/admin/activity/codemanage/user?parent_code=' +row.code+ '">查看邀请用户</a>'
-                            }
+                            //}
                         }
+
                         //{field: 'operate', title: __('Operate'), table: table,
 
                             // formatter: function (value, row, index) {
@@ -89,7 +90,8 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'activity/codemanage/user',
+                    //index_url: 'activity/codemanage/user',
+                    index_url: window.document.location.href,
                     add_url: '',
                     edit_url: '',
                     del_url: '',

@@ -188,7 +188,11 @@ return [
     'Password reset' => '密码重置',
     'Password recovery' => '密码找回',
     'Guide manage' => '新手指导',
-    'Chat bot' => '机器人设置',
+    'Chat bot' => '机器人管理',
+    'Chat Group' => 'Telegram群管理',
     'Guide index' => '新手指导',
-    'Illega Log' => '屏蔽数据管理'
+    'Illega Log' => '屏蔽数据管理',
+    'Actiity Article Manage Detail' => '拟稿人活动管理详情',
+    'Actiity Article Manage Index' => '拟稿人活动管理',
+    'Chatbot Manage Index' => '机器人设置',
 ];

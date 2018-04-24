@@ -20,5 +20,8 @@ return [
     'first_name' => 'first_name',
     'last_name' => 'last_name',
     'Createtime' => '创建时间',
-    'Code User List' => '邀请用户列表'
+    'Code User List' => '邀请用户列表',
+    'invited' => '邀请人数',
+    'first_name' => '姓',
+    'last_name' => '名'
 ];
