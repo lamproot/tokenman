@@ -116,7 +116,7 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
             // });
 
             $.ajax({
-                url: Config.fastadmin.data_url + '/guide/guide/index',
+                url: 'guide/guide/index',
                 type: 'post',
                 dataType: 'json',
                 success: function (ret) {

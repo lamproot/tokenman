@@ -182,7 +182,7 @@ return [
     'Whitelist index' => '白名单权限',
     'Advert manage' => '广告管理',
     'Advert set' => '广告设置',
-    'Authentication' => '官方表示认证',
+    'Authentication' => '官方标识认证',
     'Auth admin' => '设置管理员',
     'Security center' => '安全中心',
     'Password reset' => '密码重置',
