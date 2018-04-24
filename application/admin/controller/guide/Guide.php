@@ -30,7 +30,7 @@ class Guide extends Backend
      */
     public function index()
     {
-        if ($this->request->isAjax() || $this->request->isGet())
+        if ($this->request->isAjax())
         {
           list($where, $sort, $order, $offset, $limit) = $this->buildparams();
           $where = "is_delete = 0";
