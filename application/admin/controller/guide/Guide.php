@@ -53,14 +53,15 @@ class Guide extends Backend
 
           return json($result);
         }
+        return $this->view->fetch();
     }
 
     /**
      * 详情
      */
-    public function detail($id)
+    public function detail($ids)
     {
-        $row = $this->model->get(['id' => $id]);
+        $row = $this->model->get(['id' => $ids]);
         if (!$row)
             $this->error(__('No Results were found'));
         $this->view->assign("row", $row->toArray());
