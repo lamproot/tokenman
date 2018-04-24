@@ -20,9 +20,9 @@ class Manage extends Backend
     {
         parent::_initialize();
         $this->model = model('GroupActivity');
-        $this->type = [0 => 'Code 邀请活动', 1 => '拟稿人活动'];
+        $this->type = [1 => 'Code 邀请活动', 2 => '拟稿人活动'];
         if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
-            $this->type = [0 => 'Code Activity', 1 => 'Article Activity'];
+            $this->type = [1 => 'Code Activity', 2 => 'Article Activity'];
         }
     }
 
