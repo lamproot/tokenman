@@ -12,7 +12,7 @@
 // 定义应用目录
 define('APP_PATH', __DIR__ . '/../application/');
 
-// 判断是否安装FastAdmin
+// 判断是否安装TokenMan
 if (!is_file(APP_PATH . 'admin/command/Install/install.lock'))
 {
     header("location:./install.php");

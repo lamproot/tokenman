@@ -145,7 +145,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template'], function
                     Layer.open({
                         content: Template("logintpl", {}),
                         area: ['400px', '330px'],
-                        title: __('Login FastAdmin'),
+                        title: __('Login TokenMan'),
                         resize: false,
                         btn: [__('Login'), __('Register')],
                         yes: function (index, layero) {

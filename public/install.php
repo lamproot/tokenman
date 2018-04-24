@@ -1,6 +1,6 @@
 <?php
 /**
- * FastAdmin安装程序
+ * TokenMan安装程序
  * 
  * 安装完成后建议删除此文件
  * @author Karson
@@ -36,7 +36,7 @@ function is_really_writable($file)
     return TRUE;
 }
 
-$sitename = "FastAdmin";
+$sitename = "TokenMan";
 
 $link = array(
     'qqun'  => "https://jq.qq.com/?_wv=1027&amp;k=487PNBb",

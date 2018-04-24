@@ -242,7 +242,7 @@ return [
         // 验证成功后是否重置
         'reset'    => true
     ],
-    //FastAdmin配置
+    //TokenMan配置
     'fastadmin'              => [
         //登录验证码
         'login_captcha'    => true,
