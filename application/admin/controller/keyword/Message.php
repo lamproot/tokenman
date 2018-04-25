@@ -3,6 +3,7 @@
 namespace app\admin\controller\keyword;
 
 use app\admin\model\ChatCommand;
+use app\admin\model\ChatBot;
 use app\common\controller\Backend;
 
 /**
@@ -20,6 +21,7 @@ class Message extends Backend
     {
         parent::_initialize();
         $this->model = model('ChatPush');
+        $this->chatbot = model('ChatBot');
         $this->type = [1 => '普通消息类型', 3 => '图文回复类型', 4 => '文件类型'];
         if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
             $this->type = [1 => 'Common message type', 3 => 'Graph and text reply type', 4 => 'File reply type'];
@@ -71,6 +73,7 @@ class Message extends Backend
         $row = $this->model->get(['id' => $ids]);
         if (!$row)
             $this->error(__('No Results were found'));
+
         $result['id'] = $row['id'];
         $result['created_at'] = date("Y-m-d H:i:s", $row['created_at']);
         $result['content'] = $row['content'];
@@ -89,6 +92,10 @@ class Message extends Backend
      */
     public function add()
     {
+
+        //sendMessage
+        //获取Chat Bot Token信息
+
         unset($this->type[2]);
         $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
 
@@ -101,11 +108,36 @@ class Message extends Backend
                 $params['is_del'] = 0;
                 $params['url'] = (isset($params['url']) && !empty($params['url'])) ? $params['url'][0] : "";
                 $params['content'] = (isset($params['content']) && !empty($params['content'])) ? $params['content'][0] : "";
+
+                $row = $this->chatbot->get(['id' => $_SESSION['think']['admin']['chat_bot_id']]);
+                if (!$row)
+                    return $this->error("数据获取失败");
+
+                if ($row && !empty($row['token'])) {
+                    $_SESSION['think']['token'] = $row['token'];
+                }else{
+                    return $this->error("Token不存在");
+                }
+
+                if ($params['type'] == 1) {
+                    $result = $this->sendMessage($row['chat_id'], $params['content']);
+                }
+
+                if ($params['type'] == 3) {
+                    $result = $this->sendPhoto($row['chat_id'], $params['url'], $params['content']);
+                }
+
+                if ($params['type'] == 4) {
+                    $result = $this->sendDocument($row['chat_id'],$params['url'], $params['content']);
+                }
                 $this->model->create($params);
+                //发送消息 更新status
+
                 $this->success();
             }
             $this->error();
         }
+
         return $this->view->fetch();
     }
 
