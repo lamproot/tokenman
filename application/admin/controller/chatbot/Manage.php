@@ -19,7 +19,7 @@ class Manage extends Backend
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = model('AntispamWord');
+        $this->model = model('ChatBot');
     }
 
     /**
@@ -50,7 +50,7 @@ class Manage extends Backend
         }
         return $this->view->fetch();
     }
-    
+
     /**
      * 详情
      */
