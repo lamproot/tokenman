@@ -20,6 +20,7 @@ class Manage extends Backend
     {
         parent::_initialize();
         $this->model = model('ChatBot');
+        $this->model = model('AntispamWord');
     }
 
     /**
@@ -33,14 +34,16 @@ class Manage extends Backend
             $total = $this->model
                     ->where($where)
                     ->where('is_del', '=', 0)
-                    ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+                    ->where('id', '=', $_SESSION['think']['admin']['chat_bot_id'])
                     ->order($sort, $order)
                     ->count();
 
             $list = $this->model
+
+                    ->field('id,chat_id,master_id,code_cmd,created_at,name,activity_id,remark,is_shield')
                     ->where($where)
                     ->where('is_del', '=', 0)
-                      ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+                    ->where('id', '=', $_SESSION['think']['admin']['chat_bot_id'])
                     ->order($sort, $order)
                     ->limit($offset, $limit)
                     ->select();
@@ -74,7 +77,7 @@ class Manage extends Backend
 
         $total = $this->model
                 ->where('is_del', '=', 0)
-                ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+                ->where('id', '=', $_SESSION['think']['admin']['chat_bot_id'])
                 ->count();
         // vip 15 条 svip 20条
         if (intval($_SESSION['think']['admin']['type'] == 1) && intval($total) >= 10) {

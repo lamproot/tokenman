@@ -1,0 +1,63 @@
+
+<form id="edit-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
+
+    <div class="form-group">
+        <label for="name" class="control-label col-xs-12 col-sm-2">{:__('机器人名称')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="name" name="row[name]" value="{$row['name']}" data-rule="required;name"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="token" class="control-label col-xs-12 col-sm-2">{:__('Token')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="token" name="row[token]" value="{$row['token']}" data-rule="required;token"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="chat_id" class="control-label col-xs-12 col-sm-2">{:__('chat_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="chat_id" name="row[chat_id]" value="{$row['chat_id']}" />
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="master_id" class="control-label col-xs-12 col-sm-2">{:__('master_id')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="master_id" name="row[master_id]" value="{$row['master_id']}"/>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="code_cmd" class="control-label col-xs-12 col-sm-2">{:__('code_cmd')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="code_cmd" name="row[code_cmd]" value="{$row['code_cmd']}"  data-rule="required;code_cmd"/>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="is_shield" class="control-label col-xs-12 col-sm-2">{:__('is_shield')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="is_shield" name="row[is_shield]" value="{$row['is_shield']}"  data-rule="required;is_shield"/>
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <label for="remark" class="control-label col-xs-12 col-sm-2">{:__('remark')}:</label>
+        <div class="col-xs-12 col-sm-8">
+            <input type="text" class="form-control" id="remark" name="row[remark]" value="{$row['remark']}"  data-rule="required;remark"/>
+        </div>
+    </div>
+
+
+    <div class="form-group hidden layer-footer">
+        <label class="control-label col-xs-12 col-sm-2"></label>
+        <div class="col-xs-12 col-sm-8">
+            <button type="submit" class="btn btn-success btn-embossed disabled">{:__('OK')}</button>
+            <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
+        </div>
+    </div>
+</form>
