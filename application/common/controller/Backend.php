@@ -15,6 +15,7 @@ use think\Session;
 class Backend extends Controller
 {
 
+    protected $MASTER = 520439801;
     /**
      * 无需登录的方法,同时也就不需要鉴权了
      * @var array
@@ -497,12 +498,15 @@ class Backend extends Controller
         $re = curl_exec ($ch);
 
         $err_code = curl_errno($ch);
+        //echo $err_code;exit;
         if($err_code)
         {
             // $errorModel = new ErrorModel;
-            // $errorModel->sendError (MASTER, "err_code" . $err_code);
+            // $errorModel->sendError ($MASTER, "err_code" . $err_code);
+            $this->error(__('消息发送错误'));
         }
         curl_close ($ch);
+      //  var_dump($re);exit;
         return $re;
     }
 
@@ -515,7 +519,10 @@ class Backend extends Controller
 
         /** 访问网页 */
         $ret = json_decode ($this->fetchs ($url, $param), true);
-
+        if (!$ret['ok']) {
+            $this->error(__('消息发送错误'));
+            return false;
+        }
         /** 返回 */
         return $ret;
     }
