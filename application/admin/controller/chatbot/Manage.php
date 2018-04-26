@@ -20,6 +20,7 @@ class Manage extends Backend
     {
         parent::_initialize();
         $this->model = model('ChatBot');
+        $this->adminmodel = model('Admin');
     }
 
     /**
@@ -27,22 +28,29 @@ class Manage extends Backend
      */
     public function index()
     {
+        //获取是否添加机器人
+        $row = $this->adminmodel->get(['id' => $_SESSION['think']['admin']['id']]);
+        //echo json_encode($row);exit;
+
+        // if (!$row)
+        //     $this->error(__('No Results were found'));
+
+        $this->view->assign("row", $row->toArray());
         if ($this->request->isAjax())
         {
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             $total = $this->model
                     ->where($where)
                     ->where('is_del', '=', 0)
-                    ->where('id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+                    ->where('id', '=', $row['chat_bot_id'])
                     ->order($sort, $order)
                     ->count();
 
             $list = $this->model
-
                     ->field('id,chat_id,master_id,code_cmd,created_at,name,activity_id,remark,is_shield')
                     ->where($where)
                     ->where('is_del', '=', 0)
-                    ->where('id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+                    ->where('id', '=', $row['chat_bot_id'])
                     ->order($sort, $order)
                     ->limit($offset, $limit)
                     ->select();
@@ -71,37 +79,23 @@ class Manage extends Backend
      */
     public function add()
     {
-        unset($this->type[2]);
-        $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
-
-        $total = $this->model
-                ->where('is_del', '=', 0)
-                ->where('id', '=', $_SESSION['think']['admin']['chat_bot_id'])
-                ->count();
-        // vip 15 条 svip 20条
-        if (intval($_SESSION['think']['admin']['type'] == 1) && intval($total) >= 10) {
-            $this->error("关键词条数已用完 请联系管理员购买");
+        $row = $this->adminmodel->get(['id' => $_SESSION['think']['admin']['id']]);
+        if ($row && $row['chat_bot_id'] != 0) {
+            $this->error(__('您已存在机器人'));
         }
-        //
-        // if ($_SESSION['think']['admin']['type'] == 2 && $total >= 20) {
-        //     $this->error("关键词条数已用完 请联系管理员购买");
-        // }
-
-
-        //判断条数是否够用
-
-
         if ($this->request->isPost())
         {
             $params = $this->request->post("row/a");
             if ($params)
             {
-                $params['chat_bot_id'] = $_SESSION['think']['admin']['chat_bot_id'];
-                $params['is_del'] = 0;
-                $params['opreate_uid'] = $_SESSION['think']['admin']['id'];
-                $params['opreate_username'] = $_SESSION['think']['admin']['username'];
+                $params['chat_id'] = 0;
+                $params['master_id'] = 0;
+                $params['activity_id'] = 0;
+                $create = $this->model->create($params);
+                //更新账户管理机器人
+                $_SESSION['think']['admin']['chat_bot_id'] = $botparams['chat_bot_id'] = $create['id'];
+                $row->save($botparams);
 
-                $this->model->create($params);
                 $this->success();
             }
             $this->error();

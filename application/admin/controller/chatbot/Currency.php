@@ -6,7 +6,7 @@ use app\admin\model\ChatCommand;
 use app\common\controller\Backend;
 
 /**
- * 关键词回复管理
+ * 实时币价管理 币价管理与设置
  *
  * @icon fa fa-users
  * @remark 管理员可以查看自己所拥有的权限的管理员日志
@@ -50,7 +50,7 @@ class Currency extends Backend
         }
         return $this->view->fetch();
     }
-    
+
     /**
      * 详情
      */

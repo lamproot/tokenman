@@ -1,17 +1,17 @@
 <?php
 
-namespace app\admin\controller\chatbot;
+namespace app\admin\controller\telegram;
 
 use app\admin\model\ChatCommand;
 use app\common\controller\Backend;
 
 /**
- * Twitter转载管理 公共定时脚本 开启转载 转载记录
+ * 群设置
  *
  * @icon fa fa-users
  * @remark 管理员可以查看自己所拥有的权限的管理员日志
  */
-class Twitter extends Backend
+class Group extends Backend
 {
 
     protected $model = null;
