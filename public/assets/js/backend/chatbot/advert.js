@@ -5,16 +5,16 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'activity/manage/index',
-                    add_url: 'activity/manage/publish',
-                    edit_url: 'activity/manage/edit',
-                    del_url: 'activity/manage/del',
-                    multi_url: 'activity/manage/multi',
+                    index_url: 'chatbot/advert/index',
+                    add_url: 'chatbot/advert/add',
+                    edit_url: 'chatbot/advert/edit',
+                    del_url: '',
+                    multi_url: '',
                 }
             });
 
             var table = $("#table");
-            var searchList = {1: __('Code Activity'), 2:__('Article Activity')};
+              var searchList = {0: __('Close'), 1:__('Open')};
             // 初始化表格
             table.bootstrapTable({
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
@@ -22,18 +22,17 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                     [
                         //{field: 'state', checkbox: true, },
                         {field: 'id', title: 'ID'},
-                        {field: 'title', title: __('活动名称')},
-                        {field: 'type', title: __('Type'), searchList: searchList, formatter: function (value, row, index) {
-                            if (searchList[row.type]) {
-                                //row.type = row.type ? row.type : 0;
-                                return searchList[row.type];
-                            }else{
-                                return "";
-                            }
-                        }},
-                        {field: 'logo', title: '活动图片', formatter: Controller.api.formatter.thumb, operate: false},
-                        {field: 'id', title: __('共获取用户数')},
-                        {field: 'remarks', title: '备注'},
+                        // {field: 'type', title: __('Type')},
+                        {field: 'content', title: __('Content')},
+
+                        {field: 'status', title: __('Status'), searchList: searchList, formatter: function (value, row, index) {
+                                        if (searchList[row.status]) {
+                                            //row.type = row.type ? row.type : 0;
+                                            return searchList[row.status];
+                                        }else{
+                                            return "";
+                                        }
+                                    }},
                         // {field: 'created_at', title: __('Createtime'), formatter: Table.api.formatter.datetime},
                         {field: 'created_at', title: __('Createtime'), formatter: Table.api.formatter.datetime, operate: 'RANGE', addclass: 'datetimerange'},
 
@@ -48,8 +47,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                             //     return '';
                             // }
                             return Table.api.formatter.operate.call(this, value, row, index);
-                        }},
-                        {field: 'type', title: '活动用户', formatter: Controller.api.formatter.activity_user, operate: false},
+                        }}
                     ]
                 ],
                 search: false
@@ -86,7 +84,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                     }
                 });
             };
-            //手动检测版本信息
+            //
             $("a[data-toggle='keyword_demo']").on('click', function () {
                 keyword_demo('', true);
             });
@@ -105,29 +103,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
 
         },
         add: function (form) {
-            //Form.api.bindevent($("form[role=form]"));
+            Form.api.bindevent($("form[role=form]"));
         },
         edit: function (form) {
             Form.api.bindevent($("form[role=form]"));
-        },
-        api: {
-            formatter: {
-                thumb: function (value, row, index) {
-                    if (row.logo) {
-                        var style = row.storage == 'upyun' ? '!/fwfh/120x90' : '';
-                        return '<a href="' + row.logo + '" target="_blank"><img src="' + row.logo + style + '" alt="" style="max-height:90px;max-width:120px"></a>';
-                    } else {
-                        return '<a href="' + row.logo + '" target="_blank">' + __('None') + '</a>';
-                    }
-                },
-                activity_user: function (value, row, index) {
-                    if (parseInt(row.type) === 1) {
-                        return '<a href="/admin/activity/codemanage/index?activity_id=' +row.id+ '&ref=addtabs" target="_blank">查看活动用户</a>';
-                    } else {
-                        return '<a href="/admin/activity/articlemanage/index?activity_id=' +row.id+ '&ref=addtabs" target="_blank">查看活动用户</a>';
-                    }
-                }
-            }
         }
     };
     return Controller;

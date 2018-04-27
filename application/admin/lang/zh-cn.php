@@ -195,4 +195,5 @@ return [
     'Actiity Article Manage Detail' => '拟稿人活动管理详情',
     'Actiity Article Manage Index' => '拟稿人活动管理',
     'Chatbot Manage Index' => '机器人设置',
+    'Chatbot Advert Index' => '广告设置',
 ];

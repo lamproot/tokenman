@@ -20,9 +20,9 @@ class Manage extends Backend
     {
         parent::_initialize();
         $this->model = model('GroupActivity');
-        $this->type = [1 => 'Code 邀请活动', 2 => '拟稿人活动'];
+        $this->type = [0 => '请选择活动类型', 1 => 'Code 邀请活动', 2 => '拟稿人活动'];
         if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
-            $this->type = [1 => 'Code Activity', 2 => 'Article Activity'];
+            $this->type = [0 => 'Choose Type', 1 => 'Code Activity', 2 => 'Article Activity'];
         }
     }
 
@@ -75,30 +75,67 @@ class Manage extends Backend
     }
 
     /**
+     * 发布活动
+     */
+    public function publish()
+    {
+
+        //查询
+        $activityList = $this->model
+                ->where('is_del', '=', 0)
+                ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+                ->select();
+        if ($activityList) {
+            foreach ($activityList as $key => $value) {
+                if ($this->type[$value['type']]) {
+                    unset($this->type[$value['type']]);
+                }
+            }
+        }
+        $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
+
+        if ($this->request->isPost())
+        {
+            $params = $this->request->post("row/a");
+            if ($params)
+            {
+                //查询是否已添加过相同活动
+                $params['type'] = $params['type'] ? $params['type'] : 1;
+                $total = $this->model
+                        ->where('is_del', '=', 0)
+                        ->where('type', '=', $params['type'])
+                        ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+                        ->count();
+
+                if ($total > 0) {
+                    $this->error(__('The same activity has already existed'));
+                }
+
+                $params['chat_bot_id'] = $_SESSION['think']['admin']['chat_bot_id'];
+                $params['is_del'] = 0;
+                $create = $this->model->create($params);
+                $url = $this->request->get('url');
+                if ($create) {
+                    //$this->redirect("添加成功", '/admin/activity/manage/edit/ids/'.$create['id']);
+                    $this->redirect('/admin/activity/manage/edit/ids/'.$create['id'], [], 302, ['referer' => $url]);
+                }else{
+                    $this->error("Create Error");
+                }
+            }
+            $this->error("Params No");
+        }
+        return $this->view->fetch();
+    }
+
+
+
+    /**
      * 添加
      * @internal
      */
     public function add()
     {
-        unset($this->type[2]);
         $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
-
-        $total = $this->model
-                ->where('is_del', '=', 0)
-                ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
-                ->count();
-        // vip 15 条 svip 20条
-        if (intval($_SESSION['think']['admin']['type'] == 1) && intval($total) >= 15) {
-            $this->error("关键词条数已用完 请联系管理员购买");
-        }
-
-        if ($_SESSION['think']['admin']['type'] == 2 && $total >= 20) {
-            $this->error("关键词条数已用完 请联系管理员购买");
-        }
-
-
-        //判断条数是否够用
-
 
         if ($this->request->isPost())
         {
@@ -107,20 +144,6 @@ class Manage extends Backend
             {
                 $params['chat_bot_id'] = $_SESSION['think']['admin']['chat_bot_id'];
                 $params['is_del'] = 0;
-                $params['url'] = (isset($params['url']) && !empty($params['url'])) ? $params['url'] : "";
-
-
-                if ($params['type'] != 5) {
-                    $params['content'] = $params['content'][0] ? $params['content'][0] : "";
-                    $params['url'] = $params['url'][0] ? $params['url'][0] : "";
-                }else{
-                    $result = [];
-                    foreach ($params['content'] as $key => $value) {
-                        $result[$key]['note'] = $value;
-                        $result[$key]['url'] = $params['url'][$key];
-                    }
-                    $params['content'] = json_encode($result);
-                }
                 $this->model->create($params);
                 $this->success();
             }
@@ -143,16 +166,11 @@ class Manage extends Backend
             $params = $this->request->post("row/a");
             if ($params)
             {
-                if ($params['type'] != 5) {
-                    $params['content'] = $params['content'][0] ? $params['content'][0] : "";
-                    $params['url'] = (isset($params['url'] ) && $params['url'][0]) ? $params['url'][0] : "";
-                }else{
-                    $result = [];
-                    foreach ($params['content'] as $key => $value) {
-                        $result[$key]['note'] = $value;
-                        $result[$key]['url'] = $params['url'][$key];
-                    }
-                    $params['content'] = json_encode($result);
+                if ($params['started_at']) {
+                    $params['started_at'] = strtotime($params['started_at']);
+                }
+                if ($params['stoped_at']) {
+                    $params['stoped_at'] = strtotime($params['stoped_at']);
                 }
                 $row->save($params);
                 $this->success();
