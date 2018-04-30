@@ -124,7 +124,7 @@
 </style>
 <div class="panel panel-default panel-intro">
     <div class="panel-heading">
-        {:build_heading(null, false)}
+
         <ul class="nav nav-tabs">
             <li class="active"><a href="#one" data-toggle="tab">{:__('Dashboard')}</a></li>
             <!-- <li><a href="#two" data-toggle="tab">{:__('Custom')}</a></li> -->
@@ -134,10 +134,19 @@
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade active in" id="one">
 
-                <!-- <div class="row">
+                <div class="row">
                     <div class="col-sm-3 col-xs-6">
                         <div class="sm-st clearfix">
                             <span class="sm-st-icon st-red"><i class="fa fa-users"></i></span>
+                            <div class="sm-st-info">
+                                <span>{$todayuser}</span>
+                                {:__('Today user')}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="sm-st clearfix">
+                            <span class="sm-st-icon st-violet"><i class="fa fa-book"></i></span>
                             <div class="sm-st-info">
                                 <span>{$totaluser}</span>
                                 {:__('Total user')}
@@ -146,106 +155,35 @@
                     </div>
                     <div class="col-sm-3 col-xs-6">
                         <div class="sm-st clearfix">
-                            <span class="sm-st-icon st-violet"><i class="fa fa-book"></i></span>
+                            <span class="sm-st-icon st-green"><i class="fa fa-cny"></i></span>
                             <div class="sm-st-info">
-                                <span>{$totalviews}</span>
-                                {:__('Total view')}
+                                <span>{$activateuser}</span>
+                                {:__('Activate user')}
                             </div>
                         </div>
                     </div>
-                    <div class="col-sm-3 col-xs-6">
-                        <div class="sm-st clearfix">
-                            <span class="sm-st-icon st-blue"><i class="fa fa-shopping-bag"></i></span>
-                            <div class="sm-st-info">
-                                <span>{$totalorder}</span>
-                                {:__('Total order')}
-                            </div>
-                        </div>
-                    </div>
+
                     <div class="col-sm-3 col-xs-6">
                         <div class="sm-st clearfix">
                             <span class="sm-st-icon st-green"><i class="fa fa-cny"></i></span>
                             <div class="sm-st-info">
-                                <span>{$totalorderamount}</span>
-                                {:__('Residual quantity')}
+                                <span>{$notactivateuser}</span>
+                                {:__('Not activate user')}
                             </div>
                         </div>
                     </div>
-                </div> -->
 
-                <!--<div class="row">
-                     <div class="col-lg-8">
-                        <div id="echart" style="height:200px;width:100%;"></div>
-                    </div> -->
-                    <!-- <div class="col-lg-4">
-                        <div class="card sameheight-item stats">
-                            <div class="card-block">
-                                <div class="row row-sm stats-container">
-                                    <div class="col-xs-6 stat-col">
-                                        <div class="stat-icon"> <i class="fa fa-rocket"></i> </div>
-                                        <div class="stat">
-                                            <div class="value"> {$todayusersignup} </div>
-                                            <div class="name"> {:__('Today user signup')} </div>
-                                        </div>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" style="width: 30%"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 stat-col">
-                                        <div class="stat-icon"> <i class="fa fa-shopping-cart"></i> </div>
-                                        <div class="stat">
-                                            <div class="value"> {$todayuserlogin} </div>
-                                            <div class="name"> {:__('Today user login')} </div>
-                                        </div>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" style="width: 25%"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6  stat-col">
-                                        <div class="stat-icon"> <i class="fa fa-line-chart"></i> </div>
-                                        <div class="stat">
-                                            <div class="value"> {$todayorder} </div>
-                                            <div class="name"> {:__('Today order')} </div>
-                                        </div>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" style="width: 25%"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6  stat-col">
-                                        <div class="stat-icon"> <i class="fa fa-users"></i> </div>
-                                        <div class="stat">
-                                            <div class="value"> {$unsettleorder} </div>
-                                            <div class="name"> {:__('Unsettle order')} </div>
-                                        </div>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" style="width: 25%"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6  stat-col">
-                                        <div class="stat-icon"> <i class="fa fa-list-alt"></i> </div>
-                                        <div class="stat">
-                                            <div class="value"> {$sevendnu} </div>
-                                            <div class="name"> {:__('Seven dnu')} </div>
-                                        </div>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" style="width: 25%"></div>
-                                        </div>
-                                    </div>
-                                    <div class="col-xs-6 stat-col">
-                                        <div class="stat-icon"> <i class="fa fa-dollar"></i> </div>
-                                        <div class="stat">
-                                            <div class="value"> {$sevendau} </div>
-                                            <div class="name"> {:__('Seven dau')} </div>
-                                        </div>
-                                        <div class="progress">
-                                            <div class="progress-bar progress-bar-success" style="width: 25%"></div>
-                                        </div>
-                                    </div>
-                                </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="sm-st clearfix">
+                            <span class="sm-st-icon st-blue"><i class="fa fa-shopping-bag"></i></span>
+                            <div class="sm-st-info">
+                                <span>{$groupuser}</span>
+                                {:__('Group user')}
                             </div>
                         </div>
                     </div>
-                </div> -->
+                </div>
+
 
                     <!-- <div class="row" style="margin-top:15px;">
 
@@ -336,7 +274,7 @@
                             <div class="box-header">
                                 <h3 class="box-title">{:__('Novice guidance')}</h3>
                                 <div class="box-tools pull-right">
-                                    <a href="" target="_blank" class="btn btn-box-tool">{:__('More')}</a>
+                                    <a href="./guide/guide/index?ref=addtabs" target="_blank" class="btn btn-box-tool">{:__('More')}</a>
                                 </div>
                             </div>
                             <div class="box-body" id="news-list">

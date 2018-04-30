@@ -1,0 +1,79 @@
+<style>
+    .profile-avatar-container {
+        position:relative;
+        width:100px;margin:0 auto;
+    }
+    .profile-avatar-container .profile-user-img{
+        width:100px;
+        height:100px;
+    }
+    .profile-avatar-container .profile-avatar-text {
+        display:none;
+    }
+    .profile-avatar-container:hover .profile-avatar-text {
+        display:block;
+        position:absolute;
+        height:100px;
+        width:100px;
+        background:#444;
+        opacity: .6;
+        color: #fff;
+        top:0;
+        left:0;
+        line-height: 100px;
+        text-align: center;
+    }
+    .profile-avatar-container button{
+        position:absolute;
+        top:0;left:0;width:100px;height:100px;opacity: 0;
+    }
+</style>
+<div class="row animated fadeInRight">
+    <div class="col-md-12">
+        <div class="box box-success">
+            <div class="panel-heading">
+                {:__('License')}
+            </div>
+            <div class="panel-body">
+
+                <form id="update-form" role="form" data-toggle="validator" method="POST" action="{:url('general/license/update')}">
+                    <div class="box-body box-profile">
+
+                        <div class="form-group">
+                            <label for="c-logo" class="control-label">{:__('Business license')}:</label>
+                            <div class="">
+                                <div class="input-group">
+                                    <input id="c-model-logo" data-rule="" class="form-control" size="50" name="row[license]" type="text" value="{$row.license}">
+                                    <div class="input-group-addon no-border no-padding">
+                                        <span><button type="button" id="plupload-model-logo" class="btn btn-danger plupload" data-input-id="c-model-logo" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-model-logo"><i class="fa fa-upload"></i> {:__('Business license')}</button></span>
+
+                                    </div>
+                                    <span class="msg-box n-right" for="c-model-logo"></span>
+                                </div>
+                                <ul class="row list-inline plupload-preview" id="p-model-logo"></ul>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="account" class="control-label">{:__('Public account')}:</label>
+                            <input type="text" class="form-control" name="row[account]" value="{$row.account}" data-rule="required" />
+                        </div>
+
+
+
+
+                        <!-- <div class="form-group">
+                            <label for="password" class="control-label">{:__('Password')}:</label>
+                            <input type="text" class="form-control" placeholder="{:__('Leave password blank if dont want to change')}" autocomplete="new-password" name="row[password]" value=""/>
+                        </div> -->
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-success">{:__('Submit')}</button>
+                            <button type="reset" class="btn btn-default">{:__('Reset')}</button>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>

@@ -1,17 +1,18 @@
 <?php
 
-namespace app\admin\controller\chatbot;
+namespace app\admin\controller\group;
 
-use app\admin\model\BotCurrency;
+use app\admin\model\ChatCommand;
+use app\admin\model\ChatBot;
 use app\common\controller\Backend;
 
 /**
- * 实时币价管理 币价管理与设置
+ * 关键词回复管理
  *
  * @icon fa fa-users
- * @remark
+ * @remark 管理员可以查看自己所拥有的权限的管理员日志
  */
-class Currency extends Backend
+class Manage extends Backend
 {
 
     protected $model = null;
@@ -19,7 +20,12 @@ class Currency extends Backend
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = model('BotCurrency');
+        $this->model = model('ChatGroup');
+        $this->adminmodel = model('Admin');
+        $this->is_shield = [0 => '关闭', 1 => '打开'];
+        if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
+            $this->is_shield = [0 => 'Close', 1 => 'Open'];
+        }
     }
 
     /**
@@ -27,20 +33,28 @@ class Currency extends Backend
      */
     public function index()
     {
+        //获取是否添加机器人
+        //$row = $this->adminmodel->get(['id' => $_SESSION['think']['admin']['id']]);
+        //echo json_encode($row);exit;
+
+        // if (!$row)
+        //     $this->error(__('No Results were found'));
+
+        //$this->view->assign("row", $row->toArray());
         if ($this->request->isAjax())
         {
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
             $total = $this->model
                     ->where($where)
                     ->where('is_del', '=', 0)
-                    ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+                    ->where('admin_id', '=', $_SESSION['think']['admin']['id'])
                     ->order($sort, $order)
                     ->count();
 
             $list = $this->model
                     ->where($where)
                     ->where('is_del', '=', 0)
-                      ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+                    ->where('admin_id', '=', $_SESSION['think']['admin']['id'])
                     ->order($sort, $order)
                     ->limit($offset, $limit)
                     ->select();
@@ -69,37 +83,18 @@ class Currency extends Backend
      */
     public function add()
     {
-        unset($this->type[2]);
-        $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
-
-        $total = $this->model
-                ->where('is_del', '=', 0)
-                ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
-                ->count();
-        // vip 1 条 svip 2
-        if (intval($_SESSION['think']['admin']['type'] == 1) && intval($total) >= 1) {
-            $this->error("实时比价条数已用完 请联系管理员购买");
-        }
-        //
-        // if ($_SESSION['think']['admin']['type'] == 2 && $total >= 20) {
-        //     $this->error("关键词条数已用完 请联系管理员购买");
-        // }
-
-
-        //判断条数是否够用
-
-
         if ($this->request->isPost())
         {
             $params = $this->request->post("row/a");
             if ($params)
             {
-                $params['chat_bot_id'] = $_SESSION['think']['admin']['chat_bot_id'];
-                $params['is_del'] = 0;
-                $params['opreate_uid'] = $_SESSION['think']['admin']['id'];
-                $params['opreate_username'] = $_SESSION['think']['admin']['username'];
+                $params['admin_id'] = $_SESSION['think']['admin']['id'];
 
-                $this->model->create($params);
+                $create = $this->model->create($params);
+                //更新账户管理机器人
+                // $_SESSION['think']['admin']['chat_bot_id'] = $botparams['chat_bot_id'] = $create['id'];
+                // $row->save($botparams);
+
                 $this->success();
             }
             $this->error();
@@ -125,6 +120,9 @@ class Currency extends Backend
             }
             $this->error();
         }
+
+
+        $this->view->assign('shieldList', build_select('row[is_shield]', $this->is_shield, $row['is_shield'], ['class' => 'form-control selectpicker']));
         $this->view->assign("row", $row);
         return $this->view->fetch();
     }

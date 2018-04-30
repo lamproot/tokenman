@@ -14,7 +14,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             });
 
             var table = $("#table");
-            var statusList = {0: __('默认'), 1:__('已申请Code码'), 2:__('已加入群聊'), 3:__('已激活'),"-1":__('退出群聊')};
+            var statusList = {0: __('默认'), 1:__('已申请Code码'), 3:__('已激活'),"-1":__('退出群聊')};
             //var statusList = {1: __('Common message type'), 2:__('Code invitations type'), 3:__('Graph and text reply type'), 4:__('File reply type'),5:__('Code invitations type')};
 
             //默认 0 1-已申请用户码 2-已加入群聊 3-已在群里确认用户码 -1-已退出群聊
@@ -100,7 +100,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             });
 
             var table = $("#table");
-            var statusList = {0: __('默认'), 1:__('已申请Code码'), 2:__('已加入群聊'), 3:__('已激活'),"-1":__('退出群聊')};
+            var statusList = {0: __('默认'), 1:__('已申请Code码'), 3:__('已激活'),"-1":__('退出群聊')};
             //var statusList = {1: __('Common message type'), 2:__('Code invitations type'), 3:__('Graph and text reply type'), 4:__('File reply type'),5:__('Code invitations type')};
 
             //默认 0 1-已申请用户码 2-已加入群聊 3-已在群里确认用户码 -1-已退出群聊

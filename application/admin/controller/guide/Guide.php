@@ -45,7 +45,7 @@ class Guide extends Backend
                   ->limit($offset, $limit)
                   ->select();
           foreach ($list as $key => $value) {
-              $list[$key]['url'] = "./guide/guide/detail?id=".$value['id'];
+              $list[$key]['url'] = "./guide/guide/detail/ids/".$value['id'];
           }
 
 

@@ -196,4 +196,9 @@ return [
     'Actiity Article Manage Index' => '拟稿人活动管理',
     'Chatbot Manage Index' => '机器人设置',
     'Chatbot Advert Index' => '广告设置',
+    'Chatbot Currency Index' => '实时币价管理',
+    'Chatbot Twitter Index' => 'Twitter推送管理',
+    'Group Aide' => '群助手',
+    'Group Manage Index' => '群管理',
+    'Group User Index' => '群成员管理',
 ];

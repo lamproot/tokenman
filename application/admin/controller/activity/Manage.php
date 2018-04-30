@@ -92,6 +92,7 @@ class Manage extends Backend
                 }
             }
         }
+
         $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
 
         if ($this->request->isPost())
@@ -99,6 +100,9 @@ class Manage extends Backend
             $params = $this->request->post("row/a");
             if ($params)
             {
+                // if (isset($params['type']) && intval($params['type']) === 0) {
+                //     return $this->error(__('请选择活动类型'));
+                // }
                 //查询是否已添加过相同活动
                 $params['type'] = $params['type'] ? $params['type'] : 1;
                 $total = $this->model
@@ -112,6 +116,12 @@ class Manage extends Backend
                 }
 
                 $params['chat_bot_id'] = $_SESSION['think']['admin']['chat_bot_id'];
+                $params['message'] = "";
+                $params['logo'] = "";
+                $params['join_button_text'] = "";
+                $params['join_button_url'] = "";
+                $params['bottom_text'] = "";
+                $params['rule'] = "";
                 $params['is_del'] = 0;
                 $create = $this->model->create($params);
                 $url = $this->request->get('url');

@@ -2,16 +2,17 @@
 
 namespace app\admin\controller\chatbot;
 
-use app\admin\model\BotCurrency;
+use app\admin\model\ChatCommand;
 use app\common\controller\Backend;
 
 /**
- * 实时币价管理 币价管理与设置
+ * 机器人广告管理与设置
+ * 功能 开启/关闭广告   广告设置（默认文案）
  *
  * @icon fa fa-users
- * @remark
+ * @remark 管理员可以查看自己所拥有的权限的管理员日志
  */
-class Currency extends Backend
+class Advert extends Backend
 {
 
     protected $model = null;
@@ -19,7 +20,11 @@ class Currency extends Backend
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = model('BotCurrency');
+        $this->model = model('BotAdvert');
+        $this->status = [0 => '关闭', 1 => '打开'];
+        if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
+            $this->status = [0 => 'Close', 1 => 'Open'];
+        }
     }
 
     /**
@@ -69,16 +74,13 @@ class Currency extends Backend
      */
     public function add()
     {
-        unset($this->type[2]);
-        $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
-
         $total = $this->model
                 ->where('is_del', '=', 0)
                 ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
                 ->count();
-        // vip 1 条 svip 2
+        // vip 15 条 svip 20条
         if (intval($_SESSION['think']['admin']['type'] == 1) && intval($total) >= 1) {
-            $this->error("实时比价条数已用完 请联系管理员购买");
+            $this->error("广告条数已用完 请联系管理员购买");
         }
         //
         // if ($_SESSION['think']['admin']['type'] == 2 && $total >= 20) {
@@ -87,8 +89,6 @@ class Currency extends Backend
 
 
         //判断条数是否够用
-
-
         if ($this->request->isPost())
         {
             $params = $this->request->post("row/a");
@@ -113,6 +113,8 @@ class Currency extends Backend
     public function edit($ids = NULL)
     {
         $row = $this->model->get(['id' => $ids]);
+        $this->view->assign('groupList', build_select('row[status]', $this->status, 1, ['class' => 'form-control selectpicker']));
+
         if (!$row)
             $this->error(__('No Results were found'));
         if ($this->request->isPost())

@@ -28,14 +28,24 @@ class Dashboard extends Backend
         }
         $hooks = config('addons.hooks');
         $uploadmode = isset($hooks['upload_config_init']) && $hooks['upload_config_init'] ? implode(',', $hooks['upload_config_init']) : 'local';
+
+        //totaluser
+        //todayuser
+        //groupuser
+        //activateuser
+        //notactivateuser
+
         $this->view->assign([
-            'totaluser'        => 35200,
-            'totalviews'       => 219390,
-            'totalorder'       => 32143,
-            'totalorderamount' => 174800,
-            'todayuserlogin'   => 321,
-            'todayusersignup'  => 430,
-            'todayorder'       => 2324,
+            'totaluser'        => rand(35200,37200),
+            'todayuser'       => rand(34200,37200),
+            'groupuser'       => rand(34200,37200),
+            'activateuser'       => rand(34200,37200),
+            'notactivateuser'       => rand(34200,37200),
+            'totalorder'       => rand(32200,37200),
+            'totalorderamount' => rand(33200,37200),
+            'todayuserlogin'   => rand(35200,37200),
+            'todayusersignup'  => rand(35200,37200),
+            'todayorder'       => rand(35200,37200),
             'unsettleorder'    => 132,
             'sevendnu'         => '80%',
             'sevendau'         => '32%',

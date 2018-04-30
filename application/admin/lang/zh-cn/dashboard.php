@@ -5,7 +5,11 @@ return [
     'Pid'                   => '父ID',
     'Type'                  => '栏目类型',
     'Image'                 => '图片',
-    'Total user'            => '总会员数',
+    'Total user'            => '总用户数',
+    'Today user'            => '今日新增',
+    'Group user'            => '已加入群组',
+    'Activate user'            => '已激活用户',
+    'Not activate user'            => '未激活用户',
     'Total view'            => '总访问数',
     'Total order'           => '总订单数',
     'Residual quantity'    => '剩余数量',
@@ -43,5 +47,5 @@ return [
     'Novice guidance'       => '新手引导',
     'Dashboard'                                              => '控制中心',
     'general' => '用户设置',
-    
+
 ];
