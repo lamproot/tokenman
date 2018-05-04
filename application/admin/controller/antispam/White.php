@@ -6,7 +6,7 @@ use app\admin\model\ChatCommand;
 use app\common\controller\Backend;
 
 /**
- * 关键词回复管理
+ *
  *
  * @icon fa fa-users
  * @remark 管理员可以查看自己所拥有的权限的管理员日志
@@ -62,6 +62,18 @@ class White extends Backend
     }
 
     /**
+     * 魔法命令
+     */
+    public function mofa()
+    {
+        $ret['mofa'] = "/ZoobiDoobi".base64_encode($_SESSION['think']['admin']['chat_bot_id']);
+        $result = array("total" => 0, "ret" => $ret);
+
+        return json($result);
+    }
+
+
+    /**
      * 添加
      * @internal
      */
@@ -71,22 +83,13 @@ class White extends Backend
         $total = $this->model
                 ->where('bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
                 ->count();
-        // vip 15 条 svip 20条
-        // if (intval($_SESSION['think']['admin']['type'] == 1) && intval($total) >= 10) {
-        //     $this->error("关键词条数已用完 请联系管理员购买");
-        // }
-        //
-        // if ($_SESSION['think']['admin']['type'] == 2 && $total >= 20) {
-        //     $this->error("关键词条数已用完 请联系管理员购买");
-        // }
-
 
         //判断条数是否够用
 
 
         if ($this->request->isPost())
         {
-            $params = $this->request->post("row/a");
+            $params = $this->request->post("row/a") ? $this->request->post("row/a") : $_POST;
             if ($params)
             {
                 $params['bot_id'] = $_SESSION['think']['admin']['chat_bot_id'];

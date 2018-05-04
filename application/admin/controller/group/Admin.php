@@ -1,6 +1,6 @@
 <?php
 
-namespace app\admin\controller\chatbot;
+namespace app\admin\controller\group;
 
 use app\admin\model\ChatCommand;
 use app\admin\model\ChatBot;
@@ -12,7 +12,7 @@ use app\common\controller\Backend;
  * @icon fa fa-users
  * @remark 管理员可以查看自己所拥有的权限的管理员日志
  */
-class Manage extends Backend
+class Admin extends Backend
 {
 
     protected $model = null;
@@ -20,8 +20,10 @@ class Manage extends Backend
     public function _initialize()
     {
         parent::_initialize();
-        $this->model = model('ChatBot');
+        $this->model = model('ChatGroup');
+        $this->chatbotmodel = model('ChatBot');
         $this->adminmodel = model('Admin');
+        $this->whitemodel = model('White');
         $this->is_shield = [0 => '关闭', 1 => '打开'];
         if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
             $this->is_shield = [0 => 'Close', 1 => 'Open'];
@@ -33,35 +35,30 @@ class Manage extends Backend
      */
     public function index()
     {
-        //获取是否添加机器人
-        $row = $this->adminmodel->get(['id' => $_SESSION['think']['admin']['id']]);
-        //echo json_encode($row);exit;
 
-        // if (!$row)
-        //     $this->error(__('No Results were found'));
-
-        $this->view->assign("row", $row->toArray());
+        //$this->view->assign("row", $row->toArray());
         if ($this->request->isAjax())
         {
-            list($where, $sort, $order, $offset, $limit) = $this->buildparams();
-            $total = $this->model
-                    ->where($where)
-                    ->where('is_del', '=', 0)
-                    ->where('id', '=', $row['chat_bot_id'])
-                    ->order($sort, $order)
-                    ->count();
+          //获取
+          $chatBot = $this->chatbotmodel->get($_SESSION['think']['admin']['chat_bot_id']);
+          if ($chatBot) {
+              $_SESSION['think']['token'] = $chatBot['token'];
+              $list = $this->getChatAdministrators($chatBot['chat_id']);
 
-            $list = $this->model
-                    ->field('id,chat_id,master_id,code_cmd,created_at,name,activity_id,remark,is_shield')
-                    ->where($where)
-                    ->where('is_del', '=', 0)
-                    ->where('id', '=', $row['chat_bot_id'])
-                    ->order($sort, $order)
-                    ->limit($offset, $limit)
-                    ->select();
-            $result = array("total" => $total, "rows" => $list);
+              //查询是否已添加至白名单
+              if ($list) {
+                  foreach ($list as $key => $value) {
+                      $row = $this->whitemodel->get(['from_id' => $value['user']['id']]);
+                      $list[$key]['whitestatus'] = $row ? true : false;
+                  }
+              }
 
-            return json($result);
+
+              $result = array("total" => count($list), "rows" => $list);
+
+              return json($result);
+          }
+
         }
         return $this->view->fetch();
     }
@@ -84,22 +81,17 @@ class Manage extends Backend
      */
     public function add()
     {
-        $row = $this->adminmodel->get(['id' => $_SESSION['think']['admin']['id']]);
-        if ($row && $row['chat_bot_id'] != 0) {
-            $this->error(__('您已存在机器人'));
-        }
         if ($this->request->isPost())
         {
             $params = $this->request->post("row/a");
             if ($params)
             {
-                $params['chat_id'] = 0;
-                $params['master_id'] = 0;
-                $params['activity_id'] = 0;
+                $params['admin_id'] = $_SESSION['think']['admin']['id'];
+
                 $create = $this->model->create($params);
                 //更新账户管理机器人
-                $_SESSION['think']['admin']['chat_bot_id'] = $botparams['chat_bot_id'] = $create['id'];
-                $row->save($botparams);
+                // $_SESSION['think']['admin']['chat_bot_id'] = $botparams['chat_bot_id'] = $create['id'];
+                // $row->save($botparams);
 
                 $this->success();
             }

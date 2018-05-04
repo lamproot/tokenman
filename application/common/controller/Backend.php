@@ -590,4 +590,11 @@ class Backend extends Controller
         return $this->ret['result']['message_id'];
     }
 
+    public function getChatAdministrators ($chat_id) {
+        $this->ret = $this->callMethod ('getChatAdministrators', [
+            'chat_id' => $chat_id
+        ]);
+        return $this->ret['result'];
+    }
+
 }
