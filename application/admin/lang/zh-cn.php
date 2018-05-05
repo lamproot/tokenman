@@ -201,4 +201,5 @@ return [
     'Group Aide' => '群助手',
     'Group Manage Index' => '群管理',
     'Group User Index' => '群成员管理',
+    'Group Admin Index' => '管理员管理'
 ];
