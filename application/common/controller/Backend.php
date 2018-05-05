@@ -501,8 +501,6 @@ class Backend extends Controller
         //echo $err_code;exit;
         if($err_code)
         {
-            // $errorModel = new ErrorModel;
-            // $errorModel->sendError ($MASTER, "err_code" . $err_code);
             $this->error(__('消息发送错误'));
         }
         curl_close ($ch);
@@ -516,11 +514,12 @@ class Backend extends Controller
         if (isset($_SESSION['think']['token']) && !empty($_SESSION['think']['token'])) {
             $url = 'https://api.telegram.org/bot' . $_SESSION['think']['token'] . '/' . $method;
         }
-
         /** 访问网页 */
         $ret = json_decode ($this->fetchs ($url, $param), true);
+
+
         if (!$ret['ok']) {
-            $this->error(__('消息发送错误'));
+            $this->error($ret['description']);
             return false;
         }
         /** 返回 */
@@ -596,5 +595,47 @@ class Backend extends Controller
         ]);
         return $this->ret['result'];
     }
+
+    public function getChat ($chat_id) {
+        $this->ret = $this->callMethod ('getChat', [
+            'chat_id' => $chat_id
+        ]);
+        return $this->ret['result'];
+    }
+
+    public function getChatMembersCount ($chat_id) {
+        $this->ret = $this->callMethod ('getChatMembersCount', [
+            'chat_id' => $chat_id
+        ]);
+        return $this->ret['result'];
+    }
+
+    public function setChatTitle ($chat_id, $title) {
+        $this->ret = $this->callMethod ('setChatTitle', [
+            'chat_id' => $chat_id,
+            'title' => $title
+        ]);
+        return $this->ret['result'];
+    }
+
+    public function setChatDescription ($chat_id, $description) {
+        $this->ret = $this->callMethod ('setChatDescription', [
+            'chat_id' => $chat_id,
+            'description' => $description
+        ]);
+        return $this->ret['result'];
+    }
+
+    public function getFile ($file_id) {
+        $this->ret = $this->callMethod ('getFile', [
+            'file_id' => $file_id
+        ]);
+        return $this->ret['result'];
+    }
+
+
+
+
+
 
 }

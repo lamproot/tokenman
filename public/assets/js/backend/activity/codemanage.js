@@ -55,10 +55,6 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                                   url: 'activity/codemanage/user'
                               }],
                             formatter: Table.api.formatter.operate
-                            //formatter: function (value, row, index) {
-                                //return '<a href="/admin/activity/codemanage/user/ids/164299" class="btn btn-info btn-xs btn-detail btn-dialog" title="详情" data-table-id="table" data-field-index="11" data-row-index="0" data-button-index="0"><i class="fa fa-list"></i> 详情</a>';
-                                //return '<a href="/admin/activity/codemanage/user?parent_code=' +row.code+ '">查看邀请用户</a>'
-                            //}
                         }
 
                         //{field: 'operate', title: __('Operate'), table: table,

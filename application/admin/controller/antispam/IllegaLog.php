@@ -69,9 +69,6 @@ class Illegalog extends Backend
      */
     public function add()
     {
-        unset($this->type[2]);
-        $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
-
         $total = $this->model
                 ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
                 ->count();

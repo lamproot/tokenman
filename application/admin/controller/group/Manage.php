@@ -22,9 +22,10 @@ class Manage extends Backend
         parent::_initialize();
         $this->model = model('ChatGroup');
         $this->adminmodel = model('Admin');
-        $this->is_shield = [0 => '关闭', 1 => '打开'];
+        $this->chatbotmodel = model('ChatBot');
+        $this->status = [0 => '未激活', 1 => '已激活'];
         if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
-            $this->is_shield = [0 => 'Close', 1 => 'Open'];
+            $this->status = [0 => 'Not Activate', 1 => 'Is Activate'];
         }
     }
 
@@ -83,6 +84,36 @@ class Manage extends Backend
      */
     public function add()
     {
+
+        $total = $this->model
+                ->where('is_del', '=', 0)
+                ->where('admin_id', '=', $_SESSION['think']['admin']['id'])
+                ->select();
+
+        // vip 1 svip 1
+        if (intval($total) >= 1) {
+            return $this->error("超出群创建上限 请联系管理员", '');
+        }
+
+        //获取机器人信息
+        $chatBot = $this->chatbotmodel
+                    ->field("id,name")
+                    ->where('is_del', '=', 0)
+                    ->where('id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+                    ->limit(0, 1)
+                    ->select();
+
+        if (!$chatBot) {
+            $this->error("暂无机器人，请先创建机器人", 'chatbot/manage/index');
+        }
+
+        foreach ($chatBot as $key => $value) {
+            $list[$value['id']] = $value['name'];
+        }
+
+        $this->view->assign('groupList', build_select('row[chat_bot_id]', $list, $chatBot[0]['id'], ['class' => 'form-control selectpicker']));
+
+
         if ($this->request->isPost())
         {
             $params = $this->request->post("row/a");
@@ -91,9 +122,6 @@ class Manage extends Backend
                 $params['admin_id'] = $_SESSION['think']['admin']['id'];
 
                 $create = $this->model->create($params);
-                //更新账户管理机器人
-                // $_SESSION['think']['admin']['chat_bot_id'] = $botparams['chat_bot_id'] = $create['id'];
-                // $row->save($botparams);
 
                 $this->success();
             }
@@ -110,19 +138,29 @@ class Manage extends Backend
         $row = $this->model->get(['id' => $ids]);
         if (!$row)
             $this->error(__('No Results were found'));
+
+        $chatBot = $this->chatbotmodel->get($row['chat_bot_id']);
+        if ($chatBot) {
+            $_SESSION['think']['token'] = $chatBot['token'];
+            $chatInfo = $this->getChat($chatBot['chat_id']);
+        }
+
+        //$getFile = $this->getFile($chatInfo['photo']['small_file_id']);
+        //echo json_encode($getFile);exit;
+
         if ($this->request->isPost())
         {
             $params = $this->request->post("row/a");
             if ($params)
             {
+                $this->setChatTitle($chatBot['chat_id'], $params['title']);
+                $this->setChatDescription($chatBot['chat_id'], $params['description']);
                 $row->save($params);
                 $this->success();
             }
             $this->error();
         }
-
-
-        $this->view->assign('shieldList', build_select('row[is_shield]', $this->is_shield, $row['is_shield'], ['class' => 'form-control selectpicker']));
+        $this->view->assign("chatInfo", $chatInfo);
         $this->view->assign("row", $row);
         return $this->view->fetch();
     }

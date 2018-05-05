@@ -2,54 +2,23 @@
 <form id="edit-form" class="form-horizontal form-ajax" role="form" data-toggle="validator" method="POST" action="">
 
     <div class="form-group">
-        <label for="name" class="control-label col-xs-12 col-sm-2">{:__('机器人名称')}:</label>
+        <label for="title" class="control-label col-xs-12 col-sm-2">{:__('群名称')}:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="name" name="row[name]" value="{$row['name']}" data-rule="required;name"/>
+            <input type="text" class="form-control" id="title" name="row[title]" value="{$row['title']}" data-rule="required;title"/>
         </div>
     </div>
 
-    <div class="form-group">
-        <label for="token" class="control-label col-xs-12 col-sm-2">{:__('Token')}:</label>
+    <!-- <div class="form-group">
+        <label for="title" class="control-label col-xs-12 col-sm-2">{:__('群头像')}:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="token" name="row[token]" value="{$row['token']}" data-rule="required;token"/>
+            <input type="text" class="form-control" id="title" name="row[title]" value="https://api.telegram.org/file/bot525776656:AAHGITDkvLnzyPD89AupHnpD1F8TPERIeRQ/profile_photos/file_0.jpg" data-rule="required;title"/>
         </div>
-    </div>
+    </div> -->
 
     <div class="form-group">
-        <label for="chat_id" class="control-label col-xs-12 col-sm-2">{:__('chat_id')}:</label>
+        <label for="description" class="control-label col-xs-12 col-sm-2">{:__('description')}:</label>
         <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="chat_id" name="row[chat_id]" value="{$row['chat_id']}" />
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="master_id" class="control-label col-xs-12 col-sm-2">{:__('master_id')}:</label>
-        <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="master_id" name="row[master_id]" value="{$row['master_id']}"/>
-        </div>
-    </div>
-
-    <div class="form-group">
-        <label for="code_cmd" class="control-label col-xs-12 col-sm-2">{:__('code_cmd')}:</label>
-        <div class="col-xs-12 col-sm-8">
-            <input type="text" class="form-control" id="code_cmd" name="row[code_cmd]" value="{$row['code_cmd']}"  data-rule="required;code_cmd"/>
-        </div>
-    </div>
-
-
-    <div class="form-group">
-        <label for="is_shield" class="control-label col-xs-12 col-sm-2">{:__('is_shield')}:</label>
-        <div class="col-xs-12 col-sm-8">
-            {$shieldList}
-            <!-- <input type="text" class="form-control" id="is_shield" name="row[is_shield]" value="{$row['is_shield']}"  data-rule="required;is_shield"/> -->
-        </div>
-    </div>
-
-
-    <div class="form-group">
-        <label for="remark" class="control-label col-xs-12 col-sm-2">{:__('remark')}:</label>
-        <div class="col-xs-12 col-sm-8">
-            <textarea class="form-control" id="remark" name="row[remark]" rows="4" cols="80"></textarea>
+            <textarea class="form-control" id="description" name="row[description]" rows="4" cols="80">{$chatInfo['description']}</textarea>
         </div>
     </div>
 

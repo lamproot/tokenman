@@ -64,7 +64,6 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             };
             //
             $("a[data-toggle='keyword_demo']").on('click', function () {
-
                 keyword_demo('', true);
             });
 
