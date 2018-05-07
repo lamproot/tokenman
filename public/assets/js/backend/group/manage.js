@@ -62,7 +62,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             var keyword_demo = function (ignoreversion, tips) {
                 Layer.open({
                     title: __('Activate Bot'),
-                    content:'<p>激活方式 <br/> 1.确认添加机器人为群管理员<br/> 2.发送激活机器人命令 /activity_bot'+
+                    content:'<p>激活方式 <br/> 1.确认添加机器人为群管理员<br/> 2.发送激活机器人命令 /activatebot'+
                                 '<br/>'+
                             '</p>',
                     area: ['500px', '500px']

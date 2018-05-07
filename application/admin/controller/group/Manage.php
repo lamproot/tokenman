@@ -91,9 +91,9 @@ class Manage extends Backend
                 ->select();
 
         // vip 1 svip 1
-        if (intval($total) >= 1) {
-            return $this->error("超出群创建上限 请联系管理员", '');
-        }
+        // if (intval($total) >= 1) {
+        //     return $this->error("超出群创建上限 请联系管理员", '');
+        // }
 
         //获取机器人信息
         $chatBot = $this->chatbotmodel
@@ -142,11 +142,10 @@ class Manage extends Backend
         $chatBot = $this->chatbotmodel->get($row['chat_bot_id']);
         if ($chatBot) {
             $_SESSION['think']['token'] = $chatBot['token'];
-            $chatInfo = $this->getChat($chatBot['chat_id']);
+            $chatInfo = $this->getChat(520439801);
         }
 
         //$getFile = $this->getFile($chatInfo['photo']['small_file_id']);
-        //echo json_encode($getFile);exit;
 
         if ($this->request->isPost())
         {
