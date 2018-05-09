@@ -62,5 +62,33 @@ SET FOREIGN_KEY_CHECKS = 1;
 ALTER TABLE fa_admin ADD license VARCHAR(255) NOT NULL DEFAULT "" COMMENT "营业执照";
 ALTER TABLE fa_admin ADD account VARCHAR(255) NOT NULL DEFAULT "" COMMENT "对公账户信息";
 
+ALTER TABLE chat_group ADD account VARCHAR(255) NOT NULL DEFAULT "" COMMENT "对公账户信息";
+
+
+2018-05-08 23:27:54新增
+ALTER TABLE drafters ADD code VARCHAR(255) NOT NULL DEFAULT "" COMMENT "code";
+ALTER TABLE drafters ADD eth VARCHAR(255) NOT NULL DEFAULT "" COMMENT "eth";
+ALTER TABLE drafters ADD is_del tinyint(2) NOT NULL DEFAULT 0 COMMENT "is_del";
+
+
+ALTER TABLE group_activity ADD step1 VARCHAR(255) NOT NULL DEFAULT "" COMMENT "step1";
+ALTER TABLE group_activity ADD step2 VARCHAR(255) NOT NULL DEFAULT "" COMMENT "step2";
+ALTER TABLE group_activity ADD step3 VARCHAR(255) NOT NULL DEFAULT "" COMMENT "step3";
+ALTER TABLE group_activity ADD step4 VARCHAR(255) NOT NULL DEFAULT "" COMMENT "step4";
+
+ALTER TABLE group_activity ADD en_step1 VARCHAR(255) NOT NULL DEFAULT "" COMMENT "en_step1";
+ALTER TABLE group_activity ADD en_step2 VARCHAR(255) NOT NULL DEFAULT "" COMMENT "en_step2";
+ALTER TABLE group_activity ADD en_step3 VARCHAR(255) NOT NULL DEFAULT "" COMMENT "en_step3";
+ALTER TABLE group_activity ADD en_step4 VARCHAR(255) NOT NULL DEFAULT "" COMMENT "en_step4";
+
+
+ALTER TABLE group_activity ADD twitter VARCHAR(255) NOT NULL DEFAULT "" COMMENT "twitter";
+
+ALTER TABLE group_activity ADD facebook VARCHAR(255) NOT NULL DEFAULT "" COMMENT "facebook";
+ALTER TABLE group_activity ADD telegram VARCHAR(255) NOT NULL DEFAULT "" COMMENT "telegram";
+ALTER TABLE group_activity ADD web VARCHAR(255) NOT NULL DEFAULT "" COMMENT "web";
+
+
+
 
 
