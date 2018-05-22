@@ -29,11 +29,11 @@ class Dashboard extends Backend
         $hooks = config('addons.hooks');
         $uploadmode = isset($hooks['upload_config_init']) && $hooks['upload_config_init'] ? implode(',', $hooks['upload_config_init']) : 'local';
 
-        //totaluser
-        //todayuser
-        //groupuser
-        //activateuser
-        //notactivateuser
+        //totaluser 总用户数
+        //todayuser 今日新增
+        //groupuser 群人数
+        //activateuser 激活人数
+        //notactivateuser 未激活人数
 
         $this->view->assign([
             'totaluser'        => rand(35200,37200),
