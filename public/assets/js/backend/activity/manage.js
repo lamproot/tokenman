@@ -15,6 +15,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
 
             var table = $("#table");
             var searchList = {1: __('Code Activity'), 2:__('Article Activity')};
+            var statusList = {0: __('待审核'), 1:__('已审核')};
             // 初始化表格
             table.bootstrapTable({
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
@@ -32,8 +33,17 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                             }
                         }},
                         {field: 'logo', title: '活动图片', formatter: Controller.api.formatter.thumb, operate: false},
-                        {field: 'id', title: __('共获取用户数')},
-                        {field: 'remarks', title: '备注'},
+                        {field: 'status', title: __('Status'), statusList: statusList, formatter: function (value, row, index) {
+                            if (statusList[row.status]) {
+                                //row.type = row.type ? row.type : 0;
+                                return statusList[row.status];
+                            }else{
+                                return "";
+                            }
+                        }},
+                        // {field: 'usercount', title: __('共获取用户数')},
+
+                        // {field: 'remarks', title: '备注'},
                         // {field: 'created_at', title: __('Createtime'), formatter: Table.api.formatter.datetime},
                         {field: 'created_at', title: __('Createtime'), formatter: Table.api.formatter.datetime, operate: 'RANGE', addclass: 'datetimerange'},
 

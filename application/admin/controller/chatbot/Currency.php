@@ -78,7 +78,7 @@ class Currency extends Backend
                 ->count();
         // vip 1 条 svip 2
         if (intval($_SESSION['think']['admin']['type'] == 1) && intval($total) >= 1) {
-            $this->error("实时比价条数已用完 请联系管理员购买");
+            $this->error("实时币价条数已用完 请联系管理员购买");
         }
         //
         // if ($_SESSION['think']['admin']['type'] == 2 && $total >= 20) {
@@ -120,6 +120,7 @@ class Currency extends Backend
             $params = $this->request->post("row/a");
             if ($params)
             {
+                $params['currency'] = strtolower($params['currency']);
                 $row->save($params);
                 $this->success();
             }

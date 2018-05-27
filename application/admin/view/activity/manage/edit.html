@@ -29,6 +29,22 @@
                             <input type="text" class="form-control" id="type" name="row[model_id]" value="" data-rule="required;model_id"/>
                         </div>
                     </div> -->
+                    <div class="form-group">
+                        <label for="model_id" class="control-label col-xs-12 col-sm-2">{:__('群活动邀请地址')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <p><a href="{$activityUrl}" target="_blank">{$activityUrl}</a>  保存后生效</p>
+
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="theme_id" class="control-label col-xs-12 col-sm-2">{:__('官方活动主题')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            {$activityThemeList}
+
+                        </div>
+                    </div>
 
                     <div class="form-group">
                         <label for="c-logo" class="control-label col-xs-12 col-sm-2">{:__('活动模板')}:</label>
@@ -36,8 +52,8 @@
                             <div class="input-group">
                                 <input id="c-model-logo" data-rule="" class="form-control" size="50" name="row[model_logo]" type="text" value="{$row.logo}">
                                 <div class="input-group-addon no-border no-padding">
-                                    <span><button type="button" id="plupload-model-logo" class="btn btn-danger plupload" data-input-id="c-model-logo" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-model-logo"><i class="fa fa-upload"></i> {:__('上传活动模板')}</button></span>
-                                    <span><button type="button" id="fachoose-model-logo" class="btn btn-primary fachoose" data-input-id="c-model-logo" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('选择活动模板')}</button></span>
+                                    <span><button type="button" id="plupload-model-logo" class="btn btn-danger plupload" data-input-id="c-model-logo" data-mimetype="image/gif,image/jpeg,image/png,image/jpg,image/bmp" data-multiple="false" data-preview-id="p-model-logo"><i class="fa fa-upload"></i> {:__('自定义模板')}</button></span>
+                                    <!-- <span><button type="button" id="fachoose-model-logo" class="btn btn-primary fachoose" data-input-id="c-model-logo" data-mimetype="image/*" data-multiple="false"><i class="fa fa-list"></i> {:__('选择活动模板')}</button></span> -->
                                 </div>
                                 <span class="msg-box n-right" for="c-model-logo"></span>
                             </div>
@@ -109,10 +125,32 @@
 
 
                     <div class="form-group">
+                        <label for="activate_type" class="control-label col-xs-12 col-sm-2">{:__('活动激活方式')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            {$activateTypeList}
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="tokenman_url" class="control-label col-xs-12 col-sm-2">{:__('联系TokenMan地址')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input type="text" class="form-control" id="tokenman_url" name="row[tokenman_url]" value="{$row.tokenman_url}" data-rule="required;tokenman_url" placeholder="https://t.me/XXX tokenman username"/>
+                        </div>
+                    </div>
+
+
+                    <div class="form-group">
                         <label for="rate" class="control-label col-xs-12 col-sm-2">{:__('邀请奖励')}:</label>
                         <div class="col-xs-12 col-sm-8">
                             <input type="text" class="form-control" id="rate" name="row[rate]" value="{$row.rate}" data-rule="required;rate"/>
 
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="group_rate" class="control-label col-xs-12 col-sm-2">{:__('入群奖励')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input type="text" class="form-control" id="group_rate" name="row[group_rate]" value="{$row.group_rate}" data-rule="required;group_rate"/>
                         </div>
                     </div>
 
@@ -138,6 +176,29 @@
 
                         </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="remarks" class="control-label col-xs-12 col-sm-2">{:__('相关链接')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <div class="input-group m-b"><span class="input-group-addon">twitter</span>
+                                <input id="twitter" name="row[twitter]" value="{$row['twitter']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                            </div>
+                             <div class="input-group m-b"><span class="input-group-addon">facebook</span>
+                                <input id="facebook" name="row[facebook]" value="{$row['facebook']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                            </div>
+                            <div class="input-group m-b"><span class="input-group-addon">telegram</span>
+                                <input id="telegram" name="row[telegram]" value="{$row['telegram']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                            </div>
+                            <div class="input-group m-b"><span class="input-group-addon">web</span>
+                                <input id="web" name="row[web]" value="{$row['web']}" class="form-control" type="text" aria-required="true" aria-invalid="true" class="error">
+                            </div>
+                        </div>
+                    </div>
+
+
+
+
+
                 </div>
 
                 <div class="tab-pane fade" id="a2">
@@ -175,6 +236,34 @@
                         <label for="rule" class="control-label col-xs-12 col-sm-2">{:__('活动细则')}:</label>
                         <div class="col-xs-12 col-sm-8">
                             <textarea class="form-control" id="rule" name="row[rule]" rows="4" cols="80">{$row.rule}</textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="en_step1" class="control-label col-xs-12 col-sm-2">{:__('STEP1设置')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input type="text" class="form-control" id="en_step1" name="row[en_step1]" value="{$row.en_step1}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="en_step2" class="control-label col-xs-12 col-sm-2">{:__('STEP2设置')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input type="text" class="form-control" id="en_step2" name="row[en_step2]" value="{$row.en_step2}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="en_step3" class="control-label col-xs-12 col-sm-2">{:__('STEP3设置')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input type="text" class="form-control" id="en_step3" name="row[en_step3]" value="{$row.en_step3}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="en_step4" class="control-label col-xs-12 col-sm-2">{:__('STEP4设置')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input type="text" class="form-control" id="en_step4" name="row[en_step4]" value="{$row.en_step4}"/>
                         </div>
                     </div>
 
@@ -223,6 +312,36 @@
                             <textarea class="form-control" id="en_rule" name="row[en_rule]" rows="4" cols="80">{$row.en_rule}</textarea>
                         </div>
                     </div>
+
+
+                    <div class="form-group">
+                        <label for="step1" class="control-label col-xs-12 col-sm-2">{:__('STEP1设置')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input type="text" class="form-control" id="step1" name="row[step1]" value="{$row.step1}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="step2" class="control-label col-xs-12 col-sm-2">{:__('STEP2设置')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input type="text" class="form-control" id="step2" name="row[step2]" value="{$row.step2}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="step3" class="control-label col-xs-12 col-sm-2">{:__('STEP3设置')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input type="text" class="form-control" id="step3" name="row[step3]" value="{$row.step3}"/>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="step4" class="control-label col-xs-12 col-sm-2">{:__('STEP4设置')}:</label>
+                        <div class="col-xs-12 col-sm-8">
+                            <input type="text" class="form-control" id="step4" name="row[step4]" value="{$row.step4}"/>
+                        </div>
+                    </div>
+
 
                     <!-- <div class="form-group">
                         <label for="en_bottom_text" class="control-label col-xs-12 col-sm-2">{:__('En底部文案')}:</label>

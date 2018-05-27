@@ -8,6 +8,7 @@ return [
     'Total user'            => '总用户数',
     'Today user'            => '今日新增',
     'Group user'            => '已加入群组',
+    'Parent Group' => '邀请人数',
     'Activate user'            => '已激活用户',
     'Not activate user'            => '未激活用户',
     'Total view'            => '总访问数',
