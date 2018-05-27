@@ -142,7 +142,7 @@ class Manage extends Backend
         $chatBot = $this->chatbotmodel->get($row['chat_bot_id']);
         if ($chatBot) {
             $_SESSION['think']['token'] = $chatBot['token'];
-            $chatInfo = $this->getChat(520439801);
+            $chatInfo = $this->getChat($row['chat_id']);
         }
 
         //$getFile = $this->getFile($chatInfo['photo']['small_file_id']);
