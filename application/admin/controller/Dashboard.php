@@ -61,7 +61,7 @@ class Dashboard extends Backend
                 ->where('parent_code', '<>', '')
                 ->where('from_id', '<>', '')
                 ->count();
-                
+
         //todayuser 今日活动总人数
         $todayuser = $this->model
                 ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])

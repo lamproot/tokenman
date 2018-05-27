@@ -40,7 +40,7 @@ class Twitter extends Backend
             $list = $this->model
                     ->where($where)
                     ->where('is_del', '=', 0)
-                      ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+                    ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
                     ->order($sort, $order)
                     ->limit($offset, $limit)
                     ->select();
