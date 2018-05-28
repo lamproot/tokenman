@@ -59,6 +59,7 @@ class Auth extends \fast\Auth
         $admin->loginfailure = 0;
         $admin->logintime = time();
         $admin->token = Random::uuid();
+        $admin->avatar = "http://m.name-technology.fun:8030/".$admin->avatar;
         $admin->save();
         Session::set("admin", $admin->toArray());
         $this->keeplogin($keeptime);
