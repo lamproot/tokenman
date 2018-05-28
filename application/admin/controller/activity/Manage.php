@@ -95,7 +95,7 @@ class Manage extends Backend
                 ->select();
         if ($activityList) {
             foreach ($activityList as $key => $value) {
-                if ($this->type[$value['type']]) {
+                if (isset($value['type']) && isset($this->type[$value['type']])) {
                     unset($this->type[$value['type']]);
                 }
             }
@@ -220,6 +220,7 @@ class Manage extends Backend
         if ($row['type'] == 2) {
             $activityUrl = "http://m.name-technology.fun/Index/activity/".$row['id'];
         }
+        $row['baseurl'] =
         //{$botCode['code']}
         $this->view->assign('activityUrl', $activityUrl);
 
