@@ -144,7 +144,7 @@ class Manage extends Backend
             if ($params)
             {
                 if ($params['type'] != 5) {
-                    $params['content'] = $params['content'][0] ? $params['content'][0] : "";
+                    $params['content'] = $params['content'] ? $params['content'] : "";
                     $params['url'] = (isset($params['url'] ) && $params['url'][0]) ? $params['url'][0] : "";
                 }else{
                     $result = [];
