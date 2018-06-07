@@ -15,7 +15,7 @@ class Twitter extends Backend
 {
 
     protected $model = null;
-
+    protected $noNeedLogin = 'script';
     public function _initialize()
     {
         parent::_initialize();
@@ -27,6 +27,36 @@ class Twitter extends Backend
      */
     public function index()
     {
+        if ($this->request->isAjax())
+        {
+            list($where, $sort, $order, $offset, $limit) = $this->buildparams();
+            $total = $this->model
+                    ->where($where)
+                    ->where('is_del', '=', 0)
+                    ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+                    ->order($sort, $order)
+                    ->count();
+
+            $list = $this->model
+                    ->where($where)
+                    ->where('is_del', '=', 0)
+                      ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+                    ->order($sort, $order)
+                    ->limit($offset, $limit)
+                    ->select();
+            $result = array("total" => $total, "rows" => $list);
+
+            return json($result);
+        }
+        return $this->view->fetch();
+    }
+
+    /**
+     * 查看
+     */
+    public function script()
+    {
+        echo "dsa";exit;
         if ($this->request->isAjax())
         {
             list($where, $sort, $order, $offset, $limit) = $this->buildparams();
