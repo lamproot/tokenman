@@ -15,11 +15,15 @@ class Twitter extends Backend
 {
 
     protected $model = null;
-
+    protected $noNeedLogin = 'script';
     public function _initialize()
     {
         parent::_initialize();
         $this->model = model('BotTwitter');
+        $this->status = [0 => '关闭', 1 => '开启'];
+        if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
+            $this->status = [0 => 'Close', 1 => 'Open'];
+        }
     }
 
     /**
@@ -69,8 +73,7 @@ class Twitter extends Backend
      */
     public function add()
     {
-        unset($this->type[2]);
-        $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
+        $this->view->assign('statusList', build_select('row[status]', $this->status, 0, ['class' => 'form-control selectpicker']));
 
         $total = $this->model
                 ->where('is_del', '=', 0)
@@ -78,7 +81,7 @@ class Twitter extends Backend
                 ->count();
         // vip 15 条 svip 20条
         if (intval($_SESSION['think']['admin']['type'] == 1) && intval($total) >= 10) {
-            $this->error("关键词条数已用完 请联系管理员购买");
+            $this->error("Twitter数已用完 请联系管理员购买");
         }
         //
         // if ($_SESSION['think']['admin']['type'] == 2 && $total >= 20) {
@@ -113,6 +116,8 @@ class Twitter extends Backend
     public function edit($ids = NULL)
     {
         $row = $this->model->get(['id' => $ids]);
+        $this->view->assign('statusList', build_select('row[status]', $this->status, $row['status'], ['class' => 'form-control selectpicker']));
+
         if (!$row)
             $this->error(__('No Results were found'));
         if ($this->request->isPost())
