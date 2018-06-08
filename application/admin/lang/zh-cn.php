@@ -173,9 +173,10 @@ return [
     'Userset' => '用户设置',
     'Message manage' => '消息管理',
     'Keyword manage' => '关键词回复',
-    'Message manage' => '消息管理',
+    'Group Message manage' => '群消息管理',
     'Publish message' => '发布消息',
     'Activity manage' => '活动管理',
+    'Activity Manage List' => '活动编辑',
     'Publish activity' => '发布活动',
     'Antispam index' => '反垃圾管理',
     'Antispam manage' => '屏蔽词管理',
@@ -201,5 +202,6 @@ return [
     'Group Aide' => '群助手',
     'Group Manage Index' => '群管理',
     'Group User Index' => '群成员管理',
-    'Group Admin Index' => '管理员管理'
+    'Group Admin Index' => '管理员管理',
+    'Code Manage' => '活动用户数据'
 ];

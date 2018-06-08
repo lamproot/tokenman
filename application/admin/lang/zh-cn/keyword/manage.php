@@ -13,5 +13,6 @@ return [
     'Graph and text reply type' => '图文回复类型',
     'File reply type' => '文件类型',
     'Code invitations type' => 'code邀请类型',
-    'Graph and text continuous reply type' => '图文连续类型'
+    'Graph and text continuous reply type' => '图文连续类型',
+    'Continuous picture' => '连续图片'
 ];
