@@ -98,7 +98,7 @@ class Script extends Backend
             $media  = @$feed['entities']['media'];
             if($media) foreach($media as $img) $photos[] = $img['media_url'];
 
-            if ((time() - strtotime($feed['created_at'])) <= 90 * 60) {
+            if ((time() - strtotime($feed['created_at'])) <= 30 * 60) {
                 $data[] = array('id' => $feed['id'], 'tweet'=>$feed['text'],'date'=>strtotime($feed['created_at']),'img'=>$photos);
             }
         }
