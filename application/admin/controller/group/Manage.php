@@ -145,6 +145,13 @@ class Manage extends Backend
             $chatInfo = $this->getChat($row['chat_id']);
         }
 
+        if (!isset($chatInfo['description'])) {
+            $chatInfo['description'] = "";
+        }
+
+        if (!isset($chatInfo['title'])) {
+            $chatInfo['title'] = "";
+        }
         //$getFile = $this->getFile($chatInfo['photo']['small_file_id']);
 
         if ($this->request->isPost())
