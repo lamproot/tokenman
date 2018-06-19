@@ -8,7 +8,7 @@ return [
     'Sign up'                                               => '注 册',
     'Sign in'                                               => '登 录',
     'Sign out'                                              => '注 销',
-    'Keep login'                                            => '保持会话',
+    'Keep login'                                            => '保持登录状态',
     'Guest'                                                 => '游客',
     'Welcome'                                               => '%s，你好！',
     'View'                                                  => '查看',

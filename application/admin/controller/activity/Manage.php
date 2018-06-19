@@ -61,6 +61,9 @@ class Manage extends Backend
             if ($list) {
                 foreach ($list as $key => $value) {
                       $list[$key]['typename'] = isset($type[$value['type']]) ? $type[$value['type']] : "";
+                      $list[$key]['activity_user_count'] = $this->codemodel
+                              ->where('activity_id', '=', $value['id'])
+                              ->count();
                 }
             }
             $result = array("total" => $total, "rows" => $list);
@@ -89,17 +92,17 @@ class Manage extends Backend
     {
 
         //查询
-        $activityList = $this->model
-                ->where('is_del', '=', 0)
-                ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
-                ->select();
-        if ($activityList) {
-            foreach ($activityList as $key => $value) {
-                if (isset($value['type']) && isset($this->type[$value['type']])) {
-                    unset($this->type[$value['type']]);
-                }
-            }
-        }
+        // $activityList = $this->model
+        //         ->where('is_del', '=', 0)
+        //         ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+        //         ->select();
+        // if ($activityList) {
+        //     foreach ($activityList as $key => $value) {
+        //         if (isset($value['type']) && isset($this->type[$value['type']])) {
+        //             unset($this->type[$value['type']]);
+        //         }
+        //     }
+        // }
 
         $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
 
@@ -113,15 +116,15 @@ class Manage extends Backend
                 // }
                 //查询是否已添加过相同活动
                 $params['type'] = $params['type'] ? $params['type'] : 1;
-                $total = $this->model
-                        ->where('is_del', '=', 0)
-                        ->where('type', '=', $params['type'])
-                        ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
-                        ->count();
-
-                if ($total > 0) {
-                    $this->error(__('The same activity has already existed'));
-                }
+                // $total = $this->model
+                //         ->where('is_del', '=', 0)
+                //         ->where('type', '=', $params['type'])
+                //         ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+                //         ->count();
+                //
+                // if ($total > 0) {
+                //     $this->error(__('The same activity has already existed'));
+                // }
 
                 $params['chat_bot_id'] = $_SESSION['think']['admin']['chat_bot_id'];
                 $params['message'] = "";

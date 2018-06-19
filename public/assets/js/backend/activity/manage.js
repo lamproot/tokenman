@@ -78,7 +78,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                     dataType: 'jsonp',
                     success: function (ret) {
                         Layer.open({
-                            title: '设置参考',
+                            title: '活动参考',
                             content: '<p style="margin-bottom: 20px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-size: 14px; line-height: 32px; font-family: &quot;Microsoft YaHei&quot;, simsun, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline; color: rgb(102, 102, 102); white-space: normal; background-color: rgb(250, 251, 255);">'+
                                         '<img style="width:100%" src="http://kol-statics.oss-cn-beijing.aliyuncs.com/editor/1651453aa542c932f1041a70bdf833b4fb5c83.png" title="" alt=""/>满足“五零”条件(零编辑、零技术、零体制、零成本、零形式)而实现的“零进入壁垒”的网上个人出版方式，从媒体价值链最重要的三个环节：作者、内容和读者三大层次，实现了“源代码的开放”。并同时在道德规范、运作机制和经济规律等层次，将逐步完成体制层面的真正开放，使未来媒体世界完成从大教堂模式到集市模式的根本转变。<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;博客的出现集中体现了互联网时代媒体界所体现的商业化垄断与非商业化自由，大众化传播与个性化(分众化，小众化)表达，单向传播与双向传播3个基本矛盾、方向和互动。这几个矛盾因为博客引发的开放源代码运动，至少在技术层面上得到了根本的解决。</p>'+
                                     '<p style="margin-bottom: 20px; border: 0px; font-variant-numeric: inherit; font-variant-east-asian: inherit; font-stretch: inherit; font-size: 14px; line-height: 32px; font-family: &quot;Microsoft YaHei&quot;, simsun, &quot;Helvetica Neue&quot;, Arial, Helvetica, sans-serif; vertical-align: baseline; color: rgb(102, 102, 102); white-space: normal; background-color: rgb(250, 251, 255);">'+
@@ -132,7 +132,12 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                 },
                 activity_user: function (value, row, index) {
                     if (parseInt(row.type) === 1) {
-                        return '<a href="/admin/activity/codemanage/index?activity_id=' +row.id+ '" target="_blank">查看活动用户</a>';
+                        if (row.activity_user_count == 0) {
+                            return '暂无活动用户';
+                        }else{
+                            return '<a href="/admin/activity/codemanage/index?activity_id=' +row.id+ '" target="_blank">查看活动用户</a>';
+                        }
+
                     } else {
                         return '<a href="/admin/activity/articlemanage/index?activity_id=' +row.id+ '" target="_blank">查看活动用户</a>';
                     }
