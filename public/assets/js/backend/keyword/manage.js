@@ -143,14 +143,14 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             $(".content_list").empty();
         }
         else if (parseInt(value) == 5) {
-            $("#c-local").attr("data-rule","required;url")
+            //$("#c-local").attr("data-rule","required;url")
             $('.row_add_content').removeClass('hide');
             $('#row_url').removeClass('hide');
             $('#row_file').removeClass('hide');
         }
         else{
           $(".content_list").empty();
-            $("#c-local").attr("data-rule","required;url")
+            //$("#c-local").attr("data-rule","required;url")
             $('.row_add_content').addClass('hide');
             $('#row_url').removeClass('hide');
             $('#row_file').removeClass('hide');

@@ -145,3 +145,4 @@ CREATE TABLE `bot_twitter_log` (
   `twitter_id` varchar(255) DEFAULT '',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+ALTER TABLE bot_twitter ADD status tinyint(2) NOT NULL DEFAULT 0 COMMENT "是否开启  0 关闭 1 开启";

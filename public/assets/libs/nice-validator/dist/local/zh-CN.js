@@ -40,7 +40,7 @@
                        (new RegExp(".(?:" + ext + ")$", "i")).test(value) ||
                        this.renderMsg("只接受{1}后缀的文件", ext.replace(/\|/g, ','));
             }
-            
+
         },
 
         // Default error messages
