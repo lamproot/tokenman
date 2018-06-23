@@ -15,7 +15,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             });
 
             var table = $("#table");
-            var searchList = {1: __('Common message type'), 2:__('Code invitations type'), 3:__('Graph and text reply type'), 4:__('File reply type'),5:__('Code invitations type')};
+            var searchList = {1: __('Common message type'), 2:__('Code invitations type'), 3:__('Graph and text reply type'), 4:__('File reply type'),5:__('Continuous picture')};
             // 初始化表格
             table.bootstrapTable({
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
@@ -143,14 +143,14 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             $(".content_list").empty();
         }
         else if (parseInt(value) == 5) {
-            $("#c-local").attr("data-rule","required;url")
+            //$("#c-local").attr("data-rule","required;url")
             $('.row_add_content').removeClass('hide');
             $('#row_url').removeClass('hide');
             $('#row_file').removeClass('hide');
         }
         else{
           $(".content_list").empty();
-            $("#c-local").attr("data-rule","required;url")
+            //$("#c-local").attr("data-rule","required;url")
             $('.row_add_content').addClass('hide');
             $('#row_url').removeClass('hide');
             $('#row_file').removeClass('hide');

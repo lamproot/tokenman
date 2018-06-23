@@ -264,6 +264,9 @@ define(['jquery', 'bootstrap', 'plupload', 'template'], function ($, undefined, 
                                 if (!j) {
                                     return true;
                                 }
+                                if (j.indexOf("http") == -1) {
+                                    j = "http://m.name-technology.fun:8030/"+j
+                                }
                                 var data = {url: j, fullurl: Fast.api.cdnurl(j), data: $(that).data()};
                                 var html = tpl ? Template(tpl, data) : Template.render(Upload.config.previewtpl, data);
                                 $("#" + preview_id).append(html);

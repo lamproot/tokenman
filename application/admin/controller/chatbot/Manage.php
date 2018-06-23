@@ -26,6 +26,13 @@ class Manage extends Backend
         if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
             $this->is_shield = [0 => 'Close', 1 => 'Open'];
         }
+
+        $this->is_currency = [0 => '关闭', 1 => '打开'];
+        if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
+            $this->is_currency = [0 => 'Close', 1 => 'Open'];
+        }
+
+
     }
 
     /**
@@ -127,7 +134,7 @@ class Manage extends Backend
             $this->error();
         }
 
-
+        $this->view->assign('currencyList', build_select('row[is_currency]', $this->is_currency, $row['is_currency'], ['class' => 'form-control selectpicker']));
         $this->view->assign('shieldList', build_select('row[is_shield]', $this->is_shield, $row['is_shield'], ['class' => 'form-control selectpicker']));
         $this->view->assign("row", $row);
         return $this->view->fetch();

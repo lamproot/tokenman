@@ -6,7 +6,7 @@ use app\admin\model\ChatCommand;
 use app\common\controller\Backend;
 
 /**
- * 关键词回复管理
+ *
  *
  * @icon fa fa-users
  * @remark 管理员可以查看自己所拥有的权限的管理员日志
@@ -69,9 +69,6 @@ class Illegalog extends Backend
      */
     public function add()
     {
-        unset($this->type[2]);
-        $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
-
         $total = $this->model
                 ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
                 ->count();

@@ -54,6 +54,7 @@ CREATE TABLE `bot_twitter` (
   `created_at` int(10) DEFAULT NULL,
   `updated_at` int(10) DEFAULT NULL,
   `twitter` varchar(255) DEFAULT '',
+  `status` tinyint(2) NOT NULL DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
@@ -130,3 +131,18 @@ CREATE TABLE `activity_theme` (
 BEGIN;
 INSERT INTO `activity_theme` VALUES ('1', '科技感主题', 'http://18.188.112.65:8090/Uploads/images/command/5af0249d30628.png', 'http://18.188.112.65:8090/Uploads/images/command/5af0249d14ed6.png', '0', '0', '0'), ('2', '糖果色主题', 'http://18.188.112.65:8090/Uploads/images/command/5af0249d344b7.png', 'http://18.188.112.65:8090/Uploads/images/command/5af0249d23fdb.png', '0', '0', '0'), ('3', 'aaaa', 'http://localhost:8890/Uploads/images/activity/5af2b0a508249.png', 'http://localhost:8890/Uploads/images/activity/5af2b0a508958.png', '1525854095', '1525854432', '1'), ('4', '', 'http://localhost:8890/Uploads/images/activity/5af2b0e9ed895.png', 'http://localhost:8890/Uploads/images/activity/5af2b0e9ede4e.png', '1525854441', '1525854441', '0');
 COMMIT;
+
+-- ----------------------------
+--  Table structure for `bot_twitter`
+-- ----------------------------
+DROP TABLE IF EXISTS `bot_twitter_log`;
+CREATE TABLE `bot_twitter_log` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `chat_bot_id` int(10) NOT NULL,
+  `twitter` varchar(255) DEFAULT '',
+  `created_at` int(10) NOT NULL COMMENT '创建时间',
+  `content` text NOT NULL DEFAULT '',
+  `twitter_id` varchar(255) DEFAULT '',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+ALTER TABLE bot_twitter ADD status tinyint(2) NOT NULL DEFAULT 0 COMMENT "是否开启  0 关闭 1 开启";

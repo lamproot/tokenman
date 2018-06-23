@@ -20,9 +20,17 @@ class Manage extends Backend
     {
         parent::_initialize();
         $this->model = model('GroupActivity');
+        $this->thememodel = model('ActivityTheme');
+        $this->codemodel = model('Codes');
         $this->type = [0 => '请选择活动类型', 1 => 'Code 邀请活动', 2 => '拟稿人活动'];
         if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
             $this->type = [0 => 'Choose Type', 1 => 'Code Activity', 2 => 'Article Activity'];
+        }
+
+        //激活类型 0-TokenMan 激活 1-群激活 2-TokenMan和群激活
+        $this->activate_type = [0 => 'TokenMan 激活', 1 => '群激活', 2 => 'TokenMan和群激活'];
+        if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
+            $this->activate_type = [0 => 'TokenMan', 1 => 'Group', 2 => 'TokenMan And Group'];
         }
     }
 
@@ -53,6 +61,9 @@ class Manage extends Backend
             if ($list) {
                 foreach ($list as $key => $value) {
                       $list[$key]['typename'] = isset($type[$value['type']]) ? $type[$value['type']] : "";
+                      $list[$key]['activity_user_count'] = $this->codemodel
+                              ->where('activity_id', '=', $value['id'])
+                              ->count();
                 }
             }
             $result = array("total" => $total, "rows" => $list);
@@ -81,17 +92,17 @@ class Manage extends Backend
     {
 
         //查询
-        $activityList = $this->model
-                ->where('is_del', '=', 0)
-                ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
-                ->select();
-        if ($activityList) {
-            foreach ($activityList as $key => $value) {
-                if ($this->type[$value['type']]) {
-                    unset($this->type[$value['type']]);
-                }
-            }
-        }
+        // $activityList = $this->model
+        //         ->where('is_del', '=', 0)
+        //         ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+        //         ->select();
+        // if ($activityList) {
+        //     foreach ($activityList as $key => $value) {
+        //         if (isset($value['type']) && isset($this->type[$value['type']])) {
+        //             unset($this->type[$value['type']]);
+        //         }
+        //     }
+        // }
 
         $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
 
@@ -105,15 +116,15 @@ class Manage extends Backend
                 // }
                 //查询是否已添加过相同活动
                 $params['type'] = $params['type'] ? $params['type'] : 1;
-                $total = $this->model
-                        ->where('is_del', '=', 0)
-                        ->where('type', '=', $params['type'])
-                        ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
-                        ->count();
-
-                if ($total > 0) {
-                    $this->error(__('The same activity has already existed'));
-                }
+                // $total = $this->model
+                //         ->where('is_del', '=', 0)
+                //         ->where('type', '=', $params['type'])
+                //         ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+                //         ->count();
+                //
+                // if ($total > 0) {
+                //     $this->error(__('The same activity has already existed'));
+                // }
 
                 $params['chat_bot_id'] = $_SESSION['think']['admin']['chat_bot_id'];
                 $params['message'] = "";
@@ -182,11 +193,40 @@ class Manage extends Backend
                 if ($params['stoped_at']) {
                     $params['stoped_at'] = strtotime($params['stoped_at']);
                 }
+                $params['status'] = 0;
                 $row->save($params);
                 $this->success();
             }
             $this->error();
         }
+
+        //获取活动主题数据
+        $themeList = $this->thememodel
+                ->field('id,name')
+                ->where('is_del', '=', 0)
+                ->select();
+        foreach ($themeList as $key => $value) {
+            $activityThemeList[$value['id']] = $value['name'];
+        }
+
+
+        $this->view->assign('activateTypeList', build_select('row[activate_type]', $this->activate_type, 1, ['class' => 'form-control selectpicker']));
+        $this->view->assign('activityThemeList', build_select('row[theme_id]', $activityThemeList, 1, ['class' => 'form-control selectpicker']));
+
+        //Code活动
+        $activityUrl = "";
+        if ($row['type'] == 1) {
+            $botCode = $this->codemodel->get(['activity_id' => $ids, 'from_id' => 1, 'status' => 3]);
+            $activityUrl = "http://m.name-technology.fun/Index/code/".$botCode['code'];
+        }
+
+        if ($row['type'] == 2) {
+            $activityUrl = "http://m.name-technology.fun/Index/activity/".$row['id'];
+        }
+        $row['baseurl'] =
+        //{$botCode['code']}
+        $this->view->assign('activityUrl', $activityUrl);
+
         $this->view->assign("row", $row);
         return $this->view->fetch();
     }

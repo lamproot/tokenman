@@ -20,6 +20,10 @@ class Twitter extends Backend
     {
         parent::_initialize();
         $this->model = model('BotTwitter');
+        $this->status = [0 => '关闭', 1 => '开启'];
+        if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
+            $this->status = [0 => 'Close', 1 => 'Open'];
+        }
     }
 
     /**
@@ -69,8 +73,7 @@ class Twitter extends Backend
      */
     public function add()
     {
-        unset($this->type[2]);
-        $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
+        $this->view->assign('statusList', build_select('row[status]', $this->status, 0, ['class' => 'form-control selectpicker']));
 
         $total = $this->model
                 ->where('is_del', '=', 0)
@@ -125,6 +128,8 @@ class Twitter extends Backend
             }
             $this->error();
         }
+        $this->view->assign('statusList', build_select('row[status]', $this->status, $row['status'], ['class' => 'form-control selectpicker']));
+
         $this->view->assign("row", $row);
         return $this->view->fetch();
     }
