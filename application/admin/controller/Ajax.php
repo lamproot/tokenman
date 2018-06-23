@@ -120,8 +120,8 @@ class Ajax extends Backend
             \think\Hook::listen("upload_after", $attachment);
             //HTTP_HOST SERVER_NAME
             //$localhost ='http://'.$_SERVER['HTTP_HOST'].'/';
-            //$localhost = 'http://m.name-technology.fun:8030/';
-            $localhost = '/';
+            $localhost = 'http://file.name-technology.fun/';
+            //$localhost = '/';
             $uploadDir = str_replace("/../../", "", $uploadDir);
             $this->success(__('Upload successful'), null, [
                 //'url' => $uploadDir . $splInfo->getSaveName()
