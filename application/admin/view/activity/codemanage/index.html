@@ -2,6 +2,78 @@
     {:build_heading()}
 
     <div class="panel-body">
+        <div class="box-header">
+            <h3 class="box-title">{:__('活动数据')}</h3>
+            <!-- <div class="box-tools pull-right">
+                <a href="./guide/guide/index?ref=addtabs" target="_blank" class="btn btn-box-tool">{:__('More')}</a>
+            </div> -->
+        </div>
+
+        <div class="row" style="margin-top:15px;">
+
+            <div class="col-xs-12 col-md-12">
+                <div class="panel bg-blue">
+                    <div class="panel-body">
+                        <div class="panel-title">
+                            <span class="label label-success pull-right">{:__('TokenMan Statistics')}</span>
+                            <h5>{$activity['title']} {:__('Activity User Data')}</h5>
+                        </div>
+                        <div class="panel-content">
+                            <!-- <h1 class="no-margins">1234</h1>
+                            <div class="stat-percent font-bold text-gray"><i class="fa fa-commenting"></i> 1234</div>
+                            <small>{:__('Category count tips')}</small>
+
+                            <h1 class="no-margins">1234</h1>
+                            <div class="stat-percent font-bold text-gray"><i class="fa fa-commenting"></i> 1234</div>
+                            <small>{:__('Category count tips')}</small> -->
+
+                            <div class="col-sm-2 border-right">
+                                <div class="description-block">
+                                    <h5 class="description-header">{$activity_data['totaluser']}</h5>
+                                    <span class="description-text">{:__('Total user')}</span>
+                                </div>
+                            </div>
+
+
+
+                            <div class="col-sm-2 border-right">
+                                <div class="description-block">
+                                    <h5 class="description-header">{$activity_data['activateuser']}</h5>
+                                    <span class="description-text">{:__('Activate user')}</span>
+                                </div>
+                            </div>
+
+                            <div class="col-sm-2 border-right">
+                                <div class="description-block">
+                                    <h5 class="description-header">{$activity_data['notactivateuser']}</h5>
+                                    <span class="description-text">{:__('Not Activate user')}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 border-right">
+                                <div class="description-block">
+                                    <h5 class="description-header">{$activity_data['total_rate']} {$activity['rate_unit']}</h5>
+                                    <span class="description-text">{:__('Total Rate')}</span>
+                                </div>
+
+
+                            </div>
+                            <div class="col-sm-2 border-right">
+                                <div class="description-block">
+                                    <h5 class="description-header">{$activity_data['activate_rate']} {$activity['rate_unit']}</h5>
+                                    <span class="description-text">{:__('Group Rate')}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-2 border-right">
+                                <div class="description-block">
+                                    <h5 class="description-header">{$activity_data['invitation_rate']} {$activity['rate_unit']}</h5>
+                                    <span class="description-text">{:__('Activate Rate')}</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade active in" id="one">
                 <div class="widget-body no-padding">

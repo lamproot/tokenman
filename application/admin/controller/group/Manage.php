@@ -74,6 +74,17 @@ class Manage extends Backend
         $row = $this->model->get(['id' => $ids]);
         if (!$row)
             $this->error(__('No Results were found'));
+
+            //获取今日新增数据 group_user  1 入群 2 退群 3 拉黑
+            $group_data['todayuser'] = rand(100,30000);
+            $group_data['totaluser'] = rand(100,30000);
+            $group_data['extuser'] = rand(100,30000);
+            $group_data['blankuser'] = rand(100,30000);
+            //拉黑消息数据 illega_log
+            $group_data['blanknews'] = rand(100,30000);
+            //消息总数统计 news_total group_id chat_bot_id total
+            $group_data['newstotal'] = rand(100,30000);
+        $this->view->assign("group_data", $group_data);
         $this->view->assign("row", $row->toArray());
         return $this->view->fetch();
     }

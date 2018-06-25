@@ -46,7 +46,7 @@ return [
     'Timezone'              => '时区',
     'Language'              => '语言',
     'Novice guidance'       => '新手引导',
-    'Dashboard'                                              => '控制中心',
+    'Dashboard'                                              => '首页',
     'general' => '用户设置',
 
 ];

@@ -134,77 +134,327 @@
         <div id="myTabContent" class="tab-content">
             <div class="tab-pane fade active in" id="one">
 
+                <div class="box-header">
+                    <h3 class="box-title">{:__('参与活动人数统计')}</h3>
+                    <!-- <div class="box-tools pull-right">
+                        <a href="./guide/guide/index?ref=addtabs" target="_blank" class="btn btn-box-tool">{:__('More')}</a>
+                    </div> -->
+                </div>
                 <div class="row">
                     <div class="col-sm-3 col-xs-6">
                         <div class="sm-st clearfix">
-                            <span class="sm-st-icon st-red"><i class="fa fa-line-chart"></i></span>
+                            <!-- <span class="sm-st-icon st-red"><i class="fa fa-line-chart"></i></span> -->
                             <div class="sm-st-info">
                                 <span>{$todayuser}</span>
                                 {:__('Today user')}
                             </div>
+                            <span class="progress-description">
+                                当天申请参加活动用户
+                            </span>
                         </div>
                     </div>
                     <div class="col-sm-3 col-xs-6">
                         <div class="sm-st clearfix">
-                            <span class="sm-st-icon st-violet"><i class="fa fa-users"></i></span>
+                            <!-- <span class="sm-st-icon st-violet"><i class="fa fa-users"></i></span> -->
                             <div class="sm-st-info">
                                 <span>{$totaluser}</span>
                                 {:__('Total user')}
                             </div>
+                            <span class="progress-description">
+                                申请参加活动总用户数
+                            </span>
                         </div>
                     </div>
                     <div class="col-sm-3 col-xs-6">
                         <div class="sm-st clearfix">
-                            <span class="sm-st-icon st-green"><i class="fa fa-user"></i></span>
+                            <!-- <span class="sm-st-icon st-green"><i class="fa fa-user"></i></span> -->
                             <div class="sm-st-info">
                                 <span>{$activateuser}</span>
                                 {:__('Activate user')}
                             </div>
+                            <span class="progress-description">
+                                参加活动且激活用户总数
+                            </span>
                         </div>
                     </div>
 
                     <div class="col-sm-3 col-xs-6">
                         <div class="sm-st clearfix">
-                            <span class="sm-st-icon st-green"><i class="fa fa-user-times"></i></span>
+                            <!-- <span class="sm-st-icon st-green"><i class="fa fa-user-times"></i></span> -->
                             <div class="sm-st-info">
                                 <span>{$notactivateuser}</span>
                                 {:__('Not activate user')}
                             </div>
+                            <span class="progress-description">
+                                申请活动为激活用户总数
+                            </span>
                         </div>
                     </div>
 
-                    <div class="col-sm-3 col-xs-6">
+                    <!-- <div class="col-sm-3 col-xs-6">
                         <div class="sm-st clearfix">
                             <span class="sm-st-icon st-blue"><i class="fa fa-user-plus"></i></span>
                             <div class="sm-st-info">
                                 <span>{$parent_group}</span>
                                 {:__('Parent Group')}
                             </div>
+                            <span class="progress-description">
+                                活动共邀请多少人参加
+                            </span>
                         </div>
-                    </div>
+                    </div> -->
+                </div>
+                <div class="box-header">
+                    <h3 class="box-title">{:__('活动数据')}</h3>
+                    <!-- <div class="box-tools pull-right">
+                        <a href="./guide/guide/index?ref=addtabs" target="_blank" class="btn btn-box-tool">{:__('More')}</a>
+                    </div> -->
                 </div>
 
+                <div class="row" style="margin-top:15px;">
 
-                    <div class="row" style="margin-top:15px;">
-
-                <div class="col-lg-12">
-                    </div>
-                    <div class="col-xs-6 col-md-3">
+                    <div class="col-xs-12 col-md-12">
                         <div class="panel bg-blue">
                             <div class="panel-body">
                                 <div class="panel-title">
-                                    <span class="label label-success pull-right">{:__('Real time')}</span>
-                                    <h5>{:__('Category count')}</h5>
+                                    <span class="label label-success pull-right">{:__('实时数据')}</span>
+                                    <h5>{:__('LoMostar糖果空投来啦！活动数据')}</h5>
                                 </div>
                                 <div class="panel-content">
-                                    <h1 class="no-margins">1234</h1>
+                                    <!-- <h1 class="no-margins">1234</h1>
                                     <div class="stat-percent font-bold text-gray"><i class="fa fa-commenting"></i> 1234</div>
                                     <small>{:__('Category count tips')}</small>
+
+                                    <h1 class="no-margins">1234</h1>
+                                    <div class="stat-percent font-bold text-gray"><i class="fa fa-commenting"></i> 1234</div>
+                                    <small>{:__('Category count tips')}</small> -->
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,2020</h5>
+                                            <span class="description-text">参与总用户</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,200</h5>
+                                            <span class="description-text">已激活用户(入群)</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,200</h5>
+                                            <span class="description-text">未激活用户</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,222,200 THM</h5>
+                                            <span class="description-text">消耗奖励</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,222,200 THM</h5>
+                                            <span class="description-text">入群奖励</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,200 THM</h5>
+                                            <span class="description-text">激活奖励</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-6 col-md-3">
+                    <!-- bg-aqua-gradient bg-purple-gradient  bg-green-gradient-->
+                    <div class="col-xs-12 col-md-12">
+                        <div class="panel bg-red-gradient">
+                            <div class="panel-body">
+                                <div class="panel-title">
+                                    <span class="label label-success pull-right">{:__('实时数据')}</span>
+                                    <h5>{:__('LoMostar糖果空投来啦！活动数据')}</h5>
+                                </div>
+                                <div class="panel-content">
+                                    <!-- <h1 class="no-margins">1234</h1>
+                                    <div class="stat-percent font-bold text-gray"><i class="fa fa-commenting"></i> 1234</div>
+                                    <small>{:__('Category count tips')}</small>
+
+                                    <h1 class="no-margins">1234</h1>
+                                    <div class="stat-percent font-bold text-gray"><i class="fa fa-commenting"></i> 1234</div>
+                                    <small>{:__('Category count tips')}</small> -->
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,2020</h5>
+                                            <span class="description-text">参与总用户</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,200</h5>
+                                            <span class="description-text">已激活用户(入群)</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,200</h5>
+                                            <span class="description-text">未激活用户</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,222,200 THM</h5>
+                                            <span class="description-text">消耗奖励</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,222,200 THM</h5>
+                                            <span class="description-text">入群奖励</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,200 THM</h5>
+                                            <span class="description-text">激活奖励</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-12">
+
+
+                        <div class="panel bg-purple-gradient">
+                            <div class="panel-body">
+                                <div class="panel-title">
+                                    <span class="label label-success pull-right">{:__('实时数据')}</span>
+                                    <h5>{:__('LoMostar糖果空投来啦！活动数据')}</h5>
+                                </div>
+                                <div class="panel-content">
+                                    <!-- <h1 class="no-margins">1234</h1>
+                                    <div class="stat-percent font-bold text-gray"><i class="fa fa-commenting"></i> 1234</div>
+                                    <small>{:__('Category count tips')}</small>
+
+                                    <h1 class="no-margins">1234</h1>
+                                    <div class="stat-percent font-bold text-gray"><i class="fa fa-commenting"></i> 1234</div>
+                                    <small>{:__('Category count tips')}</small> -->
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,2020</h5>
+                                            <span class="description-text">参与总用户</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,200</h5>
+                                            <span class="description-text">已激活用户(入群)</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,200</h5>
+                                            <span class="description-text">未激活用户</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,222,200 THM</h5>
+                                            <span class="description-text">消耗奖励</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,222,200 THM</h5>
+                                            <span class="description-text">入群奖励</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,200 THM</h5>
+                                            <span class="description-text">激活奖励</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-12 col-md-12">
+
+
+                        <div class="panel bg-aqua-gradient">
+                            <div class="panel-body">
+                                <div class="panel-title">
+                                    <span class="label label-success pull-right">{:__('实时数据')}</span>
+                                    <h5>{:__('LoMostar糖果空投来啦！活动数据')}</h5>
+                                </div>
+                                <div class="panel-content">
+                                    <!-- <h1 class="no-margins">1234</h1>
+                                    <div class="stat-percent font-bold text-gray"><i class="fa fa-commenting"></i> 1234</div>
+                                    <small>{:__('Category count tips')}</small>
+
+                                    <h1 class="no-margins">1234</h1>
+                                    <div class="stat-percent font-bold text-gray"><i class="fa fa-commenting"></i> 1234</div>
+                                    <small>{:__('Category count tips')}</small> -->
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,2020</h5>
+                                            <span class="description-text">参与总用户</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,200</h5>
+                                            <span class="description-text">已激活用户(入群)</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,200</h5>
+                                            <span class="description-text">未激活用户</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,222,200 THM</h5>
+                                            <span class="description-text">消耗奖励</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,222,200 THM</h5>
+                                            <span class="description-text">入群奖励</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,200 THM</h5>
+                                            <span class="description-text">激活奖励</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- <div class="col-xs-6 col-md-3">
                         <div class="panel bg-aqua-gradient">
                             <div class="panel-body">
                                 <div class="ibox-title">
@@ -218,54 +468,137 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div> -->
+                </div>
 
-                    <div class="col-xs-6 col-md-3">
-                        <div class="panel bg-purple-gradient">
+
+                <div class="box-header">
+                    <h3 class="box-title">{:__('群数据')}</h3>
+                    <!-- <div class="box-tools pull-right">
+                        <a href="./guide/guide/index?ref=addtabs" target="_blank" class="btn btn-box-tool">{:__('More')}</a>
+                    </div> -->
+                </div>
+
+                <div class="row" style="margin-top:15px;">
+
+                    <div class="col-xs-12 col-md-12">
+                        <div class="panel bg-blue">
                             <div class="panel-body">
-                                <div class="ibox-title">
-                                    <span class="label label-primary pull-right">{:__('Real time')}</span>
-                                    <h5>{:__('Article count')}</h5>
+                                <div class="panel-title">
+                                    <span class="label label-success pull-right">{:__('TokenMan统计')}</span>
+                                    <h5>{:__('LoMostar中文群 用户数据')}</h5>
                                 </div>
-                                <div class="ibox-content">
+                                <div class="panel-content">
+                                    <!-- <h1 class="no-margins">1234</h1>
+                                    <div class="stat-percent font-bold text-gray"><i class="fa fa-commenting"></i> 1234</div>
+                                    <small>{:__('Category count tips')}</small>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h1 class="no-margins">1234</h1>
-                                            <div class="font-bold text-navy"><i class="fa fa-commenting"></i> <small>{:__('Comment count')}</small></div>
+                                    <h1 class="no-margins">1234</h1>
+                                    <div class="stat-percent font-bold text-gray"><i class="fa fa-commenting"></i> 1234</div>
+                                    <small>{:__('Category count tips')}</small> -->
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,2020</h5>
+                                            <span class="description-text">今日新增用户</span>
                                         </div>
-                                        <div class="col-md-6">
-                                            <h1 class="no-margins">6754</h1>
-                                            <div class="font-bold text-navy"><i class="fa fa-heart"></i> <small>{:__('Like count')}</small></div>
+                                    </div>
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,200123</h5>
+                                            <span class="description-text">群用户总人数</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,200</h5>
+                                            <span class="description-text">退群用户数据</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">30000 人</h5>
+                                            <span class="description-text">封禁用户数据</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">123123条</h5>
+                                            <span class="description-text">屏蔽群用户消息数据</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">123123 条</h5>
+                                            <span class="description-text">群消息总数</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xs-6 col-md-3">
-                        <div class="panel bg-green-gradient">
+                    <!-- bg-aqua-gradient bg-purple-gradient  bg-green-gradient-->
+                    <div class="col-xs-12 col-md-12">
+                        <div class="panel bg-red-gradient">
                             <div class="panel-body">
-                                <div class="ibox-title">
-                                    <span class="label label-primary pull-right">{:__('Real time')}</span>
-                                    <h5>{:__('News count')}</h5>
+                                <div class="panel-title">
+                                    <span class="label label-success pull-right">{:__('TokenMan统计')}</span>
+                                    <h5>{:__('LoMostar英文群 用户数据')}</h5>
                                 </div>
-                                <div class="ibox-content">
+                                <div class="panel-content">
+                                    <!-- <h1 class="no-margins">1234</h1>
+                                    <div class="stat-percent font-bold text-gray"><i class="fa fa-commenting"></i> 1234</div>
+                                    <small>{:__('Category count tips')}</small>
 
-                                    <div class="row">
-                                        <div class="col-md-6">
-                                            <h1 class="no-margins">5302</h1>
-                                            <div class="font-bold text-navy"><i class="fa fa-commenting"></i> <small>{:__('Comment count')}</small></div>
+                                    <h1 class="no-margins">1234</h1>
+                                    <div class="stat-percent font-bold text-gray"><i class="fa fa-commenting"></i> 1234</div>
+                                    <small>{:__('Category count tips')}</small> -->
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,2020</h5>
+                                            <span class="description-text">今日新增用户</span>
                                         </div>
-                                        <div class="col-md-6">
-                                            <h1 class="no-margins">8205</h1>
-                                            <div class="font-bold text-navy"><i class="fa fa-user"></i> <small>{:__('Like count')}</small></div>
+                                    </div>
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,200123</h5>
+                                            <span class="description-text">群用户总人数</span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">3,200</h5>
+                                            <span class="description-text">退群用户数据</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">30000 人</h5>
+                                            <span class="description-text">封禁用户数据</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">123123条</h5>
+                                            <span class="description-text">屏蔽群用户消息数据</span>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-2 border-right">
+                                        <div class="description-block">
+                                            <h5 class="description-header">123123 条</h5>
+                                            <span class="description-text">群消息总数</span>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                 </div>
 
                 <div class="row">

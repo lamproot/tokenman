@@ -70,7 +70,7 @@ return [
     'Index'                                                 => '首页',
     'Hot'                                                   => '热门',
     'Recommend'                                             => '推荐',
-    'Dashboard'                                             => '控制中心',
+    'Dashboard'                                             => '首页',
     'Upload'                                                => '上传',
     'Uploading'                                             => '上传中',
     'Code'                                                  => '编号',
@@ -136,7 +136,7 @@ return [
     'An unexpected error occurred'                          => '发生了一个意外错误,程序猿正在紧急处理中',
     'This page will be re-directed in %s seconds'           => '页面将在 %s 秒后自动跳转',
     //菜单
-    'Dashboard'                                             => '控制中心',
+    'Dashboard'                                             => '首页',
     'General'                                               => '常规管理',
     'Category'                                              => '分类管理',
     'Addon'                                                 => '插件管理',

@@ -11,5 +11,6 @@ return [
     'Not Activate' => '未激活',
     'Is Activate' => '已激活',
     'description' => '描述',
-    'Activate Bot' => '激活机器人'
+    'Activate Bot' => '激活机器人',
+    'Data Detail' => '查看群数据'
 ];

@@ -1,0 +1,78 @@
+<!-- <table class="table table-striped">
+    <thead>
+        <tr>
+            <th>{:__('Title')}</th>
+            <th>{:__('Content')}</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table> -->
+
+<div class="box-header">
+    <!-- <h3 class="box-title">{$row['title']}</h3> -->
+    <!-- <div class="box-tools pull-right">
+        <a href="./guide/guide/index?ref=addtabs" target="_blank" class="btn btn-box-tool">{:__('More')}</a>
+    </div> -->
+</div>
+
+<div class="row" style="margin-top:15px;">
+
+    <div class="col-xs-12 col-md-12">
+        <div class="panel bg-blue">
+            <div class="panel-body">
+                <div class="panel-title">
+                    <span class="label label-success pull-right">{:__('TokenMan统计')}</span>
+                    <h5>{:__('用户数据')}</h5>
+                </div>
+                <div class="panel-content">
+                    <div class="col-sm-4 border-right">
+                        <div class="description-block">
+                            <h5 class="description-header">{$group_data['todayuser']} 人</h5>
+                            <span class="description-text">今日新增用户</span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 border-right">
+                        <div class="description-block">
+                            <h5 class="description-header">{$group_data['totaluser']} 人</h5>
+                            <span class="description-text">群用户总人数</span>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-4 border-right">
+                        <div class="description-block">
+                            <h5 class="description-header">{$group_data['extuser']} 人</h5>
+                            <span class="description-text">退群用户数据</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 border-right">
+                        <div class="description-block">
+                            <h5 class="description-header">{$group_data['blankuser']} 人</h5>
+                            <span class="description-text">封禁用户数据</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 border-right">
+                        <div class="description-block">
+                            <h5 class="description-header">{$group_data['blanknews']} 条</h5>
+                            <span class="description-text">屏蔽群用户消息数据</span>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 border-right">
+                        <div class="description-block">
+                            <h5 class="description-header">{$group_data['newstotal']} 条</h5>
+                            <span class="description-text">群消息总数</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hide layer-footer">
+    <label class="control-label col-xs-12 col-sm-2"></label>
+    <div class="col-xs-12 col-sm-8">
+        <button type="reset" class="btn btn-primary btn-embossed btn-close" onclick="Layer.closeAll();">{:__('Close')}</button>
+    </div>
+</div>

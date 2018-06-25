@@ -46,9 +46,20 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                                   return '<a href="javascript:;" class="btn btn-info btn-xs sidebar-toggle btn-activity" >'+__('Not Activate')+'</a>';
                                 }
                         }},
-                        {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: function (value, row, index) {
-                            return Table.api.formatter.operate.call(this, value, row, index);
-                        }}
+                        // {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: function (value, row, index) {
+                        //     return Table.api.formatter.operate.call(this, value, row, index);
+                        // }}
+                        {field: 'operate', title: __('Operate'), table: table,
+                            events: Table.api.events.operate,
+                            buttons: [{
+                                    name: 'detail',
+                                    text: __('Data Detail'),
+                                    icon: 'fa fa-list',
+                                    classname: 'btn btn-info btn-xs btn-detail btn-dialog',
+                                    url: 'group/manage/detail'
+                                }],
+                            formatter: Table.api.formatter.operate
+                        }
                     ]
                 ],
                 search: false

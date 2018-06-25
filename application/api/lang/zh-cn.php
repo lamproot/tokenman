@@ -50,7 +50,7 @@ return [
     'Index'                                       => '首页',
     'Hot'                                         => '热门',
     'Recommend'                                   => '推荐',
-    'Dashboard'                                   => '控制中心',
+    'Dashboard'                                   => '首页',
     'Code'                                        => '编号',
     'Message'                                     => '内容',
     'Line'                                        => '行号',

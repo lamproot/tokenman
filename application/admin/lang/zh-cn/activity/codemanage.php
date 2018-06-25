@@ -23,5 +23,13 @@ return [
     'Code User List' => '邀请用户列表',
     'invited' => '邀请人数',
     'first_name' => '姓',
-    'last_name' => '名'
+    'last_name' => '名',
+    'TokenMan Statistics' => 'TokenMan数据统计',
+    'Activity User Data' => '活动用户数据',
+    'Activate Rate' => '激活奖励',
+    'Group Rate' => '入群奖励',
+    'Total Rate' => '总奖励',
+    'Not Activate user' => '未激活用户',
+    'Activate user' => '已激活用户(入群)',
+    'Total user' => '参与总用户'
 ];

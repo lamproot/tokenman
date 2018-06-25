@@ -90,7 +90,10 @@ class Index extends Backend
             $result = $this->auth->login($username, $password, $keeplogin ? 86400 : 0);
             if ($result === true)
             {
-                $this->success(__('Login successful'), $url, ['url' => $url, 'id' => $this->auth->id, 'username' => $username, 'avatar' => "http://m.name-technology.fun:8030/".$this->auth->avatar]);
+                if (empty($this->auth->avatar)) {
+                    $this->auth->avatar = "http://file.name-technology.fun/Uploads/20180625/0aaa9de65080c22eb0775da63029eb5d.png";
+                }
+                $this->success(__('Login successful'), $url, ['url' => $url, 'id' => $this->auth->id, 'username' => $username, 'avatar' => $this->auth->avatar]);
             }
             else
             {

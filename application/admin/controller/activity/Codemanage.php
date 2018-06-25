@@ -87,6 +87,44 @@ class Codemanage extends Backend
 
             return json($result);
         }
+
+        //获取活动相关数据
+        //totaluser 活动总人数
+        $activity_data['totaluser'] = $this->model
+                ->where('activity_id', '=', $activity_id)
+                ->count();
+        //activateuser 激活人数
+        $activity_data['activateuser'] = $this->model
+                ->where('activity_id', '=', $activity_id)
+                ->where('status', '=', 3)
+                ->count();
+        //notactivateuser 未激活人数
+        $activity_data['notactivateuser'] = $this->model
+                ->where('activity_id', '=', $activity_id)
+                ->where('status', '=', 1)
+                ->count();
+        //邀请人次数 parent_group
+        $activity_data['parent_group'] = $this->model
+                ->where('activity_id', '=', $activity_id)
+                ->where('parent_code', '<>', '')
+                ->where('from_id', '<>', '')
+                ->count();
+        $activity_data['activate_rate'] = (int)$activity_data['activateuser'] * (int)$row['group_rate'];
+        //邀请奖励 invitation_rate
+        $activity_data['invitation_rate'] =  (int)$activity_data['parent_group'] * (int)$row['rate'];
+        //奖励总数 total_rate
+        $activity_data['total_rate'] = $activity_data['activate_rate'] + $activity_data['invitation_rate'];
+
+        //todayuser 今日活动总人数
+        // $todayuser = $this->model
+        //         ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+        //         ->where('created_at', '>', strtotime(date('Y-m-d', time())))
+        //         ->count();
+
+        //消耗奖励 入群奖励 激活奖励
+
+        $this->view->assign("activity_data", $activity_data);
+        $this->view->assign("activity", $row->toArray());
         return $this->view->fetch();
     }
 

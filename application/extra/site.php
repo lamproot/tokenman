@@ -7,20 +7,20 @@ return array (
   'version' => '1.0.1',
   'timezone' => 'Asia/Shanghai',
   'forbiddenip' => '',
-  'languages' =>
+  'languages' => 
   array (
     'backend' => 'zh-cn',
     'frontend' => 'zh-cn',
   ),
   'fixedpage' => 'dashboard',
-  'categorytype' =>
+  'categorytype' => 
   array (
     'default' => 'Default',
     'page' => 'Page',
     'article' => 'Article',
     'test' => 'Test',
   ),
-  'configgroup' =>
+  'configgroup' => 
   array (
     'basic' => 'Basic',
     'email' => 'Email',
@@ -31,8 +31,8 @@ return array (
   'mail_type' => '1',
   'mail_smtp_host' => 'smtp.qq.com',
   'mail_smtp_port' => '465',
-  'mail_smtp_user' => '10000',
-  'mail_smtp_pass' => 'password',
+  'mail_smtp_user' => '304151978@qq.com',
+  'mail_smtp_pass' => 'eayteqbradiabjgi',
   'mail_verify_type' => '2',
-  'mail_from' => '10000@qq.com',
+  'mail_from' => '304151978@qq.com',
 );
