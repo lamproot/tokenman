@@ -4,6 +4,9 @@ namespace app\admin\controller\group;
 
 use app\admin\model\ChatCommand;
 use app\admin\model\ChatBot;
+use app\admin\model\GroupUser;
+use app\admin\model\IllegaLog;
+use app\admin\model\NewsTotal;
 use app\common\controller\Backend;
 
 /**
@@ -23,6 +26,11 @@ class Manage extends Backend
         $this->model = model('ChatGroup');
         $this->adminmodel = model('Admin');
         $this->chatbotmodel = model('ChatBot');
+        $this->group_usermodel = model('GroupUser');
+        $this->illega_logmodel = model('IllegaLog');
+        $this->news_totalmodel = model('NewsTotal');
+
+
         $this->status = [0 => '未激活', 1 => '已激活'];
         if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
             $this->status = [0 => 'Not Activate', 1 => 'Is Activate'];
@@ -74,16 +82,38 @@ class Manage extends Backend
         $row = $this->model->get(['id' => $ids]);
         if (!$row)
             $this->error(__('No Results were found'));
+        //获取今日新增数据 group_user  1 入群 2 退群 3 拉黑
+        $group_data['todayuser'] = $this->group_usermodel
+        ->where('chat_id', '=', $row['chat_id'])
+        ->where('type', '=', 1)
+        ->where('created_at', '>=', strtotime(date("Y-m-d", time())))
+        ->count();
 
-            //获取今日新增数据 group_user  1 入群 2 退群 3 拉黑
-            $group_data['todayuser'] = rand(100,30000);
-            $group_data['totaluser'] = rand(100,30000);
-            $group_data['extuser'] = rand(100,30000);
-            $group_data['blankuser'] = rand(100,30000);
-            //拉黑消息数据 illega_log
-            $group_data['blanknews'] = rand(100,30000);
-            //消息总数统计 news_total group_id chat_bot_id total
-            $group_data['newstotal'] = rand(100,30000);
+        $group_data['totaluser'] = $this->group_usermodel
+        ->where('chat_id', '=', $row['chat_id'])
+        ->where('type', '=', 1)
+        ->count();
+
+        $group_data['extuser'] = $this->group_usermodel
+        ->where('chat_id', '=', $row['chat_id'])
+        ->where('type', '=', 2)
+        ->count();
+
+        $group_data['blankuser'] = $this->illega_logmodel
+        ->where('chat_id', '=', $row['chat_id'])
+        ->group('from_id')
+        ->count();
+
+        //拉黑消息数据 illega_log
+        $group_data['blanknews'] = $this->illega_logmodel
+        ->where('chat_id', '=', $row['chat_id'])
+        ->count();
+
+        //消息总数统计 news_total group_id chat_bot_id total
+        $newstotal = $this->news_totalmodel
+        ->get(['chat_id' => $row['chat_id']]);
+        $group_data['newstotal'] = $newstotal ? $newstotal : ["total" => 0];
+
         $this->view->assign("group_data", $group_data);
         $this->view->assign("row", $row->toArray());
         return $this->view->fetch();
