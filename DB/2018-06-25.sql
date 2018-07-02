@@ -61,3 +61,7 @@ ALTER TABLE group_activity ADD total_rate int(11) NOT NULL DEFAULT 0 COMMENT "�
 ALTER TABLE illega_log ADD chat_id varchar(14) NOT NULL DEFAULT "" COMMENT "群ID";
 ALTER TABLE chat_bot ADD started_at int(10) NOT NULL DEFAULT 0 COMMENT "机器人开始时间";
 ALTER TABLE chat_bot ADD stoped_at int(10) NOT NULL DEFAULT 0 COMMENT "机器人结束时间";
+
+
+
+ALTER TABLE group_activity ADD en_activity_end_text text NOT NULL DEFAULT "" COMMENT "活动结束英文文案";
