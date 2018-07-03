@@ -16,8 +16,8 @@ use think\Validate;
 class Script extends Backend
 {
 
-    protected $noNeedLogin = ['twitter'];
-    protected $noNeedRight = ['twitter'];
+    protected $noNeedLogin = ['twitter', 'activity_push'];
+    protected $noNeedRight = ['twitter', 'activity_push'];
     protected $layout = '';
 
     public function _initialize()
@@ -25,6 +25,8 @@ class Script extends Backend
         parent::_initialize();
         $this->botTwitterModel = model('BotTwitter');
         $this->botTwitterLogModel = model('BotTwitterLog');
+        $this->groupActivityModel = model('GroupActivity');
+        $this->codesModel = model('Codes');
         $this->chatbot = model('ChatBot');
     }
 
@@ -70,6 +72,56 @@ class Script extends Backend
 
         echo true;
     }
+
+
+    /**
+     * 活动进行期间 TokenMan 消息推送
+     */
+     public function activity_push()
+     {
+         //
+         $list = $this->groupActivityModel
+                 ->where('status', '=', 0)
+                 ->where('stoped_at', '>=', time())
+                 ->select();
+
+         foreach ($list as $key => $value) {
+             //获取活动举办的群id
+             if ($value['id']) {
+                 $chatBotList = $this->codesModel->field('chat_bot_id,count(1) as count')
+                 ->where('activity_id', '=', $value['id'])
+                 ->group('chat_bot_id')
+                 ->select();
+                 echo json_encode($chatBotList);exit;
+             }
+
+             if ($value['chat_bot_id']) {
+                 $row = $this->chatbot->get(['id' => $value['chat_bot_id']]);
+                 // if ($params['type'] == 1) {
+                 //     $result = $this->sendMessage($row['chat_id'], $params['content']);
+                 // }
+                 if ($row && !empty($row['token'])) {
+                     $_SESSION['think']['token'] = $row['token'];
+                 }
+
+                 foreach ($twitter as $kkey => $vvalue) {
+                     if ($vvalue['tweet']) {
+                         //查询是否已推送Twitter
+                         //推送Twitter消息
+                         $result = $this->sendMessage($row['chat_id'], strip_tags($vvalue['tweet']));
+                         //保存Twitter消息
+                         $params['content'] = strip_tags($vvalue['tweet']);
+                         $params['chat_bot_id'] = $value['chat_bot_id'];
+                         $params['twitter_id'] = $vvalue['id'];
+                         $params['twitter'] = $value['twitter'];
+                         $this->botTwitterLogModel->create($params);
+                     }
+                 }
+             }
+         }
+
+         echo true;
+     }
 
     public function getTweet($tweet)
     {
