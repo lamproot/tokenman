@@ -303,13 +303,13 @@
                 </div>
 
                 <div class="row" style="margin-top:15px;">
-                    {volist name="groupData" id="vo"  }
+                    {volist name="chatData" id="vo"  }
                         <div class="col-xs-12 col-md-12">
                             <div class="panel {$vo['bgcolor']}">
                                 <div class="panel-body">
                                     <div class="panel-title">
                                         <span class="label label-success pull-right">{:__('TokenMan统计')}</span>
-                                        <h5>{:__('LoMostar中文群 用户数据')}</h5>
+                                        <h5>{$vo['title']} 用户数据</h5>
                                     </div>
                                     <div class="panel-content">
                                         <!-- <h1 class="no-margins">1234</h1>
@@ -322,33 +322,33 @@
 
                                         <div class="col-sm-2 border-right">
                                             <div class="description-block">
-                                                <h5 class="description-header">3,2020</h5>
+                                                <h5 class="description-header">{$vo['todayuser']}</h5>
                                                 <span class="description-text">今日新增用户</span>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-2 border-right">
                                             <div class="description-block">
-                                                <h5 class="description-header">3,200123</h5>
+                                                <h5 class="description-header">{$vo['totaluser']}</h5>
                                                 <span class="description-text">群用户总人数</span>
                                             </div>
                                         </div>
 
                                         <div class="col-sm-2 border-right">
                                             <div class="description-block">
-                                                <h5 class="description-header">3,200</h5>
+                                                <h5 class="description-header">{$vo['extuser']}</h5>
                                                 <span class="description-text">退群用户数据</span>
                                             </div>
                                         </div>
                                         <div class="col-sm-2 border-right">
                                             <div class="description-block">
-                                                <h5 class="description-header">30000 人</h5>
+                                                <h5 class="description-header">{$vo['blankuser']}</h5>
                                                 <span class="description-text">封禁用户数据</span>
                                             </div>
                                         </div>
                                         <div class="col-sm-2 border-right">
                                             <div class="description-block">
-                                                <h5 class="description-header">123123条</h5>
+                                                <h5 class="description-header">{$vo['blanknews']}条</h5>
                                                 <span class="description-text">屏蔽群用户消息数据</span>
                                             </div>
                                         </div>
