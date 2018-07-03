@@ -48,5 +48,5 @@ return [
     'Novice guidance'       => '新手引导',
     'Dashboard'                                              => '首页',
     'general' => '用户设置',
-
+    'Activity Data List' => '活动数据（近三次活动）'
 ];

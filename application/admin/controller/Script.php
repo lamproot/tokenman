@@ -92,32 +92,33 @@ class Script extends Backend
                  ->where('activity_id', '=', $value['id'])
                  ->group('chat_bot_id')
                  ->select();
-                 echo json_encode($chatBotList);exit;
+
+
              }
 
-             if ($value['chat_bot_id']) {
-                 $row = $this->chatbot->get(['id' => $value['chat_bot_id']]);
-                 // if ($params['type'] == 1) {
-                 //     $result = $this->sendMessage($row['chat_id'], $params['content']);
-                 // }
-                 if ($row && !empty($row['token'])) {
-                     $_SESSION['think']['token'] = $row['token'];
-                 }
-
-                 foreach ($twitter as $kkey => $vvalue) {
-                     if ($vvalue['tweet']) {
-                         //查询是否已推送Twitter
-                         //推送Twitter消息
-                         $result = $this->sendMessage($row['chat_id'], strip_tags($vvalue['tweet']));
-                         //保存Twitter消息
-                         $params['content'] = strip_tags($vvalue['tweet']);
-                         $params['chat_bot_id'] = $value['chat_bot_id'];
-                         $params['twitter_id'] = $vvalue['id'];
-                         $params['twitter'] = $value['twitter'];
-                         $this->botTwitterLogModel->create($params);
-                     }
-                 }
-             }
+             // if ($value['chat_bot_id']) {
+             //     $row = $this->chatbot->get(['id' => $value['chat_bot_id']]);
+             //     // if ($params['type'] == 1) {
+             //     //     $result = $this->sendMessage($row['chat_id'], $params['content']);
+             //     // }
+             //     if ($row && !empty($row['token'])) {
+             //         $_SESSION['think']['token'] = $row['token'];
+             //     }
+             //
+             //     foreach ($twitter as $kkey => $vvalue) {
+             //         if ($vvalue['tweet']) {
+             //             //查询是否已推送Twitter
+             //             //推送Twitter消息
+             //             $result = $this->sendMessage($row['chat_id'], strip_tags($vvalue['tweet']));
+             //             //保存Twitter消息
+             //             $params['content'] = strip_tags($vvalue['tweet']);
+             //             $params['chat_bot_id'] = $value['chat_bot_id'];
+             //             $params['twitter_id'] = $vvalue['id'];
+             //             $params['twitter'] = $value['twitter'];
+             //             $this->botTwitterLogModel->create($params);
+             //         }
+             //     }
+             // }
          }
 
          echo true;
@@ -150,7 +151,7 @@ class Script extends Backend
             $media  = @$feed['entities']['media'];
             if($media) foreach($media as $img) $photos[] = $img['media_url'];
 
-            if ((time() - strtotime($feed['created_at'])) <= 30 * 60) {
+            if ((time() - strtotime($feed['created_at'])) <= 12 * 60 * 60) {
                 $data[] = array('id' => $feed['id'], 'tweet'=>$feed['text'],'date'=>strtotime($feed['created_at']),'img'=>$photos);
             }
         }
