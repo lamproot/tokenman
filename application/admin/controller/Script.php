@@ -93,35 +93,27 @@ class Script extends Backend
                  ->group('chat_bot_id')
                  ->select();
 
-
+                 foreach ($chatBotList as $ckey => $cvalue) {
+                         $row = $this->chatbot->get(['id' => $cvalue['chat_bot_id']]);
+                         if ($row && !empty($row['token'])) {
+                             $_SESSION['think']['token'] = $row['token'];
+                         }
+                         $button_text = "TokenMan";
+                         $button = json_encode (array (
+                                    'inline_keyboard' => array (
+                                        array (array (
+                                            'text' => $button_text,
+                                            'url' => 'http://t.me/TokenManBot'
+                                        ))
+                                    )
+                                ));
+                         $result[] = $this->sendMessage($row['chat_id'], "Click the button to contact TokenMan and check your reward at any time. \n 点击按钮联系 TokenMan, 获取邀请奖励动态", "", $button);
+                         echo json_encode($result);exit;
+                 }
              }
-
-             // if ($value['chat_bot_id']) {
-             //     $row = $this->chatbot->get(['id' => $value['chat_bot_id']]);
-             //     // if ($params['type'] == 1) {
-             //     //     $result = $this->sendMessage($row['chat_id'], $params['content']);
-             //     // }
-             //     if ($row && !empty($row['token'])) {
-             //         $_SESSION['think']['token'] = $row['token'];
-             //     }
-             //
-             //     foreach ($twitter as $kkey => $vvalue) {
-             //         if ($vvalue['tweet']) {
-             //             //查询是否已推送Twitter
-             //             //推送Twitter消息
-             //             $result = $this->sendMessage($row['chat_id'], strip_tags($vvalue['tweet']));
-             //             //保存Twitter消息
-             //             $params['content'] = strip_tags($vvalue['tweet']);
-             //             $params['chat_bot_id'] = $value['chat_bot_id'];
-             //             $params['twitter_id'] = $vvalue['id'];
-             //             $params['twitter'] = $value['twitter'];
-             //             $this->botTwitterLogModel->create($params);
-             //         }
-             //     }
-             // }
          }
-
-         echo true;
+          echo json_encode($result);exit;
+         //echo true;
      }
 
     public function getTweet($tweet)
