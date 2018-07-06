@@ -86,6 +86,7 @@ class Dashboard extends Backend
                 ->limit(0, 3)
                 ->order("id", "desc")
                 ->select();
+        $activityData = [];
         foreach ($groupActivityList as $key => $value) {
             //echo json_encode($value['chat_bot_id']);exit;
             //已激活用户(入群)
@@ -141,7 +142,7 @@ class Dashboard extends Backend
                 //->limit(0, 3)
                 ->order("id", "desc")
                 ->select();
-
+        $chatData = [];
         foreach ($chatList as $key => $value) {
             $chatData[$key]['title'] = $value['title'];
             // 今日新增用户
