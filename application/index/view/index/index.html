@@ -1,215 +1,270 @@
-<!DOCTYPE html>
-<html>
 
-    <head>
+			<div class="banner">
+				<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+					<ol class="carousel-indicators">
+						<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">
+						</li>
+						<!-- <li data-target="#carouselExampleIndicators" data-slide-to="1">
+						</li>
+						<li data-target="#carouselExampleIndicators" data-slide-to="2">
+						</li> -->
+					</ol>
+					<div class="carousel-inner">
+						<div class="carousel-item active">
+							<img class="d-block w-100" src="__CDN__/home/images/banner1.png" alt="First slide">
+							<div class="bannercontent w-100 h-100">
+								<div class="webanner1">
+									<div class="text1">
+                                        {:__('The Future Of')}
+									</div>
+									<div class="text2">
+                                        {:__('Deep Qa')}
 
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
-        <title>TokenMan</title>
-
-        <!-- Bootstrap Core CSS -->
-        <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
-        <link href="__CDN__/assets/css/index.css" rel="stylesheet">
-
-        <!-- Plugin CSS -->
-        <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-        <link href="//cdn.bootcss.com/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
-
-        <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
-        <!--[if lt IE 9]>
-            <script src="//cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js"></script>
-            <script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
-        <![endif]-->
-    </head>
-
-    <body id="page-top">
-
-        <nav id="mainNav" class="navbar navbar-default navbar-fixed-top">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-menu">
-                        <span class="sr-only">Toggle navigation</span><i class="fa fa-bars"></i>
-                    </button>
-                    <!-- <a class="navbar-brand page-scroll" href="#page-top"><img src="__CDN__/assets/img/logo.png" style="width:200px;" alt=""></a> -->
-                </div>
-
-                <div class="collapse navbar-collapse" id="navbar-collapse-menu">
-                    <!-- <ul class="nav navbar-nav navbar-right">
-                        <li><a href="http://www.fastadmin.net" target="_blank">{:__('Home')}</a></li>
-                        <li><a href="http://www.fastadmin.net/store.html" target="_blank">{:__('Store')}</a></li>
-                        <li><a href="http://www.fastadmin.net/service.html" target="_blank">{:__('Services')}</a></li>
-                        <li><a href="http://www.fastadmin.net/download.html" target="_blank">{:__('Download')}</a></li>
-                        <li><a href="http://www.fastadmin.net/demo.html" target="_blank">{:__('Demo')}</a></li>
-                        <li><a href="http://www.fastadmin.net/donate.html" target="_blank">{:__('Donation')}</a></li>
-                        <li><a href="http://forum.fastadmin.net" target="_blank">{:__('Forum')}</a></li>
-                        <li><a href="http://doc.fastadmin.net" target="_blank">{:__('Docs')}</a></li>
-                    </ul> -->
-                </div>
-                <!-- /.navbar-collapse -->
-            </div>
-            <!-- /.container-fluid -->
-        </nav>
-
-        <header>
-            <div class="container">
-                <div class="row">
-                    <div class="col-sm-12">
-                        <div class="header-content">
-                            <div class="header-content-inner">
-                                <h1>TokenMan</h1>
-                                <h3>{:__('')}</h3>
-                                <a href="{:url('admin/index/login')}" class="btn btn-outline btn-xl page-scroll">{:__('Go to Dashboard')}</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </header>
-
-        <!-- <section id="features" class="features">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-12 text-center">
-                        <div class="section-heading">
-                            <h2>{:__('Features')}</h2>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-md-12">
-                        <div class="container-fluid">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="feature-item">
-                                        <i class="icon-user text-primary"></i>
-                                        <h3>{:__('Auth')}</h3>
-                                        <p class="text-muted">{:__('Auth tips')}</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="feature-item">
-                                        <i class="icon-screen-smartphone text-primary"></i>
-                                        <h3>{:__('Responsive')}</h3>
-                                        <p class="text-muted">{:__('Responsive tips')}</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="feature-item">
-                                        <i class="icon-present text-primary"></i>
-                                        <h3>{:__('Languages')}</h3>
-                                        <p class="text-muted">{:__('Languages tips')}</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="feature-item">
-                                        <i class="icon-layers text-primary"></i>
-                                        <h3>{:__('Module')}</h3>
-                                        <p class="text-muted">{:__('Module tips')}</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="feature-item">
-                                        <i class="icon-docs text-primary"></i>
-                                        <h3>{:__('CRUD')}</h3>
-                                        <p class="text-muted">{:__('CRUD tips')}</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="feature-item">
-                                        <i class="icon-puzzle text-primary"></i>
-                                        <h3>{:__('Extension')}</h3>
-                                        <p class="text-muted">{:__('Extension tips')}</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section class="cta">
-            <div class="cta-content">
-                <div class="container">
-                    <h2>{:__('Do not hesitate')}<br>{:__('Start to act')}</h2>
-                    <a href="http://doc.fastadmin.net/docs/contributing.html" class="btn btn-outline btn-xl page-scroll">{:__('Contribution')}</a>
-                </div>
-            </div>
-            <div class="overlay"></div>
-        </section>
-
-        <footer>
-            <div class="container">
-                <p>&copy; 2017 TokenMan. All Rights Reserved.</p>
-                <ul class="list-inline">
-                    <li>
-                        <a href="https://gitee.com/karson/fastadmin">{:__('Gitee')}</a>
-                    </li>
-                    <li>
-                        <a href="https://github.com/karsonzhang/fastadmin">{:__('Github')}</a>
-                    </li>
-                    <li>
-                        <a href="http://shang.qq.com/wpa/qunwpa?idkey=46c326e570d0f97cfae1f8257ae82322192ec8841c79b2136446df0b3b62028c">{:__('QQ group')}</a>
-                    </li>
-                </ul>
-            </div>
-        </footer> -->
-
-        <!-- jQuery -->
-        <script src="//cdn.bootcss.com/jquery/2.1.4/jquery.min.js"></script>
-
-        <!-- Bootstrap Core JavaScript -->
-        <script src="//cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
-        <!-- Plugin JavaScript -->
-        <script src="//cdn.bootcss.com/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-
-        <script>
-            $(function () {
-                $(window).on("scroll", function () {
-                    $("#mainNav").toggleClass("affix", $(window).height() - $(window).scrollTop() <= 50);
-                });
-
-                //发送版本统计信息
-                try {
-                    var installed = localStorage.getItem("installed");
-                    if (!installed) {
-                        $.ajax({
-                            url: "{$Think.config.fastadmin.api_url}/statistics/installed",
-                            data: {
-                                version: "{:config('fastadmin.version')}",
-                                os: "{$Think.PHP_OS}",
-                                sapi: "{$Think.PHP_SAPI}",
-                                tpversion: "{$Think.THINK_VERSION}",
-                                phpversion: "{$Think.PHP_VERSION}",
-                                software: "{$Request.server.SERVER_SOFTWARE}",
-                                url: location.href,
-                            },
-                            dataType: 'jsonp',
-                        });
-                        localStorage.setItem("installed", true);
-                    }
-                } catch (e) {
-
-                }
-
-            });
-        </script>
-
-        <script>
-            var _hmt = _hmt || [];
-            (function () {
-                var hm = document.createElement("script");
-                hm.src = "https://hm.baidu.com/hm.js?f8d0a8c400404989e195270b0bbf060a";
-                var s = document.getElementsByTagName("script")[0];
-                s.parentNode.insertBefore(hm, s);
-            })();
-        </script>
-
-    </body>
-
-</html>
+									</div>
+								</div>
+								<img class="banner1robot" src="__CDN__/home/images/bannerrobot.png" />
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="features">
+				<h3>
+                    {:__('Product Features')}
+				</h3>
+				<div class="h3line">
+				</div>
+				<div class="feature_body">
+					<div class="row justify-content-center">
+						<div class="col-12 features_line">
+						</div>
+						<div class="col-3">
+							<img src="__CDN__/home/images/features_icon1.png" style="width:3rem;" />
+							<br/>
+							{:__('Innovative')}
+							<div class="features_line_yellow">
+							</div>
+						</div>
+						<div class="col-3">
+							<img src="__CDN__/home/images/features_icon2.png" style="width:2.9rem;margin-top:0.7rem;"
+							/>
+							<br/>
+							{:__('Convenience')}
+						</div>
+						<div class="col-3">
+							<img src="__CDN__/home/images/features_icon3.png" style="width:3.4rem;margin-top:0.5rem;"
+							/>
+							<br/>
+							{:__('Outstanding')}
+						</div>
+						<div class="col-3">
+							<img src="__CDN__/home/images/features_icon4.png" style="width:2.8rem;margin-top:0.02rem;"
+							/>
+							<br/>
+							{:__('Superior')}
+						</div>
+					</div>
+					<div class="row justify-content-center features_content">
+						<div class="col-6 active">
+							<h5>
+								{:__('Innovative')}
+							</h5>
+							{:__('Innovative Content')}
+						</div>
+						<div class="col-6">
+							<h5>
+								{:__('Convenience')}
+							</h5>
+							{:__('Convenience Content')}
+						</div>
+						<div class="col-6">
+							<h5>
+								{:__('Outstanding')}
+							</h5>
+							{:__('Outstanding Content')}
+						</div>
+						<div class="col-6">
+							<h5>
+								{:__('Superior')}
+							</h5>
+							{:__('Superior Content')}
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="videos">
+				<img src="__CDN__/home/images/insd.png" />
+				<h3>
+					{:__('Official Video')}
+				</h3>
+				<div class="h3line">
+				</div>
+				<div class="videosbody">
+					<!-- <img src="__CDN__/home/images/videobg.png"/>
+					-->
+					<div class="embed-responsive embed-responsive-16by9">
+						<!-- <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/zpOULjyy-n8?rel=0"
+						allowfullscreen></iframe> -->
+						<iframe src='http://player.youku.com/embed/XMzcwNjAzNzYxMg' frameborder=0
+						'allowfullscreen'>
+						</iframe>
+					</div>
+				</div>
+			</div>
+			<div class="evaluation">
+				<h3>
+						{:__('User Evaluation')}
+				</h3>
+				<div class="h3line">
+				</div>
+				<div class="evaluationbody">
+					<div class="m_list">
+						<div class="row">
+							<div class="col-12 col-sm-4">
+								<div class="row">
+									<div class="col">
+										<div class="userhead">
+											<img src="__CDN__/home/images/user1.png" />
+											<div class="line5">
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="username">
+											{:__('User Evaluation Company 1')}
+										</div>
+										<div class="line4">
+										</div>
+										<div class="desc">
+											{:__('User Evaluation Content 1')}
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-12 col-sm-4">
+								<div class="row">
+									<div class="col">
+										<div class="userhead">
+											<img src="__CDN__/home/images/user1.png" />
+											<div class="line5">
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="username">
+											{:__('User Evaluation Company 2')}
+										</div>
+										<div class="line4">
+										</div>
+										<div class="desc">
+											{:__('User Evaluation Content 2')}
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="col-12 col-sm-4">
+								<div class="row">
+									<div class="col">
+										<div class="userhead">
+											<img src="__CDN__/home/images/user1.png" />
+											<div class="line5">
+											</div>
+										</div>
+									</div>
+									<div class="col">
+										<div class="username">
+											{:__('User Evaluation Company 3')}
+										</div>
+										<div class="line4">
+										</div>
+										<div class="desc">
+											{:__('User Evaluation Content 3')}
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="partner">
+				<h3>
+					{:__('Partners')}
+				</h3>
+				<div class="h3line">
+				</div>
+				<div class="row justify-content-center">
+					<div class="col-4 col-lg-3">
+						<a class="partner_1_a">
+						</a>
+					</div>
+					<div class="col-4 col-lg-3">
+						<a class="partner_2_a">
+						</a>
+					</div>
+					<div class="col-4 col-lg-3">
+						<a class="partner_3_a">
+						</a>
+					</div>
+					<div class="col-4 col-lg-3">
+						<a class="partner_4_a">
+						</a>
+					</div>
+					<div class="col-4 col-lg-3">
+						<a class="partner_5_a">
+						</a>
+					</div>
+					<div class="col-4 col-lg-3">
+						<a class="partner_6_a">
+						</a>
+					</div>
+				</div>
+			</div>
+			<div class="m_footer" style="background:#040d17;height:17.15rem;font-size:0.8rem;color:#ffffff;">
+				<div style="text-align:center;padding-top:2.1rem;">
+					<img src="__CDN__/home/images/footerflay.png" style="width:1rem;margin-right:1.2rem;"
+					/>
+					<img src="__CDN__/home/images/footertwt.png" style="width:1rem;margin-right:1.2rem;"
+					/>
+					<img src="__CDN__/home/images/footerfb.png" style="width:0.5rem;margin-right:1.2rem;"
+					/>
+					<img src="__CDN__/home/images/footerwx.png" style="width:1.1rem;" />
+				</div>
+				<div class="text-center" style="padding-top: 2.1rem;">
+					<span>
+						<img src="__CDN__/home/images/footermail.png" style="height:0.6rem;display: inline-block;margin-bottom: 0.2rem;margin-right:0.1rem;"
+						/>
+						E-mail:business@if1989.com
+					</span>
+					<br class="footer_br" />
+					<span style="padding-left:2rem;">
+						<img src="__CDN__/home/images/footeradd.png" style="height:0.8rem;display: inline-block;margin-bottom: 0.2rem;margin-right:0.3rem;"
+						/>
+						Add：Urwork，Floors，NO.C3,JiuxianqiaoRoad，Chaoyang District,Beijing
+					</span>
+				</div>
+				<div class="text-center privssrvice" style="padding-top: 1.2rem;">
+					<span>
+						@{:__('Privacy Policy')}
+					</span>
+					<span style="padding:0 2rem;">
+						@{:__('Intellectual Property Rights Policy')}
+					</span>
+					<span>
+						@{:__('Tems of service')}
+					</span>
+				</div>
+				<div class="text-center" style="padding-top: 2rem;color:">
+					<a style="margin-right:1rem;" href="index.html">
+						{:__('Home')}
+					</a>
+					|
+					<a style="margin:0 1rem;" href="product.html">
+						{:__('Product')}
+					</a>
+					|
+					<a style="margin-left:1rem" href="contactus.html">
+						{:__('Contact Us')}
+					</a>
+				</div>
+			</div>

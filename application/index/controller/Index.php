@@ -18,6 +18,7 @@ class Index extends Frontend
 
     public function index()
     {
+        //echo json_encode($se);exit;
         return $this->view->fetch();
     }
 
