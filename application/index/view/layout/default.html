@@ -1,69 +1,169 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        {include file="common/meta" /}
-        <link href="__CDN__/assets/css/user.css?v={$Think.config.site.version}" rel="stylesheet">
-    </head>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>
+			TokenMan
+		</title>
+		<!-- Bootstrap Core CSS -->
+		<!-- <link href="//cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"> -->
+		<!-- <link href="__CDN__/assets/css/index.css" rel="stylesheet"> -->
+		<!-- Plugin CSS -->
+		<!-- <link href="//cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css"
+		rel="stylesheet">
+		<link href="//cdn.bootcss.com/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet"> -->
+        <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="__CDN__/home/base.css">
+		<link rel="stylesheet" href="__CDN__/home/all.css">
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
+		queries -->
+		<!--[if lt IE 9]>
+			<script src="//cdn.bootcss.com/html5shiv/3.7.0/html5shiv.min.js">
+			</script>
+			<script src="//cdn.bootcss.com/respond.js/1.4.2/respond.min.js">
+			</script>
+		<![endif]-->
+	</head>
+	<body>
+		<div class="container-fluid" style="padding:0;">
+			<header class="header">
+				<div class="row justify-content-between">
+					<div class="col-2" style="padding-left:0;">
+						<a class="header_logo">
+						</a>
+					</div>
+					<div class="col-auto">
+					</div>
+					<div class="col-2 col-sm-8">
+						<ul class="nav justify-content-end max_menu_div">
+							<li class="nav-item">
+								<a class="nav-link active" href="index.html">
+									{:__('Home')}
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link " href="product.html">
+									{:__('Product')}
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="contactus.html">
+									{:__('Contact Us')}
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="login.html">
+									<img src="__CDN__/home/images/header_icon_login.png" style="width:1rem;margin-right:0.5rem;">
+									{:__('Login')}
+								</a>
+							</li>
+							<li class="nav-item">
+								<a class="nav-link" href="register.html">
+									<img src="__CDN__/home/images/header_icon_login.png" style="width:1rem;margin-right:0.5rem;">
 
-    <body>
+                                    {:__('Register')}
+								</a>
+							</li>
+							<li class="nav-item dropdown">
+								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {if condition="isset($_GET['lang']) && $_GET['lang'] eq 'en'"}
+                                        English
+                                    {else/}
+                                        中文(简体)
+                                    {/if}
+								</a>
+								<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+									<a class="dropdown-item" href="./&lang=zh-cn">
+										<span class="lang_zh">
+										</span>
+										中文(简体)
+									</a>
+									<a class="dropdown-item" href="./&lang=en">
+										<span class="lang_en">
+										</span>
+										English
+									</a>
+									<div class="dropdown-divider">
+									</div>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<div class="dropdown min_menu_div">
+					<a class="nav-link dropdown-toggle" style="text-align:right;" href="#"
+					id="navbarDropdown2" role="button" data-toggle="dropdown" aria-haspopup="true"
+					aria-expanded="false">
+						Menu
+					</a>
+					<div class="dropdown-menu dropdown-menu-left" aria-labelledby="navbarDropdown2">
+						<a class="dropdown-item active" href="index.html">
+							{:__('Home')}
+							<span style="float:right;">
+								&gt;
+							</span>
+						</a>
+						<div class="dropdown-divider">
+						</div>
+						<a class="dropdown-item" href="product.html">
+							{:__('Product')}
+							<span style="float:right;">
+								&gt;
+							</span>
+						</a>
+						<div class="dropdown-divider">
+						</div>
+						<a class="dropdown-item" href="contactus.html">
+							{:__('Contact Us')}
+							<span style="float:right;">
+								&gt;
+							</span>
+						</a>
+						<div class="dropdown-divider">
+						</div>
+						<a class="dropdown-item" href="#">
+							{:__('Login')} / {:__('Register')}
+							<span style="float:right;">
+								&gt;
+							</span>
+						</a>
+						<div class="dropdown-divider">
+						</div>
+						<a class="dropdown-item" href="#">
+							English
+						</a>
+                        <a class="dropdown-item" href="#">
+							中文(简体)
+						</a>
 
-        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-            <div class="container">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#header-navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="{:url('/')}" style="padding:6px 15px;"><img src="/assets/img/logo.png" style="height:40px;" alt=""></a>
-                </div>
-                <div class="collapse navbar-collapse" id="header-navbar">
-                    <ul class="nav navbar-nav navbar-right">
-                        <li><a href="http://www.fastadmin.net" target="_blank">{:__('Home')}</a></li>
-                        <li><a href="http://www.fastadmin.net/store.html" target="_blank">{:__('Store')}</a></li>
-                        <li><a href="http://www.fastadmin.net/service.html" target="_blank">{:__('Services')}</a></li>
-                        <li><a href="http://www.fastadmin.net/download.html" target="_blank">{:__('Download')}</a></li>
-                        <li><a href="http://www.fastadmin.net/demo.html" target="_blank">{:__('Demo')}</a></li>
-                        <li><a href="http://www.fastadmin.net/donate.html" target="_blank">{:__('Donation')}</a></li>
-                        <li><a href="http://forum.fastadmin.net" target="_blank">{:__('Forum')}</a></li>
-                        <li><a href="http://doc.fastadmin.net" target="_blank">{:__('Docs')}</a></li>
-                        <li class="dropdown">
-                            {if $user}
-                            <a href="{:url('user/index')}" class="dropdown-toggle" data-toggle="dropdown" style="padding-top: 10px;height: 50px;">
-                                <span class="avatar-img"><img src="{$user.avatar}" alt=""></span>
-                            </a>
-                            {else /}
-                            <a href="{:url('user/index')}" class="dropdown-toggle" data-toggle="dropdown">{:__('User center')} <b class="caret"></b></a>
-                            {/if}
-                            <ul class="dropdown-menu">
-                                {if $user}
-                                <li><a href="{:url('user/index')}"><i class="fa fa-user-circle"></i>{:__('User center')}</a></li>
-                                <li><a href="{:url('user/profile')}"><i class="fa fa-user-o"></i>{:__('Profile')}</a></li>
-                                <li><a href="{:url('user/changepwd')}"><i class="fa fa-key"></i>{:__('Change password')}</a></li>
-                                <li><a href="{:url('user/logout')}"><i class="fa fa-sign-out"></i>{:__('Sign out')}</a></li>
-                                {else /}
-                                <li><a href="{:url('user/login')}"><i class="fa fa-sign-in"></i> {:__('Sign in')}</a></li>
-                                <li><a href="{:url('user/register')}"><i class="fa fa-user-o"></i> {:__('Sign up')}</a></li>
-                                {/if}
-
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
+					</div>
+				</div>
+			</header>
 
         <main class="content">
             {__CONTENT__}
         </main>
+    </div>
 
-        <footer class="footer" style="clear:both">
-            <p class="copyright">Copyright&nbsp;©&nbsp;2017-2018 fastadmin.net All Rights Reserved {$site.name} {:__('Copyrights')} <a href="http://www.miibeian.gov.cn" target="_blank">{$site.beian}</a></p>
-        </footer>
-
-        {include file="common/script" /}
-
-    </body>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"
+integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
+crossorigin="anonymous">
+</script>
+<script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js"
+integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+crossorigin="anonymous">
+</script>
+<script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js"
+integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+crossorigin="anonymous">
+</script>
+</body>
 
 </html>

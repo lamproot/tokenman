@@ -4,7 +4,7 @@ namespace app\index\controller;
 
 use app\common\controller\Frontend;
 
-class Index extends Frontend
+class Product extends Frontend
 {
 
     protected $noNeedLogin = '*';
@@ -20,12 +20,6 @@ class Index extends Frontend
     {
         //echo json_encode($se);exit;
         return $this->view->fetch();
-    }
-
-    public function news()
-    {
-        $newslist = [];
-        return jsonp(['newslist' => $newslist, 'new' => count($newslist), 'url' => 'http://www.fastadmin.net?ref=news']);
     }
 
 }
