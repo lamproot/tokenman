@@ -117,5 +117,8 @@ return [
     'Contact Us' => '联系我们',
     'Login' => '登录',
     'Register' => '注册',
-
+    'Company Address' => 'Add：Urwork，Floors，NO.C3,JiuxianqiaoRoad，Chaoyang District,Beijing',
+    'Privacy Policy' => '隐私政策',
+    'Intellectual Property Rights Policy' => '知识产权政策',
+    'Tems of service' => '服务条款',
 ];
