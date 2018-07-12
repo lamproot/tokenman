@@ -57,7 +57,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                                     icon: 'fa fa-list',
                                     classname: 'btn btn-info btn-xs btn-detail btn-dialog',
                                     url: 'group/manage/detail'
-                                }],
+                                },{
+                                        name: 'detail',
+                                        text: __('Group User Data'),
+                                        icon: 'fa fa-list',
+                                        classname: 'btn btn-info btn-xs btn-detail btn-dialog',
+                                        url: 'group/user/manage'
+                            }],
                             formatter: Table.api.formatter.operate
                         }
                     ]
