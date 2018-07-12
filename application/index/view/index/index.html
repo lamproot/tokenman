@@ -11,8 +11,12 @@
 					</ol>
 					<div class="carousel-inner">
 						<div class="carousel-item active">
-							<img class="d-block w-100" src="__CDN__/home/images/banner1.png" alt="First slide">
-							<div class="bannercontent w-100 h-100">
+							{if condition="isset($_COOKIE['think_var']) && $_COOKIE['think_var'] eq 'en'"}
+								<img class="d-block w-100" src="__CDN__/home/images/banner 1英文版.png" alt="First slide">
+							{else/}
+								<img class="d-block w-100" src="__CDN__/home/images/banner 1.png" alt="First slide">
+							{/if}
+							<!-- <div class="bannercontent w-100 h-100">
 								<div class="webanner1">
 									<div class="text1">
                                         {:__('The Future Of')}
@@ -23,7 +27,7 @@
 									</div>
 								</div>
 								<img class="banner1robot" src="__CDN__/home/images/bannerrobot.png" />
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -195,40 +199,21 @@
 				</div>
 				<div class="row justify-content-center">
 					<div class="col-4 col-lg-3">
-						<a class="partner_1_a" href="https://www.lomostar.com/index.html">
+						<a class="partner_8_a" href="https://tron.network/">
 						</a>
 					</div>
-					<div class="col-4 col-lg-3">
-						<a class="partner_2_a" href="http://www.themis.im/">
-						</a>
-					</div>
-					<div class="col-4 col-lg-3">
-						<a class="partner_3_a">
-						</a>
-					</div>
-					<div class="col-4 col-lg-3">
-						<a class="partner_4_a" href="http://www.triplesoil.com">
-						</a>
-					</div>
-					<div class="col-4 col-lg-3">
-						<a class="partner_5_a">
-						</a>
-					</div>
-					<div class="col-4 col-lg-3">
-						<a class="partner_6_a">
-						</a>
-					</div>
+
 					<div class="col-4 col-lg-3">
 						<a class="partner_7_a" href="http://www.befund.io">
 
 						</a>
 					</div>
 					<div class="col-4 col-lg-3">
-						<a class="partner_8_a" href="https://tron.network/">
+						<a class="partner_9_a" href="http://www.proton.global/">
 						</a>
 					</div>
 					<div class="col-4 col-lg-3">
-						<a class="partner_9_a" href="http://www.proton.global/">
+						<a class="partner_2_a" href="http://www.themis.im/">
 						</a>
 					</div>
 					<div class="col-4 col-lg-3">
@@ -239,6 +224,33 @@
 						<a class="partner_11_a" href="http://www.zos.io">
 						</a>
 					</div>
+
+					<div class="col-4 col-lg-3">
+						<a class="partner_1_a" alt="我是LOMO" href="https://www.lomostar.com/index.html">
+						</a>
+					</div>
+					<div class="col-4 col-lg-3">
+						<a class="partner_6_a">
+						</a>
+					</div>
+
+					<div class="col-4 col-lg-3">
+						<a class="partner_4_a" href="http://www.triplesoil.com">
+						</a>
+					</div>
+					<div class="col-4 col-lg-3">
+						<a class="partner_3_a">
+						</a>
+					</div>
+					<div class="col-4 col-lg-3">
+						<a class="partner_5_a">
+						</a>
+					</div>
+
+
+
+
+
 				</div>
 			</div>
 {include file="common/footer" /}

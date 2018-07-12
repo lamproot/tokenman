@@ -10,8 +10,13 @@
 		</ol>
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img class="d-block w-100" src="__CDN__/home/images/pdbanner1.png" alt="First slide">
-				<div class="bannercontent w-100 h-100">
+				{if condition="isset($_COOKIE['think_var']) && $_COOKIE['think_var'] eq 'en'"}
+					<img class="d-block w-100" src="__CDN__/home/images/banner 2英文版.png" alt="First slide">
+				{else/}
+					<img class="d-block w-100" src="__CDN__/home/images/banner 2.png" alt="First slide">
+				{/if}
+				<!-- <img class="d-block w-100" src="__CDN__/home/images/pdbanner1.png" alt="First slide"> -->
+				<!-- <div class="bannercontent w-100 h-100">
 					<div class="webanner3">
 						<div class="text1">
 							{:__('The Future Of')}
@@ -21,7 +26,7 @@
 						</div>
 					</div>
 					<img class="banner3robot" src="__CDN__/home/images/banner3robot.png" />
-				</div>
+				</div> -->
 			</div>
 
 		</div>
@@ -127,9 +132,9 @@
 					<div class="buy_ct_body">
 						{:__('Standard Service')}
 
-						<!-- <div class="buy_button" id="buy_btn_1">
+						<div class="buy_button" id="buy_btn_1">
 							{:__('Buy Now')}
-						</div> -->
+						</div>
 					</div>
 				</div>
 			</div>
@@ -142,9 +147,9 @@
 					<div class="buy_ct_body">
 						{:__('Senior Service')}
 
-						<!-- <div class="buy_button" id="buy_btn_2">
+						<div class="buy_button" id="buy_btn_2">
 							{:__('Buy Now')}
-						</div> -->
+						</div>
 					</div>
 				</div>
 			</div>

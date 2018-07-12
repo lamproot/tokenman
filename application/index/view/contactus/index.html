@@ -8,7 +8,12 @@
 		</ol>
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img class="d-block w-100" src="__CDN__/home/images/banner1.png" alt="First slide">
+				{if condition="isset($_COOKIE['think_var']) && $_COOKIE['think_var'] eq 'en'"}
+					<img class="d-block w-100" src="__CDN__/home/images/banner 3英文版.png" alt="First slide">
+				{else/}
+					<img class="d-block w-100" src="__CDN__/home/images/banner 3.png" alt="First slide">
+				{/if}
+				<!-- <img class="d-block w-100" src="__CDN__/home/images/banner1.png" alt="First slide"> -->
 				<!-- <div class="bannercontent w-100 h-100">
 				<div class="webanner1">
 				<div class="text1">
