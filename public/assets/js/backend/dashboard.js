@@ -3,77 +3,85 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
     var Controller = {
         index: function () {
             // 基于准备好的dom，初始化echarts实例
-            // var myChart = Echarts.init(document.getElementById('echart'), 'walden');
-            //
-            // // 指定图表的配置项和数据
-            // var option = {
-            //     title: {
-            //         text: '',
-            //         subtext: ''
-            //     },
-            //     tooltip: {
-            //         trigger: 'axis'
-            //     },
-            //     legend: {
-            //         data: [__('Sales'), __('Orders')]
-            //     },
-            //     toolbox: {
-            //         show: false,
-            //         feature: {
-            //             magicType: {show: true, type: ['stack', 'tiled']},
-            //             saveAsImage: {show: true}
-            //         }
-            //     },
-            //     xAxis: {
-            //         type: 'category',
-            //         boundaryGap: false,
-            //         data: Orderdata.column
-            //     },
-            //     yAxis: {
-            //
-            //     },
-            //     grid: [{
-            //             left: 'left',
-            //             top: 'top',
-            //             right: '10',
-            //             bottom: 30
-            //         }],
-            //     series: [{
-            //             name: __('Sales'),
-            //             type: 'line',
-            //             smooth: true,
-            //             areaStyle: {
-            //                 normal: {
-            //                 }
-            //             },
-            //             lineStyle: {
-            //                 normal: {
-            //                     width: 1.5
-            //                 }
-            //             },
-            //             data: Orderdata.paydata
-            //         },
-            //         {
-            //             name: __('Orders'),
-            //             type: 'line',
-            //             smooth: true,
-            //             areaStyle: {
-            //                 normal: {
-            //                 }
-            //             },
-            //             lineStyle: {
-            //                 normal: {
-            //                     width: 1.5
-            //                 }
-            //             },
-            //             data: Orderdata.createdata
-            //         }]
-            // };
-            //
-            // // 使用刚指定的配置项和数据显示图表。
-            // myChart.setOption(option);
-            //
-            // //动态添加数据，可以通过Ajax获取数据然后填充
+            var myChart = Echarts.init(document.getElementById('echart'), 'walden');
+
+            // 指定图表的配置项和数据
+            var option = {
+                title: {
+                    text: '',
+                    subtext: ''
+                },
+                tooltip: {
+                    trigger: 'axis'
+                },
+                legend: {
+                    data: [__('Sales'), __('Orders')]
+                },
+                toolbox: {
+                    show: false,
+                    feature: {
+                        magicType: {show: true, type: ['stack', 'tiled']},
+                        saveAsImage: {show: true}
+                    }
+                },
+                xAxis: {
+                    type: 'category',
+                    boundaryGap: false,
+                    data: Orderdata.column
+                },
+                yAxis: {
+                    type: 'value'
+                },
+                grid: [{
+                    left: '3%',
+                    right: '4%',
+                    bottom: '3%',
+                    containLabel: true
+                }],
+                series: [{
+                        name: __('Sales'),
+                        type: 'line',
+                        // smooth: true,
+                        // areaStyle: {
+                        //     normal: {
+                        //     }
+                        // },
+                        // lineStyle: {
+                        //     normal: {
+                        //         width: 1.5
+                        //     }
+                        // },
+                        data: Orderdata.paydata
+                    },
+                    {
+                        name: __('Orders'),
+                        type: 'line',
+                        // smooth: true,
+                        // areaStyle: {
+                        //     normal: {
+                        //     }
+                        // },
+                        // lineStyle: {
+                        //     normal: {
+                        //         width: 1.5
+                        //     }
+                        // },
+                        itemStyle : {
+                               normal : {
+                                   lineStyle:{
+                                       color:'#e74c3c'
+                                   }
+                               }
+                           },
+
+                        data: Orderdata.createdata
+                    }]
+            };
+
+            // 使用刚指定的配置项和数据显示图表。
+            myChart.setOption(option);
+
+            //动态添加数据，可以通过Ajax获取数据然后填充
             // setInterval(function () {
             //     Orderdata.column.push((new Date()).toLocaleTimeString().replace(/^\D*/, ''));
             //     var amount = Math.floor(Math.random() * 200) + 20;
@@ -101,9 +109,9 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
             //             }]
             //     });
             // }, 2000);
-            // $(window).resize(function () {
-            //     myChart.resize();
-            // });
+            $(window).resize(function () {
+                myChart.resize();
+            });
 
             //读取TokenMan的更新信息
             // $.ajax({
@@ -123,14 +131,14 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
                     $("#news-list").html(Template("newstpl", {news: ret.rows}));
                 }
             });
-            $.ajax({
-                url: Config.fastadmin.api_url + '/forum/discussion',
-                type: 'post',
-                dataType: 'jsonp',
-                success: function (ret) {
-                    $("#discussion-list").html(Template("discussiontpl", {news: ret.discussionlist.slice(0,6)}));
-                }
-            });
+            // $.ajax({
+            //     url: Config.fastadmin.api_url + '/forum/discussion',
+            //     type: 'post',
+            //     dataType: 'jsonp',
+            //     success: function (ret) {
+            //         $("#discussion-list").html(Template("discussiontpl", {news: ret.discussionlist.slice(0,6)}));
+            //     }
+            // });
         }
     };
 

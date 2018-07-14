@@ -34,14 +34,31 @@ class Dashboard extends Backend
      */
     public function index()
     {
-        $seventtime = \fast\Date::unixtime('day', -7);
+        $seventtime = \fast\Date::unixtime('day', -30);
         $paylist = $createlist = [];
-        for ($i = 0; $i < 7; $i++)
+        for ($i = 0; $i < 30; $i++)
         {
             $day = date("Y-m-d", $seventtime + ($i * 86400));
-            $createlist[$day] = mt_rand(20, 200);
-            $paylist[$day] = mt_rand(1, mt_rand(1, $createlist[$day]));
+            //活动参与人数
+            $paylist[$day] = $this->groupUserModel
+            ->where('type', '=', 1)
+            ->where('chat_bot_id', '=',  $_SESSION['think']['admin']['chat_bot_id'])
+            ->where('created_at', '>=', strtotime($day))
+            ->where('created_at', '<=', strtotime($day . " 23:59:59") + 1)
+            ->count();
+
+            //入群人数
+            $createlist[$day] =  $this->model
+                ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
+                ->where('created_at', '>=', strtotime($day))
+                ->where('created_at', '<=', strtotime($day . " 23:59:59") + 1)
+                ->count();
+
+
         }
+
+
+
         $hooks = config('addons.hooks');
         $uploadmode = isset($hooks['upload_config_init']) && $hooks['upload_config_init'] ? implode(',', $hooks['upload_config_init']) : 'local';
 
