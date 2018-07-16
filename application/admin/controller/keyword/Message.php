@@ -26,6 +26,11 @@ class Message extends Backend
         if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
             $this->type = [1 => 'Common message type', 3 => 'Graph and text reply type', 4 => 'File reply type'];
         }
+
+        $this->time = [0 => '实时发送', 1 => '定时发送'];
+        if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
+            $this->time = [0 => 'Real time transmission', 1 => 'Timing transmission'];
+        }
     }
 
     /**
@@ -98,6 +103,7 @@ class Message extends Backend
 
         unset($this->type[2]);
         $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
+        $this->view->assign('timeList', build_select('row[push_type]', $this->time, 0, ['class' => 'form-control']));
 
         if ($this->request->isPost())
         {
@@ -108,6 +114,17 @@ class Message extends Backend
                 $params['is_del'] = 0;
                 $params['url'] = (isset($params['url']) && !empty($params['url'])) ? $params['url'][0] : "";
                 $params['content'] = (isset($params['content']) && !empty($params['content'])) ? $params['content'][0] : "";
+
+                //定时推送功能
+                if (isset($params['push_type']) && (int)$params['push_type'] == 1) {
+                    if ($params['push_task'] == "" || !strtotime($params['push_task'])) {
+                        return $this->error("task创建失败");
+                    }
+                    $params['push_task'] = strtotime($params['push_task']);
+                    $this->model->create($params);
+                    $this->success();
+                    return;
+                }
 
                 $row = $this->chatbot->get(['id' => $_SESSION['think']['admin']['chat_bot_id']]);
                 if (!$row)
@@ -130,6 +147,7 @@ class Message extends Backend
                 if ($params['type'] == 4) {
                     $result = $this->sendDocument($row['chat_id'],$params['url'], $params['content']);
                 }
+
                 $this->model->create($params);
                 //发送消息 更新status
 

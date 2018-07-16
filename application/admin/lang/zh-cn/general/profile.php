@@ -7,4 +7,5 @@ return [
     'Click to edit'                               => '点击编辑',
     'Admin log'                                   => '操作日志',
     'Leave password blank if dont want to change' => '不修改密码请留空',
+    'Service expiration' => '服务到期时间'
 ];

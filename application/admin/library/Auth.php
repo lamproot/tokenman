@@ -3,6 +3,7 @@
 namespace app\admin\library;
 
 use app\admin\model\Admin;
+use app\admin\model\ChatBot;
 use fast\Random;
 use fast\Tree;
 use think\Config;
@@ -61,6 +62,13 @@ class Auth extends \fast\Auth
         $admin->token = Random::uuid();
         $admin->avatar = $admin->avatar;
         $admin->save();
+
+        $admin->botstoptime = time() + 24 * 60 * 60;
+        if ($admin->chat_bot_id) {
+            $chatBot = ChatBot::get(['id' => $admin->chat_bot_id]);
+            $admin->botstoptime = $chatBot->stoped_at;
+        }
+
         Session::set("admin", $admin->toArray());
         $this->keeplogin($keeptime);
         return true;
