@@ -31,29 +31,28 @@ class User extends Backend
         $this->news_totalmodel = model('NewsTotal');
 
 
-        $this->status = [0 => '未激活', 1 => '已激活'];
+        $this->type = [0 => '', 1 => '入群', 2 => '退群', -1 => '拉黑'];
         if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
-            $this->status = [0 => 'Not Activate', 1 => 'Is Activate'];
+            $this->type = [0 => '', 1 => 'Join', 2 => 'Out', -1 => 'Blank'];
         }
     }
 
     /**
      * 查看
      */
-    public function index()
+    public function manage($ids)
     {
-        $ids = $_GET['ids'];
+        //$ids = $_GET['ids'];
         //获取是否添加机器人
         $row = $this->model->get(['id' => $ids]);
         //echo json_encode($row);exit;
-
         // if (!$row)
         //     $this->error(__('No Results were found'));
 
         //$this->view->assign("row", $row->toArray());
-        if (!$row['chat_id']) {
-            $this->error(__('chat_id No Results were found'));
-        }
+        // if (!$row['chat_id']) {
+        //     $this->error(__('chat_id No Results were found'));
+        // }
         $chat_id = $row['chat_id'];
         $this->view->assign("chat_id", $chat_id);
         if ($this->request->isAjax())
@@ -75,6 +74,8 @@ class User extends Backend
 
             return json($result);
         }
+        $this->view->assign("row", $row->toArray());
+        $this->view->assign("ids", $ids);
         return $this->view->fetch();
     }
 
@@ -222,15 +223,39 @@ class User extends Backend
     {
         if ($ids)
         {
-            $row = $this->model->get(['id' => $ids]);
-            if (!$row)
-                $this->error(__('No Results were found'));
             if ($this->request->isPost())
             {
-                $params['is_del'] = 1;
-                $row->save($params);
-                $this->success();
+
+                $idList = explode(",", $ids);
+                foreach ($idList as $key => $value) {
+                    $row = $this->group_usermodel->get(['id' => $value]);
+
+                    if ($row && $row['chat_bot_id']) {
+                        $chatBot = $this->chatbotmodel->get(['id' => $_SESSION['think']['admin']['chat_bot_id']]);
+
+                        if (!$chatBot)
+                            return $this->error("数据获取失败");
+
+                        if ($chatBot && !empty($chatBot['token'])) {
+                            $_SESSION['think']['token'] = $chatBot['token'];
+                        }else{
+                            return $this->error("Token不存在");
+                        }
+                        //进行踢出群操作调用接口
+                        //获取机器人Token
+                        $result = $this->kickChatMember($row['chat_id'], $row['from_id']);
+                        if ($result) {
+                            $params['type'] = -1;
+                            $row->save($params);
+                        }else{
+                            $result[] = $row['from_id'];
+                            //$this->error($result);
+                        }
+                    }
+
+                }
             }
+            $this->success();
         }
         $this->error();
     }

@@ -1,13 +1,13 @@
 define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload'], function ($, undefined, Backend, Table, Form, Template, Upload) {
 
     var Controller = {
-        index: function () {
+        manage: function () {
             // 初始化表格参数配置
             Table.api.init({
                 extend: {
-                    index_url: 'group/user/index',
+                    index_url: 'group/user/manage',
                     add_url: 'group/user/add',
-                    edit_url: 'group/user/edit',
+                    // edit_url: 'group/user/edit',
                     del_url: 'group/user/del',
                     multi_url: '',
                 }
@@ -15,25 +15,36 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
 
             var table = $("#table");
 
-            var searchList = {0: __('Not Activate'), 1:__('Is Activate')};
+            var typeList = {0: __(''), 1:__('Join'), 2:__('Out'), "-1":__('Blank')};
             // 初始化表格
             table.bootstrapTable({
-                url: $.fn.bootstrapTable.defaults.extend.index_url,
+                url: $.fn.bootstrapTable.defaults.extend.index_url+"?ids="+Searchdata['ids'],
                 columns: [
                     [
-                        //{field: 'state', checkbox: true, },
-                        {field: 'id', title: 'ID'},
-                        {field: 'title', title: __('群名称')},
-                        {field: 'chat_id', title: __('chat_id')},
-                        {field: 'chat_bot_id', title: __('机器人ID')},
-                        // {field: 'status', title: __('Status'), searchList: searchList, formatter: function (value, row, index) {
-                        //     if (searchList[row.status] && row.status !== 0) {
-                        //       //row.type = row.type ? row.type : 0;
-                        //       return searchList[row.status];
-                        //     }else{
-                        //       return '<a href="javascript:;" class="btn btn-info btn-xs sidebar-toggle btn-demo" data-toggle="keyword_demo">'+__('Not Activate')+'</a>';
-                        //     }
-                        // }},
+                        {field: 'state', checkbox: true, },
+                        {field: 'id', title: 'ID',},
+                        // {field: 'chat_bot_id', title: __('chat_bot_id')},
+                        // {field: 'chat_id', title: __('chat_id')},
+                        //{field: 'type', title: __('type')},
+
+                        // {field: 'from_id', title: __('from_id')},
+                        {field: 'from_username', title: __('from_username')},
+                        {field: 'first_name', title: __('first_name')},
+                        {field: 'last_name', title: __('last_name')},
+                        {field: 'type', title: __('type'), typeList: typeList, formatter: function (value, row, index) {
+                            if (typeList[row.type]) {
+                                //row.type = row.type ? row.type : 0;
+                                return typeList[row.type];
+                            }else{
+                                return "";
+                            }
+                        },operate:false},
+                        {field: 'created_at', title: __('Createtime'), formatter: Table.api.formatter.datetime, operate: 'RANGE', addclass: 'datetimerange'},
+
+                        {field: 'operate', title: __('Operate'), table: table, events: Table.api.events.operate, formatter: function (value, row, index) {
+
+                            return Table.api.formatter.operate.call(this, value, row, index);
+                        }}
                     ]
                 ],
                 search: false

@@ -633,6 +633,15 @@ class Backend extends Controller
         return $this->ret['result'];
     }
 
+    public function kickChatMember ($chat_id, $user_id) {
+       $this->ret = $this->callMethod ('kickChatMember', [
+           'chat_id' => $chat_id,
+           'user_id' => $user_id,
+           'until_date' => time()+20
+       ]);
+       return $this->ret['result'];
+   }
+
 
 
 
