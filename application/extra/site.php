@@ -29,10 +29,10 @@ return array (
     'example' => 'Example',
   ),
   'mail_type' => '1',
-  'mail_smtp_host' => 'smtp.qq.com',
+  'mail_smtp_host' => 'smtp.gmail.com',
   'mail_smtp_port' => '465',
-  'mail_smtp_user' => '304151978@qq.com',
-  'mail_smtp_pass' => 'eayteqbradiabjgi',
+  'mail_smtp_user' => 'contact@if1989.com',
+  'mail_smtp_pass' => 'admin1989.com',
   'mail_verify_type' => '2',
   'mail_from' => '304151978@qq.com',
   'index_banner' => 

@@ -53,6 +53,23 @@ return [
     'Mail from'                   => '发件人邮箱',
     'Name already exist'          => '变量名称已经存在',
     'Send a test message'         => '发送测试邮件',
-    'This is a test mail content' => '这是一封测试邮件,用于测试邮件配置是否正常!',
-    'This is a test mail'         => '这是一封测试邮件',
+    'This is a test mail content' => '亲爱的TokenMan用户，&lt;br&gt;
+Dear TokenMan User,
+
+您好！感谢您注册TokenMan帐号：
+Hello~ Thanks For You Register TokenMan Account:
+
+您的Email：304151978@qq.com
+Your Email ：304151978@qq.com
+
+您的Email可以作为帐户名用来登录TokenMan服务。
+Your Email Is Login In TokenMan Service Account 。
+
+本邮件是系统自动发送的，请勿直接回复！感谢您的访问，祝您使用愉快！
+This email is sent automatically by the system, please do not reply directly! Thank you for your visit, and I wish you a good use.
+
+TokenMan
+
+http://www.iamtokenman.com/',
+    'This is a test mail'         => 'Thanks For You Register TokenMan Account',
 ];
