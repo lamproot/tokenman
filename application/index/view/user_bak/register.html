@@ -1,19 +1,7 @@
-<style media="screen">
-.profile-img-card {
-    width: 100px;
-    height: 100px;
-    margin: 10px auto;
-    display: block;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    border-radius: 50%;
-}
-</style>
 <div id="content-container" class="container">
-    <img id="profile-img" class="profile-img-card" src="__CDN__/assets/img/avatar.png" />
     <div class="user-section login-section">
         <div class="logon-tab clearfix"> <a href="{:url('user/login')}">{:__('Sign in')}</a> <a class="active">{:__('Sign up')}</a> </div>
-        <div class="login-main">
+        <div class="login-main"> 
             <form name="form1" id="register-form" class="form-vertical" method="POST" action="">
                 <input type="hidden" name="invite_user_id" value="0" />
                 <div class="form-group">

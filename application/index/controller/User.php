@@ -14,7 +14,7 @@ use think\Validate;
 class User extends Frontend
 {
 
-    protected $layout = 'default';
+    protected $layout = 'common';
     protected $noNeedLogin = ['login', 'register', 'third'];
     protected $noNeedRight = ['*'];
 
