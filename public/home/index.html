@@ -114,35 +114,86 @@
 
     </div>
 
+    <style>
+     .item_bg{
+       width:3rem;
+       height: 3rem;
+
+       display: inline-block;
+     }
+     .item_bg_img1{
+       background: url(images/item_icon1.png) center no-repeat;
+       background-size: contain;
+     }
+     .item_bg_img2{
+       background: url(images/item_icon2.png) center no-repeat;
+       background-size: contain;
+     }
+     .item_bg_img3{
+       background: url(images/item_icon3.png) center no-repeat;
+       background-size: contain;
+     }
+     .item_bg_img4{
+       background: url(images/item_icon4.png) center no-repeat;
+       background-size: contain;
+     }
+     .act{
+       color: #ffba0e;
+     }
+     .act .item_bg_img1{
+       background: url(images/item_icon1_act.png) center no-repeat;
+       background-size: contain;
+     }
+     .act .item_bg_img2{
+       background: url(images/item_icon2_act.png) center no-repeat;
+       background-size: contain;
+     }
+     .act .item_bg_img3{
+       background: url(images/item_icon3_act.png) center no-repeat;
+       background-size: contain;
+     }
+     .act .item_bg_img4{
+       background: url(images/item_icon4_act.png) center no-repeat;
+       background-size: contain;
+     }
+     .features_line_yellow{
+       display: none;
+     }
+     .act .features_line_yellow{
+       display: block;
+     }
 
 
-
+    </style>
     <div class="features">
       <h3>Product Features</h3>
       <div class="h3line"></div>
       <div class="feature_body">
         <div class="row justify-content-center">
           <div class="col-12 features_line"></div>
-          <div class="col-3">
-            <img src="images/features_icon1.png" style="width:3rem;"/>
+          <div class="col-3 act">
+            <span class="item_bg item_bg_img1"></span>
             <br/>
             Innovative
             <div class="features_line_yellow"></div>
           </div>
           <div class="col-3">
-            <img src="images/features_icon2.png" style="width:2.9rem;margin-top:0.7rem;"/>
+            <span class="item_bg item_bg_img2"></span>
             <br/>
             Convenience
+            <div class="features_line_yellow"></div>
           </div>
           <div class="col-3">
-            <img src="images/features_icon3.png" style="width:3.4rem;margin-top:0.5rem;"/>
+            <span class="item_bg item_bg_img3"></span>
             <br/>
             Outstanding
+            <div class="features_line_yellow"></div>
           </div>
           <div class="col-3">
-            <img src="images/features_icon4.png" style="width:2.8rem;margin-top:0.02rem;"/>
+            <span class="item_bg item_bg_img4"></span>
             <br/>
             Superior
+            <div class="features_line_yellow"></div>
           </div>
         </div>
         <div class="row justify-content-center features_content">
@@ -358,5 +409,18 @@
     <script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
     <script src="https://cdn.bootcss.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    <script>
+    $('.feature_body .col-3').hover(function() {
+      $('.feature_body .col-3').removeClass("act");
+      $('.feature_body .col-6').removeClass("active");
+      $(this).addClass('act');
+      var item = $($('.feature_body .col-6')[$(this).index() - 1])
+      item.addClass("active");
+      $("body,html").scrollTop(item.offset().top);
+    },function(){
+
+    });
+
+    </script>
   </body>
 </html>
