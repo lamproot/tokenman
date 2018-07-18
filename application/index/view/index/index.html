@@ -32,6 +32,57 @@
 					</div>
 				</div>
 			</div>
+			<style>
+		     .item_bg{
+		       width:3rem;
+		       height: 3rem;
+
+		       display: inline-block;
+		     }
+		     .item_bg_img1{
+		       background: url(__CDN__/home/images/item_icon1.png) center no-repeat;
+		       background-size: contain;
+		     }
+		     .item_bg_img2{
+		       background: url(__CDN__/home/images/item_icon2.png) center no-repeat;
+		       background-size: contain;
+		     }
+		     .item_bg_img3{
+		       background: url(__CDN__/home/images/item_icon3.png) center no-repeat;
+		       background-size: contain;
+		     }
+		     .item_bg_img4{
+		       background: url(__CDN__/home/images/item_icon4.png) center no-repeat;
+		       background-size: contain;
+		     }
+		     .act{
+		       color: #ffba0e;
+		     }
+		     .act .item_bg_img1{
+		       background: url(__CDN__/home/images/item_icon1_act.png) center no-repeat;
+		       background-size: contain;
+		     }
+		     .act .item_bg_img2{
+		       background: url(__CDN__/home/images/item_icon2_act.png) center no-repeat;
+		       background-size: contain;
+		     }
+		     .act .item_bg_img3{
+		       background: url(__CDN__/home/images/item_icon3_act.png) center no-repeat;
+		       background-size: contain;
+		     }
+		     .act .item_bg_img4{
+		       background: url(__CDN__/home/images/item_icon4_act.png) center no-repeat;
+		       background-size: contain;
+		     }
+		     .features_line_yellow{
+		       display: none;
+		     }
+		     .act .features_line_yellow{
+		       display: block;
+		     }
+
+
+		    </style>
 			<div class="features">
 				<h3>
                     {:__('Product Features')}
@@ -39,33 +90,44 @@
 				<div class="h3line">
 				</div>
 				<div class="feature_body">
+
 					<div class="row justify-content-center">
 						<div class="col-12 features_line">
 						</div>
-						<div class="col-3">
-							<img src="__CDN__/home/images/features_icon1.png" style="width:3rem;" />
+						<div class="col-3 act">
+							<!-- <img src="__CDN__/home/images/features_icon1.png" style="width:3rem;" /> -->
+							<span class="item_bg item_bg_img1"></span>
 							<br/>
 							{:__('Innovative')}
 							<div class="features_line_yellow">
 							</div>
 						</div>
 						<div class="col-3">
-							<img src="__CDN__/home/images/features_icon2.png" style="width:2.9rem;margin-top:0.7rem;"
-							/>
+							<!-- <img src="__CDN__/home/images/features_icon2.png" style="width:2.9rem;margin-top:0.7rem;"
+							/> -->
+							<span class="item_bg item_bg_img2"></span>
 							<br/>
 							{:__('Convenience')}
+							<div class="features_line_yellow">
+							</div>
 						</div>
 						<div class="col-3">
-							<img src="__CDN__/home/images/features_icon3.png" style="width:3.4rem;margin-top:0.5rem;"
-							/>
+							<!-- <img src="__CDN__/home/images/features_icon3.png" style="width:3.4rem;margin-top:0.5rem;"
+							/> -->
+							<span class="item_bg item_bg_img3"></span>
 							<br/>
 							{:__('Outstanding')}
+							<div class="features_line_yellow">
+							</div>
 						</div>
 						<div class="col-3">
-							<img src="__CDN__/home/images/features_icon4.png" style="width:2.8rem;margin-top:0.02rem;"
-							/>
+							<!-- <img src="__CDN__/home/images/features_icon4.png" style="width:2.8rem;margin-top:0.02rem;"
+							/> -->
+							<span class="item_bg item_bg_img4"></span>
 							<br/>
 							{:__('Superior')}
+							<div class="features_line_yellow">
+							</div>
 						</div>
 					</div>
 					<div class="row justify-content-center features_content">
@@ -124,7 +186,7 @@
 				<div class="evaluationbody">
 					<div class="m_list">
 						<div class="row">
-							<div class="col-12 col-sm-4">
+							<!-- <div class="col-12 col-sm-4">
 								<div class="row">
 									<div class="col">
 										<div class="userhead">
@@ -144,8 +206,63 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> -->
 							<div class="col-12 col-sm-4">
+				              <div class="row">
+				                <div class="col">
+				                  <div class="userhead">
+				                    <img src="__CDN__/home/images/user1.jpg"/>
+				                    <div class="line5"></div>
+				                  </div>
+				                </div>
+				                <div class="col">
+				                  <div class="username">{:__('User Evaluation Company 1')}</div>
+				                  <div class="line4"></div>
+				                  <div class="desc">
+				                    {:__('User Evaluation Content 1')}
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+
+
+							<div class="col-12 col-sm-4">
+				              <div class="row">
+				                <div class="col">
+				                  <div class="userhead">
+				                    <img src="__CDN__/home/images/user2.jpg"/>
+				                    <div class="line5"></div>
+				                  </div>
+				                </div>
+				                <div class="col">
+				                  <div class="username">{:__('User Evaluation Company 2')}</div>
+				                  <div class="line4"></div>
+				                  <div class="desc">
+				                    {:__('User Evaluation Content 2')}
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+
+
+							<div class="col-12 col-sm-4">
+				              <div class="row">
+				                <div class="col">
+				                  <div class="userhead">
+				                    <img src="__CDN__/home/images/user3.jpg"/>
+				                    <div class="line5"></div>
+				                  </div>
+				                </div>
+				                <div class="col">
+				                  <div class="username">{:__('User Evaluation Company 3')}</div>
+				                  <div class="line4"></div>
+				                  <div class="desc">
+				                    {:__('User Evaluation Content 3')}
+				                  </div>
+				                </div>
+				              </div>
+				            </div>
+							<!-- <div class="col-12 col-sm-4">
 								<div class="row">
 									<div class="col">
 										<div class="userhead">
@@ -186,7 +303,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
@@ -255,3 +372,16 @@
 			</div>
 {include file="common/footer" /}
 {include file="common/scripts" /}
+<script>
+$('.feature_body .col-3').hover(function() {
+  $('.feature_body .col-3').removeClass("act");
+  $('.feature_body .col-6').removeClass("active");
+  $(this).addClass('act');
+  var item = $($('.feature_body .col-6')[$(this).index() - 1])
+  item.addClass("active");
+  $("body,html").scrollTop(item.offset().top);
+},function(){
+
+});
+
+</script>
