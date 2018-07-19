@@ -221,6 +221,14 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 			</div>
 			<div id="order_ct2" style="display:none;">
 
+				<div class="order_dialog_header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"
+					aria-hidden="true">
+					</button>
+					<h5 class="modal-title">
+						Payment
+					</h5>
+				</div>
 				<div class="modal-body" style="">
 					<div class="order_title">
 						<img src="__CDN__/home/images/order_user_icon.png" />
@@ -243,7 +251,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 						Please transfer to the following wallet address 1.0BTH
 					</div>
 					<div style="text-align: center;">
-						<div class="buy_button" style="position:static;margin:2rem auto;" data-dismiss="modal" id="order_config_btn2">
+						<div class="buy_button" style="position:static;margin:2rem auto;" id="order_config_btn2">
 							Successful transfer
 						</div>
 					</div>
@@ -277,20 +285,29 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 						you can contact our Telegram:Official_TokenMan
 					</div>
 					<div style="text-align: center;">
-						<div class="buy_button" style="position:static;margin:2rem auto;" >
+						<div class="buy_button" style="position:static;margin:2rem auto;" id="order_config_btn3">
 							ok
 						</div>
 					</div>
 				</div>
 
+			</div>
+
+
+			<div id="order_ct4" style="display:none;">
 				<div class="order_dialog_header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"
 					aria-hidden="true">
 					</button>
 					<h5 class="modal-title">
-						Payment
+						Contact
 					</h5>
 				</div>
+				<div class="modal-body" style="text-align:center">
+				<img src="__CDN__/home/images/1531303879159.jpg" alt="" style="width:50%;">
+
+				</div>
+
 			</div>
 		</div>
 	</div>
@@ -299,20 +316,29 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 {include file="common/scripts" /}
 <script>
 	$('#order_config_btn1').click(function() {
-
+		//$('#order_ct4').show();
 		$('#order_ct1').hide();
 		$('#order_ct2').show();
 	});
 
 	$('#order_config_btn2').click(function() {
+
 		$('#order_ct2').hide();
 		$('#order_ct3').show();
 	});
 
-	$('#buy_btn_2,#buy_btn_1').click(function() {
-		$('#order_ct1').show();
-		$('#order_ct2').hide();
+	$('#order_config_btn3').click(function() {
+
 		$('#order_ct3').hide();
+		//跳转订单成功页面
+	});
+
+	$('#buy_btn_2,#buy_btn_1').click(function() {
+		// $('#order_ct1').show();
+		// $('#order_ct2').hide();
+		// $('#order_ct3').hide();
+		$('#order_ct1').hide();
+		$('#order_ct4').show();
 		$('#exampleModalLong').modal({});
 	});
 </script>
