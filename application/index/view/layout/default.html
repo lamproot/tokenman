@@ -17,8 +17,8 @@
 		rel="stylesheet">
 		<link href="//cdn.bootcss.com/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet"> -->
         <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-        <link rel="stylesheet" href="__CDN__/home/base.css">
-		<link rel="stylesheet" href="__CDN__/home/all.css">
+        <link rel="stylesheet" href="__CDN__/home/base.css?version=1.010">
+		<link rel="stylesheet" href="__CDN__/home/all.css?version=1.010">
 		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media
 		queries -->
 		<!--[if lt IE 9]>
@@ -40,6 +40,7 @@
 					</div>
 					<div class="col-2 col-sm-8">
 						<ul class="nav justify-content-end max_menu_div">
+
 							<li class="nav-item">
 								<a class="nav-link {:$config['controllername']=='index'?'active':''}" href="{:url('/index')}">
 									{:__('Home')}
@@ -55,6 +56,12 @@
 									{:__('Contact Us')}
 								</a>
 							</li>
+
+							<!-- <li class="nav-item">
+								<a class="nav-link" href="http://m.name-technology.fun:8020/admin">
+									{:__('Customer')}
+								</a>
+							</li> -->
 							<!-- <li class="nav-item">
 								<a class="nav-link" href="{:url('user/login')}">
 									<img src="__CDN__/home/images/header_icon_login.png" style="width:1rem;margin-right:0.5rem;">
@@ -71,7 +78,7 @@
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {if condition="isset($_GET['lang']) && $_GET['lang'] eq 'en'"}
+                                    {if condition="isset($_COOKIE['think_var']) && $_COOKIE['think_var'] eq 'en'"}
                                         English
                                     {else/}
                                         中文(简体)

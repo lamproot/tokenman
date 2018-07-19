@@ -132,9 +132,9 @@
 					<div class="buy_ct_body">
 						{:__('Standard Service')}
 
-						<!-- <div class="buy_button" id="buy_btn_1">
+						<div class="buy_button" id="buy_btn_1">
 							{:__('Buy Now')}
-						</div> -->
+						</div>
 					</div>
 				</div>
 			</div>
@@ -147,9 +147,9 @@
 					<div class="buy_ct_body">
 						{:__('Senior Service')}
 
-						<!-- <div class="buy_button" id="buy_btn_2">
+						<div class="buy_button" id="buy_btn_2">
 							{:__('Buy Now')}
-						</div> -->
+						</div>
 					</div>
 				</div>
 			</div>
@@ -220,6 +220,36 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 				</div>
 			</div>
 			<div id="order_ct2" style="display:none;">
+
+				<div class="modal-body" style="">
+					<div class="order_title">
+						<img src="__CDN__/home/images/order_user_icon.png" />
+						Standard account 0.5BTC/YEAR
+					</div>
+					<div class="pdl weight mt1">
+						Method of payment
+					</div>
+					<div class="form-check pdl">
+						<input type="checkbox" class="form-check-input" id="exampleCheck3">
+						<label class="form-check-label" for="exampleCheck3">
+							Wallet transfer, support equivalent BTH.
+						</label>
+					</div>
+					<div class="pdl mt1" style="margin-right:2rem;">
+						<div class="order_line">
+						</div>
+					</div>
+					<div class="pdl mt1">
+						Please transfer to the following wallet address 1.0BTH
+					</div>
+					<div style="text-align: center;">
+						<div class="buy_button" style="position:static;margin:2rem auto;" data-dismiss="modal" id="order_config_btn2">
+							Successful transfer
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="order_ct3" style="display:none;">
 				<div class="order_dialog_header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"
 					aria-hidden="true">
@@ -247,13 +277,12 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 						you can contact our Telegram:Official_TokenMan
 					</div>
 					<div style="text-align: center;">
-						<div class="buy_button" style="position:static;margin:2rem auto;" id="order_config_btn2">
+						<div class="buy_button" style="position:static;margin:2rem auto;" >
 							ok
 						</div>
 					</div>
 				</div>
-			</div>
-			<div id="order_ct3" style="display:none;">
+
 				<div class="order_dialog_header">
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close"
 					aria-hidden="true">
@@ -261,33 +290,6 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 					<h5 class="modal-title">
 						Payment
 					</h5>
-				</div>
-				<div class="modal-body" style="">
-					<div class="order_title">
-						<img src="__CDN__/home/images/order_user_icon.png" />
-						Standard account 0.5BTC/YEAR
-					</div>
-					<div class="pdl weight mt1">
-						Method of payment
-					</div>
-					<div class="form-check pdl">
-						<input type="checkbox" class="form-check-input" id="exampleCheck3">
-						<label class="form-check-label" for="exampleCheck3">
-							Wallet transfer, support equivalent BTH.
-						</label>
-					</div>
-					<div class="pdl mt1" style="margin-right:2rem;">
-						<div class="order_line">
-						</div>
-					</div>
-					<div class="pdl mt1">
-						Please transfer to the following wallet address 1.0BTH
-					</div>
-					<div style="text-align: center;">
-						<div class="buy_button" style="position:static;margin:2rem auto;" data-dismiss="modal">
-							Successful transfer
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -297,6 +299,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 {include file="common/scripts" /}
 <script>
 	$('#order_config_btn1').click(function() {
+
 		$('#order_ct1').hide();
 		$('#order_ct2').show();
 	});

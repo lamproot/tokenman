@@ -72,7 +72,7 @@
   text-align: center;
 }
     .partner{
-      background:#efefef;height:19.75rem;text-align:center;padding:1.8rem 0;
+      background:#efefef;text-align:center;padding:1.8rem 0;
     }
     .partner h3{
      text-align: center;
@@ -157,7 +157,70 @@
     }
 
 
+    .partner_7_a{
+         background: url(images/partner_icon_14.png) center no-repeat;
+         background-size: contain;
+         width:7.4rem;
+         height: 2.4rem;
+         display: inline-block;
+       }
 
+       a.partner_7_a:hover{
+         background: url(images/partner_icon_13.png) center no-repeat;
+         background-size: contain;
+       }
+
+       .partner_8_a{
+         background: url(images/partner_icon_16.png) center no-repeat;
+         background-size: contain;
+         width:7.4rem;
+         height: 2.4rem;
+         display: inline-block;
+       }
+
+       a.partner_8_a:hover{
+         background: url(images/partner_icon_15.png) center no-repeat;
+         background-size: contain;
+       }
+
+       .partner_9_a{
+         background: url(images/partner_icon_18.png) center no-repeat;
+         background-size: contain;
+         width:7.4rem;
+         height: 2.4rem;
+         display: inline-block;
+       }
+
+       a.partner_9_a:hover{
+         background: url(images/partner_icon_17.png) center no-repeat;
+         background-size: contain;
+       }
+
+       .partner_10_a{
+         background: url(images/partner_icon_20.png) center no-repeat;
+         background-size: contain;
+         width:7.4rem;
+         height: 2.4rem;
+         display: inline-block;
+       }
+
+       a.partner_10_a:hover{
+         background: url(images/partner_icon_19.png) center no-repeat;
+         background-size: contain;
+       }
+
+       .partner_11_a{
+         background: url(images/partner_icon_22.png) center no-repeat;
+         background-size: contain;
+         width:7.4rem;
+         height: 2.4rem;
+         display: inline-block;
+       }
+
+       a.partner_11_a:hover{
+         background: url(images/partner_icon_21.png) center no-repeat;
+         background-size: contain;
+       }
     .h3line{
       background:#434951;width:2rem;height:2px;margin:0 auto;
     }

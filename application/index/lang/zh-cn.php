@@ -121,4 +121,5 @@ return [
     'Privacy Policy' => '隐私政策',
     'Intellectual Property Rights Policy' => '知识产权政策',
     'Tems of service' => '服务条款',
+    'Customer' => '客户服务'
 ];

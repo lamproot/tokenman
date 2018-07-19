@@ -77,9 +77,9 @@ class Currency extends Backend
                 ->where('chat_bot_id', '=', $_SESSION['think']['admin']['chat_bot_id'])
                 ->count();
         // vip 1 条 svip 2
-        if (intval($_SESSION['think']['admin']['type'] == 1) && intval($total) >= 1) {
-            $this->error("实时币价条数已用完 请联系管理员购买");
-        }
+        // if (intval($_SESSION['think']['admin']['type'] == 1) && intval($total) >= 1) {
+        //     $this->error("实时币价条数已用完 请联系管理员购买");
+        // }
         //
         // if ($_SESSION['think']['admin']['type'] == 2 && $total >= 20) {
         //     $this->error("关键词条数已用完 请联系管理员购买");
