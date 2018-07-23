@@ -1,0 +1,12 @@
+
+
+
+
+
+
+
+ALTER TABLE fa_user ADD project_name VARCHAR(255) NOT NULL DEFAULT "" COMMENT "project_name";
+ALTER TABLE fa_user ADD name_token VARCHAR(255) NOT NULL DEFAULT "" COMMENT "name_token";
+ALTER TABLE fa_user ADD robot VARCHAR(255) NOT NULL DEFAULT "" COMMENT "robot";
+ALTER TABLE fa_user ADD telegram VARCHAR(255) NOT NULL DEFAULT "" COMMENT "telegram";
+ALTER TABLE fa_user ADD wechat VARCHAR(255) NOT NULL DEFAULT "" COMMENT "wechat";

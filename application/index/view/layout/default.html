@@ -36,9 +36,7 @@
 						<a class="header_logo">
 						</a>
 					</div>
-					<div class="col-auto">
-					</div>
-					<div class="col-2 col-sm-8">
+					<div class="col-2 col-sm-9">
 						<ul class="nav justify-content-end max_menu_div">
 
 							<li class="nav-item">
@@ -62,19 +60,40 @@
 									{:__('Customer')}
 								</a>
 							</li> -->
-							<!-- <li class="nav-item">
-								<a class="nav-link" href="{:url('user/login')}">
-									<img src="__CDN__/home/images/header_icon_login.png" style="width:1rem;margin-right:0.5rem;">
-									{:__('Login')}
-								</a>
-							</li>
-							<li class="nav-item">
-								<a class="nav-link" href="{:url('user/register')}">
-									<img src="__CDN__/home/images/header_icon_login.png" style="width:1rem;margin-right:0.5rem;">
 
-                                    {:__('Register')}
-								</a>
-							</li> -->
+							<li class="nav-item">
+							   <a class="nav-link" href="{:url('/admin')}">
+								   {:__('Customer')}
+							   </a>
+						   </li>
+
+							{if $user}
+								<!-- <li class="nav-item">
+									<a class="nav-link" href="{:url('user/profile')}">
+
+										{:__('UserInfo')}
+									</a>
+								</li> -->
+
+
+							{else/}
+								<li class="nav-item">
+									<a class="nav-link" href="{:url('user/login')}">
+										<img src="__CDN__/home/images/header_icon_login.png" style="width:1rem;margin-right:0.5rem;">
+										{:__('Login')}
+									</a>
+								</li>
+								<li class="nav-item">
+									<a class="nav-link" href="{:url('user/register')}">
+										<img src="__CDN__/home/images/header_icon_login.png" style="width:1rem;margin-right:0.5rem;">
+
+										{:__('Register')}
+									</a>
+								</li>
+							{/if}
+
+
+
 							<li class="nav-item dropdown">
 								<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
 								data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

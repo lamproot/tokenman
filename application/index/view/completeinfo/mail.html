@@ -1,0 +1,61 @@
+
+<style>
+    .profile-avatar-container {
+        position:relative;
+        width:100px;
+    }
+    .profile-avatar-container .profile-user-img{
+        width:100px;
+        height:100px;
+    }
+    .profile-avatar-container .profile-avatar-text {
+        display:none;
+    }
+    .profile-avatar-container:hover .profile-avatar-text {
+        display:block;
+        position:absolute;
+        height:100px;
+        width:100px;
+        background:#444;
+        opacity: .6;
+        color: #fff;
+        top:0;
+        left:0;
+        line-height: 100px;
+        text-align: center;
+    }
+    .profile-avatar-container button{
+        position:absolute;
+        top:0;left:0;width:100px;height:100px;opacity: 0;
+    }
+    .loginerror_msg{
+      margin: 2rem auto;
+       color: #9e9f9f;
+    }
+
+    .loginerror_btn{
+      color: #ffffff;
+      background-color: #ffba0e;
+      border: 1px solid #e29808;
+      display: inline-block;
+      line-height: 2.2rem;
+      padding: 0 2rem;
+      border-radius: 0.3rem;
+    }
+</style>
+<div id="content-container" class="container">
+    <div class="row">
+
+        <div class="col-md-10" style="float: none;
+    display: block;margin-left: auto;
+    margin-right: auto;">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <h2 style="color:#ffb90e">{:__('registered successfully,our customer service will contact you immediately')}</h2>
+                    <div class="loginerror_msg"></div>
+                    <a class="btn btn-warning" href="{:url('product/index')}">{:__('Refer')}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

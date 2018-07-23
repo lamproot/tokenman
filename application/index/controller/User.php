@@ -116,7 +116,10 @@ class User extends Frontend
                     $uc = new \addons\ucenter\library\client\Client();
                     $synchtml = $uc->uc_user_synregister($this->auth->id, $password);
                 }
-                $this->success(__('Sign up successful') . $synchtml, $url);
+                //注册成功之后跳转地址
+
+                $this->success("", "/index/completeinfo/index");
+                //$this->success(__('Sign up successful') . $synchtml, $url);
             }
             else
             {
@@ -133,7 +136,7 @@ class User extends Frontend
      */
     public function login()
     {
-        $url = $this->request->request('url', url('user/index'));
+        $url = $this->request->request('url', url('product/index'));
         if ($this->auth->id)
             $this->success(__('You\'ve logged in, do not login again'), $url);
         if ($this->request->isPost())
@@ -209,6 +212,14 @@ class User extends Frontend
     public function profile()
     {
         $this->view->assign('title', __('Profile'));
+
+        $row['project_name'] = "project_name";
+        $row['name_token'] = "name_token";
+        $row['robot'] = "robot";
+        $row['telegram'] = "telegram";
+        $row['wechat'] = "wechat";
+
+        $this->assign("row", $row);
         return $this->view->fetch();
     }
 
@@ -261,6 +272,14 @@ class User extends Frontend
                     $uc = new \addons\ucenter\library\client\Client();
                     $synchtml = $uc->uc_user_synlogout();
                 }
+
+                //发送注册成功邮件
+                $email = new Email;
+                $result = $email
+                        ->to($receiver)
+                        ->subject(__("This is a test mail"))
+                        ->message('<div style="min-height:550px; padding: 100px 55px 200px;">' . __('This is a test mail content') . '</div>')
+                        ->send();
                 $this->success(__('Reset password successful') . $synchtml, url('user/login'));
             }
             else

@@ -132,7 +132,7 @@
 					<div class="buy_ct_body">
 						{:__('Standard Service')}
 
-						<div class="buy_button" id="buy_btn_1">
+						<div class="buy_button" id="buy_btn_1"  data-id="1">
 							{:__('Buy Now')}
 						</div>
 					</div>
@@ -147,7 +147,7 @@
 					<div class="buy_ct_body">
 						{:__('Senior Service')}
 
-						<div class="buy_button" id="buy_btn_2">
+						<div class="buy_button" id="buy_btn_2" data-id="2">
 							{:__('Buy Now')}
 						</div>
 					</div>
@@ -200,14 +200,15 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 					<div class="pdl weight mt1">
 						Method of payment
 					</div>
-					<div class="form-check pdl mt1">
-						<input type="checkbox" class="form-check-input" id="exampleCheck1">
+					<div class="form-check pdl">
+						<!-- <input type="radio" name="sex" value="male" checked>Male -->
+						<input type="radio" checked name="wallet" value="btc" class="form-check-input wallet_check" id="exampleCheck1">
 						<label class="form-check-label" for="exampleCheck1">
 							Wallet transfer, support equivalent BTC.
 						</label>
 					</div>
 					<div class="form-check pdl">
-						<input type="checkbox" class="form-check-input" id="exampleCheck2">
+						<input type="radio" name="wallet" value="eth" class="form-check-input wallet_check" id="exampleCheck2">
 						<label class="form-check-label" for="exampleCheck2">
 							Wallet transfer, support equivalent ETH.
 						</label>
@@ -238,7 +239,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 						Method of payment
 					</div>
 					<div class="form-check pdl">
-						<input type="checkbox" class="form-check-input" id="exampleCheck3">
+						<input type="radio" checked class="form-check-input" id="exampleCheck3">
 						<label class="form-check-label" for="exampleCheck3">
 							Wallet transfer, support equivalent BTH.
 						</label>
@@ -247,9 +248,21 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 						<div class="order_line">
 						</div>
 					</div>
-					<div class="pdl mt1">
-						Please transfer to the following wallet address 1.0BTH
+					<div class="pdl mt1 transfer_address">
+						<!-- Please transfer to the following wallet address 1.0BTH -->
 					</div>
+
+					<div class="pdl mt1" style="background:#9e9f9f;color:#fff">
+						BTC:SSSADASDA1231231SACXZC-QW123131321
+					</div>
+					<div style="text-align: center;">
+						<div class="buy_button" style="position:static;margin:2rem auto;" id="order_config_copy">
+							Copy The Address
+						</div>
+					</div>
+
+
+
 					<div style="text-align: center;">
 						<div class="buy_button" style="position:static;margin:2rem auto;" id="order_config_btn2">
 							Successful transfer
@@ -315,8 +328,17 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 {include file="common/footer" /}
 {include file="common/scripts" /}
 <script>
+	var chat_id = 0;
 	$('#order_config_btn1').click(function() {
 		//$('#order_ct4').show();
+		//获取选择的钱包
+		//alert($("input[name='sex'][checked]").val())
+
+		var wallet = $("input[name='wallet']:checked").val();
+		alert(chat_id)
+// 		transfer_address
+// Please transfer to the following wallet address 1.0BTH
+		$('.transfer_address').text("Please transfer to the following wallet address 1.0"+wallet)
 		$('#order_ct1').hide();
 		$('#order_ct2').show();
 	});
@@ -331,14 +353,22 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 
 		$('#order_ct3').hide();
 		//跳转订单成功页面
+		//window.location.href="{:url('/index/user/login')}"
 	});
 
 	$('#buy_btn_2,#buy_btn_1').click(function() {
-		// $('#order_ct1').show();
-		// $('#order_ct2').hide();
-		// $('#order_ct3').hide();
-		$('#order_ct1').hide();
-		$('#order_ct4').show();
+		var userInfo = <?php echo json_encode($_COOKIE)?>;
+		if (userInfo['uid'] == "undefined" || userInfo['uid'] == undefined) {
+			window.location.href="{:url('/index/user/login')}"
+			return false;
+		}
+		//alert($(this).attr("data-id"))
+		chat_id = $(this).attr("data-id")
+		$('#order_ct1').show();
+		$('#order_ct2').hide();
+		$('#order_ct3').hide();
+		// $('#order_ct1').hide();
+		// $('#order_ct4').show();
 		$('#exampleModalLong').modal({});
 	});
 </script>

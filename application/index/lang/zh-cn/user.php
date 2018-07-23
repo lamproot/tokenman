@@ -63,4 +63,7 @@ return [
     'Change password failure'               => '修改密码失败',
     'Change password successful'            => '修改密码成功',
     'Order index'                       => '订单管理',
+    'Project name' => "项目名称",
+    'Name of tokens' => "Tokens 名称"
+
 ];

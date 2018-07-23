@@ -8,21 +8,23 @@
                 <div class="panel-body">
                     <h2 class="page-header">{:__('User center')}</h2>
                     <div class="row user-baseinfo">
-                        <div class="col-md-3 col-sm-3 col-xs-2 text-center user-center">
+                        <!-- <div class="col-md-3 col-sm-3 col-xs-2 text-center user-center">
                             <a href="{:url('user/profile')}" title="{:__('Click to edit')}">
                                 <span class="avatar-img"><img src="{$user.avatar}" alt=""></span>
                             </a>
-                        </div>
-                        <div class="col-md-7 col-sm-7 col-xs-10">
+                        </div> -->
+                        <div class="col-md-6 col-sm-7 col-xs-10">
                             <!-- Content -->
                             <div class="ui-content">
                                 <!-- Heading -->
                                 <h4><a href="{:url('user/profile')}">{$user.username}</a></h4>
                                 <!-- Paragraph -->
-                                <p><a href="{:url('user/profile')}">{$user.bio|default=__("This guy hasn't written anything yet")}</a></p>
+                                <p><a href="{:url('user/profile')}">{$user.bio|default=__("Welcome Use TokenMan")}</a></p>
+
+                                <!-- <p><a href="{:url('user/profile')}">{$user.bio|default=__("Welcome Use TokenMan")}</a></p> -->
                                 <!-- Success -->
-                                <div style="margin-top:15px;">
-                                    <table class="table">	
+                                <!-- <div style="margin-top:15px;">
+                                    <table class="table">
                                         <tbody><tr>
                                                 <th>{:__('Lv')}</th>
                                                 <td><a href="javascript:;" class="viewlv">{$user.level}</a></td>
@@ -42,13 +44,18 @@
                                                 <td>{$user.prevtime|date="Y-m-d H:i:s",###}</td>
                                             </tr>
                                         </tbody></table>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
-                        <div class="col-md-2 col-sm-2 col-xs-0 col-pad">
-                            <a href="{:url('user/profile')}" class="btn btn-success hidden-xs"><i class="fa fa-pencil"></i> {:__('Profile')}</a>	
-                        </div>
+
                     </div>
+
+                    <div class="col-md-12 col-sm-2 col-xs-0 col-pad">
+                        <a style="margin-right:10px;" href="{:url('user/profile')}" class="btn btn-success hidden-xs"><i class="fa fa-pencil"></i> {:__('Profile')}</a>
+                        <a style="margin-right:10px;" href="{:url('/admin/index/login')}" target="_blank" class="btn btn-success hidden-xs"><i class="fa fa-android"></i>  {:__('TokenMan AI')}</a>
+                        <a href="{:url('contactus/index')}" target="_blank"  class="btn btn-success hidden-xs"><i class="fa fa-wechat"></i> {:__('Contactus')}</a>
+                    </div>
+
                 </div>
             </div>
         </div>
