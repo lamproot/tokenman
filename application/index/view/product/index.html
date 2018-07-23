@@ -233,7 +233,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 				<div class="modal-body" style="">
 					<div class="order_title">
 						<img src="__CDN__/home/images/order_user_icon.png" />
-						Standard account 0.5BTC/YEAR
+						Standard account <span class="product_price"></span>/YEAR
 					</div>
 					<div class="pdl weight mt1">
 						Method of payment
@@ -241,7 +241,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 					<div class="form-check pdl">
 						<input type="radio" checked class="form-check-input" id="exampleCheck3">
 						<label class="form-check-label" for="exampleCheck3">
-							Wallet transfer, support equivalent BTH.
+							Wallet transfer, support equivalent <span class="product_price_unit"></span>.
 						</label>
 					</div>
 					<div class="pdl mt1" style="margin-right:2rem;">
@@ -256,9 +256,12 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 						BTC:SSSADASDA1231231SACXZC-QW123131321
 					</div>
 					<div style="text-align: center;">
-						<div class="buy_button" style="position:static;margin:2rem auto;" id="order_config_copy">
+						<!-- <div class="buy_button" style="position:static;margin:2rem auto;" id="order_config_copy">
 							Copy The Address
-						</div>
+						</div> -->
+
+						<input class="buy_button address border-radius text-center" value="BTC:SSSADASDA1231231SACXZC-QW123131321" style="opacity:0;"/>
+                    	<a href="javascript:void(0);" class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".address" style="cursor: pointer;">Copy The Address</a>
 					</div>
 
 
@@ -327,24 +330,44 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 </div>
 {include file="common/footer" /}
 {include file="common/scripts" /}
+<script type="text/javascript" src="http://m.name-technology.fun/Public/telegram/clipboard.js">
+<script type="text/javascript" src="http://m.name-technology.fun/Public/telegram/layer.js">
+
+
+</script>
 <script>
-	var chat_id = 0;
+	var product_id = 0;
+	var wallet = 0;
 	$('#order_config_btn1').click(function() {
 		//$('#order_ct4').show();
 		//获取选择的钱包
 		//alert($("input[name='sex'][checked]").val())
+		wallet = $("input[name='wallet']:checked").val();
 
-		var wallet = $("input[name='wallet']:checked").val();
-		alert(chat_id)
+		if (product_id == 1) {
+			price = "0.5"
+		}
+
+		if (product_id == 2) {
+			price = "1"
+		}
+		$(".product_price").text( price + wallet)
+		$(".product_price_unit").text(wallet)
+
+		//alert(product_id)
 // 		transfer_address
 // Please transfer to the following wallet address 1.0BTH
-		$('.transfer_address').text("Please transfer to the following wallet address 1.0"+wallet)
+		$('.transfer_address').text("Please transfer to the following wallet address " + price + wallet)
 		$('#order_ct1').hide();
 		$('#order_ct2').show();
 	});
 
 	$('#order_config_btn2').click(function() {
+		//进行下单操作
+		//alert(123123)
 
+		alert(product_id)
+		alert(wallet)
 		$('#order_ct2').hide();
 		$('#order_ct3').show();
 	});
@@ -363,12 +386,30 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 			return false;
 		}
 		//alert($(this).attr("data-id"))
-		chat_id = $(this).attr("data-id")
+		product_id = $(this).attr("data-id")
 		$('#order_ct1').show();
 		$('#order_ct2').hide();
 		$('#order_ct3').hide();
 		// $('#order_ct1').hide();
 		// $('#order_ct4').show();
 		$('#exampleModalLong').modal({});
+	});
+
+	var clipboard = new Clipboard('.copy-btn');
+
+	clipboard.on('success', function(e) {
+	    // layer.msg("复制成功!", {
+	    //     shade: [0.8, '#000'],
+	    //     time: 1000
+	    // });
+		alert("复制成功")
+	});
+
+	clipboard.on('error', function(e) {
+	    // layer.msg("请选择“拷贝”进行复制!", {
+	    //     shade: [0.8, '#000'],
+	    //     time: 1000
+	    // });、
+		alert("请选择“拷贝”进行复制!")
 	});
 </script>
