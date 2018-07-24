@@ -8,7 +8,6 @@ use think\Hook;
 use think\Session;
 use think\Validate;
 use app\common\library\Email;
-use app\common\model\Order;
 
 /**
  * 会员中心

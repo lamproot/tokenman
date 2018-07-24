@@ -31,10 +31,10 @@ return array (
   'mail_type' => '1',
   'mail_smtp_host' => 'smtp.gmail.com',
   'mail_smtp_port' => '465',
-  'mail_smtp_user' => 'quanboxiong@gmail.com',
-  'mail_smtp_pass' => 'lamproot',
+  'mail_smtp_user' => 'contact@if1989.com',
+  'mail_smtp_pass' => 'admin1989.com',
   'mail_verify_type' => '2',
-  'mail_from' => 'quanboxiong@gmail.com',
+  'mail_from' => 'contact@if1989.com',
   'index_banner' =>
   array (
     0 => 'http://m.name-technology.fun:8030//../../Uploads/20180623/803bb46a6acef395ed9353de2dcf26f5.gif',

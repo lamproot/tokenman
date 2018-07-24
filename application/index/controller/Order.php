@@ -7,6 +7,8 @@ use think\Hook;
 use think\Session;
 use think\Validate;
 use app\common\library\Email;
+
+
 /**
  * 会员中心
  */
@@ -19,6 +21,7 @@ class Order extends Frontend
     public function _initialize()
     {
         parent::_initialize();
+        $this->model = model('Order');
     }
 
     /**
@@ -45,22 +48,18 @@ class Order extends Frontend
     /**
      * 确认下单
      *
-     * @param string    $email      邮箱
-     * @param string    $event      事件名称
-     * @param string    $captcha    验证码
      */
     public function confirm()
     {
-        if ($this->request->isPost())
+        if ($this->request->isGet())
         {
-            $user->product_id = $this->request->request('product_id');
-            $user->product_id = $this->request->request('product_id');
-            
-            $user->wechat = $this->request->request('wechat');
-            $user->save();
-            $this->redirect('completeinfo/mail');
+            $params['product_id'] = $this->request->request('product_id') ? $this->request->request('product_id') : 0;
+            $params['wallet'] = $this->request->request('wallet') ? $this->request->request('wallet') : 0;
+            $params['uid'] = $_COOKIE['uid'] ? $_COOKIE['uid'] : 0;
+            $create = $this->model->create($params);
+            echo json_encode(array("code" => 0, "msg" => "下单成功"));exit;
         }
-        echo json_encode(array("code" => 0, "msg" => "下单成功"));exit;
+
     }
 
 }

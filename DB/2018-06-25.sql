@@ -75,12 +75,11 @@ CREATE TABLE `fa_orders` (
   `uid` int(10) NOT NULL,
   `product_id` int(10) NOT NULL DEFAULT 0 COMMENT '产品ID',
   `wallet` varchar(255) NOT NULL DEFAULT "" COMMENT '钱包地址',
-  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '订单状态',
-  `content` text() COMMENT '订单备注',
+  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '订单状态 0-等待付款 1-已付款未发货 2-订单完成 ',
+  `content` text COMMENT '订单备注',
   `created_at` int(10) DEFAULT NULL,
   `updated_at` int(10) DEFAULT NULL,
   PRIMARY KEY (`id`),
-  INDEX(chat_bot_id),
-  INDEX(chat_id),
-  INDEX(type)
+  INDEX(product_id),
+  INDEX(status)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
