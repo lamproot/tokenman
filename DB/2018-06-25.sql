@@ -79,6 +79,7 @@ CREATE TABLE `fa_orders` (
   `content` text COMMENT '订单备注',
   `created_at` int(10) DEFAULT NULL,
   `updated_at` int(10) DEFAULT NULL,
+  `order_code` varchar(255) NOT NULL DEFAULT "" COMMENT '订单号',
   PRIMARY KEY (`id`),
   INDEX(product_id),
   INDEX(status)

@@ -175,7 +175,6 @@ class Email
                 {
                     $this->setError($e->getMessage());
                 }
-var_dump($this->mail->ErrorInfo);exit;
                 $this->setError($result ? '' : $this->mail->ErrorInfo);
                 break;
             case 2:
