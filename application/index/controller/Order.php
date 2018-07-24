@@ -10,7 +10,7 @@ use app\common\library\Email;
 /**
  * 会员中心
  */
-class Completeinfo extends Frontend
+class Order extends Frontend
 {
 
     protected $layout = 'common';
@@ -43,10 +43,24 @@ class Completeinfo extends Frontend
     }
 
     /**
+     * 确认下单
      *
+     * @param string    $email      邮箱
+     * @param string    $event      事件名称
+     * @param string    $captcha    验证码
      */
-    public function mail()
+    public function confirm()
     {
-        return $this->view->fetch();
+        if ($this->request->isPost())
+        {
+            $user->product_id = $this->request->request('product_id');
+            $user->product_id = $this->request->request('product_id');
+            
+            $user->wechat = $this->request->request('wechat');
+            $user->save();
+            $this->redirect('completeinfo/mail');
+        }
+        echo json_encode(array("code" => 0, "msg" => "下单成功"));exit;
     }
+
 }

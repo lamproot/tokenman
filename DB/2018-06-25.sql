@@ -65,3 +65,22 @@ ALTER TABLE chat_bot ADD stoped_at int(10) NOT NULL DEFAULT 0 COMMENT "机器人
 
 
 ALTER TABLE group_activity ADD en_activity_end_text text NOT NULL DEFAULT "" COMMENT "活动结束英文文案";
+
+
+
+
+DROP TABLE IF EXISTS `fa_orders`;
+CREATE TABLE `fa_orders` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `uid` int(10) NOT NULL,
+  `product_id` int(10) NOT NULL DEFAULT 0 COMMENT '产品ID',
+  `wallet` varchar(255) NOT NULL DEFAULT "" COMMENT '钱包地址',
+  `status` tinyint(4) NOT NULL DEFAULT 0 COMMENT '订单状态',
+  `content` text() COMMENT '订单备注',
+  `created_at` int(10) DEFAULT NULL,
+  `updated_at` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  INDEX(chat_bot_id),
+  INDEX(chat_id),
+  INDEX(type)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

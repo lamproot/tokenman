@@ -149,6 +149,7 @@ class Email
      */
     public function send()
     {
+        //echo json_encode($this->mail);exit;
         $result = false;
         switch ($this->options['mail_type'])
         {
@@ -167,13 +168,13 @@ class Email
                 }
                 try
                 {
+                    //echo json_encode($this->mail);exit;
                     $result = $this->mail->send();
                 }
                 catch (\phpmailerException $e)
                 {
                     $this->setError($e->getMessage());
                 }
-
                 $this->setError($result ? '' : $this->mail->ErrorInfo);
                 break;
             case 2:

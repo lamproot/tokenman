@@ -29,7 +29,7 @@ class Ajax extends Frontend
         $result = 'define(' . json_encode(Lang::get(), JSON_FORCE_OBJECT | JSON_UNESCAPED_UNICODE) . ');';
         return $result;
     }
-    
+
     /**
      * 上传文件
      */
@@ -37,5 +37,12 @@ class Ajax extends Frontend
     {
         return action('api/common/upload');
     }
+
+    public function confirm()
+    {
+        $this->success(__('成功'));exit;
+    }
+
+
 
 }
