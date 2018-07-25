@@ -252,24 +252,24 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 						<!-- Please transfer to the following wallet address 1.0BTH -->
 					</div>
 
-					<div class="pdl mt1" style="background:#9e9f9f;color:#fff">
-						BTC:SSSADASDA1231231SACXZC-QW123131321
+					<div class="pdl mt1 wallet_address" style="background:#9e9f9f;color:#fff">
+						BTC:38h1VJyVLZUKSZUK1Qx1hSkJLEQRg3x3uD
 					</div>
 					<div style="text-align: center;">
 						<!-- <div class="buy_button" style="position:static;margin:2rem auto;" id="order_config_copy">
 							Copy The Address
 						</div> -->
 
-						<input class="buy_button address border-radius text-center" value="BTC:SSSADASDA1231231SACXZC-QW123131321" style="opacity:0;"/>
+						<input class="buy_button address border-radius text-center wallet_address_input" value="BTC:38h1VJyVLZUKSZUK1Qx1hSkJLEQRg3x3uD" style="opacity:0;"/>
                     	<a href="javascript:void(0);" class="copy text-center copy-btn" data-clipboard-action="copy" data-clipboard-target=".address" style="cursor: pointer;">Copy The Address</a>
 					</div>
 
 
 
 					<div style="text-align: center;">
-						<div class="buy_button" style="position:static;margin:2rem auto;" id="order_config_btn2">
-							Successful transfer
-						</div>
+						<a class="buy_button" style="position:static;color:#fff;margin-top:10px;" id="order_config_btn2">
+							Successful Transfer
+						</a>
 					</div>
 				</div>
 			</div>
@@ -352,13 +352,25 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 		if (product_id == 2) {
 			price = "1"
 		}
-		
+
 		$(".product_price").text( price + wallet)
 		$(".product_price_unit").text(wallet)
 
 		//alert(product_id)
 		// 		transfer_address
 		// Please transfer to the following wallet address 1.0BTH
+		if (wallet == "btc") {
+
+			$(".wallet_address").text("BTC:38h1VJyVLZUKSZUK1Qx1hSkJLEQRg3x3uD");
+			$(".wallet_address_input").val("BTC:38h1VJyVLZUKSZUK1Qx1hSkJLEQRg3x3uD");
+
+		}
+
+		if (wallet == "eth") {
+			$(".wallet_address").text("0x3d55aac3325875c97c6149f617894b20e02b843c");
+			$(".wallet_address_input").val("ETH:0x3d55aac3325875c97c6149f617894b20e02b843c");
+		}
+
 
 
 		$('.transfer_address').text("Please transfer to the following wallet address " + price + wallet)
@@ -373,14 +385,14 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 	           url: "{:url('order/confirm')}",
 	           data: "product_id="+product_id+"&wallet="+wallet,
 	           success: function (data) {
-	                              var result  = JSON.parse(data)
-	               if (result.code === 0) {
-	                                      $('#order_ct2').hide();
-	                                      $('#order_ct3').show();
-	               }else{
-	                                      alert("Order fail~");
-	                                      return false;
-	                              }
+					var result  = JSON.parse(data)
+					if (result.code === 0) {
+						$('#order_ct2').hide();
+						$('#order_ct3').show();
+					}else{
+						alert("Order fail~");
+						return false;
+					}
 	           }
 
 	       })
