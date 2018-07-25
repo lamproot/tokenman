@@ -359,6 +359,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 		// 		transfer_address
 		// Please transfer to the following wallet address 1.0BTH
 
+
 		$('.transfer_address').text("Please transfer to the following wallet address " + price + wallet)
 		$('#order_ct1').hide();
 		$('#order_ct2').show();
@@ -366,35 +367,29 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 
 	$('#order_config_btn2').click(function() {
 		//进行下单操作
-		//alert(123123)
+		 $.ajax({
+	           type: "POST",
+	           url: "{:url('order/confirm')}",
+	           data: "product_id="+product_id+"&wallet="+wallet,
+	           success: function (data) {
+	                              var result  = JSON.parse(data)
+	               if (result.code === 0) {
+	                                      $('#order_ct2').hide();
+	                                      $('#order_ct3').show();
+	               }else{
+	                                      alert("Order fail~");
+	                                      return false;
+	                              }
+	           }
 
-		// alert(product_id)
-		// alert(wallet)
-		$.ajax({
-            type: "POST",
-            url: "{:url('order/confirm')}",
-            data: "product_id="+product_id+"&wallet="+wallet,
-            success: function (data) {
-				var result  = JSON.parse(data)
-                if (result.code === 0) {
-					$('#order_ct2').hide();
-					$('#order_ct3').show();
-                }else{
-					alert("Order fail~");
-					return false;
-				}
-            }
-
-        })
-
+	       })
 	});
 
 	$('#order_config_btn3').click(function() {
 
 		$('#order_ct3').hide();
-		alert("Order has been submitted");
 		//跳转订单成功页面
-		//window.location.href="{:url('/index/user/login')}"
+		window.location.href="{:url('user/orderindex')}"
 	});
 
 	$('#buy_btn_2,#buy_btn_1').click(function() {

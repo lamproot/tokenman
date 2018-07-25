@@ -48,6 +48,8 @@ class User extends Frontend
             Cookie::delete('uid');
             Cookie::delete('token');
         });
+
+        $this->ordermodel = model('Order');
     }
 
     /**
@@ -118,6 +120,7 @@ class User extends Frontend
                     $synchtml = $uc->uc_user_synregister($this->auth->id, $password);
                 }
 
+                fastcgi_finish_request();
                 //发送注册成功邮件
                 $this->sendRegisterMail($email);
                 //注册成功之后跳转地址
@@ -297,6 +300,44 @@ class User extends Frontend
     public function orderindex()
     {
         $this->view->assign('title', __('Order index'));
+        //获取用户订单数据
+        $list = $this->ordermodel
+                ->where('uid', '=', $_COOKIE['uid'])
+                ->order(array("id" => "desc"))
+                ->select();
+
+        foreach ($list as $key => $value) {
+            $product_id_text = "";
+            if ($value['product_id'] == 1) {
+                $product_id_text = "普通账户";
+            }
+
+            if ($value['product_id'] == 2) {
+                $product_id_text = "高级账户";
+            }
+
+            $status_text = "";
+            if ($value['status'] == 0) {
+                $status_text = "等待付款";
+            }
+
+            if ($value['status'] == 1) {
+                $status_text = "已付款";
+            }
+
+            if ($value['status'] == 2) {
+                $status_text = "已完成";
+            }
+
+            if ($value['status'] == -1) {
+                $status_text = "已取消";
+            }
+
+            $list[$key]['product_id_text'] = $product_id_text;
+            $list[$key]['status_text'] = $status_text;
+            $list[$key]['created_at'] = date("Y-m-d H:i:s", $list[$key]['created_at']);
+        }
+        $this->view->assign('list', $list);
         return $this->view->fetch();
     }
 
