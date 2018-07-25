@@ -32,8 +32,8 @@
                                                 <td>{$vo['status_text']}</td>
                                                 <td>{$vo['created_at']}</td>
                                                 <td>
-                                                    <!-- <a href="javascript:;" class="viewscore">去付款</a> -->
-                                                    <a href="https://t.me/Vivi1996" target="_blank" class="viewscore">联系客服</a>
+                                                    <a href="javascript:;" class="btn btn-info"  data-toggle="modal" data-target="#modal-default">{:__('Pay')}</a>
+                                                    <a href="https://t.me/Vivi1996" target="_blank" class="btn btn-info">{:__('Customer')}</a>
                                                 </td>
 
                                             </tr>
@@ -49,3 +49,47 @@
         </div>
     </div>
 </div>
+
+<div class="modal fade" id="modal-default">
+         <div class="modal-dialog">
+           <div class="modal-content">
+             <div class="modal-header">
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                 <span aria-hidden="true">&times;</span></button>
+               <h4 class="modal-title"> <p>{:__('Pay Type')}</p></h4>
+             </div>
+             <div class="modal-body">
+               <p>{:__('Pay Type')}</p>
+               <p class="text-yellow">
+                   普通账户  0.5BTC/等价值ETH
+                   超级账户  1BTC/等价值ETH
+               </p>
+               <dl>
+
+                 <dt>BTC:</dt>
+                 <dd>38h1VJyVLZUKSZUK1Qx1hSkJLEQRg3x3uD</dd>
+                 <dt>ETH:</dt>
+                 <dd>0x3d55aac3325875c97c6149f617894b20e02b843c</dd>
+
+               </dl>
+               <p>请在支付后 点击已支付 以下为相关条款</p>
+               <p><a style="margin-right:1rem;" target="_blank" href="{:url('service/privacy')}">
+                   @{:__('Privacy Policy')}
+               </a>
+               <a style="margin-right:1rem;" target="_blank" href="{:url('service/intellectual')}">
+                   @{:__('Intellectual Property Rights Policy')}
+               </a>
+               <a style="margin-right:1rem;" target="_blank" href="{:url('service/tems')}">
+                   @{:__('Tems Of Service')}
+               </a></p>
+             </div>
+             <div class="modal-footer">
+               <button type="button" class="btn btn-default pull-left" data-dismiss="modal">{:__('Close')}</button>
+               <button type="button" class="btn btn-info">{:__('OKPay')}</button>
+             </div>
+           </div>
+           <!-- /.modal-content -->
+         </div>
+         <!-- /.modal-dialog -->
+       </div>
+       <!-- /.modal -->

@@ -71,7 +71,7 @@ class User extends Frontend
             $this->success(__('You\'ve logged in, do not login again'), $url);
         if ($this->request->isPost())
         {
-            $username = $this->request->post('username');
+            $username = $this->request->post('email');
             $password = $this->request->post('password');
             $email = $this->request->post('email');
             $mobile = $this->request->post('mobile', '');

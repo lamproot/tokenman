@@ -117,11 +117,16 @@ return [
     'Contact Us' => '联系我们',
     'Login' => '登录',
     'Register' => '注册',
-    'Add：Urwork，Floors，NO.C3,JiuxianqiaoRoad，Chaoyang District,Beijing' => 'Add：Urwork，Floors，NO.C3,JiuxianqiaoRoad，Chaoyang District,Beijing',
+    'Add：Urwork，Floors，NO.C3,JiuxianqiaoRoad，Chaoyang District,Beijing' => '地址：北京市朝阳区酒仙桥路兆维工业园区C3栋二楼优客工场IF COMMUNICATION',
     'Privacy Policy' => '隐私政策',
     'Intellectual Property Rights Policy' => '知识产权政策',
     'Tems of service' => '服务条款',
     'Customer' => '商户后台',
     'UserInfo' => '个人中心',
-    'Refer' => '返回'
+    'Refer' => '返回',
+    'Pay' => '支付',
+    'Customer' => '联系客服',
+    'Pay Type' => '支付方式',
+    'OKPay' => '已付款',
+    'Enter By Backstage' => 'TokenMan后台'
 ];
