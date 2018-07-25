@@ -119,8 +119,6 @@ class User extends Frontend
                     $uc = new \addons\ucenter\library\client\Client();
                     $synchtml = $uc->uc_user_synregister($this->auth->id, $password);
                 }
-
-                fastcgi_finish_request();
                 //发送注册成功邮件
                 $this->sendRegisterMail($email);
                 //注册成功之后跳转地址
