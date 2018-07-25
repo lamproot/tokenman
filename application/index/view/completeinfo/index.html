@@ -43,27 +43,27 @@
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-sm-3">{:__('Nickname')}:</label>
                             <div class="col-xs-12 col-sm-7">
-                                <input type="text" class="form-control" id="nickname" name="nickname" value="{$user.nickname}" data-rule="required" placeholder="">
+                                <input type="text" class="form-control" id="nickname" name="nickname" value="{$user.nickname}" data-rule="required" placeholder="{:__('用户名')}">
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-sm-3">{:__('Project name')}:</label>
                             <div class="col-xs-12 col-sm-7">
-                                <input type="text" class="form-control" id="project_name" name="project_name" value="{$row.project_name}" data-rule="required" placeholder="Your project name or your team, company name">
+                                <input type="text" class="form-control" id="project_name" name="project_name" value="{$row.project_name}" data-rule="required" placeholder="{:__('Your project name or your team, company name')}">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-sm-3">{:__('Name of tokens')}:</label>
                             <div class="col-xs-12 col-sm-7">
-                                <input type="text" class="form-control" id="name_token" name="name_token" value="{$row.name_token}" data-rule="required" placeholder="Such as BTC">
+                                <input type="text" class="form-control" id="name_token" name="name_token" value="{$row.name_token}" data-rule="required" placeholder="{:__('Such as BTC')}">
                             </div>
                         </div>
 
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-sm-3">{:__('Robot ID')}:</label>
                             <div class="col-xs-12 col-sm-7">
-                                <input type="text" class="form-control" id="robot" name="robot" value="{$row.robot}" data-rule="required" placeholder="The Robot ID you want">
+                                <input type="text" class="form-control" id="robot" name="robot" value="{$row.robot}" data-rule="required" placeholder="{:__('The Robot ID you want')}">
                             </div>
                         </div>
 
@@ -71,7 +71,7 @@
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-sm-3">{:__('Telegram')}:</label>
                             <div class="col-xs-12 col-sm-7">
-                                <input type="text" class="form-control" id="telegram" name="telegram" value="{$row.telegram}" data-rule="" placeholder="It's convenient for our customer service to contact you immediately">
+                                <input type="text" class="form-control" id="telegram" name="telegram" value="{$row.telegram}" data-rule="" placeholder="{:__('For costume service contacts you immediately')}">
                             </div>
                         </div>
 
@@ -79,7 +79,7 @@
                         <div class="form-group">
                             <label class="control-label col-xs-12 col-sm-3">{:__('Wechat')}:</label>
                             <div class="col-xs-12 col-sm-7">
-                                <input type="text" class="form-control" id="wechat" name="wechat" value="{$row.wechat}" data-rule="" placeholder="It's convenient for our customer service to contact you immediately">
+                                <input type="text" class="form-control" id="wechat" name="wechat" value="{$row.wechat}" data-rule="" placeholder="{:__('For costume service contacts you immediately')}">
                             </div>
                         </div>
 
@@ -141,7 +141,7 @@
                         <div class="form-group normal-footer">
                             <label class="control-label col-xs-12 col-sm-2"></label>
                             <div class="col-xs-12 col-sm-8">
-                                <button type="submit" class="btn btn-success btn-embossed">{:__('Ok')}</button>
+                                <button type="submit" class="btn btn-success btn-embossed">{:__('Submit')}</button>
                                 <button type="reset" class="btn btn-default btn-embossed">{:__('Reset')}</button>
                             </div>
                         </div>

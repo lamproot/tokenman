@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'Not Empty' => '不能为空',
     'Keep login'                                             => '保持会话',
     'Forgot password'                                        => '忘记密码?',
     'Sign in'                                                => '登入',
@@ -27,6 +28,7 @@ return [
     'Article'                                                => '文章',
     'Page'                                                   => '单页',
     'OK'                                                     => '确定',
+    'Confirm'=> '确定',
     'Cancel'                                                 => '取消',
     'Loading'                                                => '加载中',
     'More'                                                   => '更多',
@@ -100,7 +102,7 @@ return [
     'Go back'                                                => '返回首页',
     'Jump now'                                               => '立即跳转',
     'Please login first'                                     => '请登录后再操作',
-    'Send verification code'                                 => '发送验证码',
+    'Send a verification code'                                 => '发送验证码',
     'Redirect now'                                           => '立即跳转',
     'Operation completed'                                    => '操作成功!',
     'Operation failed'                                       => '操作失败!',
@@ -128,5 +130,21 @@ return [
     'Customer' => '联系客服',
     'Pay Type' => '支付方式',
     'OKPay' => '已付款',
-    'Enter By Backstage' => 'TokenMan后台'
+    'Enter By Backstage' => 'TokenMan后台',
+    'Please fill in the valid mailbox' => '请填写有效的邮箱',
+    'Password must be 6-30 characters' => '请填写6-16位字符，不能包含空格',
+    'VIP Zone' => "会员中心",
+    'Main' => "首页",
+    'Personal information' => "个人资料",
+    'Change your password' => "修改密码",
+    'Order Management' => "订单管理",
+    'Logout' => "注销",
+    'Change your password' => "修改密码",
+    'New password' => "新密码",
+    'Enter your new password again' => "确认新密码"
+    'Oder Num' => "订单号",
+    'Account Type' => "账户类型",
+    'Order state' => "订单状态",
+    'Order time' => "订单时间",
+    'Operation' => "操作"
 ];

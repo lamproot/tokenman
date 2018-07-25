@@ -33,7 +33,7 @@ return [
     'Mobile already exist'                  => '手机号已经存在',
     'Username is incorrect'                 => '用户名不正确',
     'Email is incorrect'                    => '邮箱不正确',
-    'Reset password'                        => '修改密码',
+    'Change your password'                        => '修改密码',
     'Reset password by email'               => '通过邮箱',
     'Reset password by mobile'              => '通过手机重置',
     'Account is locked'                     => '账户已经被锁定',
@@ -64,6 +64,11 @@ return [
     'Change password successful'            => '修改密码成功',
     'Order index'                       => '订单管理',
     'Project name' => "项目名称",
-    'Name of tokens' => "Tokens 名称"
-
+    'Name of tokens' => "Tokens 名称",
+    'Enter your Email address' => "邮箱",
+    'Enter your password' => "密码",
+    'Login now' => "登录",
+    'Remember the password' => "保持登录状态",
+    'Forget your password?' => "忘记密码?",
+    'Verification code' => "验证码"
 ];

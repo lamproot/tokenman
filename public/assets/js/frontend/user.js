@@ -37,7 +37,7 @@ define(['jquery', 'bootstrap', 'frontend', 'form', 'template'], function ($, und
                 var content = Template(id, {});
                 Layer.open({
                     type: 1,
-                    title: __('Reset password'),
+                    title: __('Change your password'),
                     area: ["450px", "355px"],
                     content: content,
                     success: function (layero) {

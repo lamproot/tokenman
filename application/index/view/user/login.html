@@ -17,31 +17,31 @@
     <div class="user-section login-section">
 
 
-        <div class="logon-tab clearfix"> <a class="active">{:__('Sign in')}</a> <a href="{:url('user/register')}">{:__('Sign up')}</a> </div>
+        <div class="logon-tab clearfix"> <a class="active">{:__('Login')}</a> <a href="{:url('user/register')}">{:__('Sign up')}</a> </div>
         <div class="login-main">
             <form name="form" id="login-form" class="form-vertical" method="POST" action="">
 
                 <div class="form-group">
                     <label class="control-label" for="account">{:__('Email')}</label>
                     <div class="controls">
-                        <input class="form-control input-lg" id="account" type="text" name="account" value="" data-rule="required" placeholder="{:__('Email')}" autocomplete="off">
+                        <input class="form-control input-lg" id="account" type="text" name="account" value="" data-rule="required" placeholder="{:__('Enter your Email address')}" autocomplete="off">
                         <div class="help-block"></div>
                     </div>
                 </div>
                 <div class="form-group">
                     <label class="control-label" for="password">{:__('Password')}</label>
                     <div class="controls">
-                        <input class="form-control input-lg" id="password" type="password" name="password" data-rule="required;password" placeholder="{:__('Password')}" autocomplete="off">
+                        <input class="form-control input-lg" id="password" type="password" name="password" data-rule="required;password" placeholder="{:__('Enter your password')}" autocomplete="off">
                     </div>
                 </div>
                 <div class="form-group">
                     <div class="controls">
-                        <input type="checkbox" name="keeplogin" checked="checked" value="1"> {:__('Keep login')}
-                        <div class="pull-right"><a href="javascript:;" class="btn-forgot">{:__('Forgot password')}</a></div>
+                        <input type="checkbox" name="keeplogin" checked="checked" value="1"> {:__('Remember the password')}
+                        <div class="pull-right"><a href="javascript:;" class="btn-forgot">{:__('Forget your password?')}</a></div>
                     </div>
                 </div>
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">{:__('Sign in')}</button>
+                    <button type="submit" class="btn btn-primary btn-lg btn-block">{:__('Login now')}</button>
                 </div>
             </form>
 
@@ -52,7 +52,7 @@
     <form id="resetpwd-form" class="form-horizontal form-layer" method="POST" action="{:url('api/user/resetpwd')}">
         <div class="form-body">
             <input type="hidden" name="action" value="resetpwd" />
-            <div class="form-group">
+            <div class="form-group" style="display:none">
                 <label for="" class="control-label col-xs-12 col-sm-3">{:__('Type')}:</label>
                 <div class="col-xs-12 col-sm-8">
                     <div class="radio">
@@ -81,7 +81,7 @@
                     <div class="input-group">
                         <input type="text" name="captcha" class="form-control" data-rule="required;length(4);integer[+];remote({:url('api/validate/check_ems_correct')}, event=resetpwd, email:#email)" />
                         <span class="input-group-btn" style="padding:0;border:none;">
-                            <a href="javascript:;" class="btn btn-info btn-captcha" data-url="{:url('api/ems/send')}" data-type="email" data-event="resetpwd">{:__('Send verification code')}</a>
+                            <a href="javascript:;" class="btn btn-info btn-captcha" data-url="{:url('api/ems/send')}" data-type="email" data-event="resetpwd">{:__('Send a verification code')}</a>
                         </span>
                     </div>
                     <span class="msg-box"></span>
@@ -106,7 +106,7 @@
         <div class="form-group form-footer">
             <label class="control-label col-xs-12 col-sm-3"></label>
             <div class="col-xs-12 col-sm-8">
-                <button type="submit" class="btn btn-md btn-info">{:__('Ok')}</button>
+                <button type="submit" class="btn btn-md btn-info">{:__('Confirm')}</button>
             </div>
         </div>
     </form>
