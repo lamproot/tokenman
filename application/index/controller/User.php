@@ -349,7 +349,7 @@ class User extends Frontend
             <span><strong>YOUR TokenMan Account CONFIRMATION</strong></span>
         </p>
         <p>
-            <span>Thank you for signing up with TokenMan account. You&#39;re one step closer to completing the setup. For security purposes, please click </span><span><strong>here</strong></span><span> to confirm your account.Your TokenMan account is:</span><span>'.$text['account'].'</span>
+            <span>Thank you for signing up with TokenMan account. You&#39;re one step closer to completing the setup. Your TokenMan account is:</span><span>'.$text['account'].'</span>
         </p>
         <p>
             <span>If the link above doesn&#39;t work, please copy and paste the URL below in a new browser window to complete the setup.</span>
@@ -401,7 +401,7 @@ class User extends Frontend
             <span><strong>您的TokenMan账户已激活</strong></span>
         </p>
         <p>
-            <span>感谢您激活TokenMan账户。您离完成设置又近了一步。为安全起见，请点击</span><span><strong>此处</strong></span><span>激活您的账户。TokenMan账号：</span><span>'.$text['account'].'</span>
+            <span>感谢您激活TokenMan账户。您离完成设置又近了一步。TokenMan账号：</span><span>'.$text['account'].'</span>
         </p>
         <p>
             <span>TokenMan账户团队</span>
