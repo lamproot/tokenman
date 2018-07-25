@@ -173,7 +173,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 				<div class="modal-body">
 					<div class="order_title">
 						<img src="__CDN__/home/images/order_user_icon.png" />
-						Standard account 0.5BTC/YEAR
+						Standard account <span class="product_price"></span>/YEAR
 					</div>
 					<div class="pdl weight">
 						Service
@@ -183,15 +183,13 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 						</div>
 					</div>
 					<div class="pdl mt1">
-						Functions and Permissions
-						<br/>
-						Release information
-						<br/>
-						Up to 15 interaction replies
-						<br/>
-						the Airdrop Reward activity
-						<br/>
-						Anti-spam function
+						<div class="order_line_content_1">
+							{:__('Standard Service')}
+
+						</div>
+						<div class="order_line_content_2">
+								{:__('Senior Service')}
+						</div>
 					</div>
 					<div class="pdl mt1" style="margin-right:2rem;">
 						<div class="order_line">
@@ -350,7 +348,7 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 		}
 
 		if (product_id == 2) {
-			price = "1"
+			price = "1.0"
 		}
 
 		$(".product_price").text( price + wallet)
@@ -413,6 +411,21 @@ aria-labelledby="exampleModalLongTitle" aria-hidden="true">
 		}
 		//alert($(this).attr("data-id"))
 		product_id = $(this).attr("data-id")
+
+		if (product_id == 1) {
+			price = "0.5"
+			$(".order_line_content_1").show();
+			$(".order_line_content_2").hide();
+		}
+
+		if (product_id == 2) {
+			price = "1.0"
+			$(".order_line_content_1").hide();
+			$(".order_line_content_2").show();
+		}
+
+		$(".product_price").text( price + "BTC")
+
 		$('#order_ct1').show();
 		$('#order_ct2').hide();
 		$('#order_ct3').hide();
