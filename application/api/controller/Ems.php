@@ -20,10 +20,74 @@ class Ems extends Api
         parent::_initialize();
         \think\Hook::add('ems_send', function($params) {
             $obj = \app\common\library\Email::instance();
+
+            $content = '<p class="p1">
+                <span class="s1"><strong>Your password has changed</strong></span>
+            </p>
+            <p class="p1">
+                <span class="s1">Hello Nick,</span>
+            </p>
+            <p class="p2">
+                <span class="s1">We wanted to let you know that your TokenMan account password had changed.</span>
+            </p>
+            <p class="p2">
+                <span class="s1">Your verification code is ：'.$params->code.'</span>
+            </p>
+            <p class="p2">
+                <span class="s1">Looking for other information please visit:</span>
+            </p>
+            <p class="p3">
+                <span class="s2"><a href="http://iamtokenman.com/">http://iamtokenman.com/</a></span><span class="s3"><span class="Apple-converted-space">&nbsp;</span></span>
+            </p>
+            <p class="p2">
+                <span class="s1">Please contact us for any supports:</span>
+            </p>
+            <p class="p4">
+                <span class="s2">http://iamtokenman.com/index/contactus/index.html</span>
+            </p>
+            <p class="p2">
+                <span class="s1">We will never ask for your password and suggest you do not share it with anyone.</span>
+            </p>
+            <p class="p5">
+                <span class="s1"></span><br/>
+            </p>
+            <p class="p1">
+                <span class="s1"><strong>验证您的TokenMan账户</strong></span>
+            </p>
+            <p class="p1">
+                <span class="s1">尊敬的Nick，</span>
+            </p>
+            <p class="p2">
+                <span class="s1">我们已收到您的密码找回请求。</span>
+            </p>
+            <p class="p2">
+                <span class="s1">你的验证码是：'.$params->code.'</span>
+            </p>
+            <p class="p5">
+                <span class="s1"></span><br/>
+            </p>
+            <p class="p2">
+                <span class="s1">如需更多信息，请访问：</span>
+            </p>
+            <p class="p3">
+                <span class="s2"><a href="http://iamtokenman.com/">http://iamtokenman.com/</a></span>
+            </p>
+            <p class="p2">
+                <span class="s1">如需技术支持，请联络我们：</span>
+            </p>
+            <p class="p4">
+                <span class="s2">http://iamtokenman.com/index/contactus/index.html</span>
+            </p>
+            <p class="p2">
+                <span class="s1">我们永远不会询问您的密码，请不要与任何人分享您的密码。</span>
+            </p>
+            <p>
+                <br/>
+            </p>';
             $result = $obj
                     ->to($params->email)
-                    ->subject('验证码')
-                    ->message("你的验证码是：" . $params->code)
+                    ->subject('Your password has changed')
+                    ->message($content)
                     ->send();
             return $result;
         });
