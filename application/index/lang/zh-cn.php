@@ -141,7 +141,7 @@ return [
     'Logout' => "注销",
     'Change your password' => "修改密码",
     'New password' => "新密码",
-    'Enter your new password again' => "确认新密码"
+    'Enter your new password again' => "确认新密码",
     'Oder Num' => "订单号",
     'Account Type' => "账户类型",
     'Order state' => "订单状态",
