@@ -1,0 +1,169 @@
+<div class="panel panel-default panel-intro">
+	<div class="panel-heading">
+		<ul class="nav nav-tabs">
+			<li class="active">
+				<a href="#one" data-toggle="tab">
+					{:__('Dashboard')}
+				</a>
+			</li>
+			<!-- <li><a href="#two" data-toggle="tab">{:__('Custom')}</a></li> -->
+		</ul>
+	</div>
+	<div class="panel-body">
+		<div id="myTabContent" class="tab-content">
+			<div class="col-md-9">
+				<div class="nav-tabs-custom">
+					<ul class="nav nav-tabs">
+						<li class="active">
+							<a href="#activity" data-toggle="tab">
+								消息处理
+							</a>
+						</li>
+						<li>
+							<a href="#timeline" data-toggle="tab">
+								不当行为
+							</a>
+						</li>
+						<li>
+							<a href="#settings" data-toggle="tab">
+								成员管理
+							</a>
+						</li>
+                        <li>
+							<a href="#settings2" data-toggle="tab">
+
+                                群内禁言
+							</a>
+						</li>
+					</ul>
+					<div class="tab-content">
+						<div class="active tab-pane" id="activity">
+                            <table class="table table-hover">
+                                <tr>
+                                  <th>功能</th>
+                                  <th>描述</th>
+                                  <!-- <th>Status</th> -->
+                                  <th>操作</th>
+                                </tr>
+                                <tr>
+                                  <td><b>问候新人</b></td>
+                                  <td>Bot 自动向新加入群的成员打招呼</td>
+                                  <!-- <td><span class="label label-success">Open</span></td> -->
+                                  <td><a href="javascript:;" data-toggle="tooltip" title="点击切换插件状态" class="btn-disable" data-action="disable" data-name="blog">
+                                      <i class="fa fa-toggle-on text-info fa-2x"></i>
+                                  </a></td>
+                                </tr>
+
+                                <tr>
+                                  <td><b>阻止非管理員添加bot</b></td>
+                                  <td>当此项激活时，群中的非管理员用户添加机器人(Bot)到群内时，该Bot将被自动删除</td>
+                                  <!-- <td><span class="label label-success">Open</span></td> -->
+                                  <td><a href="javascript:;" data-toggle="tooltip" title="点击切换插件状态" class="btn-disable" data-action="disable" data-name="blog">
+                                      <i class="fa fa-toggle-on text-info fa-2x"></i>
+                                  </a></td>
+                                </tr>
+
+
+                                <tr>
+                                  <td><b>禁止拉人进群</b></td>
+                                  <td>当此项开启时，群仅接受主动进群的成员。被拉人进群的成员将被Bot踢除。</td>
+                                  <!-- <td><span class="label label-success">Open</span></td> -->
+                                  <td><a href="javascript:;" data-toggle="tooltip" title="点击切换插件状态" class="btn-disable" data-action="disable" data-name="blog">
+                                      <i class="fa fa-toggle-on text-info fa-2x"></i>
+                                  </a></td>
+                                </tr>
+
+
+                                <tr>
+                                  <td><b>要求新成员提供验证信息</b></td>
+                                  <td>要求每位新入群的成员补充验证信息。成员所提交的验证信息将在 成员管理 界面中所展示。</td>
+                                  <!-- <td><span class="label label-success">Open</span></td> -->
+                                  <td><a href="javascript:;" data-toggle="tooltip" title="点击切换插件状态" class="btn-disable" data-action="disable" data-name="blog">
+                                      <i class="fa fa-toggle-on text-info fa-2x"></i>
+                                  </a></td>
+                                </tr>
+
+
+                                <tr>
+                                  <td><b>跨群去除重复成员</b></td>
+                                  <td>如果一个新入群的成员已经存在于以下的群中，那么 Bot 将立即告知这位成员并踢除这位成员。从而确保本群和以下群内的成员保持唯一。</td>
+                                  <!-- <td><span class="label label-success">Open</span></td> -->
+                                  <td><a href="javascript:;" data-toggle="tooltip" title="点击切换插件状态" class="btn-disable" data-action="disable" data-name="blog">
+                                      <i class="fa fa-toggle-on text-info fa-2x"></i>
+                                  </a></td>
+                                </tr>
+
+
+
+                                <tr>
+                                  <td><b>新人禁止各种发言</b></td>
+                                  <td>当此项激活时，新进群的非管理员成员将被暂时禁言，禁言期间无法发送任何消息。</td>
+                                  <!-- <td><span class="label label-success">Open</span></td> -->
+                                  <td><a href="javascript:;" data-toggle="tooltip" title="点击切换插件状态" class="btn-disable" data-action="disable" data-name="blog">
+                                      <i class="fa fa-toggle-on text-info fa-2x"></i>
+                                  </a></td>
+                                </tr>
+
+
+                                <tr>
+                                  <td><b>清除成员加入的消息</b></td>
+                                  <td>当此项激活时，Bot 将自动清理新成员加入群的消息。</td>
+                                  <!-- <td><span class="label label-success">Open</span></td> -->
+                                  <td><a href="javascript:;" data-toggle="tooltip" title="点击切换插件状态" class="btn-disable" data-action="disable" data-name="blog">
+                                      <i class="fa fa-toggle-on text-info fa-2x"></i>
+                                  </a></td>
+                                </tr>
+
+
+                                <tr>
+                                  <td><b>清除成员离开的消息</b></td>
+                                  <td>当此项激活时，Bot 将自动清理成员离开群的消息。</td>
+                                  <!-- <td><span class="label label-success">Open</span></td> -->
+                                  <td><a href="javascript:;" data-toggle="tooltip" title="点击切换插件状态" class="btn-disable" data-action="disable" data-name="blog">
+                                      <i class="fa fa-toggle-on text-info fa-2x"></i>
+                                  </a></td>
+                                </tr>
+
+                              </table>
+
+                            <!-- <a href="javascript:;" data-toggle="tooltip" title="点击切换插件状态" class="btn-disable" data-action="disable" data-name="blog">
+                                <i class="fa fa-toggle-on text-info fa-3x"></i>
+                            </a>
+                            <a href="javascript:;" data-toggle="tooltip" title="点击切换插件状态" class="btn-disable" data-action="disable" data-name="blog">
+                                <i class="fa fa-toggle-on text-gray fa-3x"></i>
+                            </a> -->
+                        </div>
+						<!-- /.tab-pane -->
+						<div class="tab-pane" id="timeline">
+                            不当行为
+						</div>
+						<!-- /.tab-pane -->
+						<div class="tab-pane" id="settings">
+                            成员管理
+						</div>
+						<!-- /.tab-pane -->
+                        <!-- /.tab-pane -->
+						<div class="tab-pane" id="settings2">
+                            群内禁言
+						</div>
+						<!-- /.tab-pane -->
+					</div>
+					<!-- /.tab-content -->
+				</div>
+				<!-- /.nav-tabs-custom -->
+			</div>
+			<!-- /.col -->
+		</div>
+		<!-- /.row -->
+	</div>
+</div>
+
+</div>
+
+<script type="text/javascript">
+$('#mySwitch').on('switch-change', function (e, data) {
+var $el = $(data.el)
+  , value = data.value;
+console.log(e, $el, value);
+});
+</script>

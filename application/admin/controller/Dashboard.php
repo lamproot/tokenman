@@ -14,10 +14,12 @@ class Dashboard extends Backend
 {
 
     protected $model = null;
-
+    protected $noNeedLogin = ['test'];
+    protected $noNeedRight = ['index', 'logout'];
     public function _initialize()
     {
         parent::_initialize();
+
         $this->model = model('Codes');
         $this->groupActivityModel = model('GroupActivity');
         $this->chatGroupModel = model('chatGroup');
@@ -232,6 +234,15 @@ class Dashboard extends Backend
             'chatData' => $chatData
         ]);
 
+        return $this->view->fetch();
+    }
+
+    /**
+     * 查看
+     */
+    public function test()
+    {
+        
         return $this->view->fetch();
     }
 
