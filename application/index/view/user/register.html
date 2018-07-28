@@ -49,16 +49,16 @@
                     <div class="controls">
                         <div class="input-group input-group-lg">
                             <input type="text" name="captcha" class="form-control" placeholder="{:__('Captcha')}" data-rule="required;length(4)" style="border-radius: 0;" />
-                            <span class="input-group-addon" style="padding:0;border:none;">
+                            <!-- <span class="input-group-addon" style="padding:0;border:none;">
                                 <img src="{:captcha_src()}" width="140" height="42" onclick="this.src = '{:captcha_src()}?r=' + Math.random();"/>
-                            </span>
+                            </span> -->
                         </div>
                         <p class="help-block"></p>
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <button type="submit" class="btn btn-primary btn-lg btn-block">{:__('Click here to sign up')}</button>
+                    <button id="embed-captcha-login" type="submit" class="btn btn-primary btn-lg btn-block" >{:__('Click here to sign up')}</button>
                 </div>
             </form>
         </div>

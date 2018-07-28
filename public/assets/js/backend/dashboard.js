@@ -1,4 +1,4 @@
-define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echarts-theme', 'template'], function ($, undefined, Backend, Datatable, Table, Echarts, undefined, Template) {
+define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echarts-theme', 'template', 'select2-filter'], function ($, undefined, Backend, Datatable, Table, Echarts, undefined, Template) {
 
     var Controller = {
         index: function () {
@@ -138,6 +138,27 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
             //     success: function (ret) {
             //         $("#discussion-list").html(Template("discussiontpl", {news: ret.discussionlist.slice(0,6)}));
             //     }
+            // });
+        },
+        test: function () {
+            $(".btn-switch").click(function(){
+                alert("dsada")
+            });
+            // $('.btn-switch').on('click', function (e) {
+            //     // var options = table.bootstrapTable(tableOptions);
+            //     // var typeStr = $(this).attr("href").replace('#','');
+            //     // var options = table.bootstrapTable('getOptions');
+            //     // options.pageNumber = 1;
+            //     // options.queryParams = function (params) {
+            //     //     // params.filter = JSON.stringify({type: typeStr});
+            //     //     params.type = typeStr;
+            //     //
+            //     //     return params;
+            //     // };
+            //     // table.bootstrapTable('refresh', {});
+            //     // return false;
+            //     alert("dadas")
+            //
             // });
         }
     };
