@@ -70,5 +70,6 @@ return [
     'Login now' => "登录",
     'Remember the password' => "保持登录状态",
     'Forget your password?' => "忘记密码?",
-    'Verification code' => "验证码"
+    'Verification code' => "验证码",
+    "Click here to sign up" => "点击按钮进行注册"
 ];

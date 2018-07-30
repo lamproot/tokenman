@@ -144,8 +144,30 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
 
             //================= 封禁功能 ==================
             $(".set_ban_time_button").click(function(){
+                var that = this;
                 var banTime = $(this).parent().prev().val();
                 //设置封禁用户时长Ajax
+                $.ajax({
+                    url: 'group/manage/botconfig',
+                    type: 'post',
+                    dataType: 'json',
+                    data:{
+                        "rule":"set_ban_time",
+                        "value":banTime,
+                        "chat_bot_id":2,
+                        "chat_id":-1001249040089
+                    },
+                    success: function (ret) {
+
+                        if (ret.code === 0) {
+                            Toastr.success("设置成功");
+                        }else{
+                            Toastr.success("设置失败");
+                        }
+
+                    }
+                });
+
             });
 
             $(".ban_words_add").click(function(){
@@ -163,24 +185,82 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
                 +'</li>';
                 $(this).parent().parent().parent().prev().children('ul').append(appendHtml);
                 banWordTagClose();
+
+                var banWord = [];
+                $(this).parent().parent().parent().prev().children('ul').children('li').each(function(){
+                    banWord.push($(this).attr("itemvalue"));
+                })
+
+                updateBotConfigData("set_ban_words", banWord);
+
             });
 
             function banWordTagClose(){
                 $(".ban_words_del").unbind('click').click(function(){
-                    $(this).parent().parent().remove();
+                    var that = this;
                     //删除封禁敏感词Ajax
+                    var banWord = [];
+                    $(this).parent().parent().siblings('li').each(function(){
+                        banWord.push($(this).attr("itemvalue"));
+                    })
+
+                    updateBotConfigData("set_ban_words", banWord);
+                    $(this).parent().parent().remove();
                 });
             }
 
             banWordTagClose();
+
+            function updateBotConfigData(rule, data){
+                $.ajax({
+                    url: 'group/manage/botconfig',
+                    type: 'post',
+                    dataType: 'json',
+                    data:{
+                        "rule":rule,
+                        "value":"",
+                        "data":data.join(),
+                        "chat_bot_id":2,
+                        "chat_id":-1001249040089
+                    },
+                    success: function (ret) {
+                        if (ret.code === 0) {
+                            Toastr.success("更新成功");
+                        }else{
+                            Toastr.success("更新失败");
+                        }
+
+                    }
+                });
+            }
             //================= 封禁功能 ==================
 
             //================= 全体禁言模式 ===============
             //禁言时间设置
             $(".clear_all_news_time_button").click(function(){
+                //禁言时间设置
                 var time = $(this).parent().prev().val();
-                //alert(time)
-                //封禁时间设置时长Ajax
+                var that = this;
+                //设置封禁用户时长Ajax
+                $.ajax({
+                    url: 'group/manage/botconfig',
+                    type: 'post',
+                    dataType: 'json',
+                    data:{
+                        "rule":"clear_all_news_time",
+                        "value":time,
+                        "chat_bot_id":2,
+                        "chat_id":-1001249040089
+                    },
+                    success: function (ret) {
+                        if (ret.code === 0) {
+                            Toastr.success("设置成功");
+                        }else{
+                            Toastr.success("设置失败");
+                        }
+
+                    }
+                });
             });
 
             //禁言关键词设置
@@ -195,11 +275,34 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
 
                 var appendHtml = '<li class="selected_tag" itemvalue="'+word+'">'
                 +word
-                +'<span class="tag_close"><i class="spfont sp-close ban_words_del"></i></span>'
+                +'<span class="tag_close"><i class="spfont sp-close clear_all_news_white_del"></i></span>'
                 +'</li>';
                 $(this).parent().parent().parent().prev().children('ul').append(appendHtml);
-                banWordTagClose();
+                newsWhiteDel()
+
+                var banWord = [];
+                $(this).parent().parent().parent().prev().children('ul').children('li').each(function(){
+                    banWord.push($(this).attr("itemvalue"));
+                })
+
+                updateBotConfigData("clear_all_news_white", banWord);
             });
+
+            function newsWhiteDel(){
+                $(".clear_all_news_white_del").unbind('click').click(function(){
+                    var that = this;
+                    //删除封禁敏感词Ajax
+                    var banWord = [];
+                    $(this).parent().parent().siblings('li').each(function(){
+                        banWord.push($(this).attr("itemvalue"));
+                    })
+
+                    updateBotConfigData("clear_all_news_white", banWord);
+                    $(this).parent().parent().remove();
+                });
+            }
+
+            newsWhiteDel();
 
             //禁言包含关键词设置
             $(".clear_all_news_reg_white_button").click(function(){
@@ -213,11 +316,35 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
 
                 var appendHtml = '<li class="selected_tag" itemvalue="'+word+'">'
                 +word
-                +'<span class="tag_close"><i class="spfont sp-close ban_words_del"></i></span>'
+                +'<span class="tag_close"><i class="spfont sp-close clear_all_news_reg_white_del"></i></span>'
                 +'</li>';
                 $(this).parent().parent().parent().prev().children('ul').append(appendHtml);
-                banWordTagClose();
+                newsRegWhiteDel()
+
+                var banWord = [];
+                $(this).parent().parent().parent().prev().children('ul').children('li').each(function(){
+                    banWord.push($(this).attr("itemvalue"));
+                })
+
+                updateBotConfigData("clear_all_news_reg_white", banWord);
             });
+
+            newsRegWhiteDel();
+
+            function newsRegWhiteDel(){
+                $(".clear_all_news_reg_white_del").unbind('click').click(function(){
+                    var that = this;
+                    //删除封禁敏感词Ajax
+                    var banWord = [];
+                    $(this).parent().parent().siblings('li').each(function(){
+                        banWord.push($(this).attr("itemvalue"));
+                    })
+
+                    updateBotConfigData("clear_all_news_reg_white", banWord);
+                    $(this).parent().parent().remove();
+                });
+            }
+            newsRegWhiteDel();
             //================= 全体禁言模式 ===============
 
 
@@ -250,13 +377,35 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
                         $(this).parent().parent().next().next().removeClass("hide").addClass("show");
                     }
 
+                    var that = this;
                     //打开
-                    $(this).attr("data-switch-value", 1);
-                    $(this).children('i').removeClass("fa-toggle-off").addClass("fa-toggle-on");
-                    Toastr.success("成功开启 "+ switchHtml + " 功能");
+                    $.ajax({
+                        url: 'group/manage/botconfig',
+                        type: 'post',
+                        dataType: 'json',
+                        data:{
+                        	"rule":switchName,
+                        	"value":1,
+                        	"chat_bot_id":2,
+
+                            "chat_id":-1001249040089
+                        },
+                        success: function (ret) {
+
+                            if (ret.code === 0) {
+                                $(that).attr("data-switch-value", 1);
+                                $(that).children('i').removeClass("fa-toggle-off").addClass("fa-toggle-on");
+                                Toastr.success("成功开启 "+ switchHtml + " 功能");
+                            }else{
+                                Toastr.success("开启 "+ switchHtml + " 功能失败");
+                            }
+
+                        }
+                    });
+
                 }else{
                     //判断相关功能逻辑
-
+                    var that = this;
                     //根据关键词自动应答
                     if (switchName == "is_keyword_cmd") {
                         $(this).parent().parent().next().next().removeClass("show").addClass("hide");
@@ -270,12 +419,33 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
                     //全体禁言模式
                     if (switchName == "is_clear_all_news") {
                         $(this).parent().parent().next().next().removeClass("show").addClass("hide");
+                        //关闭禁言模式
                     }
 
-                    //关闭
-                    $(this).attr("data-switch-value", 0);
-                    $(this).children('i').removeClass("fa-toggle-on").addClass("fa-toggle-off");
-                    Toastr.success("成功关闭 "+ switchHtml + " 功能");
+                    $.ajax({
+                        url: 'group/manage/botconfig',
+                        type: 'post',
+                        dataType: 'json',
+                        data:{
+                        	"rule":switchName,
+                        	"value":0,
+                        	"chat_bot_id":2,
+                            "chat_id":-1001249040089
+                        },
+                        success: function (ret) {
+
+                            if (ret.code === 0) {
+                                //关闭
+                                $(that).attr("data-switch-value", 0);
+                                $(that).children('i').removeClass("fa-toggle-on").addClass("fa-toggle-off");
+                                Toastr.success("成功关闭 "+ switchHtml + " 功能");
+
+                            }else{
+                                Toastr.success("关闭 "+ switchHtml + " 功能失败");
+                            }
+
+                        }
+                    });
                 }
 
 

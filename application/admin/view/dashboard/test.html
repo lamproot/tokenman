@@ -45,9 +45,9 @@
 												删除包含链接的消息
 											</h3>
 											<div class="box-tools pull-right">
-												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_delete_link"  data-switch-value="0" class="btn-disable btn-switch"
+												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_delete_link"  data-switch-value="{if isset($result['is_delete_link'])}{$result['is_delete_link']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
-													<i class="fa fa-toggle-off text-info fa-2x">
+													<i class="fa {if isset($result['is_delete_link']) &&  $result['is_delete_link'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
 													</i>
 												</a>
 											</div>
@@ -68,7 +68,7 @@
 												删除图片类消息
 											</h3>
 											<div class="box-tools pull-right">
-												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_delete_photo"  data-switch-value="0" class="btn-disable btn-switch"
+												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_delete_photo"  data-switch-value="{if isset($result['is_delete_photo'])}{$result['is_delete_photo']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
 													<i class="fa fa-toggle-off text-info fa-2x">
 													</i>
@@ -91,7 +91,7 @@
 												删除语音类消息
 											</h3>
 											<div class="box-tools pull-right">
-												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_delete_voice"  data-switch-value="0" class="btn-disable btn-switch"
+												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_delete_voice"  data-switch-value="{if isset($result['is_delete_voice'])}{$result['is_delete_voice']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
 													<i class="fa fa-toggle-off text-info fa-2x">
 													</i>
@@ -116,7 +116,7 @@
 												删除文档类消息
 											</h3>
 											<div class="box-tools pull-right">
-												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_delete_document"  data-switch-value="0" class="btn-disable btn-switch"
+												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_delete_document"  data-switch-value="{if isset($result['is_delete_document'])}{$result['is_delete_document']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
 													<i class="fa fa-toggle-off text-info fa-2x">
 													</i>
@@ -139,7 +139,7 @@
 												删除表情和动图
 											</h3>
 											<div class="box-tools pull-right">
-												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭"  data-switch-name="is_delete_sticker"  data-switch-value="0" class="btn-disable btn-switch"
+												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭"  data-switch-name="is_delete_sticker"  data-switch-value="{if isset($result['is_delete_sticker'])}{$result['is_delete_sticker']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
 													<i class="fa fa-toggle-off text-info fa-2x">
 													</i>
@@ -164,7 +164,7 @@
 												根据关键词自动应答
 											</h3>
 											<div class="box-tools pull-right">
-												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_keyword_cmd"  data-switch-value="0" class="btn-disable btn-switch"
+												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_keyword_cmd"  data-switch-value="{if isset($result['is_keyword_cmd'])}{$result['is_keyword_cmd']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
 													<i class="fa fa-toggle-off text-info fa-2x">
 													</i>
@@ -198,7 +198,7 @@
 												根据敏感词封禁成员
 											</h3>
 											<div class="box-tools pull-right">
-												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_words_ban"  data-switch-value="0" class="btn-disable btn-switch"
+												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_words_ban"  data-switch-value="{if isset($result['is_words_ban'])}{$result['is_words_ban']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
 													<i class="fa fa-toggle-off text-info fa-2x">
 													</i>
@@ -221,50 +221,51 @@
 														</label>
 
 														<div class="input-group input-group-sm">
+
 															<select class="form-control">
-																<option value="0">
+																<option value="0" {if isset($result['set_ban_time']) && $result['set_ban_time'] == 0}selected{else/}{/if}>
 																	不封禁
 																</option>
-																<option value="300">
+																<option value="300" {if isset($result['set_ban_time']) && $result['set_ban_time'] == 300}selected{else/}{/if}>
 																	5分钟
 																</option>
-																<option value="900">
+																<option value="900" {if isset($result['set_ban_time']) && $result['set_ban_time'] == 900}selected{else/}{/if}>
 																	15分钟
 																</option>
-																<option value="1800">
+																<option value="1800" {if isset($result['set_ban_time']) && $result['set_ban_time'] == 1800}selected{else/}{/if}>
 																	半小时
 																</option>
-																<option value="3600">
+																<option value="3600" {if isset($result['set_ban_time']) && $result['set_ban_time'] == 3600}selected{else/}{/if}>
 																	1小时
 																</option>
-																<option value="7200">
+																<option value="7200" {if isset($result['set_ban_time']) && $result['set_ban_time'] == 7200}selected{else/}{/if}>
 																	2小时
 																</option>
-																<option value="18000">
+																<option value="18000" {if isset($result['set_ban_time']) && $result['set_ban_time'] == 18000}selected{else/}{/if}>
 																	5小时
 																</option>
-																<option value="43200">
+																<option value="43200" {if isset($result['set_ban_time']) && $result['set_ban_time'] == 43200}selected{else/}{/if}>
 																	半天
 																</option>
-																<option value="86400">
+																<option value="86400" {if isset($result['set_ban_time']) && $result['set_ban_time'] == 86400}selected{else/}{/if}>
 																	1天
 																</option>
-																<option value="172800">
+																<option value="172800" {if isset($result['set_ban_time']) && $result['set_ban_time'] == 172800}selected{else/}{/if}>
 																	2天
 																</option>
-																<option value="259200">
+																<option value="259200" {if isset($result['set_ban_time']) && $result['set_ban_time'] == 259200}selected{else/}{/if}>
 																	3天
 																</option>
-																<option value="604800">
+																<option value="604800" {if isset($result['set_ban_time']) && $result['set_ban_time'] == 604800}selected{else/}{/if}>
 																	1个星期
 																</option>
-																<option value="1209600">
+																<option value="1209600" {if isset($result['set_ban_time']) && $result['set_ban_time'] == 1209600}selected{else/}{/if}>
 																	2个星期
 																</option>
-																<option value="2592000">
+																<option value="2592000" {if isset($result['set_ban_time']) && $result['set_ban_time'] == 2592000}selected{else/}{/if}>
 																	1个月
 																</option>
-																<option value="31536000">
+																<option value="31536000" {if isset($result['set_ban_time']) && $result['set_ban_time'] == 31536000}selected{else/}{/if}>
 																	直到手动解除
 																</option>
 															</select>
@@ -286,21 +287,19 @@
 														</label>
 														<div class="">
 															<ul class="sp_element_box list-inline">
-																<li class="selected_tag" itemvalue="AR">
-																	包二奶啊
-																	<span class="tag_close">
-																		<i class="spfont sp-close ban_words_del">
-																		</i>
-																	</span>
-																</li>
+																{if isset($result['set_ban_words'])}
+																	{volist name="result['set_ban_words']" id="vo"  }
+																		<li class="selected_tag" itemvalue="{$vo}">
+																			{$vo}
+																			<span class="tag_close">
+																				<i class="spfont sp-close ban_words_del">
+																				</i>
+																			</span>
+																		</li>
+																	{/volist}
+																{/if}
 
-																<li class="selected_tag" itemvalue="AR">
-																	包二奶啊
-																	<span class="tag_close">
-																		<i class="spfont sp-close ban_words_del">
-																		</i>
-																	</span>
-																</li>
+
 															</ul>
 														</div>
 														<div class="">
@@ -330,7 +329,7 @@
 												封禁成员前先进行警告
 											</h3>
 											<div class="box-tools pull-right">
-												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_ban_warn"  data-switch-value="0" class="btn-disable btn-switch"
+												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_ban_warn"  data-switch-value="{if isset($result['is_ban_warn'])}{$result['is_ban_warn']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
 													<i class="fa fa-toggle-off text-info fa-2x">
 													</i>
@@ -353,7 +352,7 @@
 												封禁同时踢除成员
 											</h3>
 											<div class="box-tools pull-right">
-												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_ban_blank"  data-switch-value="0" class="btn-disable btn-switch"
+												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_ban_blank"  data-switch-value="{if isset($result['is_ban_blank'])}{$result['is_ban_blank']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
 													<i class="fa fa-toggle-off text-info fa-2x">
 													</i>
@@ -376,7 +375,7 @@
 												封禁时长自动翻倍
 											</h3>
 											<div class="box-tools pull-right">
-												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_ban_time_double"  data-switch-value="0"  class="btn-disable btn-switch"
+												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_ban_time_double"  data-switch-value="{if isset($result['is_ban_time_double'])}{$result['is_ban_time_double']}{else/}0{/if}"  class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
 													<i class="fa fa-toggle-off text-info fa-2x">
 													</i>
@@ -401,7 +400,7 @@
 												清理垃圾消息
 											</h3>
 											<div class="box-tools pull-right">
-												<a href="javascript:;" data-toggle="tooltip" data-switch-name="is_clear_litter_news"  data-switch-value="0" title="点击开启/关闭" class="btn-disable btn-switch"
+												<a href="javascript:;" data-toggle="tooltip" data-switch-name="is_clear_litter_news"  data-switch-value="{if isset($result['is_clear_litter_news'])}{$result['is_clear_litter_news']}{else/}0{/if}" title="点击开启/关闭" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
 													<i class="fa fa-toggle-off text-info fa-2x">
 													</i>
@@ -424,7 +423,7 @@
 												阻止命令行刷屏
 											</h3>
 											<div class="box-tools pull-right">
-												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="cmd_attack_switch"  data-switch-value="0" class="btn-disable btn-switch"
+												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="cmd_attack_switch"  data-switch-value="{if isset($result['cmd_attack_switch'])}{$result['cmd_attack_switch']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
 													<i class="fa fa-toggle-off text-info fa-2x">
 													</i>
@@ -524,7 +523,7 @@
 												清除成员加入的消息
 											</h3>
 											<div class="box-tools pull-right">
-												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_clear_new_member"  data-switch-value="0" class="btn-disable btn-switch"
+												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_clear_new_member"  data-switch-value="{if isset($result['is_clear_new_member'])}{$result['is_clear_new_member']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
 													<i class="fa fa-toggle-off text-info fa-2x">
 													</i>
@@ -547,7 +546,7 @@
 												清除成员离开的消息
 											</h3>
 											<div class="box-tools pull-right">
-												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_clear_left_member"  data-switch-value="0" class="btn-disable btn-switch"
+												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_clear_left_member"  data-switch-value="{if isset($result['is_clear_left_member'])}{$result['is_clear_left_member']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
 													<i class="fa fa-toggle-off text-info fa-2x">
 													</i>
@@ -576,7 +575,7 @@
 												全体禁言模式
 											</h3>
 											<div class="box-tools pull-right">
-												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_clear_all_news"  data-switch-value="0" class="btn-disable btn-switch"
+												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_clear_all_news"  data-switch-value="{if isset($result['is_clear_all_news'])}{$result['is_clear_all_news']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
 													<i class="fa fa-toggle-off text-info fa-2x">
 													</i>
@@ -592,14 +591,19 @@
 
 										<div class="box-footer show">
 											<div class="row" style="margin-top:15px;">
-												<!-- <div class="text-center m-3" style="font-size: 4em; font-weight: bold; font-family: monospace; color: rgb(0, 0, 0);">
-													04:48s
-												</div>
-												<div class="text-center mb-5">
-													<button type="button" class="btn btn-info btn-lg">
-														立即停止
-													</button>
-												</div> -->
+
+												{if condition="isset($result['clear_all_news_time_count']) && $result['clear_all_news_time_count'] gt 0"}
+													<div class="text-center m-3" style="font-size: 4em; font-weight: bold; font-family: monospace; color: rgb(0, 0, 0);">
+														04:48s
+													</div>
+													<div class="text-center mb-5">
+														<button type="button" class="btn btn-info btn-lg">
+															立即停止
+														</button>
+													</div>
+												{/if}
+
+
 												<div class="col-md-12  col-sm-12 col-md-12">
 													<div class="form-group">
 														<label>
@@ -610,49 +614,49 @@
 
 														<div class="input-group input-group-sm">
 															<select class="form-control form-control-lg border border-warning">
-																<option value="0">
+																<option value="0" {if isset($result['clear_all_news_time']) && $result['clear_all_news_time'] == 0}selected{else/}{/if}>
 																	请选择开启禁言时长
 																</option>
-																<option value="300">
+																<option value="300" {if isset($result['clear_all_news_time']) && $result['clear_all_news_time'] == 300}selected{else/}{/if}>
 																	5分钟
 																</option>
-																<option value="900">
+																<option value="900" {if isset($result['clear_all_news_time']) && $result['clear_all_news_time'] == 900}selected{else/}{/if}>
 																	15分钟
 																</option>
-																<option value="1800">
+																<option value="1800" {if isset($result['clear_all_news_time']) && $result['clear_all_news_time'] == 1800}selected{else/}{/if}>
 																	半小时
 																</option>
-																<option value="3600">
+																<option value="3600" {if isset($result['clear_all_news_time']) && $result['clear_all_news_time'] == 3600}selected{else/}{/if}>
 																	1小时
 																</option>
-																<option value="7200">
+																<option value="7200" {if isset($result['clear_all_news_time']) && $result['clear_all_news_time'] == 7200}selected{else/}{/if}>
 																	2小时
 																</option>
-																<option value="18000">
+																<option value="18000" {if isset($result['clear_all_news_time']) && $result['clear_all_news_time'] == 18000}selected{else/}{/if}>
 																	5小时
 																</option>
-																<option value="43200">
+																<option value="43200" {if isset($result['clear_all_news_time']) && $result['clear_all_news_time'] == 43200}selected{else/}{/if}>
 																	半天
 																</option>
-																<option value="86400">
+																<option value="86400" {if isset($result['clear_all_news_time']) && $result['clear_all_news_time'] == 86400}selected{else/}{/if}>
 																	1天
 																</option>
-																<option value="172800">
+																<option value="172800" {if isset($result['clear_all_news_time']) && $result['clear_all_news_time'] == 172800}selected{else/}{/if}>
 																	2天
 																</option>
-																<option value="259200">
+																<option value="259200" {if isset($result['clear_all_news_time']) && $result['clear_all_news_time'] == 259200}selected{else/}{/if}>
 																	3天
 																</option>
-																<option value="604800">
+																<option value="604800" {if isset($result['clear_all_news_time']) && $result['clear_all_news_time'] == 604800}selected{else/}{/if}>
 																	1个星期
 																</option>
-																<option value="1209600">
+																<option value="1209600" {if isset($result['clear_all_news_time']) && $result['clear_all_news_time'] == 1209600}selected{else/}{/if}>
 																	2个星期
 																</option>
-																<option value="2592000">
+																<option value="2592000" {if isset($result['clear_all_news_time']) && $result['clear_all_news_time'] == 2592000}selected{else/}{/if}>
 																	1个月
 																</option>
-																<option value="31536000">
+																<option value="31536000" {if isset($result['clear_all_news_time']) && $result['clear_all_news_time'] == 31536000}selected{else/}{/if}>
 																	直到手动解除
 																</option>
 															</select>
@@ -673,13 +677,19 @@
 														</label>
 														<div class="">
 															<ul class="sp_element_box list-inline">
-																<li class="selected_tag" itemvalue="AR">
-																	包二奶啊
-																	<span class="tag_close">
-																		<i class="spfont sp-close">
-																		</i>
-																	</span>
-																</li>
+
+
+																{if isset($result['clear_all_news_white'])}
+																	{volist name="result['clear_all_news_white']" id="vo"  }
+																		<li class="selected_tag" itemvalue="{$vo}">
+																			{$vo}
+																			<span class="tag_close">
+																				<i class="spfont sp-close clear_all_news_white_del">
+																				</i>
+																			</span>
+																		</li>
+																	{/volist}
+																{/if}
 															</ul>
 														</div>
 														<div class="">
@@ -703,13 +713,17 @@
 														</label>
 														<div class="">
 															<ul class="sp_element_box list-inline">
-																<li class="selected_tag" itemvalue="AR">
-																	包二奶啊
-																	<span class="tag_close">
-																		<i class="spfont sp-close">
-																		</i>
-																	</span>
-																</li>
+																{if isset($result['clear_all_news_reg_white'])}
+																	{volist name="result['clear_all_news_reg_white']" id="vo"  }
+																		<li class="selected_tag" itemvalue="{$vo}">
+																			{$vo}
+																			<span class="tag_close">
+																				<i class="spfont sp-close clear_all_news_reg_white_del">
+																				</i>
+																			</span>
+																		</li>
+																	{/volist}
+																{/if}
 															</ul>
 														</div>
 														<div class="">

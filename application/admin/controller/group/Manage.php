@@ -255,29 +255,42 @@ class Manage extends Backend
      */
     public function botconfig()
     {
-        $rule = isset($_GET['rule']) ? $_GET['rule'] : "";
-        $value = isset($_GET['value']) ? $_GET['value'] : "";
-        $data = isset($_GET['data']) ? $_GET['data'] : "";
-        $chat_bot_id = isset($_GET['chat_bot_id']) ? $_GET['chat_bot_id'] : "";
-        $chat_id = isset($_GET['chat_id']) ? (int)$_GET['chat_id'] : "";
+        if ($this->request->isPost())
+        {
+            $params = $_POST;
+            //echo json_encode($params);exit;
+            if ($params)
+            {
+                $rule = isset($params['rule']) ? $params['rule'] : "";
+                $value = isset($params['value']) ? (int)$params['value'] : "";
+                $data = isset($params['data']) ? $params['data'] : "";
+                $chat_bot_id = isset($params['chat_bot_id']) ? (int)$params['chat_bot_id'] : "";
+                $chat_id = isset($params['chat_id']) ? (int)$params['chat_id'] : "";
 
-        $row = $this->group_bot_configmodel
-               ->where('chat_id', '=', $chat_id)
-               ->select();
-        //$row = $this->group_bot_configmodel->get(['chat_id' => $chat_id]);
+                // $row = $this->group_bot_configmodel
+                //        ->where('chat_id', '=', $chat_id)
+                //        ->select();
+                $row = $this->group_bot_configmodel->get(['chat_id' => $chat_id,'chat_bot_id' => $chat_bot_id, 'rule' => $rule]);
 
-echo json_encode($row);exit;
-        if (!$row){
-            $params['rule'] = $rule;
-            $params['value'] = $value;
-            $params['data'] = $data;
-            $params['chat_bot_id'] = $chat_bot_id;
-            $params['chat_id'] = $chat_id;
-            $create = $this->group_bot_configmodel->create($params);
+                if (!$row){
+                    $addparams['rule'] = $rule;
+                    $addparams['value'] = $value;
+                    $addparams['data'] = $data;
+                    $addparams['chat_bot_id'] = $chat_bot_id;
+                    $addparams['chat_id'] = $chat_id;
+                    $result = $this->group_bot_configmodel->create($addparams);
+
+                }else{
+                    $saveparams['rule'] = $rule;
+                    $saveparams['value'] = $value;
+                    $saveparams['data'] = $data;
+                    $result = $row->save($saveparams);
+
+                }
+            }
+            return json(["code" => 0, "msg" => "成功", "data" => $result]);
         }
-
-exit;
-                //echo json_encode($row);exit;
+        //echo json_encode($row);exit;
 
         // $chatBot = $this->chatbotmodel->get($row['chat_bot_id']);
         // if ($chatBot) {
@@ -307,8 +320,8 @@ exit;
         //     $this->error();
         // }
         // $this->view->assign("chatInfo", $chatInfo);
-        $this->view->assign("row", $row);
-        return $this->view->fetch();
+        // $this->view->assign("row", $row);
+        //return $this->view->fetch();
     }
 
 }

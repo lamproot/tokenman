@@ -3,7 +3,7 @@
 namespace app\admin\controller;
 use app\admin\model\Codes;
 use app\common\controller\Backend;
-
+use app\admin\model\GroupBotConfig;
 /**
  * 控制台
  *
@@ -25,6 +25,7 @@ class Dashboard extends Backend
         $this->chatGroupModel = model('chatGroup');
         $this->groupUserModel = model('GroupUser');
         $this->illegaLogModel = model('IllegaLog');
+        $this->group_bot_configmodel = model('GroupBotConfig');
 
         // $this->status = [0 => '关闭', 1 => '打开'];
         // if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
@@ -242,7 +243,30 @@ class Dashboard extends Backend
      */
     public function test()
     {
-        
+        //获取所有权限
+        $chat_bot_id = $_GET['chat_bot_id'];
+        $chat_id = $_GET['chat_id'];
+
+
+        $row = $this->group_bot_configmodel
+               ->where('chat_bot_id', '=', $chat_bot_id)
+               ->where('chat_id', '=', $chat_id)
+               ->select();
+
+        $result = [];
+        foreach ($row as $key => $value) {
+            $result[$value['rule']] = $value['value'];
+            if ($value['data']) {
+                $result[$value['rule']] = explode(",", $value['data']);
+            }
+
+            if ($value['rule'] == 'clear_all_news_time') {
+                $clear_all_news_time = (($value['updated_at'] + $value['value']) - time());
+                $result["clear_all_news_time_count"] = $clear_all_news_time <= 0 ? 0 : $clear_all_news_time;
+            }
+        }
+        //echo json_encode($result);exit;
+        $this->assign("result", $result);
         return $this->view->fetch();
     }
 
