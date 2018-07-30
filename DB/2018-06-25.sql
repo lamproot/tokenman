@@ -36,7 +36,7 @@ CREATE TABLE `group_user` (
   INDEX(chat_bot_id),
   INDEX(chat_id),
   INDEX(type)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 
 
@@ -83,4 +83,29 @@ CREATE TABLE `fa_orders` (
   PRIMARY KEY (`id`),
   INDEX(product_id),
   INDEX(status)
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+/*
+    群机器人设置相关表
+    rule is_delete_link 删除包含链接的消息 value 0 - 关闭 1 - 开启
+    rule is_clear_all_time 开启禁言时长  0 - 关闭 300 - 5分钟 根据更新时间 updated_at 进行相关功能
+            time() < updated_at + is_clear_all_time 代表在禁言期
+    rule is_clear_all_news  是否开启全体禁言模式
+*/
+
+DROP TABLE IF EXISTS `group_bot_config`;
+CREATE TABLE `group_bot_config` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `rule` varchar(255) NOT NULL COMMENT '配置规则名称',
+  `value` int(10) NOT NULL DEFAULT 0 COMMENT '配置规则设置数据',
+  `data` text COMMENT '额外配置数据-例如关键词。',
+  `created_at` int(10) NOT NULL,
+  `updated_at` int(10) NOT NULL,
+  `chat_bot_id` int(10) NOT NULL DEFAULT 0  COMMENT 'chat_bot_id',
+  `chat_id` varchar(14) NOT NULL DEFAULT "" COMMENT '群ID',
+  PRIMARY KEY (`id`),
+  INDEX(chat_bot_id),
+  INDEX(chat_id),
+  INDEX(rule)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;

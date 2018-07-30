@@ -7,6 +7,7 @@ use app\admin\model\ChatBot;
 use app\admin\model\GroupUser;
 use app\admin\model\IllegaLog;
 use app\admin\model\NewsTotal;
+use app\admin\model\GroupBotConfig;
 use app\common\controller\Backend;
 
 /**
@@ -19,6 +20,7 @@ class Manage extends Backend
 {
 
     protected $model = null;
+    protected $noNeedLogin = ['botconfig'];
 
     public function _initialize()
     {
@@ -29,6 +31,7 @@ class Manage extends Backend
         $this->group_usermodel = model('GroupUser');
         $this->illega_logmodel = model('IllegaLog');
         $this->news_totalmodel = model('NewsTotal');
+        $this->group_bot_configmodel = model('GroupBotConfig');
 
 
         $this->status = [0 => '未激活', 1 => '已激活'];
@@ -244,6 +247,68 @@ class Manage extends Backend
     public function selectpage()
     {
         return parent::selectpage();
+    }
+
+
+    /**
+     * 编辑
+     */
+    public function botconfig()
+    {
+        $rule = isset($_GET['rule']) ? $_GET['rule'] : "";
+        $value = isset($_GET['value']) ? $_GET['value'] : "";
+        $data = isset($_GET['data']) ? $_GET['data'] : "";
+        $chat_bot_id = isset($_GET['chat_bot_id']) ? $_GET['chat_bot_id'] : "";
+        $chat_id = isset($_GET['chat_id']) ? (int)$_GET['chat_id'] : "";
+
+        $row = $this->group_bot_configmodel
+               ->where('chat_id', '=', $chat_id)
+               ->select();
+        //$row = $this->group_bot_configmodel->get(['chat_id' => $chat_id]);
+
+echo json_encode($row);exit;
+        if (!$row){
+            $params['rule'] = $rule;
+            $params['value'] = $value;
+            $params['data'] = $data;
+            $params['chat_bot_id'] = $chat_bot_id;
+            $params['chat_id'] = $chat_id;
+            $create = $this->group_bot_configmodel->create($params);
+        }
+
+exit;
+                //echo json_encode($row);exit;
+
+        // $chatBot = $this->chatbotmodel->get($row['chat_bot_id']);
+        // if ($chatBot) {
+        //     $_SESSION['think']['token'] = $chatBot['token'];
+        //     $chatInfo = $this->getChat($row['chat_id']);
+        // }
+        //
+        // if (!isset($chatInfo['description'])) {
+        //     $chatInfo['description'] = "";
+        // }
+        //
+        // if (!isset($chatInfo['title'])) {
+        //     $chatInfo['title'] = "";
+        // }
+        // //$getFile = $this->getFile($chatInfo['photo']['small_file_id']);
+        //
+        // if ($this->request->isPost())
+        // {
+        //     $params = $this->request->post("row/a");
+        //     if ($params)
+        //     {
+        //         $this->setChatTitle($chatBot['chat_id'], $params['title']);
+        //         $this->setChatDescription($chatBot['chat_id'], $params['description']);
+        //         $row->save($params);
+        //         $this->success();
+        //     }
+        //     $this->error();
+        // }
+        // $this->view->assign("chatInfo", $chatInfo);
+        $this->view->assign("row", $row);
+        return $this->view->fetch();
     }
 
 }

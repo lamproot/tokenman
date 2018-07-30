@@ -1,4 +1,4 @@
-define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echarts-theme', 'template', 'select2-filter'], function ($, undefined, Backend, Datatable, Table, Echarts, undefined, Template) {
+define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echarts-theme', 'template'], function ($, undefined, Backend, Datatable, Table, Echarts, undefined, Template) {
 
     var Controller = {
         index: function () {
@@ -141,8 +141,146 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
             // });
         },
         test: function () {
+
+            //================= 封禁功能 ==================
+            $(".set_ban_time_button").click(function(){
+                var banTime = $(this).parent().prev().val();
+                //设置封禁用户时长Ajax
+            });
+
+            $(".ban_words_add").click(function(){
+                var word = $(this).parent().prev().val();
+                if (word == "") {
+                    alert("Please enter")
+                    return false;
+                }
+
+                //添加封禁敏感词Ajax
+
+                var appendHtml = '<li class="selected_tag" itemvalue="'+word+'">'
+                +word
+                +'<span class="tag_close"><i class="spfont sp-close ban_words_del"></i></span>'
+                +'</li>';
+                $(this).parent().parent().parent().prev().children('ul').append(appendHtml);
+                banWordTagClose();
+            });
+
+            function banWordTagClose(){
+                $(".ban_words_del").unbind('click').click(function(){
+                    $(this).parent().parent().remove();
+                    //删除封禁敏感词Ajax
+                });
+            }
+
+            banWordTagClose();
+            //================= 封禁功能 ==================
+
+            //================= 全体禁言模式 ===============
+            //禁言时间设置
+            $(".clear_all_news_time_button").click(function(){
+                var time = $(this).parent().prev().val();
+                //alert(time)
+                //封禁时间设置时长Ajax
+            });
+
+            //禁言关键词设置
+            $(".clear_all_news_white_button").click(function(){
+                var word = $(this).parent().prev().val();
+                if (word == "") {
+                    alert("Please enter")
+                    return false;
+                }
+
+                //添加封禁敏感词Ajax
+
+                var appendHtml = '<li class="selected_tag" itemvalue="'+word+'">'
+                +word
+                +'<span class="tag_close"><i class="spfont sp-close ban_words_del"></i></span>'
+                +'</li>';
+                $(this).parent().parent().parent().prev().children('ul').append(appendHtml);
+                banWordTagClose();
+            });
+
+            //禁言包含关键词设置
+            $(".clear_all_news_reg_white_button").click(function(){
+                var word = $(this).parent().prev().val();
+                if (word == "") {
+                    alert("Please enter")
+                    return false;
+                }
+
+                //添加封禁敏感词Ajax
+
+                var appendHtml = '<li class="selected_tag" itemvalue="'+word+'">'
+                +word
+                +'<span class="tag_close"><i class="spfont sp-close ban_words_del"></i></span>'
+                +'</li>';
+                $(this).parent().parent().parent().prev().children('ul').append(appendHtml);
+                banWordTagClose();
+            });
+            //================= 全体禁言模式 ===============
+
+
+
+
             $(".btn-switch").click(function(){
-                alert("dsada")
+                //alert($(this).attr("data-switch-value"))
+                var switchName = $(this).attr("data-switch-name");
+                var switchValue = $(this).attr("data-switch-value") ? parseInt($(this).attr("data-switch-value")) : 0;
+                var switchHtml = $(this).parent().parent().children('h3').html();
+
+                if (switchValue == undefined || switchValue === 0) {
+                    //判断相关功能逻辑
+
+                    //根据关键词自动应答
+                    if (switchName == "is_keyword_cmd") {
+                        //$(this).parent().parent().next().next().show();
+                        $(this).parent().parent().next().next().removeClass("hide").addClass("show");
+                    }
+
+                    //根据敏感词封禁成员
+                    if (switchName == "is_words_ban") {
+                        //$(this).parent().parent().next().next().show();
+                        $(this).parent().parent().next().next().removeClass("hide").addClass("show");
+                    }
+
+                    //全体禁言模式
+                    if (switchName == "is_clear_all_news") {
+                        //$(this).parent().parent().next().next().show();
+                        $(this).parent().parent().next().next().removeClass("hide").addClass("show");
+                    }
+
+                    //打开
+                    $(this).attr("data-switch-value", 1);
+                    $(this).children('i').removeClass("fa-toggle-off").addClass("fa-toggle-on");
+                    Toastr.success("成功开启 "+ switchHtml + " 功能");
+                }else{
+                    //判断相关功能逻辑
+
+                    //根据关键词自动应答
+                    if (switchName == "is_keyword_cmd") {
+                        $(this).parent().parent().next().next().removeClass("show").addClass("hide");
+                    }
+
+                    //根据敏感词封禁成员
+                    if (switchName == "is_words_ban") {
+                        $(this).parent().parent().next().next().removeClass("show").addClass("hide");
+                    }
+
+                    //全体禁言模式
+                    if (switchName == "is_clear_all_news") {
+                        $(this).parent().parent().next().next().removeClass("show").addClass("hide");
+                    }
+
+                    //关闭
+                    $(this).attr("data-switch-value", 0);
+                    $(this).children('i').removeClass("fa-toggle-on").addClass("fa-toggle-off");
+                    Toastr.success("成功关闭 "+ switchHtml + " 功能");
+                }
+
+
+                // data-switch-name
+                // data-switch-value
             });
             // $('.btn-switch').on('click', function (e) {
             //     // var options = table.bootstrapTable(tableOptions);
