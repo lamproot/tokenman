@@ -105,6 +105,9 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
         edit: function (form) {
             Form.api.bindevent($("form[role=form]"));
         },
+        detail: function (form) {
+            Form.api.bindevent($("form[role=form]"));
+        },
         config: function () {
 
             //================= 封禁功能 ==================
