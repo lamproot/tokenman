@@ -238,37 +238,5 @@ class Dashboard extends Backend
         return $this->view->fetch();
     }
 
-    /**
-     * 查看
-     */
-    public function test()
-    {
-        //获取所有权限
-        $chat_bot_id = @$_GET['chat_bot_id'];
-        $chat_id = @$_GET['chat_id'];
-
-
-        $row = $this->group_bot_configmodel
-               ->where('chat_bot_id', '=', $chat_bot_id)
-               ->where('chat_id', '=', $chat_id)
-               ->select();
-
-        $result = [];
-        foreach ($row as $key => $value) {
-            $result[$value['rule']] = $value['value'];
-            if ($value['data']) {
-                $result[$value['rule']] = explode(",", $value['data']);
-            }
-
-            if ($value['rule'] == 'clear_all_news_time') {
-                $clear_all_news_time = (($value['updated_at'] + $value['value']) - time());
-                $result["clear_all_news_time_count"] = $clear_all_news_time <= 0 ? 0 : $clear_all_news_time;
-            }
-        }
-        //echo json_encode($result);exit;
-        $this->assign("result", $result);
-        $this->assign("getrow", $_GET);
-        return $this->view->fetch();
-    }
 
 }

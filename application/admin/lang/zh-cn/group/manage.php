@@ -13,5 +13,6 @@ return [
     'description' => '描述',
     'Activate Bot' => '激活机器人',
     'Data Detail' => '查看群数据',
-    'Group User Data' => '群用户管理'
+    'Group User Data' => '群用户管理',
+    'Group Bot Config' => '群机器人配置'
 ];
