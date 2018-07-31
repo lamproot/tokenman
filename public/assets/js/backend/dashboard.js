@@ -154,8 +154,8 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
                     data:{
                         "rule":"set_ban_time",
                         "value":banTime,
-                        "chat_bot_id":2,
-                        "chat_id":-1001249040089
+                        "chat_bot_id":getrow['chat_bot_id'],
+                        "chat_id":getrow['chat_id']
                     },
                     success: function (ret) {
 
@@ -220,8 +220,8 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
                         "rule":rule,
                         "value":"",
                         "data":data.join(),
-                        "chat_bot_id":2,
-                        "chat_id":-1001249040089
+                        "chat_bot_id":getrow['chat_bot_id'],
+                        "chat_id":getrow['chat_id']
                     },
                     success: function (ret) {
                         if (ret.code === 0) {
@@ -249,8 +249,8 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
                     data:{
                         "rule":"clear_all_news_time",
                         "value":time,
-                        "chat_bot_id":2,
-                        "chat_id":-1001249040089
+                        "chat_bot_id":getrow['chat_bot_id'],
+                        "chat_id":getrow['chat_id']
                     },
                     success: function (ret) {
                         if (ret.code === 0) {
@@ -386,9 +386,9 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
                         data:{
                         	"rule":switchName,
                         	"value":1,
-                        	"chat_bot_id":2,
+                        	"chat_bot_id":getrow['chat_bot_id'],
 
-                            "chat_id":-1001249040089
+                            "chat_id":getrow['chat_id']
                         },
                         success: function (ret) {
 
@@ -429,8 +429,8 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
                         data:{
                         	"rule":switchName,
                         	"value":0,
-                        	"chat_bot_id":2,
-                            "chat_id":-1001249040089
+                        	"chat_bot_id":getrow['chat_bot_id'],
+                            "chat_id":getrow['chat_id']
                         },
                         success: function (ret) {
 

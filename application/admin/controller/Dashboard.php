@@ -244,8 +244,8 @@ class Dashboard extends Backend
     public function test()
     {
         //获取所有权限
-        $chat_bot_id = $_GET['chat_bot_id'];
-        $chat_id = $_GET['chat_id'];
+        $chat_bot_id = @$_GET['chat_bot_id'];
+        $chat_id = @$_GET['chat_id'];
 
 
         $row = $this->group_bot_configmodel
@@ -267,6 +267,7 @@ class Dashboard extends Backend
         }
         //echo json_encode($result);exit;
         $this->assign("result", $result);
+        $this->assign("getrow", $_GET);
         return $this->view->fetch();
     }
 

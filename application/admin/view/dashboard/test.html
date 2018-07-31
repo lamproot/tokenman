@@ -47,7 +47,7 @@
 											<div class="box-tools pull-right">
 												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_delete_link"  data-switch-value="{if isset($result['is_delete_link'])}{$result['is_delete_link']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
-													<i class="fa {if isset($result['is_delete_link']) &&  $result['is_delete_link'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
+													<i class="fa {if isset($result['is_delete_link']) && $result['is_delete_link'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
 													</i>
 												</a>
 											</div>
@@ -70,7 +70,7 @@
 											<div class="box-tools pull-right">
 												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_delete_photo"  data-switch-value="{if isset($result['is_delete_photo'])}{$result['is_delete_photo']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
-													<i class="fa fa-toggle-off text-info fa-2x">
+													<i class="fa {if isset($result['is_delete_photo']) && $result['is_delete_photo'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
 													</i>
 												</a>
 											</div>
@@ -93,7 +93,7 @@
 											<div class="box-tools pull-right">
 												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_delete_voice"  data-switch-value="{if isset($result['is_delete_voice'])}{$result['is_delete_voice']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
-													<i class="fa fa-toggle-off text-info fa-2x">
+													<i class="fa {if isset($result['is_delete_voice']) && $result['is_delete_voice'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
 													</i>
 												</a>
 											</div>
@@ -118,7 +118,7 @@
 											<div class="box-tools pull-right">
 												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_delete_document"  data-switch-value="{if isset($result['is_delete_document'])}{$result['is_delete_document']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
-													<i class="fa fa-toggle-off text-info fa-2x">
+													<i class="fa {if isset($result['is_delete_document']) && $result['is_delete_document'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
 													</i>
 												</a>
 											</div>
@@ -141,7 +141,7 @@
 											<div class="box-tools pull-right">
 												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭"  data-switch-name="is_delete_sticker"  data-switch-value="{if isset($result['is_delete_sticker'])}{$result['is_delete_sticker']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
-													<i class="fa fa-toggle-off text-info fa-2x">
+													<i class="fa {if isset($result['is_delete_sticker']) && $result['is_delete_sticker'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
 													</i>
 												</a>
 											</div>
@@ -166,7 +166,7 @@
 											<div class="box-tools pull-right">
 												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_keyword_cmd"  data-switch-value="{if isset($result['is_keyword_cmd'])}{$result['is_keyword_cmd']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
-													<i class="fa fa-toggle-off text-info fa-2x">
+													<i class="fa {if isset($result['is_keyword_cmd']) && $result['is_keyword_cmd'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
 													</i>
 												</a>
 											</div>
@@ -177,7 +177,7 @@
 											当此项激活时，Bot 将根据问答库中的设定，在群内真人用户发文字消息是，根据文字消息中的关键词，自动回复用户消息。
 										</div>
 
-										<div class="box-footer show">
+										<div class="box-footer {if isset($result['is_keyword_cmd']) && $result['is_keyword_cmd'] eq 1}show{else/}hide{/if} ">
 											<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" class="btn btn-info"
 											data-action="disable" data-name="blog">
 												配置关键词
@@ -200,7 +200,7 @@
 											<div class="box-tools pull-right">
 												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_words_ban"  data-switch-value="{if isset($result['is_words_ban'])}{$result['is_words_ban']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
-													<i class="fa fa-toggle-off text-info fa-2x">
+													<i class="fa {if isset($result['is_words_ban']) && $result['is_words_ban'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
 													</i>
 												</a>
 											</div>
@@ -212,7 +212,7 @@
 
 										</div>
 
-										<div class="box-footer show">
+										<div class="box-footer {if isset($result['is_words_ban']) && $result['is_words_ban'] eq 1}show{else/}hide{/if}">
 											<div class="row">
 												<div class="col-md-12  col-sm-12 col-md-12">
 													<div class="form-group">
@@ -331,7 +331,7 @@
 											<div class="box-tools pull-right">
 												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_ban_warn"  data-switch-value="{if isset($result['is_ban_warn'])}{$result['is_ban_warn']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
-													<i class="fa fa-toggle-off text-info fa-2x">
+													<i class="fa {if isset($result['is_ban_warn']) && $result['is_ban_warn'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
 													</i>
 												</a>
 											</div>
@@ -354,7 +354,7 @@
 											<div class="box-tools pull-right">
 												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_ban_blank"  data-switch-value="{if isset($result['is_ban_blank'])}{$result['is_ban_blank']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
-													<i class="fa fa-toggle-off text-info fa-2x">
+													<i class="fa {if isset($result['is_ban_blank']) && $result['is_ban_blank'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
 													</i>
 												</a>
 											</div>
@@ -377,7 +377,7 @@
 											<div class="box-tools pull-right">
 												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_ban_time_double"  data-switch-value="{if isset($result['is_ban_time_double'])}{$result['is_ban_time_double']}{else/}0{/if}"  class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
-													<i class="fa fa-toggle-off text-info fa-2x">
+													<i class="fa {if isset($result['is_ban_time_double']) && $result['is_ban_time_double'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
 													</i>
 												</a>
 											</div>
@@ -402,7 +402,7 @@
 											<div class="box-tools pull-right">
 												<a href="javascript:;" data-toggle="tooltip" data-switch-name="is_clear_litter_news"  data-switch-value="{if isset($result['is_clear_litter_news'])}{$result['is_clear_litter_news']}{else/}0{/if}" title="点击开启/关闭" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
-													<i class="fa fa-toggle-off text-info fa-2x">
+													<i class="fa {if isset($result['is_clear_litter_news']) && $result['is_clear_litter_news'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
 													</i>
 												</a>
 											</div>
@@ -425,7 +425,7 @@
 											<div class="box-tools pull-right">
 												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="cmd_attack_switch"  data-switch-value="{if isset($result['cmd_attack_switch'])}{$result['cmd_attack_switch']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
-													<i class="fa fa-toggle-off text-info fa-2x">
+													<i class="fa {if isset($result['cmd_attack_switch']) && $result['cmd_attack_switch'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
 													</i>
 												</a>
 											</div>
@@ -525,7 +525,7 @@
 											<div class="box-tools pull-right">
 												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_clear_new_member"  data-switch-value="{if isset($result['is_clear_new_member'])}{$result['is_clear_new_member']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
-													<i class="fa fa-toggle-off text-info fa-2x">
+													<i class="fa {if isset($result['is_clear_new_member']) && $result['is_clear_new_member'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
 													</i>
 												</a>
 											</div>
@@ -548,7 +548,7 @@
 											<div class="box-tools pull-right">
 												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_clear_left_member"  data-switch-value="{if isset($result['is_clear_left_member'])}{$result['is_clear_left_member']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
-													<i class="fa fa-toggle-off text-info fa-2x">
+													<i class="fa {if isset($result['is_clear_left_member']) && $result['is_clear_left_member'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
 													</i>
 												</a>
 											</div>
@@ -577,7 +577,7 @@
 											<div class="box-tools pull-right">
 												<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_clear_all_news"  data-switch-value="{if isset($result['is_clear_all_news'])}{$result['is_clear_all_news']}{else/}0{/if}" class="btn-disable btn-switch"
 												data-action="disable" data-name="blog">
-													<i class="fa fa-toggle-off text-info fa-2x">
+													<i class="fa {if isset($result['is_clear_all_news']) && $result['is_clear_all_news'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
 													</i>
 												</a>
 											</div>
@@ -589,7 +589,7 @@
 
 										</div>
 
-										<div class="box-footer show">
+										<div class="box-footer {if isset($result['is_clear_all_news']) && $result['is_clear_all_news'] eq 1}show{else/}hide{/if}">
 											<div class="row" style="margin-top:15px;">
 
 												{if condition="isset($result['clear_all_news_time_count']) && $result['clear_all_news_time_count'] gt 0"}
@@ -758,3 +758,6 @@
 	</div>
 </div>
 </div>
+<script>
+    var getrow = {:json_encode($getrow)};
+</script>
