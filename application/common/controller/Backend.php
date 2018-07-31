@@ -642,6 +642,15 @@ class Backend extends Controller
        return $this->ret['result'];
    }
 
+   public function pinChatMessage ($chat_id, $message_id) {
+      $this->ret = $this->callMethod ('pinChatMessage', [
+          'chat_id' => $chat_id,
+          'message_id' => $message_id
+      ]);
+      return $this->ret['result'];
+  }
+
+
 
 
 

@@ -31,6 +31,14 @@ class Message extends Backend
         if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
             $this->time = [0 => 'Real time transmission', 1 => 'Timing transmission'];
         }
+
+        $this->pinList = [0 => '不置顶', 1 => '置顶'];
+        if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
+            $this->pinList = [0 => 'Not Pin', 1 => 'Pin'];
+        }
+
+
+
     }
 
     /**
@@ -104,6 +112,7 @@ class Message extends Backend
         unset($this->type[2]);
         $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
         $this->view->assign('timeList', build_select('row[push_type]', $this->time, 0, ['class' => 'form-control']));
+        $this->view->assign('pinList', build_select('row[is_pin]', $this->pinList, 0, ['class' => 'form-control']));
 
         if ($this->request->isPost())
         {
@@ -114,6 +123,8 @@ class Message extends Backend
                 $params['is_del'] = 0;
                 $params['url'] = (isset($params['url']) && !empty($params['url'])) ? $params['url'][0] : "";
                 $params['content'] = (isset($params['content']) && !empty($params['content'])) ? $params['content'][0] : "";
+                $params['is_pin'] = (isset($params['is_pin']) && !empty($params['is_pin'])) ? $params['is_pin'] : 0;
+
 
                 //定时推送功能
                 if (isset($params['push_type']) && (int)$params['push_type'] == 1) {
@@ -138,6 +149,9 @@ class Message extends Backend
 
                 if ($params['type'] == 1) {
                     $result = $this->sendMessage($row['chat_id'], $params['content']);
+                    if ($params['is_pin']) {
+                        $this->pinChatMessage($row['chat_id'], $result);
+                    }
                 }
 
                 if ($params['type'] == 3) {
@@ -147,6 +161,8 @@ class Message extends Backend
                 if ($params['type'] == 4) {
                     $result = $this->sendDocument($row['chat_id'],$params['url'], $params['content']);
                 }
+
+                echo json_encode($result);exit;
 
                 $this->model->create($params);
                 //发送消息 更新status

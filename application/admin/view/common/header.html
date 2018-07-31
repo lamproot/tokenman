@@ -82,7 +82,7 @@
 
                         <p>
                             {$admin.nickname}
-                            <small>服务到期:{$admin.botstoptime|date="Y-m-d H:i:s",###}</small>
+                            <small>服务到期:{if condition="isset($admin.botstoptime)"}{$admin.botstoptime|date="Y-m-d H:i:s",###}{/if}</small>
                         </p>
                     </li>
                     <!-- Menu Body -->

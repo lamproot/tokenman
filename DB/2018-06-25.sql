@@ -109,3 +109,5 @@ CREATE TABLE `group_bot_config` (
   INDEX(chat_id),
   INDEX(rule)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+ALTER TABLE chat_push ADD is_pin tinyint(2) NOT NULL DEFAULT 0 COMMENT "是否置顶";
