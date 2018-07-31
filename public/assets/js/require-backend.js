@@ -1,5 +1,6 @@
 require.config({
     urlArgs: "v=" + requirejs.s.contexts._.config.config.site.version,
+    //urlArgs: "v=" + requirejs.s.contexts._.config.site.version,
     //urlArgs: "",
     packages: [{
             name: 'moment',
