@@ -50,7 +50,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                         //     return Table.api.formatter.operate.call(this, value, row, index);
                         // }}
                         {field: 'operate', title: __('Operate'), table: table,
-                            //events: Table.api.events.operate,
+                            events: Table.api.events.operate,
                             buttons: [
                             {
                                 name: 'detail',
