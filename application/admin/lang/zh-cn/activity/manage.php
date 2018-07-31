@@ -12,5 +12,6 @@ return [
     'Code Activity' => 'Code 邀请活动',
     'Article Activity' => '拟稿人活动',
     'The same activity has already existed' => '相同活动已存在',
-    'Create Error' => '创建失败'
+    'Create Error' => '创建失败',
+    'Link' => '链接'
 ];

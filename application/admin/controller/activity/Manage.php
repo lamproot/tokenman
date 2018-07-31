@@ -64,6 +64,17 @@ class Manage extends Backend
                       $list[$key]['activity_user_count'] = $this->codemodel
                               ->where('activity_id', '=', $value['id'])
                               ->count();
+
+                      //Code活动
+                      $list[$key]['link'] = "";
+                      if ($value['type'] == 1) {
+                          $botCode = $this->codemodel->get(['activity_id' => $value['id'], 'from_id' => 1, 'status' => 3]);
+                          $list[$key]['link'] = "http://m.name-technology.fun/Index/code/".$botCode['code'];
+                      }
+
+                      if ($value['type'] == 2) {
+                          $list[$key]['link'] = "http://m.name-technology.fun/Index/activity/".$value['id'];
+                      }
                 }
             }
             $result = array("total" => $total, "rows" => $list);
@@ -223,7 +234,7 @@ class Manage extends Backend
         if ($row['type'] == 2) {
             $activityUrl = "http://m.name-technology.fun/Index/activity/".$row['id'];
         }
-        $row['baseurl'] =
+        $row['baseurl'] = "";
         //{$botCode['code']}
         $this->view->assign('activityUrl', $activityUrl);
 

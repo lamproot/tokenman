@@ -32,20 +32,21 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                                 return "";
                             }
                         }},
-                        {field: 'logo', title: '活动图片', formatter: Controller.api.formatter.thumb, operate: false},
-                        {field: 'status', title: __('Status'), statusList: statusList, formatter: function (value, row, index) {
-                            if (statusList[row.status]) {
-                                //row.type = row.type ? row.type : 0;
-                                return statusList[row.status];
-                            }else{
-                                return "";
-                            }
-                        }},
+                        //{field: 'logo', title: '活动图片', formatter: Controller.api.formatter.thumb, operate: false},
+                        // {field: 'status', title: __('Status'), statusList: statusList, formatter: function (value, row, index) {
+                        //     if (statusList[row.status]) {
+                        //         //row.type = row.type ? row.type : 0;
+                        //         return statusList[row.status];
+                        //     }else{
+                        //         return "";
+                        //     }
+                        // }},
                         // {field: 'usercount', title: __('共获取用户数')},
 
                         // {field: 'remarks', title: '备注'},
                         // {field: 'created_at', title: __('Createtime'), formatter: Table.api.formatter.datetime},
                         {field: 'created_at', title: __('Createtime'), formatter: Table.api.formatter.datetime, operate: 'RANGE', addclass: 'datetimerange'},
+                        {field: 'link', title:  __('Link'), formatter: Controller.api.formatter.activitylink, operate: false},
 
                         // {field: 'username', title: __('Username')},
                         // {field: 'nickname', title: __('Nickname')},
@@ -128,6 +129,13 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                         return '<a href="' + row.logo + '" target="_blank"><img src="' + row.logo + style + '" alt="" style="max-height:90px;max-width:120px"></a>';
                     } else {
                         return '<a href="' + row.logo + '" target="_blank">' + __('None') + '</a>';
+                    }
+                },
+                activitylink: function (value, row, index) {
+                    if (row.link) {
+                        return '<a href="' + row.link + '" target="_blank">复制链接</a>';
+                    } else {
+                        return '<a href="' + row.link + '" target="_blank">复制链接</a>';
                     }
                 },
                 activity_user: function (value, row, index) {

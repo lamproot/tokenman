@@ -4,10 +4,10 @@
 					<ol class="carousel-indicators">
 						<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active">
 						</li>
-						<!-- <li data-target="#carouselExampleIndicators" data-slide-to="1">
+						<li data-target="#carouselExampleIndicators" data-slide-to="1">
 						</li>
 						<li data-target="#carouselExampleIndicators" data-slide-to="2">
-						</li> -->
+						</li>
 					</ol>
 					<div class="carousel-inner">
 						<div class="carousel-item active">
@@ -16,18 +16,20 @@
 							{else/}
 								<img class="d-block w-100" src="__CDN__/home/images/banner 1.png?t=1" alt="First slide">
 							{/if}
-							<!-- <div class="bannercontent w-100 h-100">
-								<div class="webanner1">
-									<div class="text1">
-                                        {:__('The Future Of')}
-									</div>
-									<div class="text2">
-                                        {:__('Deep Qa')}
-
-									</div>
-								</div>
-								<img class="banner1robot" src="__CDN__/home/images/bannerrobot.png" />
-							</div> -->
+						</div>
+						<div class="carousel-item">
+							{if condition="isset($_COOKIE['think_var']) && $_COOKIE['think_var'] eq 'en'"}
+								<img class="d-block w-100" src="__CDN__/home/images/banner 2英文版.png?t=1" alt="First slide">
+							{else/}
+								<img class="d-block w-100" src="__CDN__/home/images/banner 2.png?t=1" alt="First slide">
+							{/if}
+						</div>
+						<div class="carousel-item">
+							{if condition="isset($_COOKIE['think_var']) && $_COOKIE['think_var'] eq 'en'"}
+								<img class="d-block w-100" src="__CDN__/home/images/banner 3英文版.png?t=1" alt="First slide">
+							{else/}
+								<img class="d-block w-100" src="__CDN__/home/images/banner 3.png?t=1" alt="First slide">
+							{/if}
 						</div>
 					</div>
 				</div>
