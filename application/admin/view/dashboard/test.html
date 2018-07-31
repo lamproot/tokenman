@@ -592,19 +592,21 @@
 										<div class="box-footer {if isset($result['is_clear_all_news']) && $result['is_clear_all_news'] eq 1}show{else/}hide{/if}">
 											<div class="row" style="margin-top:15px;">
 
-												{if condition="isset($result['clear_all_news_time_count']) && $result['clear_all_news_time_count'] gt 0"}
-													<div class="text-center m-3" style="font-size: 4em; font-weight: bold; font-family: monospace; color: rgb(0, 0, 0);">
-														04:48s
-													</div>
-													<div class="text-center mb-5">
-														<button type="button" class="btn btn-info btn-lg">
-															立即停止
-														</button>
-													</div>
-												{/if}
 
+												<div class="col-md-12  col-sm-12 col-md-12 {if condition="isset($result['clear_all_news_time_count']) && $result['clear_all_news_time_count'] gt 0"}show{else/}hide{/if}">
+													<div class="form-group">
+														<div class="text-center m-3 clear_all_news_time_count" data-count="{if condition="isset($result['clear_all_news_time_count']) && $result['clear_all_news_time_count'] gt 0"}{$result['clear_all_news_time_count']}{else/}0{/if}" style="font-size: 4em; font-weight: bold; font-family: monospace; color: rgb(0, 0, 0);">
+															0s
+														</div>
+														<div class="text-center mb-5">
+															<button type="button" class="btn btn-info btn-lg clear_all_news_time_stop">
+																立即停止
+															</button>
+														</div>
+													</div>
+												</div>
 
-												<div class="col-md-12  col-sm-12 col-md-12">
+												<div class="col-md-12 col-sm-12 col-md-12 {if condition="isset($result['clear_all_news_time_count']) && $result['clear_all_news_time_count'] gt 0"}hide{else/}show{/if}">
 													<div class="form-group">
 														<label>
 															请选择开启禁言时长:
@@ -668,6 +670,9 @@
 														</div>
 													</div>
 												</div>
+
+
+
 											</div>
 											<div class="row">
 												<div class="col-md-12  col-sm-12 col-md-12">

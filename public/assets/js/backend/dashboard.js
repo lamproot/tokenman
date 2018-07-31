@@ -170,6 +170,36 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
 
             });
 
+
+            //清空时间 初始化
+            $(".clear_all_news_time_stop").click(function(){
+                $(".clear_all_news_time_count").attr("data-count", 0);
+                $(".clear_all_news_time_count").html("");
+                $(this).parent().parent().parent().addClass("hide");
+                $(this).parent().parent().parent().next().removeClass("hide").addClass("show");
+                $.ajax({
+                    url: 'group/manage/botconfig',
+                    type: 'post',
+                    dataType: 'json',
+                    data:{
+                        "rule":"clear_all_news_time",
+                        "value":0,
+                        "chat_bot_id":getrow['chat_bot_id'],
+                        "chat_id":getrow['chat_id']
+                    },
+                    success: function (ret) {
+                        if (ret.code === 0) {
+                            Toastr.success("设置成功");
+                        }else{
+                            Toastr.success("设置失败");
+                        }
+
+                    }
+                });
+            });
+
+
+
             $(".ban_words_add").click(function(){
                 var word = $(this).parent().prev().val();
                 if (word == "") {
@@ -240,6 +270,11 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
             $(".clear_all_news_time_button").click(function(){
                 //禁言时间设置
                 var time = $(this).parent().prev().val();
+                
+                if (parseInt(time) === 0) {
+                    Toastr.error("请选择开启禁言时长");
+                    return false;
+                }
                 var that = this;
                 //设置封禁用户时长Ajax
                 $.ajax({
@@ -255,6 +290,10 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
                     success: function (ret) {
                         if (ret.code === 0) {
                             Toastr.success("设置成功");
+                            $(".clear_all_news_time_count").attr("data-count", time);
+                            countTime();
+                            $(that).parent().parent().parent().parent().addClass("hide");
+                            $(that).parent().parent().parent().parent().prev().removeClass("hide").addClass("show");
                         }else{
                             Toastr.success("设置失败");
                         }
@@ -418,8 +457,16 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
 
                     //全体禁言模式
                     if (switchName == "is_clear_all_news") {
-                        $(this).parent().parent().next().next().removeClass("show").addClass("hide");
                         //关闭禁言模式
+                        var dataCount = $(".clear_all_news_time_count").attr("data-count");
+
+                        if (dataCount > 0) {
+                            Toastr.error("请立即停止禁言时间设置");
+                            return false;
+                        }
+
+                        $(this).parent().parent().next().next().removeClass("show").addClass("hide");
+
                     }
 
                     $.ajax({
@@ -468,6 +515,59 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
             //     alert("dadas")
             //
             // });
+
+            countTime();
+            function countTime() {
+                //获取当前时间
+                // var date = new Date();
+                // var now = date.getTime();
+                // //设置截止时间
+                // var endDate = new Date("2016-10-22 23:23:23");
+                // var end = endDate.getTime();
+                //时间差
+                var leftTime = $(".clear_all_news_time_count").attr("data-count");
+
+                //定义变量 d,h,m,s保存倒计时的时间
+                var d,h,m,s;
+                if (leftTime>=0) {
+                    d = Math.floor(leftTime/60/60/24);
+                    h = Math.floor(leftTime/60/60%24);
+                    m = Math.floor(leftTime/60%60);
+                    s = Math.floor(leftTime%60);
+
+                    var html = "";
+                    if (d) {
+                        html = html + d + "D-";
+                    }
+
+                    if (h) {
+                        html = html + h + "H-";
+                    }
+
+                    if (m) {
+                        html = html + m + "M-";
+                    }
+
+                    if (s) {
+                        html = html + s+ "S";
+                    }
+
+                    $(".clear_all_news_time_count").html(html);
+                    $(".clear_all_news_time_count").attr("data-count", leftTime-1)
+                    //递归每秒调用countTime方法，显示动态时间效果
+                    setTimeout(countTime,1000);
+                }
+
+                //alert(s)
+                //将倒计时赋值到div中
+                // document.getElementById("_d").innerHTML = d+"天";
+                // document.getElementById("_h").innerHTML = h+"时";
+                // document.getElementById("_m").innerHTML = m+"分";
+                // document.getElementById("_s").innerHTML = s+"秒";
+
+            }
+
+
         }
     };
 
