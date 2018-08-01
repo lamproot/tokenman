@@ -111,3 +111,5 @@ CREATE TABLE `group_bot_config` (
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
 
 ALTER TABLE chat_push ADD is_pin tinyint(2) NOT NULL DEFAULT 0 COMMENT "是否置顶";
+ALTER TABLE chat_push ADD push_type tinyint(2) NOT NULL DEFAULT 0 COMMENT "0 实时 1 定时";
+ALTER TABLE chat_push ADD push_task int(10) NOT NULL DEFAULT 0 COMMENT "推送定时";

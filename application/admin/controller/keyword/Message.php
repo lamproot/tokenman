@@ -149,9 +149,6 @@ class Message extends Backend
 
                 if ($params['type'] == 1) {
                     $result = $this->sendMessage($row['chat_id'], $params['content']);
-                    if ($params['is_pin']) {
-                        $this->pinChatMessage($row['chat_id'], $result);
-                    }
                 }
 
                 if ($params['type'] == 3) {
@@ -160,6 +157,10 @@ class Message extends Backend
 
                 if ($params['type'] == 4) {
                     $result = $this->sendDocument($row['chat_id'],$params['url'], $params['content']);
+                }
+
+                if ($params['is_pin']) {
+                    $this->pinChatMessage($row['chat_id'], $result);
                 }
 
                 $this->model->create($params);
