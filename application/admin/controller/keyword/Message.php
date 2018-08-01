@@ -161,9 +161,7 @@ class Message extends Backend
                 if ($params['type'] == 4) {
                     $result = $this->sendDocument($row['chat_id'],$params['url'], $params['content']);
                 }
-
-                echo json_encode($result);exit;
-
+                
                 $this->model->create($params);
                 //发送消息 更新status
 
