@@ -484,6 +484,39 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             //
             // });
 
+            $(".keyword_cmd_add").unbind('click').click(function(){
+                $(".keyword_cmd_add_list").append(Template("keyword_cmd_add_tpl"));
+                keyword_cmd_add_list_keword_add();
+            });
+
+            function keyword_cmd_add_list_keword_add(){
+                $(".keyword_cmd_add_list_keword_add").unbind('click').click(function(){
+                    var word = $(this).parent().prev().val();
+                    if (word == "") {
+                        alert("Please enter")
+                        return false;
+                    }
+                    $(this).parent().parent().parent().prev().children('ul').append(Template("keyword_cmd_add_list_keword_add_tpl",{tag:word}));
+
+                    keyword_cmd_add_list_keword_del();
+                });
+            }
+            keyword_cmd_add_list_keword_add();
+
+            function keyword_cmd_add_list_keword_del(){
+                $(".keyword_cmd_add_list_keword_del").unbind('click').click(function(){
+                    $(this).parent().parent().remove();
+                });
+            }
+            keyword_cmd_add_list_keword_del();
+
+            function keyword_cmd_add_list_save(){
+                $(".keyword_cmd_add_list_save").unbind('click').click(function(){
+                    alert($(this).parent().parent().parent().parent().html())
+                });
+            }
+            keyword_cmd_add_list_save();
+
             countTime();
             function countTime() {
                 //获取当前时间
