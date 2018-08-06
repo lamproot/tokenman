@@ -14,5 +14,7 @@ return [
     'Activate Bot' => '激活机器人',
     'Data Detail' => '查看群数据',
     'Group User Data' => '群用户管理',
-    'Group Bot Config' => '群机器人配置'
+    'Group Bot Config' => '群机器人配置',
+    'Delete all messages contains links' => '删除包含链接的信息1',
+
 ];
