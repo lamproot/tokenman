@@ -487,6 +487,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             $(".keyword_cmd_add").unbind('click').click(function(){
                 $(".keyword_cmd_add_list").append(Template("keyword_cmd_add_tpl"));
                 keyword_cmd_add_list_keword_add();
+                keyword_cmd_add_list_save();
             });
 
             function keyword_cmd_add_list_keword_add(){
@@ -512,7 +513,56 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
 
             function keyword_cmd_add_list_save(){
                 $(".keyword_cmd_add_list_save").unbind('click').click(function(){
-                    alert($(this).parent().parent().parent().parent().html())
+
+                    var keyword_cmd = [];
+                    $(this).parent().parent().parent().parent().children().each(function(i){
+                        var keyword_item = [];
+                        $(this).children().children().eq(0).children().children("ul").children().each(function(){
+                            keyword_item.push($(this).attr("itemvalue"));
+                        });
+
+                        var type_item = $(this).children().children().eq(1).children("select").val();
+                        var status_item = $(this).children().children().eq(2).children("select").val();
+                        var textarea_item = $(this).children().children().eq(3).children("textarea").val();
+                        keyword_cmd.push(
+                            {
+                                "keyword":keyword_item.join(","),
+                                "content":textarea_item,
+                                "type":type_item,
+                                "status":status_item
+                            }
+                        );
+                    });
+                    var that = this;
+                    //进行数据处理
+                    $.ajax({
+                        url: 'group/manage/botconfig',
+                        type: 'post',
+                        dataType: 'json',
+                        data:{
+                        	"rule":"keyword_cmd_config",
+                        	"data":JSON.stringify(keyword_cmd),
+                        	"chat_bot_id":getrow['chat_bot_id'],
+                            "chat_id":getrow['chat_id']
+                        },
+                        success: function (ret) {
+
+                            if (ret.code === 0) {
+
+                                Toastr.success("保存成功");
+                            }else{
+                                Toastr.success("保存失败");
+                            }
+
+                        }
+                    });
+                    //alert(JSON.stringify(keyword_cmd))
+                    // {
+                    //     "keyword":["444","555","666"],
+                    //     "content":"回复内容2222",
+                    //     "type":2,
+                    //     "status":1
+                    // }
                 });
             }
             keyword_cmd_add_list_save();

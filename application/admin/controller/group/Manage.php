@@ -290,6 +290,8 @@ class Manage extends Backend
             }
             return json(["code" => 0, "msg" => "成功", "data" => $result]);
         }
+
+
         //echo json_encode($row);exit;
 
         // $chatBot = $this->chatbotmodel->get($row['chat_bot_id']);
@@ -356,6 +358,15 @@ class Manage extends Backend
             if ($value['rule'] == 'clear_all_news_time') {
                 $clear_all_news_time = (($value['updated_at'] + $value['value']) - time());
                 $result["clear_all_news_time_count"] = $clear_all_news_time <= 0 ? 0 : $clear_all_news_time;
+            }
+
+            if ($value['rule'] == 'keyword_cmd_config') {
+                $result["keyword_cmd_config"] = json_decode($value['data'], true);
+                //keyword
+
+                foreach ($result["keyword_cmd_config"] as $kkey => $kvalue) {
+                    $result["keyword_cmd_config"][$kkey]['keyword'] = explode(",", $result["keyword_cmd_config"][$kkey]['keyword']);
+                }
             }
         }
         //echo json_encode($result);exit;
