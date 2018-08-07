@@ -4,22 +4,22 @@
 			<ul class="nav nav-tabs">
 				<li class="active">
 					<a href="#activity" data-toggle="tab">
-						消息处理
+						{:__('Messages Setting')}
 					</a>
 				</li>
 				<li>
 					<a href="#timeline" data-toggle="tab">
-						不当行为
+						{:__('ToS Violations')}
 					</a>
 				</li>
 				<li>
 					<a href="#settings" data-toggle="tab">
-						成员管理
+						{:__('Members Management')}
 					</a>
 				</li>
 				<li>
 					<a href="#settings2" data-toggle="tab">
-						群内禁言
+						{:__('Blocks')}
 					</a>
 				</li>
 			</ul>
@@ -43,7 +43,7 @@
 								</div>
 
 								<div class="box-body">
-									当此项激活时，Bot 将自动删除非管理员成员所发出的包含链接的文字或图像消息。
+									{:__('Delete all messages contains links Message')}
 								</div>
 
 							</div>
@@ -53,7 +53,7 @@
 							<div class="box box-default">
 								<div class="box-header with-border">
 									<h3 class="box-title">
-										删除图片类消息
+										{:__('Delete all messages contains images and videos')}
 									</h3>
 									<div class="box-tools pull-right">
 										<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_delete_photo"  data-switch-value="{if isset($result['is_delete_photo'])}{$result['is_delete_photo']}{else/}0{/if}" class="btn-disable btn-switch"
@@ -66,7 +66,7 @@
 								</div>
 
 								<div class="box-body">
-									当此项激活时，Bot 将自动删除非管理员成员所发出的图片和视频消息。
+									{:__('Delete all messages contains images and videos Message')}
 								</div>
 
 							</div>
@@ -76,7 +76,7 @@
 							<div class="box box-default">
 								<div class="box-header with-border">
 									<h3 class="box-title">
-										删除语音类消息
+										{:__('Delete all voice messages')}
 									</h3>
 									<div class="box-tools pull-right">
 										<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_delete_voice"  data-switch-value="{if isset($result['is_delete_voice'])}{$result['is_delete_voice']}{else/}0{/if}" class="btn-disable btn-switch"
@@ -89,7 +89,7 @@
 								</div>
 
 								<div class="box-body">
-									当此项激活时，Bot 将自动删除非管理员成员所发出的语音消息。
+									{:__('Delete all voice messages Message')}
 								</div>
 
 							</div>
@@ -101,7 +101,7 @@
 							<div class="box box-default">
 								<div class="box-header with-border">
 									<h3 class="box-title">
-										删除文档类消息
+										{:__('Delete all messages contains documents')}
 									</h3>
 									<div class="box-tools pull-right">
 										<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_delete_document"  data-switch-value="{if isset($result['is_delete_document'])}{$result['is_delete_document']}{else/}0{/if}" class="btn-disable btn-switch"
@@ -114,7 +114,7 @@
 								</div>
 
 								<div class="box-body">
-									当此项激活时，Bot 将自动删除非管理员成员所发出的文档。
+									{:__('Delete all messages contains documents  Message')}
 								</div>
 
 							</div>
@@ -124,7 +124,7 @@
 							<div class="box box-default">
 								<div class="box-header with-border">
 									<h3 class="box-title">
-										删除表情和动图
+										{:__('Delete all messages contains stickers and gifs')}
 									</h3>
 									<div class="box-tools pull-right">
 										<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭"  data-switch-name="is_delete_sticker"  data-switch-value="{if isset($result['is_delete_sticker'])}{$result['is_delete_sticker']}{else/}0{/if}" class="btn-disable btn-switch"
@@ -137,7 +137,7 @@
 								</div>
 
 								<div class="box-body">
-									当此项激活时，Bot 将自动删除非管理员成员所发出的表情和GIF动图。
+									{:__('Delete all messages contains stickers and gifs Message')}
 								</div>
 
 							</div>
@@ -149,7 +149,7 @@
 							<div class="box box-default">
 								<div class="box-header with-border">
 									<h3 class="box-title">
-										根据关键词自动应答
+										{:__('Reply according to keywords')}
 									</h3>
 									<div class="box-tools pull-right">
 										<a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_keyword_cmd"  data-switch-value="{if isset($result['is_keyword_cmd'])}{$result['is_keyword_cmd']}{else/}0{/if}" class="btn-disable btn-switch"
@@ -162,7 +162,7 @@
 								</div>
 
 								<div class="box-body">
-									当此项激活时，Bot 将根据问答库中的设定，在群内真人用户发文字消息是，根据文字消息中的关键词，自动回复用户消息。
+									{:__('Reply according to keywords Message')}
 								</div>
 
 								<div class="box-footer {if isset($result['is_keyword_cmd']) && $result['is_keyword_cmd'] eq 1}show{else/}hide{/if} ">
@@ -179,7 +179,8 @@
 													<blockquote>
 														<div class="form-group">
 															<label>
-																当收到消息 包含这些关键词::
+
+																{:__('When the message is received, these key words are included')}::
 															</label>
 															<div class="">
 																<ul class="sp_element_box list-inline">
@@ -199,7 +200,7 @@
 																	<input type="text" class="form-control">
 																	<span class="input-group-btn">
 																		<button type="button" class="btn btn-info btn-flat keyword_cmd_add_list_keword_add">
-																			添加
+																			{:__('Add')}
 																		</button>
 																	</span>
 																</div>
@@ -207,30 +208,30 @@
 														</div>
 
 														<div class="form-group">
-															<label>匹配模式 :</label>
+															<label>{:__('Matching mode')} :</label>
 															<select class="form-control">
-											                    <option value="1" {if condition="intval($vo.type) eq 1"}selected{/if}>包含这些关键词</option>
-											                    <option value="2" {if condition="intval($vo.type) eq 2"}selected{/if}>等于这些关键词</option>
+											                    <option value="1" {if condition="intval($vo.type) eq 1"}selected{/if}>{:__('Include these keywords')}</option>
+											                    <option value="2" {if condition="intval($vo.type) eq 2"}selected{/if}>{:__('Equal to these keywords')}</option>
 										                    </select>
 										                </div>
 
 														<div class="form-group">
-															<label>状态 :</label>
+															<label>{:__('Status')} :</label>
 															<select class="form-control">
-																<option value="1" {if condition="$vo.status eq 1"}selected{/if}>启用</option>
-																<option value="0" {if condition="$vo.status eq 0"}selected{/if}>关闭</option>
+																<option value="1" {if condition="$vo.status eq 1"}selected{/if}>{:__('Open')}</option>
+																<option value="0" {if condition="$vo.status eq 0"}selected{/if}>{:__('Close')}</option>
 															</select>
 														</div>
 
 
 														<div class="form-group">
-										                  <label>Bot 将回复 </label>
+										                  <label>{:__('Bot will reply')} </label>
 										                  <textarea class="form-control" rows="3" placeholder="Enter ...">{$vo.content}</textarea>
 										                </div>
 
 														<div class="form-group">
 															<button type="button" class="btn btn-info btn-flat keyword_cmd_add_list_save" style="width:100%">
-																保存
+																{:__('Save')}
 															</button>
 														</div>
 													</blockquote>
@@ -245,7 +246,7 @@
 										<div class="col-md-12  col-sm-12 col-md-12">
 											<div class="form-group">
 												<button type="button" class="btn btn-info btn-flat keyword_cmd_add" style="width:100%">
-													新增
+													{:__('Add')}
 												</button>
 											</div>
 										</div>
@@ -848,7 +849,7 @@
 						<input type="text" class="form-control">
 						<span class="input-group-btn">
 							<button type="button" class="btn btn-info btn-flat keyword_cmd_add_list_keword_add">
-								添加
+								{:__('Add')}
 							</button>
 						</span>
 					</div>
@@ -856,30 +857,30 @@
 			</div>
 
 			<div class="form-group">
-				<label>匹配模式 :</label>
+				<label>{:__('Matching mode')} :</label>
 				<select class="form-control">
-					<option value="1">包含这些关键词</option>
-					<option value="2">等于这些关键词</option>
+					<option value="1">{:__('Include these keywords')}</option>
+					<option value="2">{:__('Equal to these keywords')}</option>
 				</select>
 			</div>
 
 			<div class="form-group">
-				<label>状态 :</label>
+				<label>{:__('Status')} :</label>
 				<select class="form-control">
-					<option value="1">启用</option>
-					<option value="0">关闭</option>
+					<option value="1">{:__('open')}</option>
+					<option value="0">{:__('close')}</option>
 				</select>
 			</div>
 
 
 			<div class="form-group">
-			  <label>Bot 将回复 </label>
+			  <label>{:__('Bot will reply')} </label>
 			  <textarea class="form-control" rows="3" placeholder="Enter ..."></textarea>
 			</div>
 
 			<div class="form-group">
 				<button type="button" class="btn btn-info btn-flat keyword_cmd_add_list_save" style="width:100%">
-					保存
+					{:__('Save')}
 				</button>
 			</div>
 		</blockquote>

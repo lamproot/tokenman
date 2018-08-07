@@ -15,6 +15,15 @@ return [
     'Data Detail' => '查看群数据',
     'Group User Data' => '群用户管理',
     'Group Bot Config' => '群机器人配置',
-    'Delete all messages contains links' => '删除包含链接的信息1',
-
+    'When the message is received, these key words are included' => '当收到消息 包含这些关键词',
+    'Matching mode' => '匹配模式',
+    'Add' => '添加',
+    'Status' => '状态',
+    'Save' => '保存',
+    'Messages Setting' => '消息处理',
+    'ToS Violations' => '不当行为',
+    'Members Management' => '成员管理',
+    'Blocks' => '群内禁言',
+    'Delete all messages contains links' => '删除包含链接的信息',
+    'Delete all messages contains links Message' => '当此项激活时，Bot 将自动删除非管理员成员所发出的包含链接的文字或图像消息。',
 ];
