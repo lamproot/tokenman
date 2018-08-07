@@ -19,13 +19,17 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             // 初始化表格
             table.bootstrapTable({
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
+                showToggle:false,
+                showColumns:false,
+                showExport:false,
+                showSearchButton:false,
                 columns: [
                     [
                         //{field: 'state', checkbox: true, },
                         {field: 'id', title: 'ID'},
                         {field: 'title', title: __('群名称')},
                         {field: 'chat_id', title: __('chat_id')},
-                        {field: 'chat_bot_id', title: __('机器人ID')},
+                        {field: 'chat_bot_name', title: __('机器人')},
                         // {field: 'status', title: __('Status'), searchList: searchList, formatter: function (value, row, index) {
                         //     if (searchList[row.status] && row.status !== 0) {
                         //       //row.type = row.type ? row.type : 0;
