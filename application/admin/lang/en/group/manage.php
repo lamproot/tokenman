@@ -42,7 +42,7 @@ return [
     'Setting Keywords' => 'Setting Keywords',
     'ToS Violations' => 'ToS Violations',
     'Block members by words' => 'Block members by words',
-    'Bot will deletes all msg and block the member when Members who sending the words contains by “ ”' => '',
+    'Block members by words Message' => 'Bot will deletes all msg and block the member when Members who sending the words contains by “ ”',
     'How long does the member be blocked' => 'How long does the member be blocked',
     'The words which trigger BLOCK' => 'The words which trigger BLOCK',
     'Warning before block' => 'Warning before block',
@@ -63,6 +63,7 @@ Or block it.',
     'To Block All hands Message' => 'Turn it on, group changes CHANNEL mode, only admins can send message.',
     'How long does the group be blocked' => 'How long does the group be blocked',
     'Members still can send messages' => 'Members still can send messages',
+    'Members still can send include messages' => 'Members still can send include messages',
     'Include these keywords' => 'Include these keywords',
     'Equal to these keywords' => 'Equal to these keywords'
 
