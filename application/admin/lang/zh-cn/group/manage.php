@@ -85,5 +85,6 @@ return [
     'Until the manual release' => '直到手动解除',
     'Open' => '开启',
     'Enter ...' => '请输入',
-    'Please choose to open the time' => '请选择开启时间'
+    'Please choose to open the time' => '请选择开启时间',
+    'Stop' => '停止'
 ];
