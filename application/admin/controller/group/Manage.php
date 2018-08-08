@@ -364,9 +364,9 @@ class Manage extends Backend
                 $result["keyword_cmd_config"] = json_decode($value['data'], true);
                 //keyword
 
-                foreach ($result["keyword_cmd_config"] as $kkey => $kvalue) {
-                    $result["keyword_cmd_config"][$kkey]['keyword'] = explode(",", $result["keyword_cmd_config"][$kkey]['keyword']);
-                }
+                // foreach ($result["keyword_cmd_config"] as $kkey => $kvalue) {
+                //     $result["keyword_cmd_config"][$kkey]['keyword'] = explode(",", $result["keyword_cmd_config"][$kkey]['keyword']);
+                // }
             }
         }
         //echo json_encode($result);exit;

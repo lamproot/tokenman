@@ -530,7 +530,7 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                         var textarea_item = $(this).children().children().eq(3).children("textarea").val();
                         keyword_cmd.push(
                             {
-                                "keyword":keyword_item,
+                                "keyword":keyword_item.join(","),
                                 "content":textarea_item,
                                 "type":type_item,
                                 "status":status_item
