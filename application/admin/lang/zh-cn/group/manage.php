@@ -59,7 +59,7 @@ return [
     'To Block All hands Message' => '全体禁言模式开启后，群将会变成频道模式——群中的普通成员将无法发送消息，只有群的管理员可以发布消息。',
     'How long does the group be blocked' => '请选择开启禁言时长',
     'Members still can send messages' => '禁言期間，群内普通成员仍被允许发送以下文字内容',
-    'Members still can send include messages' => '禁言期間，群内普通成员仍被允许发送以下文字内容',
+    'Members still can send include messages' => '禁言期間，群内普通成员仍被允许发送包含以下文字内容',
 
     'Include these keywords' => '包括这些关键词',
     'Equal to these keywords' => '等于这些关键词',
