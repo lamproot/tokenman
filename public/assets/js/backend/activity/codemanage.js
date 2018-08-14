@@ -21,6 +21,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             // 初始化表格
             table.bootstrapTable({
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
+showToggle:false,
+                showColumns:false,
+                showExport:false,
+                showSearchButton:false,
                 pageSize:100,
                 pageList:[100,200,300,400,500],
                 showExport:false,
@@ -103,6 +107,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             // 初始化表格
             table.bootstrapTable({
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
+showToggle:false,
+                showColumns:false,
+                showExport:false,
+                showSearchButton:false,
                 pageSize:100,
                 pageList:[100,200,300,400,500],
                 showExport:false,

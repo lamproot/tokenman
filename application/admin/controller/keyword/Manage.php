@@ -135,17 +135,30 @@ class Manage extends Backend
     public function edit($ids = NULL)
     {
         $row = $this->model->get(['id' => $ids]);
-        $this->view->assign('groupList', build_select('row[type]', $this->type, $row['type'], ['class' => 'form-control selectpicker']));
+
         if (!$row)
             $this->error(__('No Results were found'));
+
+
+        if ($row['type'] != 2) {
+            unset($this->type[2]);
+        }
+
+        $this->view->assign('groupList', build_select('row[type]', $this->type, $row['type'], ['class' => 'form-control selectpicker']));
+
+
         if ($this->request->isPost())
         {
             $params = $this->request->post("row/a");
+
+
             if ($params)
             {
                 if ($params['type'] != 5) {
-                    $params['content'] = $params['content'] ? $params['content'] : "";
+
+                    $params['content'] = (isset($params['content'] ) && $params['content'][0]) ? $params['content'][0] : "";
                     $params['url'] = (isset($params['url'] ) && $params['url'][0]) ? $params['url'][0] : "";
+
                 }else{
                     $result = [];
                     foreach ($params['content'] as $key => $value) {
@@ -154,6 +167,7 @@ class Manage extends Backend
                     }
                     $params['content'] = json_encode($result);
                 }
+                //echo json_encode($params);exit;
                 $row->save($params);
                 $this->success();
             }

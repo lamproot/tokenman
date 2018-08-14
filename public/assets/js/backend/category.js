@@ -19,6 +19,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form'], function ($, undefin
             var table = $("#table");
             var tableOptions = {
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
+showToggle:false,
+                showColumns:false,
+                showExport:false,
+                showSearchButton:false,
                 escape: false,
                 pk: 'id',
                 sortName: 'weigh',

@@ -19,6 +19,10 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
             // 初始化表格
             table.bootstrapTable({
                 url: $.fn.bootstrapTable.defaults.extend.index_url,
+showToggle:false,
+                showColumns:false,
+                showExport:false,
+                showSearchButton:false,
                 columns: [
                     [
                         //{field: 'state', checkbox: true, },
@@ -135,25 +139,38 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
 
     $('.selectpicker').change(function(){
         var value = $(this).val();
-        if (parseInt(value) == 1) {
+
+        if (parseInt(value) == 1 || parseInt(value) == 2) {
             $('#row_url').addClass('hide');
             $('#row_file').addClass('hide');
             $('.row_add_content').addClass('hide');
             $("#c-local").attr("data-rule","")
             $(".content_list").empty();
+
+            if($('#content_url').length  === 0){
+                $(".content_list").append(Template("content_list_putong_tpl", {count: 1}));
+            }
+
         }
         else if (parseInt(value) == 5) {
             //$("#c-local").attr("data-rule","required;url")
             $('.row_add_content').removeClass('hide');
             $('#row_url').removeClass('hide');
             $('#row_file').removeClass('hide');
+            $('#row_content').removeClass('hide');
         }
         else{
           $(".content_list").empty();
             //$("#c-local").attr("data-rule","required;url")
+
+            $('#row_content').removeClass('hide');
             $('.row_add_content').addClass('hide');
             $('#row_url').removeClass('hide');
             $('#row_file').removeClass('hide');
+
+            if($('#content_url').length  === 0){
+                $(".content_list").append(Template("content_list_file_tpl", {count: 1}));
+            }
         }
     })
 
