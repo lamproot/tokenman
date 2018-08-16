@@ -127,7 +127,7 @@ return [
     'UserInfo' => '个人中心',
     'Refer' => '返回',
     'Pay' => '支付',
-    'Customer' => '联系客服',
+    //'Customer' => '联系客服',
     'Pay Type' => '支付方式',
     'OKPay' => '已付款',
     'Enter By Backstage' => 'TokenMan后台',
