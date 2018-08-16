@@ -48,5 +48,10 @@ return [
     'Novice guidance'       => '新手引导',
     'Dashboard'                                              => '首页',
     'general' => '用户设置',
-    'Activity Data List' => '活动数据（近三次活动）'
+    'Activity Data List' => '活动数据（近三次活动）',
+    'Create A Bot' => '创建机器人',
+    'Please Enter Bot Token' => '请输入机器人 Token',
+    'Please enter the API token of your bot. Once the bot has been registered, you can use that bot to manage your group. ' => '请输入您的BOT的API令牌。一旦机器人已经注册，您可以使用该机器人来管理您的组。',
+    'How do I create a bot?' => '如何创建机器人？',
+    'Or click here to ask for TokenManBot.' => '或者点击这里请求'
 ];

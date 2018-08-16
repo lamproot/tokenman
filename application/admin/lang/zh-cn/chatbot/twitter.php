@@ -11,5 +11,6 @@ return [
     'Close' => '已关闭',
     'Open' => '已开启',
     'Create Error' => '创建失败',
-    'Status' => '状态'
+    'Status' => '状态',
+    'Enter your Twitter ID' => '输入您的Twitter ID'
 ];
