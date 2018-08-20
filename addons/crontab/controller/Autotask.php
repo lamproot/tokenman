@@ -51,7 +51,6 @@ class Autotask extends Controller
         //筛选未过期且未完成的任务
         $crontabList = Crontab::where('status', '=', 'normal')->order('weigh desc,id desc')->select();
 
-        echo json_encode($crontabList);exit;
         foreach ($crontabList as $crontab)
         {
             $update = [];
@@ -123,7 +122,7 @@ class Autotask extends Controller
                 }
                 else if ($crontab['type'] == 'shell')
                 {
-                    echo "2222";
+                    echo "2222";exit;
                     // 执行Shell
                     exec($crontab['content'] . ' >> ' . $logDir . date("Y-m-d") . '.log 2>&1 &');
                 }
