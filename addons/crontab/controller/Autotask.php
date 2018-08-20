@@ -121,6 +121,7 @@ class Autotask extends Controller
                 }
                 else if ($crontab['type'] == 'shell')
                 {
+                    echo "2222";
                     // 执行Shell
                     exec($crontab['content'] . ' >> ' . $logDir . date("Y-m-d") . '.log 2>&1 &');
                 }
@@ -130,7 +131,7 @@ class Autotask extends Controller
                 Log::record($e->getMessage());
             }
         }
-        return 'Execute completed!';
+        return 'Execute completed! 222';
     }
 
 }
