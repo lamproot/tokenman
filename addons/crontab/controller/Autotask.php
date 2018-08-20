@@ -50,7 +50,7 @@ class Autotask extends Controller
         }
         //筛选未过期且未完成的任务
         $crontabList = Crontab::where('status', '=', 'normal')->order('weigh desc,id desc')->select();
-echo json_encode($crontabList);exit;
+
         foreach ($crontabList as $crontab)
         {
             $update = [];
