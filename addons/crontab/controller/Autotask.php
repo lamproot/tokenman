@@ -87,7 +87,6 @@ class Autotask extends Controller
                 $update['status'] = ($crontab['maximums'] > 0 && $update['executes'] >= $crontab['maximums']) ? 'completed' : 'normal';
             }
 
-            echo json_encode($update);exit;
 
             // 如果需要更新状态
             if (!$update)
