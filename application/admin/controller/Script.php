@@ -35,7 +35,6 @@ class Script extends Backend
      */
     public function twitter()
     {
-        echo "twitter";exit;
         //获取需要Twitter推送的机器人
         $list = $this->botTwitterModel
                 ->where('status', '=', 1)
