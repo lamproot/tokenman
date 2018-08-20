@@ -99,6 +99,7 @@ class Autotask extends Controller
                 continue;
             try
             {
+                echo $crontab['type'];exit;
                 if ($crontab['type'] == 'url')
                 {
                     if (substr($crontab['content'], 0, 1) == "/")
@@ -123,8 +124,8 @@ class Autotask extends Controller
                 else if ($crontab['type'] == 'shell')
                 {
                     echo "333";exit;
-                    echo $crontab['type'];exit;
-                    echo $crontab['content'] . ' >> ' . $logDir . date("Y-m-d") . '.log 2>&1 &';exit;
+                    // echo $crontab['type'];exit;
+                    // echo $crontab['content'] . ' >> ' . $logDir . date("Y-m-d") . '.log 2>&1 &';exit;
                     // 执行Shell
                     exec($crontab['content'] . ' >> ' . $logDir . date("Y-m-d") . '.log 2>&1 &');
                 }
