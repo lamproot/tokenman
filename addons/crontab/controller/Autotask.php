@@ -79,7 +79,7 @@ class Autotask extends Controller
                     continue;
                 $execute = TRUE;
             }
-
+echo json_encode($update);exit;
             // 如果允许执行
             if ($execute)
             {
