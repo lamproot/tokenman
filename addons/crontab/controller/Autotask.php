@@ -58,7 +58,7 @@ class Autotask extends Controller
             if ($time < $crontab['begintime'])
             {
                 //任务未开始
-                continue;
+                //continue;
             }
             if ($crontab['maximums'] && $crontab['executes'] > $crontab['maximums'])
             {
@@ -87,6 +87,8 @@ class Autotask extends Controller
                 $update['executes'] = $crontab['executes'] + 1;
                 $update['status'] = ($crontab['maximums'] > 0 && $update['executes'] >= $crontab['maximums']) ? 'completed' : 'normal';
             }
+
+            echo json_encode($update);exit;
 
             // 如果需要更新状态
             if (!$update)
