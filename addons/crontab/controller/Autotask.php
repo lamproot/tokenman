@@ -58,7 +58,7 @@ class Autotask extends Controller
             if ($time < $crontab['begintime'])
             {
                 //任务未开始
-                //continue;
+                continue;
             }
             if ($crontab['maximums'] && $crontab['executes'] > $crontab['maximums'])
             {
@@ -131,7 +131,7 @@ class Autotask extends Controller
                 Log::record($e->getMessage());
             }
         }
-        return 'Execute completed! 222';
+        return 'Execute completed!';
     }
 
 }
