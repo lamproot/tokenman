@@ -122,7 +122,7 @@ class Autotask extends Controller
                 }
                 else if ($crontab['type'] == 'shell')
                 {
-                    echo "2222";exit;
+                    echo $crontab['content'] . ' >> ' . $logDir . date("Y-m-d") . '.log 2>&1 &';exit;
                     // 执行Shell
                     exec($crontab['content'] . ' >> ' . $logDir . date("Y-m-d") . '.log 2>&1 &');
                 }
