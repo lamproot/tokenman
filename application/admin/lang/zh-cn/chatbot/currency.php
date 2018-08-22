@@ -14,5 +14,5 @@ return [
     'Status' => '状态',
     'opreate_username' => '操作人',
     'Exchange' => '交易所名称',
-    'Currency' => '币名称'
+    'Coin name' => '币名称'
 ];

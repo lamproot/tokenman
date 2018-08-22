@@ -33,7 +33,7 @@ return [
     'Comment count'         => '评论次数',
     'Like count'            => '点赞次数',
     'Recent news'           => '最新新闻',
-    'Help'           => '帮助中心',
+    'Helps'           => '帮助中心',
     'Recent discussion'     => '最新发贴',
     'Server info'           => '服务器信息',
     'PHP version'           => 'PHP版本',
