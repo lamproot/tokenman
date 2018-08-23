@@ -207,5 +207,6 @@ return [
     'Authority Management' => '权限管理',
     'Main' => '首页',
     'Messages Management' => '消息管理',
-    'Helps' => '帮助中心'
+    'Helps' => '帮助中心',
+    'Twitter Log' => 'Twitter推送日志管理'
 ];
