@@ -16,7 +16,7 @@ use think\Validate;
 class Script extends Backend
 {
 
-    protected $noNeedLogin = ['twitter', 'activity_push'];
+    protected $noNeedLogin = ['twitter', 'activity_push', 'twitterlog'];
     protected $noNeedRight = ['twitter', 'activity_push'];
     protected $layout = '';
 
@@ -31,7 +31,7 @@ class Script extends Backend
     }
 
     /**
-     * twitter脚本 每30分钟执行一次
+     * twitter脚本 每1分钟执行一次
      */
     public function twitter()
     {
@@ -68,6 +68,70 @@ class Script extends Backend
                     }
                 }
             }
+        }
+
+        echo true;
+    }
+
+
+    /**
+     * twitter 重新推送脚本 每1分钟执行一次
+     */
+    public function twitterlog()
+    {
+        //获取需要Twitter推送的机器人
+        $list = $this->botTwitterLogModel
+                ->where('timing', '>', 0)
+                ->where('stoped_at', '>', time())
+                ->select();
+
+        foreach ($list as $key => $value) {
+            $time = time();
+            if (($value['tasked_at'] + $value['timing']) <  time()) {
+                //进行推送 更新推送时间
+                $row = $this->botTwitterLogModel->get(['id' => $value['id']]);
+
+                $chatbot = $this->chatbot->get(['id' => $value['chat_bot_id']]);
+
+                if ($chatbot && !empty($chatbot['token'])) {
+                    $_SESSION['think']['token'] = $chatbot['token'];
+                    $this->sendMessage($chatbot['chat_id'], $value['content']);
+                }
+                $params['tasked_at'] = time();
+                $params['tasked_count'] = $row['tasked_count'] + 1;
+                echo $row->save($params);
+            }
+
+            // tasked_at == 0 第一次推送
+            // tasked_at != 0  tasked_at+timing< time()  判断是否为推送区段
+            //1  + 60
+
+            // if ($value['twitter']) {
+            //     $twitter = $this->getTweet($value['twitter']);
+            //     if ($twitter) {
+            //         $row = $this->chatbot->get(['id' => $value['chat_bot_id']]);
+            //         // if ($params['type'] == 1) {
+            //         //     $result = $this->sendMessage($row['chat_id'], $params['content']);
+            //         // }
+            //         if ($row && !empty($row['token'])) {
+            //             $_SESSION['think']['token'] = $row['token'];
+            //         }
+            //
+            //         foreach ($twitter as $kkey => $vvalue) {
+            //             if ($vvalue['tweet']) {
+            //                 //查询是否已推送Twitter
+            //                 //推送Twitter消息
+            //                 $result = $this->sendMessage($row['chat_id'], strip_tags($vvalue['tweet']));
+            //                 //保存Twitter消息
+            //                 // $params['content'] = strip_tags($vvalue['tweet']);
+            //                 // $params['chat_bot_id'] = $value['chat_bot_id'];
+            //                 // $params['twitter_id'] = $vvalue['id'];
+            //                 // $params['twitter'] = $value['twitter'];
+            //                 // $this->botTwitterLogModel->create($params);
+            //             }
+            //         }
+            //     }
+            // }
         }
 
         echo true;
