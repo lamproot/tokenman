@@ -63,6 +63,10 @@ class Script extends Backend
                             $params['chat_bot_id'] = $value['chat_bot_id'];
                             $params['twitter_id'] = $vvalue['id'];
                             $params['twitter'] = $value['twitter'];
+                            $params['started_at'] = time();
+                            $params['stoped_at'] = time();
+
+
                             $this->botTwitterLogModel->create($params);
                         }
                     }
