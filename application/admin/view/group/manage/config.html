@@ -149,6 +149,38 @@
 							<div class="box box-default">
 								<div class="box-header with-border">
 									<h3 class="box-title">
+										{:__('警告信息回复')}
+									</h3>
+									<div class="box-tools pull-right">
+										<!-- <a href="javascript:;" data-toggle="tooltip" title="点击开启/关闭" data-switch-name="is_keyword_cmd"  data-switch-value="{if isset($result['is_keyword_cmd'])}{$result['is_keyword_cmd']}{else/}0{/if}" class="btn-disable btn-switch"
+										data-action="disable" data-name="blog">
+											<i class="fa {if isset($result['is_keyword_cmd']) && $result['is_keyword_cmd'] eq 1}fa-toggle-on{else/}fa-toggle-off{/if} text-info fa-2x">
+											</i>
+										</a> -->
+									</div>
+
+								</div>
+
+								<div class="box-body">
+									<div class="form-group">
+									  <label>警告信息回复文案</label>
+									  <textarea class="form-control" rows="3" placeholder="{:__('Enter ...')}">{if isset($result['del_msg_warn_content'])}{$result['del_msg_warn_content']}{/if}</textarea>
+									</div>
+
+									<div class="form-group">
+										<button type="button" class="btn btn-info btn-flat del_msg_warn_content" style="width:100%">
+											{:__('Save')}
+										</button>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-md-12">
+							<div class="box box-default">
+								<div class="box-header with-border">
+									<h3 class="box-title">
 										{:__('Reply according to keywords')}
 									</h3>
 									<div class="box-tools pull-right">

@@ -118,6 +118,32 @@ showToggle:false,
         },
         config: function () {
 
+
+            $(".del_msg_warn_content").click(function(){
+                var that = this;
+                var content = $(this).parent().prev().children('textarea').val();
+                $.ajax({
+                    url: 'group/manage/botconfig',
+                    type: 'post',
+                    dataType: 'json',
+                    data:{
+                        "rule":"del_msg_warn_content",
+                        "value":content,
+                        "chat_bot_id":getrow['chat_bot_id'],
+                        "chat_id":getrow['chat_id']
+                    },
+                    success: function (ret) {
+                        if (ret.code === 0) {
+                            Toastr.success("设置成功");
+                        }else{
+                            Toastr.success("设置失败");
+                        }
+
+                    }
+                });
+
+            });
+
             //================= 封禁功能 ==================
             $(".set_ban_time_button").click(function(){
                 var that = this;
