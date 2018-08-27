@@ -28,9 +28,9 @@ define(['jquery', 'bootstrap', 'backend', 'table', 'form', 'template', 'upload']
                         //{field: 'type', title: __('type')},
 
                         // {field: 'from_id', title: __('from_id')},
-                        {field: 'from_username', title: __('from_username')},
-                        {field: 'first_name', title: __('first_name')},
-                        {field: 'last_name', title: __('last_name')},
+                        {field: 'from_username', operate: 'LIKE %...%',title: __('from_username')},
+                        {field: 'first_name', operate: 'LIKE %...%', title: __('first_name')},
+                        {field: 'last_name', operate: 'LIKE %...%', title: __('last_name')},
                         {field: 'type', title: __('type'), typeList: typeList, formatter: function (value, row, index) {
                             if (typeList[row.type]) {
                                 //row.type = row.type ? row.type : 0;
