@@ -69,10 +69,90 @@
             </div>
         </div>
     </div>
-</div>
-<div class="hide layer-footer">
-    <label class="control-label col-xs-12 col-sm-2"></label>
-    <div class="col-xs-12 col-sm-8">
-        <button type="reset" class="btn btn-primary btn-embossed btn-close" onclick="Layer.closeAll();">{:__('Close')}</button>
+    <div class="row" style="margin-top:15px;">
+
+        <div class="col-xs-12 col-md-12">
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="panel-title">
+                        <span class="label label-success pull-right">{:__('TokenMan统计')}</span>
+                        <h5>{:__('用户数据')}</h5>
+                    </div>
+                    <div class="panel-content">
+                        <div class="mui-row" id="menu">
+                    <div class="mui-col-xs-3" id="min" style="background: white;">分</div>
+                    <div class="mui-col-xs-3" id="hour">时</div>
+                    <div class="mui-col-xs-3" id="day">日</div>
+                    <div class="mui-col-xs-3" id="week">周</div>
+                    </div>
+                    <div class="chart" id="lineChart"></div>
+                    </div>
+                    <div class="hide layer-footer">
+                        <label class="control-label col-xs-12 col-sm-2"></label>
+                        <div class="col-xs-12 col-sm-8">
+                            <button type="reset" class="btn btn-primary btn-embossed btn-close" onclick="Layer.closeAll();">{:__('Close')}</button>
+                        </div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
+    <script>
+        //小函数，作用仅限于改变日周月的背景
+        function allgray() {
+            h("#min").css({
+                background: '#f7f7f7'
+            });
+            h("#hour").css({
+                background: '#f7f7f7'
+            });
+            h("#day").css({
+                background: '#f7f7f7'
+            });
+            h("#week").css({
+                background: '#f7f7f7'
+            });
+        }
+
+        h("#min").tap(function() {
+            allgray();
+            h("#min").css({
+                background: '#ffffff'
+            });
+
+            changeUnit("minute");
+            interval = setInterval(updateData, 1000);
+        });
+
+        h("#hour").tap(function() {
+            //改变背景颜色
+            allgray();
+            h("#hour").css({
+                background: '#ffffff'
+            });
+
+            //改变曲线
+            clearInterval(interval);
+            changeUnit("hour");
+        });
+
+        h("#day").tap(function() {
+            allgray();
+            h("#day").css({
+                background: '#ffffff'
+            });
+
+            clearInterval(interval);
+            changeUnit("day");
+        });
+
+        h("#week").tap(function() {
+            allgray();
+            h("#week").css({
+                background: '#ffffff'
+            });
+            clearInterval(interval);
+            changeUnit("week");
+        });
+    </script>

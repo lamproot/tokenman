@@ -19,6 +19,10 @@ class Currency extends Backend
     public function _initialize()
     {
         parent::_initialize();
+        $this->exchange = [1 => 'CoinMarketCap', 2 => 'LBank'];
+        if (isset($_COOKIE['think_var']) && $_COOKIE['think_var'] == 'en') {
+            $this->exchange = [1 => 'CoinMarketCap', 2 => 'LBank'];
+        }
         $this->model = model('BotCurrency');
     }
 
@@ -69,8 +73,7 @@ class Currency extends Backend
      */
     public function add()
     {
-        unset($this->type[2]);
-        $this->view->assign('groupList', build_select('row[type]', $this->type, 1, ['class' => 'form-control selectpicker']));
+        $this->view->assign('exchangeList', build_select('row[exchange]', $this->exchange, 1, ['class' => 'form-control selectpicker exchange_select']));
 
         $total = $this->model
                 ->where('is_del', '=', 0)
@@ -126,6 +129,8 @@ class Currency extends Backend
             }
             $this->error();
         }
+        $this->view->assign('exchangeList', build_select('row[exchange]', $this->exchange, $row['exchange'], ['class' => 'form-control selectpicker exchange_select']));
+
         $this->view->assign("row", $row);
         return $this->view->fetch();
     }

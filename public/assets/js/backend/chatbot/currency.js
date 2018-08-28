@@ -84,6 +84,7 @@ showToggle:false,
                 keyword_demo('', true);
             });
 
+
             // $(".selectpicker").on('change', function () {
             //     alert("1212")
             // });
@@ -99,9 +100,53 @@ showToggle:false,
         },
         add: function (form) {
             Form.api.bindevent($("form[role=form]"));
+            // $(document).on('change', ".exchange_select", function () {
+            //     alert($(this).val())
+            // });
+
+           //  $(".exchange_select").change(function(){
+           //      var exchange = $(this).val();
+           //      //要触发的事件
+           //      var api = "http://api.lbank.info/v1/ticker.do?symbol=";
+           //      var url = "";
+           //      if (exchange == 2) {
+           //          url  = api + exchange;
+           //      }
+           //
+           //      alert(url)
+           // });
+
+           $("#currency").change(function(){
+               var value = $(this).val();
+               var exchange = $(".exchange_select option:selected").val();
+               console.log(exchange)
+
+               // if (exchange == 1) {
+               //     $("#api_url").val(value);
+               // }
+
+               if (exchange == 2) {
+                   $("#api_url").val("http://api.lbank.info/v1/ticker.do?symbol="+value);
+                   $("#api_content").val("名称 : {currency} \n累计成交量 : {vol} \n最高价 : {high} \n最低价 : {low} \n涨跌幅 : {change} \n累计成交额 : {turnover} \n最新成交价 : {latest}");
+               }
+           });
         },
         edit: function (form) {
             Form.api.bindevent($("form[role=form]"));
+            $("#currency").change(function(){
+                var value = $(this).val();
+                var exchange = $(".exchange_select option:selected").val();
+                console.log(exchange)
+
+                // if (exchange == 1) {
+                //     $("#api_url").val(value);
+                // }
+
+                if (exchange == 2) {
+                    $("#api_url").val("http://api.lbank.info/v1/ticker.do?symbol="+value);
+                    $("#api_content").val("名称 : {currency} \n累计成交量 : {vol} \n最高价 : {high} \n最低价 : {low} \n涨跌幅 : {change} \n累计成交额 : {turnover} \n最新成交价 : {latest}");
+                }
+            });
         }
     };
     return Controller;

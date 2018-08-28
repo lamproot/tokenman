@@ -13,6 +13,6 @@ return [
     'Create Error' => '创建失败',
     'Status' => '状态',
     'opreate_username' => '操作人',
-    'Exchange' => '交易所名称',
+    'Exchange' => '交易所对接API',
     'Coin name' => '币名称'
 ];
