@@ -128,7 +128,6 @@ showToggle:false,
                     dataType: 'json',
                     data:{
                         "rule":"del_msg_warn_content",
-                        "value":0,
                         "data":content,
                         "chat_bot_id":getrow['chat_bot_id'],
                         "chat_id":getrow['chat_id']
