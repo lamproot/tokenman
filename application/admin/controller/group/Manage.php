@@ -368,6 +368,11 @@ class Manage extends Backend
                 //     $result["keyword_cmd_config"][$kkey]['keyword'] = explode(",", $result["keyword_cmd_config"][$kkey]['keyword']);
                 // }
             }
+
+            if ($value['rule'] == 'del_msg_warn_content') {
+                $result["del_msg_warn_content"] = json_decode($value['data'], true);
+
+            }
         }
         //echo json_encode($result);exit;
         $this->assign("result", $result);

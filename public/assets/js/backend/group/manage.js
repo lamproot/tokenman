@@ -129,7 +129,7 @@ showToggle:false,
                     data:{
                         "rule":"del_msg_warn_content",
                         "value":"",
-                        "data":content,
+                        "data":JSON.stringify({"content":content}),
                         "chat_bot_id":getrow['chat_bot_id'],
                         "chat_id":getrow['chat_id']
                     },
