@@ -127,7 +127,7 @@ class Manage extends Backend
 
         if ($row) {
             // $this->error(__('您已存在机器人'));
-            echo json_encode(array("code" => 200, "msg" => '您已存在机器人'));exit;
+            return json(array("code" => 200, "msg" => '您已存在机器人'));
         }
 
         if ($this->request->isPost())
@@ -145,7 +145,7 @@ class Manage extends Backend
                 $botInfo = $this->getMe();
 
                 if (!$botInfo) {
-                    echo json_encode(array("code" => 200, "msg" => 'bot信息获取失败'));exit;
+                    return json(["code" => 0,"msg" => '创建失败Bot']);
                 }
 
                 //获取机器人信息
@@ -167,11 +167,13 @@ class Manage extends Backend
 
                 //$this->success();
 
-                echo json_encode(array("code" => 200, "msg" => '创建成功'));exit;
+                // echo json_encode(array("code" => 200, "msg" => '创建成功'));exit;
+                return json(["msg" => '创建成功']);
             }
             //$this->error();
         }
-        echo json_encode(array("code" => 200, "create_bot" => true, "msg" => '创建机器人'));exit;
+
+        return json(["create_bot" => true, "msg" => '创建机器人']);
         //return $this->view->fetch();
     }
 
