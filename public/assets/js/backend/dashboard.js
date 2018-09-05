@@ -137,8 +137,7 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
                 success: function (ret) {
                     if (true) {
                         var data = JSON.parse(ret)
-                        alert(data.code)
-                        if (data.code != 200) {
+                        if (data.create_bot) {
                             Layer.open({
                                 title: __('Create A Bot'),
                                 //maxHeight: 600,

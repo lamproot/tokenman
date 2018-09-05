@@ -4,7 +4,7 @@ return array (
   'name' => 'TokenMan',
   'beian' => '',
   'cdnurl' => '',
-  'version' => '1.0.15',
+  'version' => '1.0.16',
   'timezone' => 'Asia/Shanghai',
   'forbiddenip' => '',
   'languages' =>

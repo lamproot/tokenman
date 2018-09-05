@@ -171,7 +171,7 @@ class Manage extends Backend
             }
             //$this->error();
         }
-        echo json_encode(array("code" => 200, "msg" => '创建机器人'));exit;
+        echo json_encode(array("code" => 200, "create_bot" => true, "msg" => '创建机器人'));exit;
         //return $this->view->fetch();
     }
 
