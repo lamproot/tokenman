@@ -136,9 +136,7 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
                 type: 'get',
                 success: function (ret) {
                     if (true) {
-                        alert(ret)
-                        var data = JSON.parse(ret)
-                        alert(data)
+                        var data = ret
                         if (data.create_bot) {
                             Layer.open({
                                 title: __('Create A Bot'),
@@ -186,7 +184,8 @@ define(['jquery', 'bootstrap', 'backend', 'addtabs', 'table', 'echarts', 'echart
                                         data:{"token":token},
                                         success: function (ret) {
                                             //alert("dasddasd")
-                                            var data = JSON.stringify(ret)
+                                            // var data = JSON.stringify(ret)
+                                            var data = ret;
                                             //alert(data)
                                             if (data.code === 0) {
                                                 alert(data.msg);
