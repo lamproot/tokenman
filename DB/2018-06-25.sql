@@ -40,6 +40,28 @@ CREATE TABLE `group_user` (
 
 
 
+-- Box_name
+-- Box_birthday
+-- Box_isvip
+-- Box_mobile
+-- time
+-- ----------------------------
+--  Table structure for `group_user`
+-- ----------------------------
+DROP TABLE IF EXISTS `mygymchina`;
+CREATE TABLE `mygymchina` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `Box_name` varchar(14) NOT NULL,
+  `Box_birthday` varchar(14) NOT NULL DEFAULT '',
+  `Box_isvip` tinyint(3) NOT NULL DEFAULT 1 COMMENT '0 不是 1 是',
+  `Box_mobile` varchar(11) DEFAULT NULLDEFAULT '',
+  `time` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+
+
 -- ----------------------------
 --  Table structure for `news_total`
 -- ----------------------------
@@ -113,3 +135,24 @@ CREATE TABLE `group_bot_config` (
 ALTER TABLE chat_push ADD is_pin tinyint(2) NOT NULL DEFAULT 0 COMMENT "是否置顶";
 ALTER TABLE chat_push ADD push_type tinyint(2) NOT NULL DEFAULT 0 COMMENT "0 实时 1 定时";
 ALTER TABLE chat_push ADD push_task int(10) NOT NULL DEFAULT 0 COMMENT "推送定时";
+
+
+
+
+
+
+
+-- ----------------------------
+--  Table structure for `group_user_count`
+-- ----------------------------
+DROP TABLE IF EXISTS `group_user_count`;
+CREATE TABLE `group_user_count` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `chat_id` varchar(14) NOT NULL DEFAULT '',
+  `count` int(10) NOT NULL DEFAULT 0,
+  `time` int(10) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+
+
+ALTER TABLE chat_group ADD group_user_count int(10) NOT NULL DEFAULT 0 COMMENT "群人数";

@@ -517,9 +517,11 @@ class Backend extends Controller
         /** 访问网页 */
         $ret = json_decode ($this->fetchs ($url, $param), true);
 
-
+        $method_arr = ["getChatMembersCount"];
         if (!$ret['ok']) {
-            $this->error($ret['description']);
+            if (!in_array($method, $method_arr)) {
+                $this->error($ret['description']);
+            }
             return false;
         }
         /** 返回 */
@@ -660,6 +662,7 @@ class Backend extends Controller
       ]);
       return $this->ret['result'];
   }
+
 
 
 

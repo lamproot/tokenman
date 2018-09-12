@@ -16,7 +16,7 @@ use think\Validate;
 class Script extends Backend
 {
 
-    protected $noNeedLogin = ['twitter', 'activity_push', 'twitterlog'];
+    protected $noNeedLogin = ['twitter', 'activity_push', 'twitterlog', 'group_user_count'];
     protected $noNeedRight = ['twitter', 'activity_push'];
     protected $layout = '';
 
@@ -26,6 +26,9 @@ class Script extends Backend
         $this->botTwitterModel = model('BotTwitter');
         $this->botTwitterLogModel = model('BotTwitterLog');
         $this->groupActivityModel = model('GroupActivity');
+        $this->groupUserCountModel = model('GroupUserCount');
+        $this->groupUserModel = model('GroupUser');
+        $this->chatGroupModel = model('ChatGroup');
         $this->codesModel = model('Codes');
         $this->chatbot = model('ChatBot');
     }
@@ -141,6 +144,38 @@ class Script extends Backend
         echo true;
     }
 
+
+    /**
+     * 获取群用户成员数
+     */
+     public function group_user_count()
+     {
+         //获取所有群列表
+         $chatGroupList = $this->chatGroupModel
+                 ->where('status', '=', 1)
+                 ->select();
+
+        foreach ($chatGroupList as $key => $value) {
+            $chatbot = $this->chatbot->get(['id' => $value['chat_bot_id']]);
+
+            if ($chatbot && !empty($chatbot['token'])) {
+                $_SESSION['think']['token'] = $chatbot['token'];
+                //获取群人数
+                $groupUserCount = $this->getChatMembersCount($value['chat_id']);
+                $chatGroup = $this->chatGroupModel->get(['id' => $value['id']]);
+                $chatGroup->group_user_count = $groupUserCount ? (int)$groupUserCount : 0;
+                $chatGroup->save();
+
+                //添加群人数实时统计
+                $params['chat_id'] = $value['chat_id'];
+                $params['count'] = $chatGroup->group_user_count;
+                $params['time'] = strtotime(date("Y-m-d", time()) ." ".date("h", time()) . ":00:00");
+                $this->groupUserCountModel->create($params);
+            }
+        }
+        echo true;
+
+    }
 
     /**
      * 活动进行期间 TokenMan 消息推送
