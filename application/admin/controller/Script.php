@@ -91,7 +91,7 @@ class Script extends Backend
 
         //查询推送最后信息
 
-        $date = strtotime(date("Y-m-d", time()) ." ".date("h", time()) . ":00:00");
+        $date = strtotime(date("Y-m-d", time()) ." 00:00:00");
         $sort = ["user_token_log_id desc"];
         $order = [];
         $pushLog = $this->TokenManPushLogModel
