@@ -107,11 +107,16 @@ class Script extends Backend
         $list = $this->userTokenManLogModel
                 ->where('id', '>', $user_token_log_id)
                 ->order($sort, $order)
-                ->limit(0, 60)
+                ->limit(0, 120)
                 ->select();
 
         foreach ($list as $key => $value) {
-            sleep(1);
+            //echo $key%2;
+            if ($key%2 === 0) {
+                sleep(1);
+            }
+            // exit;
+            //   sleep(1);
             $tokenManPushLog = $this->TokenManPushLogModel->get(['from_id' => $value['from_id'], 'date' => $date]);
             if (!$tokenManPushLog) {
                 $row = $this->chatbot->get(['id' => $value['chat_bot_id']]);
