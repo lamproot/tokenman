@@ -520,7 +520,11 @@ class Backend extends Controller
         $method_arr = ["getChatMembersCount"];
         if (!$ret['ok']) {
             if (!in_array($method, $method_arr)) {
-                $this->error($ret['description']);
+                if ($detection) {
+                    $this->error($ret['description']);
+                }else{
+                    return $ret['description'];
+                }
             }
             return false;
         }
@@ -551,8 +555,8 @@ class Backend extends Controller
             'reply_to_message_id' => $reply_to_message_id,
             'parse_mode' => $parse_mode,
             'reply_markup' => $reply_markup
-        ]);
-        return $this->ret['result']['message_id'];
+        ], false);
+        return isset($this->ret['result']) ? $this->ret['result']['message_id'] :$this->ret ;
     }
     public function editMessage ($chat_id, $message_id, $text, $reply_markup = array (), $parse_mode = 'HTML') {
         $this->ret = $this->callMethod ('editMessageText', [

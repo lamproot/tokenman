@@ -16,7 +16,7 @@ use think\Validate;
 class Script extends Backend
 {
 
-    protected $noNeedLogin = ['twitter', 'activity_push', 'twitterlog', 'group_user_count'];
+    protected $noNeedLogin = ['twitter', 'activity_push', 'twitterlog', 'group_user_count', 'tokenmanpush'];
     protected $noNeedRight = ['twitter', 'activity_push'];
     protected $layout = '';
 
@@ -31,6 +31,8 @@ class Script extends Backend
         $this->chatGroupModel = model('ChatGroup');
         $this->codesModel = model('Codes');
         $this->chatbot = model('ChatBot');
+        $this->userTokenManLogModel = model('userTokenManLog');
+        $this->TokenManPushLogModel = model('TokenManPushLog');
     }
 
     /**
@@ -78,6 +80,67 @@ class Script extends Backend
         }
 
         echo true;
+    }
+
+
+    /**
+     * tokenmanpush
+     */
+    public function tokenmanpush()
+    {
+
+        //查询推送最后信息
+
+        $date = strtotime(date("Y-m-d", time()) ." ".date("h", time()) . ":00:00");
+        $sort = ["user_token_log_id desc"];
+        $order = [];
+        $pushLog = $this->TokenManPushLogModel
+                ->where('date', '=', $date)
+                ->order($sort, $order)
+                ->limit(0, 1)
+                ->select();
+
+        $user_token_log_id = ($pushLog && isset($pushLog[0]) && isset($pushLog[0]['user_token_log_id'])) ? (int)$pushLog[0]['user_token_log_id'] : 0;
+
+        $sort = ["id asc"];
+        $order = [];
+        $list = $this->userTokenManLogModel
+                ->where('id', '>', $user_token_log_id)
+                ->order($sort, $order)
+                ->limit(0, 10)
+                ->select();
+
+        foreach ($list as $key => $value) {
+            $tokenManPushLog = $this->TokenManPushLogModel->get(['from_id' => $value['from_id'], 'date' => $date]);
+            if (!$tokenManPushLog) {
+                $row = $this->chatbot->get(['id' => $value['chat_bot_id']]);
+                if ($row && !empty($row['token'])) {
+                    $_SESSION['think']['token'] = $row['token'];
+                }
+                $button_text = "Joining the ZOS group";
+                $button = json_encode (array (
+                     'inline_keyboard' => array (
+                         array (array (
+                             'text' => $button_text,
+                             'url' => 'https://t.me/ZOSWorld'
+                         ))
+                     )
+                 ));
+                $result = $this->sendMessage($value['from_id'], "ZOS搭建全球首个无国界借贷网络，为用户提供方便便捷的金融服务。现在入群，成为种子用户，优先体验！\n ZOS builds the world first borderless lending network, providing people with a convenient and efficient financial services. Joining the ZOS group now, you will be the seed user and experience it in advance!", "", $button);
+
+                //$result = $this->sendMessage($row['chat_id'], strip_tags($vvalue['tweet']));
+                //保存Twitter消息
+                $params['chat_bot_id'] = $value['chat_bot_id'];
+                $params['from_id'] = $value['from_id'];
+                $params['created_at'] = time();
+                $params['result'] = $result ? json_encode($result) : "";
+                $params['date'] = $date;
+                $params['user_token_log_id'] = $value['id'];
+                $this->TokenManPushLogModel->create($params);
+            }
+        }
+
+        echo true;exit;
     }
 
 
