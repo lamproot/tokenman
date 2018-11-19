@@ -182,6 +182,8 @@ class Dashboard extends Backend
             ->where('type', '=', 2)
             ->where('chat_id', '=', $value['chat_id'])
             ->count();
+            $chatData[$key]['group_user_count'] = $value['group_user_count'] ? $value['group_user_count'] : 0;
+
             // 封禁用户数据
             // $chatData[$key]['blankuser'] = $this->illegaLogModel
             // ->where('chat_id', '=', $value['chat_id'])
