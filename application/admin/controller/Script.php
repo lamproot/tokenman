@@ -123,16 +123,17 @@ class Script extends Backend
                 if ($row && !empty($row['token'])) {
                     $_SESSION['think']['token'] = $row['token'];
                 }
-                $button_text = "Joining the ZOS group";
-                $button = json_encode (array (
-                     'inline_keyboard' => array (
-                         array (array (
-                             'text' => $button_text,
-                             'url' => 'https://t.me/ZOSWorld'
-                         ))
-                     )
-                 ));
-                $result = $this->sendMessage($value['from_id'], "ZOS搭建全球首个无国界借贷网络，为用户提供方便便捷的金融服务。现在入群，成为种子用户，优先体验！\n ZOS builds the world first borderless lending network, providing people with a convenient and efficient financial services. Joining the ZOS group now, you will be the seed user and experience it in advance!", "", $button);
+                // $button_text = "Joining the ZOS group";
+                // $button = json_encode (array (
+                //      'inline_keyboard' => array (
+                //          array (array (
+                //              'text' => $button_text,
+                //              'url' => 'https://t.me/ZOSWorld'
+                //          ))
+                //      )
+                //  ));
+                $result = $this->sendMessage($value['from_id'], "The hottest blockchain forecasting project in 2019 will be launched in advance - BetFuture (BFT) will be released soon.
+\n Concept ahead: forecasting is profitable; [BetFuture] forecasting platform; more users participate in, more business customers to invest in bonuses. \n Incentives for rewards: participation in public sale enjoys the privilege of inviting, free tokens for forcasting paticipation, and the rewards for Trondex airdrops and more prizes. \n More info please check offical Telegram group：https://t.me/BetFutureGlobal \n Twitter：https://twitter.com/BetFutureGlobal \n Website: www.betfuture.club", "");
 
                 //$result = $this->sendMessage($row['chat_id'], strip_tags($vvalue['tweet']));
                 //保存Twitter消息
