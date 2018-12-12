@@ -132,12 +132,12 @@ class Script extends Backend
                 //          ))
                 //      )
                 //  ));
-                $result = $this->sendMessage($value['from_id'], "2019年预测咨询行业黑马级项目正在预售！全球首个对接实体商业的区块链群众预测平台，未上线即获千万美金投资，现在购买即享有邀请获利、下注返佣特权，上所空投奖励及更多激励政策。入口：http://www.betfuture.club/bfc-funding/
-\n Betfuture (BFC) officially opens presale.
-\n The Black Horse Project in 2019 Forecast Consulting Industry is on pre-sale! The world's first blockchain public forecasting platform based on TRON which has received tens of millions of dollars of investment before it goes online.
-\n 1. Early birds in presale have 10% extra bonus
-\n 2. SR and CR enjoys rewards based on invitee’s betting amount
-\n Entrance: http://www.betfuture.club/bfc-funding/", "");
+                $result = $this->sendMessage($value['from_id'], "基于TRON开发的预测币BFC是TRON的重点项目，为庆祝TronDEX 2.0重磅上线 + BFC早鸟预售开募，现在官方电报群展开糖果空投，现在入群即得20BFC，邀请好友还能得到更多糖果！
+活动链接：http://m.name-technology.fun/Index/code/6725ddf7aceb52d2
+
+Good News and hot bounty program inbound！
+TRXMarket is launching in hours! BFC is just open Presale ! To celebrate, BFC will launch a bounty program worth millions TRX, don’t miss out. Get 20BFC for join in our telegroup, invite more get more! 
+Link：http://m.name-technology.fun/Index/code/6725ddf7aceb52d2", "");
 
                 //$result = $this->sendMessage($row['chat_id'], strip_tags($vvalue['tweet']));
                 //保存Twitter消息
