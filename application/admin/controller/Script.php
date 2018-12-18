@@ -132,12 +132,10 @@ class Script extends Backend
                 //          ))
                 //      )
                 //  ));
-                $result = $this->sendMessage($value['from_id'], "基于TRON开发的预测币BFC是TRON的重点项目，为庆祝TronDEX 2.0重磅上线 + BFC早鸟预售开募，现在官方电报群展开糖果空投，现在入群即得20BFC，邀请好友还能得到更多糖果！
-活动链接：http://m.name-technology.fun/Index/code/6725ddf7aceb52d2
-
-Good News and hot bounty program inbound！
-TRXMarket is launching in hours! BFC is just open Presale ! To celebrate, BFC will launch a bounty program worth millions TRX, don’t miss out. Get 20BFC for join in our telegroup, invite more get more! 
-Link：http://m.name-technology.fun/Index/code/6725ddf7aceb52d2", "");
+                $result = $this->sendMessage($value['from_id'], "CoinNess Community Bot:
+Join CoinNess group @coinnessofficial to win 100,000USDT & claim your 200CNNS rewards:
+https://o.coinness.com/cnnsbonus/2d73c413
+CoinNess - Real-time crypto news & market chosen by 3M crypto users.", "");
 
                 //$result = $this->sendMessage($row['chat_id'], strip_tags($vvalue['tweet']));
                 //保存Twitter消息
