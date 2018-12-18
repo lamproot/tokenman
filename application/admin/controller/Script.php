@@ -133,9 +133,7 @@ class Script extends Backend
                 //      )
                 //  ));
                 $result = $this->sendMessage($value['from_id'], "CoinNess Community Bot:
-Join CoinNess group @coinnessofficial to win 100,000USDT & claim your 200CNNS rewards:
-https://o.coinness.com/cnnsbonus/2d73c413
-CoinNess - Real-time crypto news & market chosen by 3M crypto users.", "");
+Does anyone know CoinNess Telegram Airdrop? I joined their group and earned a lot of cash, the total rewards is 1,000,000 CNNS token &100, 000USDT !  You should try it too!  begin here  https://t.me/CoinNessBot?start=2d73c413", "");
 
                 //$result = $this->sendMessage($row['chat_id'], strip_tags($vvalue['tweet']));
                 //保存Twitter消息
